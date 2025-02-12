@@ -12,7 +12,7 @@
 
 master.menu.anonymous = Anónimo
 master.menu.anonymous.favourite-link = Enlace favorito
-
+master.menu.anonymous.favourite-link-student1 = 29532394A: Artero Bellido Manuel
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrador
@@ -30,7 +30,6 @@ master.menu.provider.favourite-link = Enlace favorito
 
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
-
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta
