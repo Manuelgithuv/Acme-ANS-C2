@@ -8,13 +8,12 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-master.company.title = The company
+master.company.title = Acme, Inc
 master.company.text = \
-	Hello World, Inc. is a fictitious company that provides a starter \
-	project for the students of the Design and Testing subject of the \
-	Software Engineering Curriculum of the University of Seville.
+	Acme, Inc. is a fictitious company that optimizing airports \
+	and simplifying logistics
 master.company.name = Acme, Inc.
 master.company.address = 01 Acme Drive, Wondercity, Wonderland
-master.company.phone = +1 000 111 222
-master.company.email = contact@acme.com
+master.company.phone = +44 111 222 333
+master.company.email = AcmeAns@acme.com
 
