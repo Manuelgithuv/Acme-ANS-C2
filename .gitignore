@@ -9,6 +9,7 @@ target/
 #.project
 #.settings
 .springBeans
+.project
 ### IntelliJ IDEA ###
 .idea
 *.iws
