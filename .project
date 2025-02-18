@@ -43,7 +43,18 @@
 		<link>
 			<name>target/classes</name>
 			<type>2</type>
-			<location>//C:/Workspace-25/Projects/DP2-24-25-C1.005-Acme-ANS/target/classes/</location>
+			<location>C:/Workspace-25/Projects/Acme-ANS-D01/target/classes</location>
 		</link>
 	</linkedResources>
+	<filteredResources>
+		<filter>
+			<id>1739869080172</id>
+			<name></name>
+			<type>30</type>
+			<matcher>
+				<id>org.eclipse.core.resources.regexFilterMatcher</id>
+				<arguments>node_modules|\.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+			</matcher>
+		</filter>
+	</filteredResources>
 </projectDescription>
