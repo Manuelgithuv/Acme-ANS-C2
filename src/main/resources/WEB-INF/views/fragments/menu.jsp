@@ -22,6 +22,7 @@
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link" action="http://www.example.com/"/>
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link-student1" action="https://wuolah.com/home"/>
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link-student2" action="https://www.anycubic.es/products/kobra-s1-combo"/>
+			<acme:menu-suboption code="master.menu.anonymous.favourite-link-student4" action="https://itch.io/"/>
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link-student5" action="https://www.youtube.com"/>
 		</acme:menu-option>
 
