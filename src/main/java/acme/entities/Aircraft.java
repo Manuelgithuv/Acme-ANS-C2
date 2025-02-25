@@ -45,9 +45,8 @@ public class Aircraft extends AbstractEntity {
 	private double				cargoWeight;
 
 	@Mandatory
-	@Valid
 	@Automapped
-	private Boolean				status;
+	private boolean				status;
 
 	@Optional
 	@Size(max = 255)

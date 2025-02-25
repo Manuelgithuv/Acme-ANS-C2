@@ -3,7 +3,6 @@ package acme.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Transient;
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -32,9 +31,8 @@ public class Flight extends AbstractEntity {
 	private String				tag;
 
 	@Mandatory
-	@Valid
 	@Automapped
-	private Boolean				indication;
+	private boolean				indication;
 
 	@Mandatory
 	@ValidMoney
