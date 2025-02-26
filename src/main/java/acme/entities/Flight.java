@@ -2,7 +2,7 @@
 package acme.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -13,6 +13,7 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
+import acme.realms.Manager;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,9 +33,8 @@ public class Flight extends AbstractEntity {
 	private String				tag;
 
 	@Mandatory
-	@Valid
 	@Automapped
-	private Boolean				indication;
+	private boolean				indication;
 
 	@Mandatory
 	@ValidMoney
@@ -53,15 +53,12 @@ public class Flight extends AbstractEntity {
 
 	// -------------------------------------------------------------------
 
-
-	@Transient
-	public long getNumberOfLayovers() {
-		return 0;
-	}
-
-	// -------------------------------------------------------------------
-
 	// Relaciones 
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Manager				manager;
 
 	// -------------------------------------------------------------------
 
