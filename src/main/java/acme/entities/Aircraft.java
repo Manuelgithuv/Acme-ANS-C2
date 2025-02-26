@@ -7,6 +7,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractEntity;
@@ -23,18 +25,18 @@ public class Aircraft extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@Mandatory
+	@NotBlank
 	@Size(max = 50)
 	@Automapped
 	private String				model;
 
-	@Mandatory
+	@NotBlank
 	@Size(max = 50)
 	@Column(unique = true)
 	private String				registrationNumber;
 
 	@Mandatory
-	@Valid
+	@Positive
 	@Automapped
 	private Integer				capacity;
 
