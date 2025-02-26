@@ -3,6 +3,7 @@ package acme.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -12,6 +13,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidUrl;
+import acme.datatypes.OperationalScope;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,6 +33,11 @@ public class Airport extends AbstractEntity {
 	@Pattern(regexp = "^[A-Z]{3}$", message = "IATA code must be a 3-letter uppercase code")
 	@Column(unique = true)
 	private String				iataCode;
+
+	@Mandatory
+	@Valid
+	@Automapped
+	private OperationalScope	scope;
 
 	@Mandatory
 	@Size(max = 50)

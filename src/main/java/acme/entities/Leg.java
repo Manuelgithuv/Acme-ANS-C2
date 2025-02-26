@@ -47,16 +47,11 @@ public class Leg extends AbstractEntity {
 	@Automapped
 	private LegStatus			status;
 
-	// -------------------------------------------------------------------
-
-	// Atributos derivados
-
-	// -------------------------------------------------------------------
-
 	@Mandatory
 	@Valid
 	@Automapped
 	private Integer				hours;
+
 	// -------------------------------------------------------------------
 
 	// Relaciones 
