@@ -4,6 +4,7 @@ package acme.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -24,12 +25,12 @@ public class Airport extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@Mandatory
+	@NotBlank
 	@Size(max = 50)
 	@Automapped
 	private String				name;
 
-	@Mandatory
+	@NotBlank
 	@Pattern(regexp = "^[A-Z]{3}$", message = "IATA code must be a 3-letter uppercase code")
 	@Column(unique = true)
 	private String				iataCode;
@@ -39,12 +40,12 @@ public class Airport extends AbstractEntity {
 	@Automapped
 	private OperationalScope	scope;
 
-	@Mandatory
+	@NotBlank
 	@Size(max = 50)
 	@Automapped
 	private String				city;
 
-	@Mandatory
+	@NotBlank
 	@Size(max = 50)
 	@Automapped
 	private String				country;
@@ -52,7 +53,7 @@ public class Airport extends AbstractEntity {
 	@Optional
 	@ValidUrl
 	@Automapped
-	private String				website;
+	private String				webSite;
 
 	@Optional
 	@ValidEmail
