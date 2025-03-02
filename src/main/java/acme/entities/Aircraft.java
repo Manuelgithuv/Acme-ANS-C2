@@ -41,8 +41,8 @@ public class Aircraft extends AbstractEntity {
 	private Integer				capacity;
 
 	@Mandatory
-	@DecimalMin(value = "2000.0", message = "Cargo weight must be at least 2,000")
-	@DecimalMax(value = "50000.0", message = "Cargo weight must be at most 50,000")
+	@DecimalMin(value = "2000.0", inclusive = true, message = "Cargo weight must be at least 2,000")
+	@DecimalMax(value = "50000.0", inclusive = true, message = "Cargo weight must be at most 50,000")
 	@Automapped
 	private double				cargoWeight;
 
