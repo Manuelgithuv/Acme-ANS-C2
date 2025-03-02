@@ -48,11 +48,6 @@ public class Flight extends AbstractEntity {
 
 	// -------------------------------------------------------------------
 
-	// Atributos derivados
-	//TODO: Atributos derivados de legs
-
-	// -------------------------------------------------------------------
-
 	// Relaciones 
 
 	@Mandatory

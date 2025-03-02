@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <help_text/>
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>608</x>
+      <y>136</y>
+      <w>504</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
+Manager
+--
++ identifierNumber: String {NotBlank, Pattern(regexp = "^[A-Z]{2,3}\\d{6}$", Column(unique=true)}
++ yearsOfExperience: Integer {Mandatory, PositiveOrZero, Automapped}
++ dateOfBirth: Date {Mandatory, Past, Temporal(TemporalType.TIMESTAMP)}
++ picture: String {Optional, ValidURL, Automapped}
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>368</y>
+      <w>352</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Flight
+--
++ tag: String {Mandatory, Size(max=50), Automapped}
++ indication: Boolean {Mandatory, Valid, Automapped}
++ cost: Money {Mandatory, ValidMoney, Automapped}
++ description: String {Optional, Size(max=255), Automapped}
+--
++ getScheduledDeparture(): Date
++ getScheduledArrival(): Date
++ getOriginCity(): String
++ getDestinationCity(): String
++ getNumberOfLayovers(): Integer
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>240</y>
+      <w>160</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>Managed by &gt;
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>170.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>136</y>
+      <w>496</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Leg
+--
++ tag: String {NotBlank, Valid, Column(unique=true)}
++ scheduledDeparture: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)}
++ scheduledArrival: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)
++ status: LegStatus {Mandatory, Valid, Automapped}
++ Integer: hours {Mandatory, Positive, Automapped}
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>304</x>
+      <y>224</y>
+      <w>312</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>Belongs to &gt;
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>370.0;240.0;180.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
