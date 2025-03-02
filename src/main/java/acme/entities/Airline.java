@@ -36,7 +36,7 @@ public class Airline extends AbstractEntity {
 	private String				name;
 
 	@NotBlank
-	@Pattern(regexp = "^[A-Z]{2}[A-Z0-9]X$", message = "IATA code must be a 3-letter uppercase code ending in 'X'")
+	@Pattern(regexp = "^[A-Z]{3}$", message = "IATA code must be a 3-letter uppercase code")
 	@Column(unique = true)
 	private String				iataCode;
 
