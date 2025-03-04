@@ -293,7 +293,7 @@
                                 
         
         
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/classes"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/webapp"/>
                 
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/acme-framework-25.2.0"/>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         

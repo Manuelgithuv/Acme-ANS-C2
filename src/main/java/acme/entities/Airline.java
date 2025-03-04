@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -29,20 +30,20 @@ public class Airline extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@Mandatory
+	@NotBlank
 	@Size(max = 50)
 	@Automapped
 	private String				name;
 
-	@Mandatory
-	@Pattern(regexp = "^[A-Z]{2}[A-Z0-9]X$", message = "IATA code must be a 3-letter uppercase code ending in 'X'")
+	@NotBlank
+	@Pattern(regexp = "^[A-Z]{3}$", message = "IATA code must be a 3-letter uppercase code")
 	@Column(unique = true)
 	private String				iataCode;
 
 	@Mandatory
 	@ValidUrl
 	@Automapped
-	private String				website;
+	private String				webSite;
 
 	@Mandatory
 	@Valid

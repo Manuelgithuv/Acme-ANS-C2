@@ -9,10 +9,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.ValidMoment;
 import acme.datatypes.LegStatus;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,18 +30,18 @@ public class Leg extends AbstractEntity {
 	// Atributos directos
 
 	// -------------------------------------------------------------------
-	@Mandatory
+	@NotBlank
 	@Valid
 	@Column(unique = true)
 	private String				flightCode;
 
 	@Mandatory
-	@Valid
+	@ValidMoment
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				scheduledDeparture;
 
 	@Mandatory
-	@Valid
+	@ValidMoment
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				scheduledArrival;
 
@@ -48,7 +51,7 @@ public class Leg extends AbstractEntity {
 	private LegStatus			status;
 
 	@Mandatory
-	@Valid
+	@Positive
 	@Automapped
 	private Integer				hours;
 
