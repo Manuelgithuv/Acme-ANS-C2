@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.entities.aircraft;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +15,7 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
 
