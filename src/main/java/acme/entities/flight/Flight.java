@@ -1,8 +1,11 @@
 
 package acme.entities.flight;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -13,6 +16,8 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
+import acme.client.helpers.SpringHelper;
+import acme.entities.leg.LegRepository;
 import acme.realms.Manager;
 import lombok.Getter;
 import lombok.Setter;
@@ -48,12 +53,65 @@ public class Flight extends AbstractEntity {
 
 	// -------------------------------------------------------------------
 
+	// Derivados
+
+
+	@Transient
+	public Date getScheduledDeparture() {
+		LegRepository repository;
+
+		repository = SpringHelper.getBean(LegRepository.class);
+
+		return repository.findFirstScheduledDeparture(this.getId()).orElse(null);
+
+	}
+
+	@Transient
+	public Date getScheduledArrival() {
+		LegRepository repository;
+
+		repository = SpringHelper.getBean(LegRepository.class);
+
+		return repository.findLastScheduledArrival(this.getId()).orElse(null);
+
+	}
+
+	@Transient
+	public String getOriginCity() {
+		LegRepository repository;
+
+		repository = SpringHelper.getBean(LegRepository.class);
+
+		return repository.findOriginCity(this.getId()).orElse(null);
+	}
+
+	@Transient
+	public String getDestinationCity() {
+		LegRepository repository;
+
+		repository = SpringHelper.getBean(LegRepository.class);
+
+		return repository.findDestinationCity(this.getId()).orElse(null);
+	}
+
+	@Transient
+	public Long getNumberOfLayovers() {
+		LegRepository repository;
+
+		repository = SpringHelper.getBean(LegRepository.class);
+
+		return repository.countLayoversByFlight(this.getId());
+
+	}
+	// ----------------------------------------
+
 	// Relaciones 
+
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Manager				manager;
+	private Manager manager;
 
 	// -------------------------------------------------------------------
 
