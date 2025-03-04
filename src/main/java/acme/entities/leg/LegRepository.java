@@ -1,5 +1,5 @@
 
-package acme.features.leg;
+package acme.entities.leg;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
