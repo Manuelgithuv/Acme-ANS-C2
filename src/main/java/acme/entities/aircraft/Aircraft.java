@@ -15,6 +15,7 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.datatypes.AircraftStatus;
 import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
@@ -48,8 +49,9 @@ public class Aircraft extends AbstractEntity {
 	private double				cargoWeight;
 
 	@Mandatory
+	@Valid
 	@Automapped
-	private boolean				status;
+	private AircraftStatus		status;
 
 	@Optional
 	@Size(max = 255)
