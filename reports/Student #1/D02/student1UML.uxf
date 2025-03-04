@@ -110,7 +110,7 @@ Aircraft
 + registrationNumber: String {NotBlank, Size(max = 50), Column(unique=true)}
 + capacity: Integer {Mandatory, Positive, Automapped}
 + cargoWeight: Double {Mandatory, DecimalMin(value = "2000.0", inclusive=true), DecimalMax(value = "50000.0",inclusive=true), Automapped}
-+ status: Boolean {Mandatory, Valid, Automapped}
++ status: AircraftStatus {Mandatory, Valid, Automapped}
 + details: String {Optional, Size(max = 255), Automapped}
 bg=red</panel_attributes>
     <additional_attributes/>
