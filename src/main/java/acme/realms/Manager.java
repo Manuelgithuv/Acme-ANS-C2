@@ -7,10 +7,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.PositiveOrZero;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
@@ -33,7 +34,8 @@ public class Manager extends AbstractRole {
 	private String				identifierNumber;
 
 	@Mandatory
-	@PositiveOrZero
+	@Min(0)
+	@Max(75)
 	@Automapped
 	private Integer				yearsOfExperience;
 
