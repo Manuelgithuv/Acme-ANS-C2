@@ -7,8 +7,8 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import acme.features.airline.AirlineRepository;
-import acme.features.leg.LegRepository;
+import acme.entities.airline.AirlineRepository;
+import acme.entities.leg.LegRepository;
 
 @Component
 public class FlightCodeValidator implements ConstraintValidator<ValidFlightCode, String> {
