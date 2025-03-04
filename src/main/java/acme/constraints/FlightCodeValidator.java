@@ -1,17 +1,17 @@
 
 package acme.constraints;
 
-import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
+import acme.client.components.validation.AbstractValidator;
+import acme.client.components.validation.Validator;
 import acme.features.airline.AirlineRepository;
 import acme.features.leg.LegRepository;
 
-@Component
-public class FlightCodeValidator implements ConstraintValidator<ValidFlightCode, String> {
+@Validator
+public class FlightCodeValidator extends AbstractValidator<ValidFlightCode, String> {
 
 	private final LegRepository		legRepository;
 	private final AirlineRepository	airlineRepository;
@@ -24,28 +24,30 @@ public class FlightCodeValidator implements ConstraintValidator<ValidFlightCode,
 	}
 
 	@Override
+	protected void initialise(final ValidFlightCode annotation) {
+		assert annotation != null;
+	}
+
+	@Override
 	public boolean isValid(final String flightCode, final ConstraintValidatorContext context) {
-		if (flightCode == null || flightCode.isBlank()) {
-			context.buildConstraintViolationWithTemplate("Flight code cannot be empty").addConstraintViolation();
-			return false;
-		}
+
+		boolean result;
+		if (flightCode == null || flightCode.isBlank())
+			super.state(context, false, "flight code", "Flight code cannot be empty");
 
 		// Extraer el código de aerolínea (los caracteres iniciales antes de los 4 dígitos finales)
 		String airlineCode = flightCode.substring(0, flightCode.length() - 4);
 
 		// Verificar si la aerolínea existe
-		if (this.airlineRepository.countByAirlineCode(airlineCode) == 0) {
-			context.buildConstraintViolationWithTemplate("Airline does not exist").addPropertyNode("flightCode").addConstraintViolation();
-			return false;
-		}
+		if (this.airlineRepository.countByAirlineCode(airlineCode) == 0)
+			super.state(context, false, "flight code", "Airline does not exist");
 
 		// Verificar si el código de vuelo ya existe
-		if (this.legRepository.existsByFlightCode(flightCode)) {
-			context.buildConstraintViolationWithTemplate("Flight code already exists").addPropertyNode("flightCode").addConstraintViolation();
-			return false;
-		}
+		if (this.legRepository.existsByFlightCode(flightCode))
+			super.state(context, false, "flight code", "Flight code already exists");
 
-		return true;
+		result = !super.hasErrors(context);
+		return result;
 	}
 
 }
