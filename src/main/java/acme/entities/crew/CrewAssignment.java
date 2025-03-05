@@ -18,7 +18,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidLongText;
 import acme.datatypes.AssignmentStatus;
 import acme.datatypes.CrewDuty;
-import acme.entities.Leg;
+import acme.entities.leg.Leg;
 import lombok.Getter;
 import lombok.Setter;
 

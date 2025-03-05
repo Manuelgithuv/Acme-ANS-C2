@@ -1,5 +1,5 @@
 
-package acme.features.airline;
+package acme.entities.airline;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
