@@ -16,9 +16,6 @@ public interface LegRepository extends AbstractRepository {
 	@Query("SELECT COUNT(l) - 1 FROM Leg l WHERE l.flight.id = :flightId")
 	Long countLayoversByFlight(@Param("flightId") int flightId);
 
-	@Query("SELECT COUNT(l) > 0 FROM Leg l WHERE l.flightCode = :flightCode")
-	boolean existsByFlightCode(@Param("flightCode") String flightCode);
-
 	@Query("SELECT MIN(l.scheduledDeparture) FROM Leg l WHERE l.flight.id = :flightId")
 	Optional<Date> findFirstScheduledDeparture(@Param("flightId") int flightId);
 

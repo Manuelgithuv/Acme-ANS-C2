@@ -18,11 +18,13 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidManagerIdentifierNumber;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@ValidManagerIdentifierNumber
 @Entity
 public class Manager extends AbstractRole {
 
