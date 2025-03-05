@@ -3,14 +3,16 @@ package acme.entities.crew;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.constraints.ValidLongText;
 import acme.datatypes.Availability;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +21,15 @@ import lombok.Setter;
 @Setter
 @Entity
 public class CrewMember extends AbstractEntity {
+
+	/*
+	 * The flight crew members are the people responsible for operating aircrafts and en-suring passenger safety
+	 * and comfort during a flight. The system must store the following data about them: an employee code (unique,
+	 * pattern "^[A-Z]{2,3}\d{6}$", where the first two or three letters correspond to their initials), a phone
+	 * number (pattern "^+?\d{6,15}$"), their language skills (up to 255 characters), their availability status
+	 * ("AVAILABLE", "ON VACATION", "ON LEAVE"), the airline they are working for, and their salary. Optionally,
+	 * the system may store his or her years of experience.
+	 */
 
 	private static final long	serialVersionUID	= 1L;
 
@@ -30,13 +41,15 @@ public class CrewMember extends AbstractEntity {
 
 	// phone number
 	@Mandatory
-	@Pattern(regexp = "\\^+?\\d{6,15}\\$")
+	@NotNull
+	@NotBlank
+	@Pattern(regexp = "^+?\\d{6,15}$")
 	private String				phone;
 
 	// language skills
 	@Mandatory
-	@Size(max = 255)
 	@Automapped
+	@ValidLongText
 	private String				languageSkills;
 
 	// availability status
