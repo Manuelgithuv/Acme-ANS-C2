@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import acme.client.components.datatypes.Moment;
-import acme.entities.Log;
+import acme.entities.log.Log;
 
 @Component
 public class LogValidator implements ConstraintValidator<ValidLog, Log> {

@@ -1,10 +1,8 @@
 
-package acme.entities;
+package acme.entities.log;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -17,6 +15,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidLog;
 import acme.entities.crew.CrewAssignment;
+import acme.entities.leg.Leg;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -52,7 +51,6 @@ public class Log extends AbstractEntity {
 	// registration moment
 	@Mandatory
 	@ValidMoment(past = true) // must be after leg.scheduledArrival
-	@Temporal(TemporalType.TIMESTAMP)
 	private Moment				registrationMoment;
 
 	// type of incident
