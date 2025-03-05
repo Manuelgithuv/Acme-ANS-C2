@@ -9,18 +9,16 @@ import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.entities.airline.AirlineRepository;
 import acme.entities.leg.Leg;
-import acme.entities.leg.LegRepository;
 
 @Validator
 public class FlightCodeValidator extends AbstractValidator<ValidFlightCode, Leg> {
 
-	private final LegRepository		legRepository;
-	private final AirlineRepository	airlineRepository;
+	private final AirlineRepository airlineRepository;
 
 
 	@Autowired
-	public FlightCodeValidator(final LegRepository legRepository, final AirlineRepository airlineRepository) {
-		this.legRepository = legRepository;
+	public FlightCodeValidator(final AirlineRepository airlineRepository) {
+
 		this.airlineRepository = airlineRepository;
 	}
 
@@ -47,10 +45,6 @@ public class FlightCodeValidator extends AbstractValidator<ValidFlightCode, Leg>
 		if (!leg.getAircraft().getAirline().getIataCode().equals(airlineCode))
 
 			super.state(context, false, "flight code", "The firt digits must be the IATA code of the associated airline");
-
-		// Verificar si el código de vuelo ya existe
-		if (this.legRepository.existsByFlightCode(flightCode))
-			super.state(context, false, "flight code", "Flight code already exists");
 
 		result = !super.hasErrors(context);
 		return result;

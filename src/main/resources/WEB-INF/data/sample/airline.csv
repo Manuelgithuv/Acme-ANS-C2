@@ -1,0 +1,5 @@
+key,name,iataCode,webSite,type,foundationMoment,email,phoneNumber
+airline-01,acme airline,AFR,https://www.doctorswithoutborders.org/,LUXURY,2022/02/28 12:00,acme.airline@airline.com,+987654321
+airline-02,ficticious1,QFA,https://www.doctorswithoutborders.org/,STANDARD,2004/10/12 13:35,null,+12345678901234
+airline-03,hello airline,SIA,https://www.doctorswithoutborders.org/,LOW_COST,2001/08/03 23:40,null,555555555555
+airline-04,ficticious2,KLM,https://www.doctorswithoutborders.org/,STANDARD,2015/12/29 19:15,acme.airline@airline.com,123456

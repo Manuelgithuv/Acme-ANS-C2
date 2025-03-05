@@ -58,7 +58,7 @@ public class Leg extends AbstractEntity {
 	@Mandatory
 	@Positive
 	@Automapped
-	private Integer				hours;
+	private Double				hours;
 
 	// -------------------------------------------------------------------
 
