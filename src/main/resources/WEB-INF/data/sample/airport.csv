@@ -1,0 +1,5 @@
+key,name,iataCode,scope,city,country,webSite,email,phoneNumber
+airport-01,seville airport,QAR,INTERNATIONAL,Seville,Spain,null,acme.example@acme.com,null
+airport-02,acme airport,SPA,INTERNATIONAL,Madrid,Spain,https://www.pccomponentes.com/?utm_source=1042425&utm_medium=afi&utm_campaign=opera.com&sv1=affiliate&sv_campaign_id=1042425&awc=20982_1741204343_097c599373dc0f50e2532da051ee1605&utm_term=deeplink&utm_content=gx-es-awin-pccomponentes-sd-def,null,123456
+airport-03,dp2 airport,GER,DOMESTIC,Berlin,Germany,null,null,+674687745
+airport-04,final one,FRA,REGIONAL,Paris,France,https://psg2-2425-g3-31.ew.r.appspot.com,acme.example@acme.com,null

@@ -8,16 +8,24 @@ import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
+import javax.validation.ReportAsSingleViolation;
+import javax.validation.constraints.NotBlank;
 
-@Target(ElementType.TYPE)
+import org.hibernate.validator.constraints.Length;
+
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = FlightCodeValidator.class)
+@Constraint(validatedBy = {})
+@ReportAsSingleViolation
 
-public @interface ValidFlightCode {
+@NotBlank
+@Length(min = 1, max = 75)
+
+public @interface ValidShortText {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "";
+	String message() default "{acme.validation.header.message}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

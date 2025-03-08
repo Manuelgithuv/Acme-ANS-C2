@@ -1,0 +1,6 @@
+key,code,phone,language_skills,availability,salary,experience
+member1,ABC123456,+34000000000,Very good dutch,AVAILABLE,EUR 2750.00,5
+member2,DE123456,000000,mjög góð enska,ON_LEAVE,EUR 2000.00,null
+member3,FGH123456,000000000,بہت بھیڑی انگریزی,ON_VACATION,EUR 3200.00,10
+member4,IJK123456,+34000000000,Very good dutch,AVAILABLE,EUR 1450.00,3
+member,LMN123456,000000,"Very good dutch, english and japanese, regular french and italian, could talk a bit in portuguese and romani and if there ever was an accident in a tropical island they have enough knowledge of spanish to ask for water and rescuing, not much more though",AVAILABLE,EUR 1000.00,0

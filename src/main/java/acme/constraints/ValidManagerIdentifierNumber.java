@@ -11,11 +11,8 @@ import javax.validation.Payload;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = FlightCodeValidator.class)
-
-public @interface ValidFlightCode {
-
-	// Standard validation properties -----------------------------------------
+@Constraint(validatedBy = ManagerIdentifierNumberValidator.class)
+public @interface ValidManagerIdentifierNumber {
 
 	String message() default "";
 

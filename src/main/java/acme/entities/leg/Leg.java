@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.entities.leg;
 
 import java.util.Date;
 
@@ -16,12 +16,17 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
+import acme.constraints.ValidFlightCode;
 import acme.datatypes.LegStatus;
+import acme.entities.aircraft.Aircraft;
+import acme.entities.airport.Airport;
+import acme.entities.flight.Flight;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@ValidFlightCode
 @Entity
 public class Leg extends AbstractEntity {
 
@@ -53,7 +58,7 @@ public class Leg extends AbstractEntity {
 	@Mandatory
 	@Positive
 	@Automapped
-	private Integer				hours;
+	private Double				hours;
 
 	// -------------------------------------------------------------------
 

@@ -11,13 +11,10 @@ import javax.validation.Payload;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = FlightCodeValidator.class)
+@Constraint(validatedBy = LogValidator.class)
+public @interface ValidLog {
 
-public @interface ValidFlightCode {
-
-	// Standard validation properties -----------------------------------------
-
-	String message() default "";
+	String message() default "Invalid flight incident";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
