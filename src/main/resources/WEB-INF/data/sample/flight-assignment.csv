@@ -1,0 +1,5 @@
+key,key:asignee,key:leg,duty,last_update,status,remarks
+assignment1,member1,leg-01,PILOT,2022/07/29 10:00,CONFIRMED,null
+assignment2,member2,leg-01,CO_PILOT,2022/07/29 10:00,CONFIRMED,Someone knocked on the cabin door and we can't figure out who was it
+assignment3,member3,leg-04,LEAD_ATTENDANT,2005/08/23 01:43,CANCELLED,At least I got a 5 euro voucher
+assignment4,member4,leg-07,CABIN_ATTENDANT,2020/06/20 12:35,PENDING,null

@@ -5,7 +5,6 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -25,7 +24,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class CrewAssignment extends AbstractEntity {
+public class FlightAssignment extends AbstractEntity {
 
 	/*
 	 * A flight assignment represents the allocation of a flight crew member to a specific leg of a flight.
@@ -40,12 +39,12 @@ public class CrewAssignment extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private CrewMember			asignee;
+	private FlightCrewMember	asignee;
 
 	// leg
 	@Mandatory
 	@Valid
-	@OneToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Leg					leg;
 
 	// duty
@@ -56,6 +55,7 @@ public class CrewAssignment extends AbstractEntity {
 
 	// last update
 	@Mandatory
+	@Automapped
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				lastUpdate;
