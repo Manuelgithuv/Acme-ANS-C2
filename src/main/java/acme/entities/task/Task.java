@@ -1,0 +1,45 @@
+
+package acme.entities.task;
+
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
+
+import acme.client.components.basis.AbstractEntity;
+import acme.client.components.mappings.Automapped;
+import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.ValidNumber;
+import acme.datatypes.TaskType;
+import acme.realms.Technician;
+
+public class Task extends AbstractEntity {
+
+	// Serialisation version --------------------------------------------------
+
+	private static final long	serialVersionUID	= 1L;
+
+	// Attributes -------------------------------------------------------------
+
+	@Mandatory
+	@Valid
+	@Automapped
+	private TaskType			type;
+
+	@Mandatory
+	@Size(max = 255)
+	@Automapped
+	private String				description;
+
+	@Mandatory
+	@ValidNumber(min = 0, max = 10, integer = 2)
+	@Automapped
+	private int					priority;
+
+	// Relationships ----------------------------------------------------------
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Technician			technician;
+
+}

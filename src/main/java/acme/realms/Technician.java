@@ -18,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Technicians extends AbstractRole {
+public class Technician extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
 
