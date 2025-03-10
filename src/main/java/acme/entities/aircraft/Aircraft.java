@@ -5,8 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -43,10 +43,10 @@ public class Aircraft extends AbstractEntity {
 	private Integer				capacity;
 
 	@Mandatory
-	@DecimalMin(value = "2000.0", inclusive = true, message = "Cargo weight must be at least 2,000")
-	@DecimalMax(value = "50000.0", inclusive = true, message = "Cargo weight must be at most 50,000")
+	@Min(value = 2000, message = "Cargo weight must be at least 2,000")
+	@Max(value = 50000, message = "Cargo weight must be at most 50,000")
 	@Automapped
-	private double				cargoWeight;
+	private Integer				cargoWeight;
 
 	@Mandatory
 	@Valid
