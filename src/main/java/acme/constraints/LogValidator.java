@@ -10,7 +10,6 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import acme.client.components.datatypes.Moment;
 import acme.entities.log.Log;
 
 @Component
@@ -23,7 +22,7 @@ public class LogValidator implements ConstraintValidator<ValidLog, Log> {
 	@Override
 	public boolean isValid(final Log log, final ConstraintValidatorContext context) {
 		// comprobamos que no sea válido ni futuro
-		Moment registrationMoment = log.getRegistrationMoment();
+		Date registrationMoment = log.getRegistrationMoment();
 		if (registrationMoment == null || registrationMoment.after(Date.from(Instant.now()))) {
 			context.buildConstraintViolationWithTemplate("Registration date not valid: null or future").addConstraintViolation();
 			return false;
@@ -36,8 +35,13 @@ public class LogValidator implements ConstraintValidator<ValidLog, Log> {
 			return false;
 		}
 
-		// TODO Auto-generated method stub
-		return false;
+		// comprobamos que el assignment fuese a la leg del log
+		if (log.getLeg() != log.getFlightAssignment().getLeg()) {
+			context.buildConstraintViolationWithTemplate("Registration date not valid: the assignment was not to the specified leg").addConstraintViolation();
+			return false;
+		}
+
+		return true;
 	}
 
 }
