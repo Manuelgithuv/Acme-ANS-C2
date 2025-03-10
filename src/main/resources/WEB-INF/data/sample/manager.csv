@@ -1,4 +1,4 @@
 key,key:userAccount,identifierNumber,yearsOfExperience,dateOfBirth,picture
-manager-01,user-account-manager-01,MM123456,5,1990/04/09 11:30,null
-manager-02,user-account-manager-02,ME567891,7,1985/11/23 04:00,null
-manager-03,user-account-manager-03,MM234567,12,1975/09/13 18:15,https://i.imgur.com/8YcXhS0.png
+manager-01,user-account-manager-01,MMO123456,28,2000/01/02 11:30,null
+manager-02,user-account-manager-02,MED567891,75,2010/11/23 04:00,null
+manager-03,user-account-manager-03,MM234567,0,2022/07/30 00:00,https://i.imgur.com/8YcXhS0.png

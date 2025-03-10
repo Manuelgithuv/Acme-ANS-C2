@@ -11,7 +11,7 @@
       <h>112</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
-Manager
+Manager {ValidManagerIdentifierNumber}
 --
 + identifierNumber: String {NotBlank, Pattern(regexp = "^[A-Z]{2,3}\\d{6}$", Column(unique=true)}
 + yearsOfExperience: Integer {Mandatory, PositiveOrZero, Automapped}
@@ -63,10 +63,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>552</x>
-      <y>224</y>
-      <w>312</w>
-      <h>208</h>
+      <x>600</x>
+      <y>264</y>
+      <w>264</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>Belongs to &gt;
 lt=&lt;-x
@@ -74,24 +74,25 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>370.0;240.0;180.0;190.0;10.0;10.0</additional_attributes>
+    <additional_attributes>310.0;190.0;120.0;140.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>264</x>
+      <x>256</x>
       <y>152</y>
       <w>496</w>
-      <h>104</h>
+      <h>128</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
-Leg
+Leg {ValidFlightNumber, ValidTimeBetweenConsecutiveLegs}
 --
 + tag: String {NotBlank, Valid, Column(unique=true)}
 + scheduledDeparture: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)}
 + scheduledArrival: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)
 + status: LegStatus {Mandatory, Valid, Automapped}
-+ hours: Integer {Mandatory, Positive, Automapped}
+---
++ getHours(): double
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
@@ -109,7 +110,7 @@ Aircraft
 + model: String {NotBlank, Size(max = 50), Automapped}
 + registrationNumber: String {NotBlank, Size(max = 50), Column(unique=true)}
 + capacity: Integer {Mandatory, Positive, Automapped}
-+ cargoWeight: Double {Mandatory, DecimalMin(value = "2000.0", inclusive=true), DecimalMax(value = "50000.0",inclusive=true), Automapped}
++ cargoWeight: Integer {Mandatory,Min(2000),Max(50000), Automapped}
 + status: AircraftStatus {Mandatory, Valid, Automapped}
 + details: String {Optional, Size(max = 255), Automapped}
 bg=red</panel_attributes>
@@ -140,10 +141,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>472</x>
-      <y>240</y>
-      <w>312</w>
-      <h>416</h>
+      <x>488</x>
+      <y>264</y>
+      <w>296</w>
+      <h>392</h>
     </coordinates>
     <panel_attributes>Flown by &gt;
 lt=&lt;-x
@@ -151,15 +152,15 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>370.0;500.0;10.0;10.0</additional_attributes>
+    <additional_attributes>350.0;470.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>120</x>
-      <y>248</y>
-      <w>216</w>
-      <h>336</h>
+      <y>272</y>
+      <w>208</w>
+      <h>312</h>
     </coordinates>
     <panel_attributes>Departs from &gt;
 lt=&lt;-x
@@ -167,15 +168,15 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>10.0;400.0;250.0;10.0</additional_attributes>
+    <additional_attributes>10.0;370.0;240.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>288</x>
-      <y>240</y>
-      <w>184</w>
-      <h>344</h>
+      <y>264</y>
+      <w>168</w>
+      <h>320</h>
     </coordinates>
     <panel_attributes>Arrives at &gt;
 lt=&lt;-x
@@ -183,6 +184,6 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>10.0;410.0;210.0;10.0</additional_attributes>
+    <additional_attributes>10.0;380.0;190.0;10.0</additional_attributes>
   </element>
 </diagram>

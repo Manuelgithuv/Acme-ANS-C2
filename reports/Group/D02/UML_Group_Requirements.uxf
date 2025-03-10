@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>875</x>
-      <y>7</y>
+      <x>868</x>
+      <y>21</y>
       <w>574</w>
       <h>105</h>
     </coordinates>
@@ -24,8 +24,8 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>609</x>
-      <y>231</y>
+      <x>602</x>
+      <y>245</y>
       <w>434</w>
       <h>147</h>
     </coordinates>
@@ -46,28 +46,8 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>294</x>
-      <y>434</y>
-      <w>637</w>
-      <h>105</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Entity&gt;&gt;
-Aircraft
---
-+ model: String {NotBlank, Size(max = 50), Automapped}
-+ registrationNumber: String {NotBlank, Size(max = 50), Column(unique=true)}
-+ capacity: Integer {Mandatory, Positive, Automapped}
-+ cargoWeight: Double {Mandatory, DecimalMin(value = "2000.0", inclusive=true), DecimalMax(value = "50000.0",inclusive=true), Automapped}
-+ status: AircraftStatus {Mandatory, Valid, Automapped}
-+ details: String {Optional, Size(max = 255), Automapped}
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>784</x>
-      <y>595</y>
+      <x>777</x>
+      <y>609</y>
       <w>434</w>
       <h>133</h>
     </coordinates>
@@ -87,8 +67,8 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>259</x>
-      <y>84</y>
+      <x>252</x>
+      <y>98</y>
       <w>434</w>
       <h>91</h>
     </coordinates>
@@ -106,10 +86,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>630</x>
-      <y>525</y>
-      <w>371</w>
-      <h>91</h>
+      <x>511</x>
+      <y>546</y>
+      <w>483</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>Belongs to &gt;
 lt=&lt;-x
@@ -117,13 +97,13 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>510.0;100.0;10.0;10.0</additional_attributes>
+    <additional_attributes>670.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>441</x>
-      <y>168</y>
+      <x>434</x>
+      <y>182</y>
       <w>385</w>
       <h>84</h>
     </coordinates>
@@ -138,8 +118,8 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
-      <y>21</y>
+      <x>553</x>
+      <y>35</y>
       <w>336</w>
       <h>84</h>
     </coordinates>
@@ -154,8 +134,8 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>896</x>
-      <y>98</y>
+      <x>889</x>
+      <y>112</y>
       <w>91</w>
       <h>147</h>
     </coordinates>
@@ -170,8 +150,8 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1099</x>
-      <y>98</y>
+      <x>1092</x>
+      <y>112</y>
       <w>147</w>
       <h>518</h>
     </coordinates>
@@ -186,8 +166,8 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>917</x>
-      <y>364</y>
+      <x>910</x>
+      <y>378</y>
       <w>168</w>
       <h>245</h>
     </coordinates>
@@ -198,5 +178,25 @@ m2=*
 
 </panel_attributes>
     <additional_attributes>10.0;10.0;220.0;330.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>217</x>
+      <y>448</y>
+      <w>637</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Aircraft
+--
++ model: String {NotBlank, Size(max = 50), Automapped}
++ registrationNumber: String {NotBlank, Size(max = 50), Column(unique=true)}
++ capacity: Integer {Mandatory, Positive, Automapped}
++ cargoWeight: Integer {Mandatory,Min(2000),Max(50000), Automapped}
++ status: AircraftStatus {Mandatory, Valid, Automapped}
++ details: String {Optional, Size(max = 255), Automapped}
+bg=green</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
