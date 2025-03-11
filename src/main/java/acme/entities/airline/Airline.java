@@ -8,17 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidEmail;
+import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidShortText;
 import acme.datatypes.AirlineType;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,13 +29,13 @@ public class Airline extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@NotBlank
-	@Size(max = 50)
+	@Mandatory
+	@ValidShortText
 	@Automapped
 	private String				name;
 
-	@NotBlank
-	@Pattern(regexp = "^[A-Z]{3}$", message = "IATA code must be a 3-letter uppercase code")
+	@Mandatory
+	@ValidString(pattern = "^[A-Z]{3}$", message = "IATA code must be a 3-letter uppercase code")
 	@Column(unique = true)
 	private String				iataCode;
 
@@ -51,7 +50,7 @@ public class Airline extends AbstractEntity {
 	private AirlineType			type;
 
 	@Mandatory
-	@PastOrPresent
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				foundationMoment;
 
@@ -61,7 +60,7 @@ public class Airline extends AbstractEntity {
 	private String				email;
 
 	@Mandatory
-	@Pattern(regexp = "^\\+?\\d{6,15}$", message = "Phone number must match the pattern ^\\+?\\d{6,15}$")
+	@ValidString(pattern = "^\\+?\\d{6,15}$", message = "Phone number must match the pattern ^\\+?\\d{6,15}$")
 	@Automapped
 	private String				phoneNumber;
 

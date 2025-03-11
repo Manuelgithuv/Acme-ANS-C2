@@ -10,20 +10,17 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
 
-import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})
 @ReportAsSingleViolation
 
-@Length(min = 1, max = 50)
+@Range(min = 0, max = 75)
+public @interface ValidYearsOfExperience {
 
-public @interface ValidShortText {
-
-	// Standard validation properties -----------------------------------------
-
-	String message() default "{acme.validation.header.message}";
+	String message() default "Años de experiencia no validos";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

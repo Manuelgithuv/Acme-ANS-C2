@@ -7,18 +7,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
 import acme.constraints.ValidManagerIdentifierNumber;
+import acme.constraints.ValidYearsOfExperience;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,19 +28,18 @@ public class Manager extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@NotBlank
-	@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$", message = "El número de registro debe tener 2-3 letras mayúsculas seguidas de 6 dígitos")
+	@Mandatory
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
 	private String				identifierNumber;
 
 	@Mandatory
-	@Min(0)
-	@Max(75)
+	@ValidYearsOfExperience
 	@Automapped
 	private Integer				yearsOfExperience;
 
 	@Mandatory
-	@Past
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				dateOfBirth;
 
