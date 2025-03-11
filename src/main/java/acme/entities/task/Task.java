@@ -32,7 +32,7 @@ public class Task extends AbstractEntity {
 	private TaskType			type;
 
 	@Mandatory
-	@ValidDescription          //
+	@ValidDescription
 	@Automapped
 	private String				description;
 

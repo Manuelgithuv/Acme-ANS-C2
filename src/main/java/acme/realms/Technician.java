@@ -28,17 +28,17 @@ public class Technician extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidLicenseNumber         //
+	@ValidLicenseNumber
 	@Column(unique = true)
 	private String				licenseNumber;
 
 	@Mandatory
-	@ValidPhoneNumber           //
+	@ValidPhoneNumber
 	@Automapped
 	private String				phoneNumber;
 
 	@Mandatory
-	@ValidSpecialisation       //
+	@ValidSpecialisation
 	@Automapped
 	private String				specialisation;
 
@@ -48,12 +48,12 @@ public class Technician extends AbstractRole {
 	private boolean				annualHealthTestPassed;
 
 	@Mandatory
-	@ValidYearExperience     //
+	@ValidYearExperience
 	@Automapped
 	private Integer				yearsOfExperience;
 
 	@Optional
-	@ValidLongText           //
+	@ValidLongText
 	@Automapped
 	private String				certifications;
 
