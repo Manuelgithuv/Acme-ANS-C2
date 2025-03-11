@@ -1,6 +1,7 @@
 
 package acme.entities.task;
 
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
@@ -11,7 +12,12 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidNumber;
 import acme.datatypes.TaskType;
 import acme.realms.Technician;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Entity
 public class Task extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------

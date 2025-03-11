@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <help_text/>
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>88</y>
+      <w>504</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
+Technician
+--
++ licenseNumber: String {Msndatory, Pattern(regexp = "^[A-Z]{2,3}\\d{6}$", Column(unique=true)}
++ phoneNumber: String (Mandatory, Pattern(regexp = "^\\+?\\d{6,15}$"), AutoMapped)
++ specialisation: String (Mandatory, Size(max = 50), Automapped)
++ annualHealthTestPassed: boolean (Mandatory, Automapped)
++ yearsOfExperience: Integer {Mandatory, PositiveOrZero, Automapped}
++ certifications: String (Optional, Size(max = 255), Automapped)
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>744</x>
+      <y>320</y>
+      <w>352</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Task
+--
++ type: String {Mandatory, Valid, Automapped}
++ description: String {Mandatory, Size(max = 255), Automapped}
++ priority: int {Mandatory, ValidNumber(min = 0, max = 10, integer = 2), Automapped}
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1032</x>
+      <y>192</y>
+      <w>80</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>Done by ^
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>312</y>
+      <w>200</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>Involves &gt;
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>230.0;70.0;10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>104</y>
+      <w>496</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+MaintenanceRecord
+--
++ moment: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)}
++ status: MaintenanceRecordStatus {Mandatory, Valid, Automapped}
++ inspectionDueDate: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)
++ estimatedCost: Money {Mandatory, ValidMoney, Automapped}
++ notes: String {Optional, Size(max = 255), Automapped}
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>32</x>
+      <y>424</y>
+      <w>728</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Aircraft
+--
++ model: String {NotBlank, Size(max = 50), Automapped}
++ registrationNumber: String {NotBlank, Size(max = 50), Column(unique=true)}
++ capacity: Integer {Mandatory, Positive, Automapped}
++ cargoWeight: Double {Mandatory, DecimalMin(value = "2000.0", inclusive=true), DecimalMax(value = "50000.0",inclusive=true), Automapped}
++ status: AircraftStatus {Mandatory, Valid, Automapped}
++ details: String {Optional, Size(max = 255), Automapped}
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>288</x>
+      <y>192</y>
+      <w>80</w>
+      <h>248</h>
+    </coordinates>
+    <panel_attributes>Flown by &gt;
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>10.0;290.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>392</x>
+      <y>280</y>
+      <w>352</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Involves
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>432</x>
+      <y>200</y>
+      <w>88</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Involved in ^
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+</diagram>
