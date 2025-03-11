@@ -91,8 +91,8 @@ Leg {ValidFlightNumber, ValidTimeBetweenConsecutiveLegs}
 + scheduledDeparture: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)}
 + scheduledArrival: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)
 + status: LegStatus {Mandatory, Valid, Automapped}
++ hours : Double {Mandatory, ValidHours, Automapped}
 ---
-+ getHours(): double
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
