@@ -3,21 +3,23 @@ package acme.realms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.PositiveOrZero;
-import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidString;
+import acme.constraints.ValidCustomerIdentifierNumber;
+import acme.constraints.ValidEarnedPoints;
+import acme.constraints.ValidLongText;
+import acme.constraints.ValidShortText;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@ValidCustomerIdentifierNumber
 public class Customer extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
@@ -25,37 +27,33 @@ public class Customer extends AbstractRole {
 	private static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
-
-	@NotBlank
-	@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$", message = "El identificador debe tener 2-3 letras mayúsculas seguidas de 6 dígitos")
+	@Mandatory
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
 	private String				identifier;
 
 	@Mandatory
-	@NotBlank
-	@Pattern(regexp = "^\\+?\\d{6,15}$", message = "El número de teléfono debe tener entre 6 y 15 dígitos")
+	@ValidString(pattern = "^\\+?\\d{6,15}$")
+	@Automapped
 	private String				phoneNumber;
 
 	@Mandatory
-	@NotBlank
-	@Size(max = 255)
+	@ValidLongText
 	@Automapped
 	private String				physicalAddress;
 
 	@Mandatory
-	@NotBlank
-	@Size(max = 50)
+	@ValidShortText
 	@Automapped
 	private String				city;
 
 	@Mandatory
-	@NotBlank
-	@Size(max = 50)
+	@ValidShortText
 	@Automapped
 	private String				country;
 
 	@Optional
-	@PositiveOrZero
+	@ValidEarnedPoints
 	@Automapped
 	private Integer				earnedPoints;
 }
