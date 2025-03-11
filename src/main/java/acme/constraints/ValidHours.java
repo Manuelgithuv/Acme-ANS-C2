@@ -8,20 +8,16 @@ import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import javax.validation.ReportAsSingleViolation;
-import javax.validation.constraints.Min;
-
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = {})
-@ReportAsSingleViolation
+@Constraint(validatedBy = {
+	HoursValidator.class
+})
 
-@Min(1)
-public @interface ValidCapacity {
-	// Standard validation properties -----------------------------------------
+public @interface ValidHours {
 
-	String message() default "Invalid cargo weight";
+	String message() default "Invalid hours";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
