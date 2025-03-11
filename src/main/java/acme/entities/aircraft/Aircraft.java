@@ -5,16 +5,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.constraints.ValidCapacity;
+import acme.constraints.ValidCargoWeight;
+import acme.constraints.ValidLongText;
+import acme.constraints.ValidShortText;
 import acme.datatypes.AircraftStatus;
 import acme.entities.airline.Airline;
 import lombok.Getter;
@@ -27,24 +26,23 @@ public class Aircraft extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@NotBlank
-	@Size(max = 50)
+	@Mandatory
+	@ValidShortText
 	@Automapped
 	private String				model;
 
-	@NotBlank
-	@Size(max = 50)
+	@Mandatory
+	@ValidShortText
 	@Column(unique = true)
 	private String				registrationNumber;
 
 	@Mandatory
-	@Positive
+	@ValidCapacity
 	@Automapped
 	private Integer				capacity;
 
 	@Mandatory
-	@Min(value = 2000, message = "Cargo weight must be at least 2,000")
-	@Max(value = 50000, message = "Cargo weight must be at most 50,000")
+	@ValidCargoWeight
 	@Automapped
 	private Integer				cargoWeight;
 
@@ -54,7 +52,7 @@ public class Aircraft extends AbstractEntity {
 	private AircraftStatus		status;
 
 	@Optional
-	@Size(max = 255)
+	@ValidLongText
 	@Automapped
 	private String				details;
 
