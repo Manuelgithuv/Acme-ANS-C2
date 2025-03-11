@@ -24,7 +24,7 @@ public @interface ValidLicenseNumber {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "{acme.validation.header.message}";
+	String message() default "El número de licencia debe tener 2-3 letras mayúsculas seguidas de 6 dígitos";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

@@ -12,7 +12,7 @@ import acme.constraints.ValidLicenseNumber;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidPhoneNumber;
 import acme.constraints.ValidSpecialisation;
-import acme.constraints.ValidYearsOfExperience;
+import acme.constraints.ValidYearExperience;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -48,12 +48,12 @@ public class Technician extends AbstractRole {
 	private boolean				annualHealthTestPassed;
 
 	@Mandatory
-	@ValidYearsOfExperience     //
+	@ValidYearExperience     //
 	@Automapped
 	private Integer				yearsOfExperience;
 
 	@Optional
-	@ValidLongText
+	@ValidLongText           //
 	@Automapped
 	private String				certifications;
 
