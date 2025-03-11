@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>707</x>
+      <x>658</x>
       <y>21</y>
       <w>574</w>
       <h>105</h>
@@ -24,7 +24,7 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>427</x>
+      <x>378</x>
       <y>231</y>
       <w>434</w>
       <h>147</h>
@@ -46,7 +46,7 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>595</x>
+      <x>546</x>
       <y>784</y>
       <w>434</w>
       <h>133</h>
@@ -67,7 +67,7 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>91</x>
+      <x>42</x>
       <y>98</y>
       <w>434</w>
       <h>91</h>
@@ -86,7 +86,7 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>266</x>
+      <x>217</x>
       <y>560</y>
       <w>546</w>
       <h>238</h>
@@ -102,7 +102,7 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>273</x>
+      <x>224</x>
       <y>182</y>
       <w>371</w>
       <h>70</h>
@@ -118,7 +118,7 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>392</x>
+      <x>343</x>
       <y>35</y>
       <w>336</w>
       <h>84</h>
@@ -134,7 +134,7 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>721</x>
+      <x>672</x>
       <y>112</y>
       <w>91</w>
       <h>133</h>
@@ -150,7 +150,7 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1015</x>
+      <x>966</x>
       <y>112</y>
       <w>252</w>
       <h>693</h>
@@ -166,10 +166,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>679</x>
+      <x>630</x>
       <y>371</y>
       <w>308</w>
-      <h>126</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>Operates in &gt;
 lt=&lt;-x
@@ -177,19 +177,19 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>10.0;10.0;230.0;70.0;410.0;60.0;420.0;160.0</additional_attributes>
+    <additional_attributes>10.0;10.0;420.0;180.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>910</x>
-      <y>476</y>
+      <x>847</x>
+      <y>497</y>
       <w>196</w>
-      <h>105</h>
+      <h>49</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 OperatesAt
---
+
 
 bg=green</panel_attributes>
     <additional_attributes/>
@@ -197,7 +197,7 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>70</x>
+      <x>21</x>
       <y>462</y>
       <w>637</w>
       <h>105</h>
@@ -205,7 +205,7 @@ bg=green</panel_attributes>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Aircraft
 --
-+ model: String {Mandatory, Size(max = 50), Automapped}
++ model: String {Mandatory, ValidShortText, Automapped}
 + registrationNumber: String {Mandatory, ValidShortText, Column(unique=true)}
 + capacity: Integer {Mandatory, ValidCapacity, Automapped}
 + cargoWeight: Integer {Mandatory,ValidCargoWeight, Automapped}
@@ -217,10 +217,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>868</x>
-      <y>560</y>
-      <w>154</w>
-      <h>245</h>
+      <x>819</x>
+      <y>539</y>
+      <w>147</w>
+      <h>266</h>
     </coordinates>
     <panel_attributes>Operates in &gt;
 lt=&lt;-x
@@ -228,6 +228,6 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>10.0;330.0;110.0;150.0;200.0;10.0</additional_attributes>
+    <additional_attributes>10.0;360.0;110.0;180.0;170.0;10.0</additional_attributes>
   </element>
 </diagram>

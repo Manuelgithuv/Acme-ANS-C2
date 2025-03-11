@@ -1,4 +1,4 @@
 key,key:userAccount,identifier,phoneNumber,physicalAddress,city,country,earnedPoints
-customer-01,user-account-customer-01,CC123456,+674687745,a,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz12,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz12,null
+customer-01,user-account-customer-01,CC123456,+674687745,a,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx,null
 customer-02,user-account-customer-02,CP567891,123456,Lorem ipsum dolor sit amet consectetur adipiscing elit. Nulla facilisi. Donec vehicula erat sit amet aliquet vehicula neque ex fermentum justo eget tincidunt sapien lacus sit amet lorem. Phasellus ut orci eu odio vehicula fringilla non eu odio.,A,a,500000
 customer-03,user-account-customer-03,CC234567,+34000000000,Hola me llamo Manuel,Sevilla,España,23450
