@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
@@ -17,6 +15,8 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.helpers.SpringHelper;
+import acme.constraints.ValidLongText;
+import acme.constraints.ValidShortText;
 import acme.entities.leg.LegRepository;
 import acme.realms.Manager;
 import lombok.Getter;
@@ -32,8 +32,8 @@ public class Flight extends AbstractEntity {
 	// Atributos directos
 	// -------------------------------------------------------------------
 
-	@NotBlank
-	@Size(max = 50)
+	@Mandatory
+	@ValidShortText
 	@Automapped
 	private String				tag;
 
@@ -47,7 +47,7 @@ public class Flight extends AbstractEntity {
 	private Money				cost;
 
 	@Optional
-	@Size(max = 255)
+	@ValidLongText
 	@Automapped
 	private String				description;
 

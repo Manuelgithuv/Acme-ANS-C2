@@ -1,5 +1,5 @@
 key,tag,indication,cost,description,key:manager
 flight-01,the fastest,true,EUR 200.00,I do not know what to write,manager-01
-flight-02,the cheapest,false,EUR 50.00,null,manager-01
-flight-03,the prettiest,false,EUR 100.00,why not,manager-02
+flight-02,the cheapest,false,EUR 50.00,S,manager-01
+flight-03,the prettiest,false,EUR 100.00,holatyrgiodfdrtewshfrothryeitgcjsdvjoasnvihjpbeaghiabtuarogbupagoprsjbguaisodsfvnpñoauebnñabgñvaogdgspobdpño9uhbñpahnbñuiwrgarwupwurhgbowejbpgboiapgrweoijbpgoncdpuonpwocjoqwfbilhwbfyhuqwyikvfykuwqvfeagobeuighbwi9arbgqwuirgbqrwuoibgiuwerbgiebigbiouguieeerr,manager-02
 flight-04,the king,true,EUR 150.00,null,manager-02

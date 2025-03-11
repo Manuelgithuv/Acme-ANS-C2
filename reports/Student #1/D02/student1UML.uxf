@@ -11,11 +11,11 @@
       <h>112</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
-Manager
+Manager {ValidManagerIdentifierNumber}
 --
-+ identifierNumber: String {NotBlank, Pattern(regexp = "^[A-Z]{2,3}\\d{6}$", Column(unique=true)}
-+ yearsOfExperience: Integer {Mandatory, PositiveOrZero, Automapped}
-+ dateOfBirth: Date {Mandatory, Past, Temporal(TemporalType.TIMESTAMP)}
++ identifierNumber: String {Mandatory, ValidString(pattern = "^[A-Z]{2,3}\\d{6}$"), Column(unique=true)}
++ yearsOfExperience: Integer {Mandatory, ValidYearsOfExperience, Automapped}
++ dateOfBirth: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP)}
 + picture: String {Optional, ValidURL, Automapped}
 bg=orange</panel_attributes>
     <additional_attributes/>
@@ -31,10 +31,10 @@ bg=orange</panel_attributes>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Flight
 --
-+ tag: String {Mandatory, Size(max=50), Automapped}
++ tag: String {Mandatory, ValidShortText, Automapped}
 + indication: Boolean {Mandatory, Valid, Automapped}
 + cost: Money {Mandatory, ValidMoney, Automapped}
-+ description: String {Optional, Size(max=255), Automapped}
++ description: String {Optional, ValidShortText, Automapped}
 --
 + getScheduledDeparture(): Date
 + getScheduledArrival(): Date
@@ -63,10 +63,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>552</x>
-      <y>224</y>
-      <w>312</w>
-      <h>208</h>
+      <x>600</x>
+      <y>264</y>
+      <w>264</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>Belongs to &gt;
 lt=&lt;-x
@@ -74,24 +74,25 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>370.0;240.0;180.0;190.0;10.0;10.0</additional_attributes>
+    <additional_attributes>310.0;190.0;120.0;140.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>264</x>
+      <x>256</x>
       <y>152</y>
       <w>496</w>
-      <h>104</h>
+      <h>128</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
-Leg
+Leg {ValidFlightNumber, ValidTimeBetweenConsecutiveLegs}
 --
-+ tag: String {NotBlank, Valid, Column(unique=true)}
++ tag: String {Mandatory, Valid, Column(unique=true)}
 + scheduledDeparture: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)}
 + scheduledArrival: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)
 + status: LegStatus {Mandatory, Valid, Automapped}
-+ hours: Integer {Mandatory, Positive, Automapped}
+---
++ getHours(): double
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
@@ -106,12 +107,12 @@ bg=green</panel_attributes>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Aircraft
 --
-+ model: String {NotBlank, Size(max = 50), Automapped}
-+ registrationNumber: String {NotBlank, Size(max = 50), Column(unique=true)}
-+ capacity: Integer {Mandatory, Positive, Automapped}
-+ cargoWeight: Double {Mandatory, DecimalMin(value = "2000.0", inclusive=true), DecimalMax(value = "50000.0",inclusive=true), Automapped}
++ model: String {Mandatory, Size(max = 50), Automapped}
++ registrationNumber: String {Mandatory, ValidShortText, Column(unique=true)}
++ capacity: Integer {Mandatory, ValidCapacity, Automapped}
++ cargoWeight: Integer {Mandatory,ValidCargoWeight, Automapped}
 + status: AircraftStatus {Mandatory, Valid, Automapped}
-+ details: String {Optional, Size(max = 255), Automapped}
++ details: String {Optional, ValidLongText, Automapped}
 bg=red</panel_attributes>
     <additional_attributes/>
   </element>
@@ -126,24 +127,24 @@ bg=red</panel_attributes>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Airport
 --
-+ name: String {NotBlank, Size(max = 50), Automapped}
-+ IATA code: String {Mandatory, Pattern(regexp = "^[A-Z]{3}$"), Column(unique = true)}
++ name: String {NotBlank, ValidShortText, Automapped}
++ IATA code: String {Mandatory, ValidString(pattern = "^[A-Z]{3}$"), Column(unique = true)}
 + operationalScope: OperationalScope {Mandatory, Valid, Automapped}
-+ city: String {Mandatory, Size(max = 50), Automapped}
-+ country: String {Mandatory, Size(max = 50), Automapped}
++ city: String {Mandatory, ValidShortText, Automapped}
++ country: String {Mandatory, ValidShortText, Automapped}
 + webSite: String {Optional, ValidURL, Automapped}
 + emailAddress: String {Optional, ValidEmail, Automapped}
-+ phoneNumber: String {Optional, Pattern(regexp = "^\\+?\\d{6,15}$"), Automapped}
++ phoneNumber: String {Optional, ValidString(pattern = "^\\+?\\d{6,15}$"), Automapped}
 bg=red</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>472</x>
-      <y>240</y>
-      <w>312</w>
-      <h>416</h>
+      <x>488</x>
+      <y>264</y>
+      <w>296</w>
+      <h>392</h>
     </coordinates>
     <panel_attributes>Flown by &gt;
 lt=&lt;-x
@@ -151,15 +152,15 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>370.0;500.0;10.0;10.0</additional_attributes>
+    <additional_attributes>350.0;470.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>120</x>
-      <y>248</y>
-      <w>216</w>
-      <h>336</h>
+      <y>272</y>
+      <w>208</w>
+      <h>312</h>
     </coordinates>
     <panel_attributes>Departs from &gt;
 lt=&lt;-x
@@ -167,15 +168,15 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>10.0;400.0;250.0;10.0</additional_attributes>
+    <additional_attributes>10.0;370.0;240.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>288</x>
-      <y>240</y>
-      <w>184</w>
-      <h>344</h>
+      <y>264</y>
+      <w>168</w>
+      <h>320</h>
     </coordinates>
     <panel_attributes>Arrives at &gt;
 lt=&lt;-x
@@ -183,6 +184,22 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>10.0;410.0;210.0;10.0</additional_attributes>
+    <additional_attributes>10.0;380.0;190.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>736</x>
+      <y>208</y>
+      <w>136</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Managed by &gt;
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;40.0</additional_attributes>
   </element>
 </diagram>

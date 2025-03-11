@@ -2,6 +2,7 @@
 package acme.entities.leg;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
@@ -12,6 +13,9 @@ import acme.client.repositories.AbstractRepository;
 
 @Repository
 public interface LegRepository extends AbstractRepository {
+
+	@Query("SELECT DISTINCT l FROM Leg l WHERE l.flight.id = :flightId ORDER BY l.scheduledDeparture")
+	List<Leg> findDistinctByFlight(@Param("flightId") int flightId);
 
 	@Query("SELECT COUNT(l) - 1 FROM Leg l WHERE l.flight.id = :flightId")
 	Long countLayoversByFlight(@Param("flightId") int flightId);

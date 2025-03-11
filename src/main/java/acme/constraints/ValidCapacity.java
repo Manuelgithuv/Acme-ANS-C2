@@ -10,20 +10,18 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
 
-import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})
 @ReportAsSingleViolation
 
-@Length(min = 1, max = 50)
-
-public @interface ValidShortText {
-
+@Range(min = 1)
+public @interface ValidCapacity {
 	// Standard validation properties -----------------------------------------
 
-	String message() default "{acme.validation.header.message}";
+	String message() default "Invalid cargo weight";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
