@@ -4,12 +4,12 @@ package acme.entities.task;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidNumber;
+import acme.constraints.ValidDescription;
 import acme.datatypes.TaskType;
 import acme.realms.Technician;
 import lombok.Getter;
@@ -32,7 +32,7 @@ public class Task extends AbstractEntity {
 	private TaskType			type;
 
 	@Mandatory
-	@Size(max = 255)
+	@ValidDescription
 	@Automapped
 	private String				description;
 
