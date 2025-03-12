@@ -9,15 +9,15 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
+import javax.validation.constraints.Min;
 
-import org.hibernate.validator.constraints.Range;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})
 @ReportAsSingleViolation
 
-@Range(min = 1)
+@Min(1)
 public @interface ValidCapacity {
 	// Standard validation properties -----------------------------------------
 

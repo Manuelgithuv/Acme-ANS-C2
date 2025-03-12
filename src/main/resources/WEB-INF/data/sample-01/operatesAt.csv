@@ -1,0 +1,10 @@
+key,key:airline,key:airport
+operatesAt-01,airline-01,airport-01
+operatesAt-02,airline-01,airport-02
+operatesAt-03,airline-01,airport-03
+operatesAt-04,airline-01,airport-04
+operatesAt-05,airline-03,airport-02
+operatesAt-06,airline-03,airport-04
+operatesAt-07,airline-04,airport-02
+operatesAt-08,airline-04,airport-03
+operatesAt-09,airline-04,airport-04
