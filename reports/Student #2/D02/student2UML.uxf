@@ -88,7 +88,7 @@ Customer
 + physicalAddress: String {Mandatory, ValidLongText, Automapped}
 + city: String {Mandatory, ValidShortText, Automapped}
 + country: String {Mandatory, ValidShortText, Automapped)}
-+ earnedPoints: Integer {Optional, ValidEarnedPoints, Automapped}
++ earnedPoints: Integer {Optional, ValidInteger(min=0,max=500000), Automapped}
 bg=orange</panel_attributes>
     <additional_attributes/>
   </element>

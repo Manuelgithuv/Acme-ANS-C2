@@ -7,7 +7,11 @@ import java.util.Map;
 import acme.client.components.basis.AbstractForm;
 import acme.datatypes.TravelClass;
 import acme.entities.booking.Booking;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class CustomerDashboard extends AbstractForm {
 
 	private static final long			serialVersionUID	= 1L;
