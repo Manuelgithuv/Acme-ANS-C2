@@ -1,0 +1,4 @@
+key,key:userAccount,licenseNumber,phoneNumber,specialisation,annualHealthTestPassed,yearsOfExperience,certifications
+technician-01,user-account-technician-01,JMG123456,+123456789012,Cabin Systems Specialist,TRUE,28,Military Occupational Specialty (MOS) Aircraft Mechanic Certification
+technician-02,user-account-technician-02,MMC567891,9876543210,Aircraft Electrical Technician,TRUE,120,NCATT Aircraft Electronics Technician (AET) Certification
+technician-03,user-account-technician-03,MAB234567,34987654321,Hydraulics Technician,FALSE,0,null
