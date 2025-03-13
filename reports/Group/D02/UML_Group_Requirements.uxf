@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>574</x>
+      <x>644</x>
       <y>77</y>
       <w>574</w>
       <h>105</h>
@@ -24,7 +24,7 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>357</x>
+      <x>427</x>
       <y>231</y>
       <w>434</w>
       <h>147</h>
@@ -32,7 +32,7 @@ bg=green</panel_attributes>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Airport
 --
-+ name: String {NotBlank, ValidShortText, Automapped}
++ name: String {Mandatory, ValidShortText, Automapped}
 + IATA code: String {Mandatory, ValidString(pattern = "^[A-Z]{3}$"), Column(unique = true)}
 + operationalScope: OperationalScope {Mandatory, Valid, Automapped}
 + city: String {Mandatory, ValidShortText, Automapped}
@@ -46,7 +46,7 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>525</x>
+      <x>595</x>
       <y>784</y>
       <w>434</w>
       <h>133</h>
@@ -67,7 +67,7 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>21</x>
+      <x>91</x>
       <y>98</y>
       <w>434</w>
       <h>91</h>
@@ -86,7 +86,7 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>196</x>
+      <x>266</x>
       <y>560</y>
       <w>546</w>
       <h>238</h>
@@ -102,7 +102,7 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>203</x>
+      <x>273</x>
       <y>182</y>
       <w>371</w>
       <h>70</h>
@@ -118,7 +118,7 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>609</x>
+      <x>679</x>
       <y>371</y>
       <w>308</w>
       <h>140</h>
@@ -134,7 +134,7 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>826</x>
+      <x>896</x>
       <y>497</y>
       <w>196</w>
       <h>49</h>
@@ -149,7 +149,7 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
+      <x>70</x>
       <y>462</y>
       <w>637</w>
       <h>105</h>
@@ -159,8 +159,8 @@ Aircraft
 --
 + model: String {Mandatory, ValidShortText, Automapped}
 + registrationNumber: String {Mandatory, ValidShortText, Column(unique=true)}
-+ capacity: Integer {Mandatory, ValidCapacity, Automapped}
-+ cargoWeight: Integer {Mandatory,ValidCargoWeight, Automapped}
++ capacity: Integer {Mandatory, ValidNumber(min=0), Automapped}
++ cargoWeight: Integer {Mandatory,ValidNumber(min=2000,max=50000), Automapped}
 + status: AircraftStatus {Mandatory, Valid, Automapped}
 + details: String {Optional, ValidLongText, Automapped}
 bg=green</panel_attributes>
@@ -169,7 +169,7 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>798</x>
+      <x>868</x>
       <y>539</y>
       <w>147</w>
       <h>266</h>
