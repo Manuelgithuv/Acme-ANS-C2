@@ -4,6 +4,7 @@ package acme.entities.claimLog;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -18,6 +19,7 @@ import acme.constraints.ValidClaimTrackingLog;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidShortText;
 import acme.datatypes.ClaimLogStatus;
+import acme.entities.claim.Claim;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -62,4 +64,8 @@ public class ClaimTrackingLog extends AbstractEntity {
 	@Automapped
 	private String				resolutionDescription;
 
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Claim				claim;
 }
