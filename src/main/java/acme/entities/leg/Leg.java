@@ -8,20 +8,20 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidFlightCode;
+import acme.constraints.ValidHours;
 import acme.constraints.ValidTimeBetweenConsecutiveLegs;
 import acme.datatypes.LegStatus;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airport.Airport;
 import acme.entities.flight.Flight;
+import acme.realms.Manager;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,7 +37,7 @@ public class Leg extends AbstractEntity {
 	// Atributos directos
 
 	// -------------------------------------------------------------------
-	@NotBlank
+	@Mandatory
 	@Valid
 	@Column(unique = true)
 	private String				flightCode;
@@ -57,42 +57,37 @@ public class Leg extends AbstractEntity {
 	@Automapped
 	private LegStatus			status;
 
-	// -------------------------------------------------------------------
-	// Derivados
-
-
-	@Transient
-	public Double getHours() {
-		if (this.scheduledDeparture == null || this.scheduledArrival == null)
-			return null;
-		long diffInMillis = this.scheduledArrival.getTime() - this.scheduledDeparture.getTime();
-		return diffInMillis / (1000.0 * 60 * 60);
-	}
-
-	// ----------------------------------------------
+	@Mandatory
+	@ValidHours
+	@Automapped
+	private Double				hours;
 
 	// -------------------------------------------------------------------
 	// Relaciones 
 
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Flight				flight;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Flight		flight;
+	private Airport				departureAirport;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Airport		departureAirport;
+	private Airport				arrivalAirport;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Airport		arrivalAirport;
+	private Aircraft			aircraft;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Aircraft	aircraft;
+	private Manager				manager;
 
 }

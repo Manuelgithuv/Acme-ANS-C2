@@ -13,9 +13,9 @@
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Manager {ValidManagerIdentifierNumber}
 --
-+ identifierNumber: String {NotBlank, Pattern(regexp = "^[A-Z]{2,3}\\d{6}$", Column(unique=true)}
-+ yearsOfExperience: Integer {Mandatory, PositiveOrZero, Automapped}
-+ dateOfBirth: Date {Mandatory, Past, Temporal(TemporalType.TIMESTAMP)}
++ identifierNumber: String {Mandatory, ValidString(pattern = "^[A-Z]{2,3}\\d{6}$"), Column(unique=true)}
++ yearsOfExperience: Integer {Mandatory, ValidNumber(min=0,max=75), Automapped}
++ dateOfBirth: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP)}
 + picture: String {Optional, ValidURL, Automapped}
 bg=orange</panel_attributes>
     <additional_attributes/>
@@ -31,10 +31,10 @@ bg=orange</panel_attributes>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Flight
 --
-+ tag: String {Mandatory, Size(max=50), Automapped}
++ tag: String {Mandatory, ValidShortText, Automapped}
 + indication: Boolean {Mandatory, Valid, Automapped}
 + cost: Money {Mandatory, ValidMoney, Automapped}
-+ description: String {Optional, Size(max=255), Automapped}
++ description: String {Optional, ValidShortText, Automapped}
 --
 + getScheduledDeparture(): Date
 + getScheduledArrival(): Date
@@ -87,33 +87,13 @@ m2=*
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Leg {ValidFlightNumber, ValidTimeBetweenConsecutiveLegs}
 --
-+ tag: String {NotBlank, Valid, Column(unique=true)}
++ tag: String {Mandatory, Valid, Column(unique=true)}
 + scheduledDeparture: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)}
 + scheduledArrival: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)
 + status: LegStatus {Mandatory, Valid, Automapped}
++ hours : Double {Mandatory, ValidHours, Automapped}
 ---
-+ getHours(): double
 bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>552</x>
-      <y>632</y>
-      <w>728</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Entity&gt;&gt;
-Aircraft
---
-+ model: String {NotBlank, Size(max = 50), Automapped}
-+ registrationNumber: String {NotBlank, Size(max = 50), Column(unique=true)}
-+ capacity: Integer {Mandatory, Positive, Automapped}
-+ cargoWeight: Integer {Mandatory,Min(2000),Max(50000), Automapped}
-+ status: AircraftStatus {Mandatory, Valid, Automapped}
-+ details: String {Optional, Size(max = 255), Automapped}
-bg=red</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -127,14 +107,14 @@ bg=red</panel_attributes>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Airport
 --
-+ name: String {NotBlank, Size(max = 50), Automapped}
-+ IATA code: String {Mandatory, Pattern(regexp = "^[A-Z]{3}$"), Column(unique = true)}
++ name: String {Mandatory, ValidShortText, Automapped}
++ IATA code: String {Mandatory, ValidString(pattern = "^[A-Z]{3}$"), Column(unique = true)}
 + operationalScope: OperationalScope {Mandatory, Valid, Automapped}
-+ city: String {Mandatory, Size(max = 50), Automapped}
-+ country: String {Mandatory, Size(max = 50), Automapped}
++ city: String {Mandatory, ValidShortText, Automapped}
++ country: String {Mandatory, ValidShortText, Automapped}
 + webSite: String {Optional, ValidURL, Automapped}
 + emailAddress: String {Optional, ValidEmail, Automapped}
-+ phoneNumber: String {Optional, Pattern(regexp = "^\\+?\\d{6,15}$"), Automapped}
++ phoneNumber: String {Optional, ValidString(pattern = "^\\+?\\d{6,15}$"), Automapped}
 bg=red</panel_attributes>
     <additional_attributes/>
   </element>
@@ -143,8 +123,8 @@ bg=red</panel_attributes>
     <coordinates>
       <x>488</x>
       <y>264</y>
-      <w>296</w>
-      <h>392</h>
+      <w>304</w>
+      <h>352</h>
     </coordinates>
     <panel_attributes>Flown by &gt;
 lt=&lt;-x
@@ -152,7 +132,7 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>350.0;470.0;10.0;10.0</additional_attributes>
+    <additional_attributes>360.0;420.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -185,5 +165,41 @@ m2=*
 
 </panel_attributes>
     <additional_attributes>10.0;380.0;190.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>736</x>
+      <y>208</y>
+      <w>136</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Managed by &gt;
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>536</x>
+      <y>600</y>
+      <w>728</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Aircraft
+--
++ model: String {Mandatory, ValidShortText, Automapped}
++ registrationNumber: String {Mandatory, ValidShortText, Column(unique=true)}
++ capacity: Integer {Mandatory, ValidNumber(min=0), Automapped}
++ cargoWeight: Integer {Mandatory,ValidNumber(min=2000,max=50000), Automapped}
++ status: AircraftStatus {Mandatory, Valid, Automapped}
++ details: String {Optional, ValidLongText, Automapped}
+bg=red</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

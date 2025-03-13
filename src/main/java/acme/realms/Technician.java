@@ -3,15 +3,16 @@ package acme.realms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.PositiveOrZero;
-import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.constraints.ValidLicenseNumber;
+import acme.constraints.ValidLongText;
+import acme.constraints.ValidPhoneNumber;
+import acme.constraints.ValidSpecialisation;
+import acme.constraints.ValidYearExperience;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,32 +27,33 @@ public class Technician extends AbstractRole {
 
 	// Attributes -------------------------------------------------------------
 
-	@NotBlank
-	@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$", message = "El número de licencia debe tener 2-3 letras mayúsculas seguidas de 6 dígitos")
+	@Mandatory
+	@ValidLicenseNumber
 	@Column(unique = true)
 	private String				licenseNumber;
 
 	@Mandatory
-	@NotBlank
-	@Pattern(regexp = "^\\+?\\d{6,15}$", message = "El número de teléfono debe tener entre 6 y 15 dígitos")
+	@ValidPhoneNumber
+	@Automapped
 	private String				phoneNumber;
 
-	@NotBlank
-	@Size(max = 50)
+	@Mandatory
+	@ValidSpecialisation
 	@Automapped
 	private String				specialisation;
 
 	@Mandatory
+	// HINT: @Valid by default.
 	@Automapped
 	private boolean				annualHealthTestPassed;
 
 	@Mandatory
-	@PositiveOrZero
+	@ValidYearExperience
 	@Automapped
 	private Integer				yearsOfExperience;
 
 	@Optional
-	@Size(max = 255)
+	@ValidLongText
 	@Automapped
 	private String				certifications;
 
