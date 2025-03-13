@@ -14,3 +14,5 @@ user-account-customer-03,true,"UserIdentity{name: 'Customer3', surname: 'Custome
 user-account-technician-01,true,"UserIdentity{name: 'Technician1', surname: 'Technician1', email: 'Technician1@acme.com'}",technician1,technician1
 user-account-technician-02,true,"UserIdentity{name: 'Technician2', surname: 'Technician2', email: 'Technician2@acme.com'}",technician2,technician2
 user-account-technician-03,true,"UserIdentity{name: 'Technician3', surname: 'Technician3', email: 'Technician3@acme.com'}",technician3,technician3
+user-account-administrator-02,true,"UserIdentity{name: 'Administrator1', surname: 'Acme', email: 'administrator1@acme.com'}",administrator1,administrator1
+user-account-administrator-03,true,"UserIdentity{name: 'Administrator2', surname: 'Acme', email: 'administrator2@acme.com'}",administrator2,administrator2

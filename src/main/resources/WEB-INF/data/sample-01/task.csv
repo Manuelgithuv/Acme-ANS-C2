@@ -1,9 +1,9 @@
 key,type,description,priority,estimatedDuration,key:technician
 task-08,SYSTEM_CHECK,Fuel tank inspected for contamination. Drained and refilled with clean fuel. No debris found.,0,0,technician-01
 task-02,INSPECTION,Emergency exit doors inspected. Lubricated seals and confirmed proper locking mechanism operation.,10,10000,technician-02
-task-03,REPAIR,Adjusted rudder trim tab after pilot report of slight yaw. Ground test confirmed proper alignment.,2,7,technician-02
-task-04,REPAIR,Conducted full avionics diagnostic. Replaced faulty transponder module. System functioning normally.,4,50,technician-02
-task-05,REPAIR,Oxygen system inspected and refilled. No leaks detected in tubing or connectors.,7,80,technician-01
+task-03,REPAIR,a,2,7,technician-02
+task-04,REPAIR,aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,4,1,technician-02
+task-05,REPAIR,Oxygen system inspected and refilled. No leaks detected in tubing or connectors.,7,9999,technician-01
 task-06,REPAIR,"Repaired loose wiring in navigation system. Conducted functional test, system operational.",3,256,technician-01
 task-07,REPAIR,Adjusted flap actuators due to asymmetrical deployment. Ground test confirmed proper movement.,1,512,technician-01
 task-01,MAINTENANCE,Autopilot recalibrated after reported altitude hold issues. System tested and verified.,8,1024,technician-01
