@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>7</zoom_level>
+  <zoom_level>5</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>658</x>
-      <y>21</y>
-      <w>574</w>
-      <h>105</h>
+      <x>615</x>
+      <y>75</y>
+      <w>410</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Review
@@ -24,10 +24,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>378</x>
-      <y>231</y>
-      <w>434</w>
-      <h>147</h>
+      <x>415</x>
+      <y>225</y>
+      <w>310</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Airport
@@ -46,10 +46,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>546</x>
-      <y>784</y>
-      <w>434</w>
-      <h>133</h>
+      <x>535</x>
+      <y>620</y>
+      <w>310</w>
+      <h>95</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Airline
@@ -67,13 +67,13 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>42</x>
-      <y>98</y>
-      <w>434</w>
-      <h>91</h>
+      <x>185</x>
+      <y>130</y>
+      <w>310</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
-Service
+Service {ValidPromotionCode}
 --
 + name: String {Mandatory, ValidShortText, Automapped}
 + pictureLink: String {Mandatory, ValidURL, Automapped}
@@ -86,10 +86,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>217</x>
-      <y>560</y>
-      <w>546</w>
-      <h>238</h>
+      <x>300</x>
+      <y>460</y>
+      <w>390</w>
+      <h>170</h>
     </coordinates>
     <panel_attributes>Belongs to &gt;
 lt=&lt;-x
@@ -102,10 +102,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>224</x>
-      <y>182</y>
-      <w>371</w>
-      <h>70</h>
+      <x>315</x>
+      <y>190</y>
+      <w>255</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>Are offered by &gt;
 lt=&lt;-x
@@ -113,15 +113,15 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>510.0;70.0;10.0;10.0</additional_attributes>
+    <additional_attributes>490.0;70.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>343</x>
-      <y>35</y>
-      <w>336</w>
-      <h>84</h>
+      <x>400</x>
+      <y>85</y>
+      <w>230</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>Is posted for  &gt;
 lt=&lt;-x
@@ -129,15 +129,15 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>10.0;90.0;460.0;10.0</additional_attributes>
+    <additional_attributes>10.0;90.0;440.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>672</x>
-      <y>112</y>
-      <w>91</w>
-      <h>133</h>
+      <x>625</x>
+      <y>140</y>
+      <w>65</w>
+      <h>95</h>
     </coordinates>
     <panel_attributes>Is posted for &gt;
 lt=&lt;-x
@@ -150,10 +150,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>966</x>
-      <y>112</y>
-      <w>252</w>
-      <h>693</h>
+      <x>835</x>
+      <y>140</y>
+      <w>180</w>
+      <h>495</h>
     </coordinates>
     <panel_attributes>Is posted for &gt;
 lt=&lt;-x
@@ -166,10 +166,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>630</x>
-      <y>371</y>
-      <w>308</w>
-      <h>140</h>
+      <x>595</x>
+      <y>325</y>
+      <w>220</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>Operates in &gt;
 lt=&lt;-x
@@ -182,10 +182,10 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>847</x>
-      <y>497</y>
-      <w>196</w>
-      <h>49</h>
+      <x>750</x>
+      <y>415</y>
+      <w>140</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 OperatesAt
@@ -197,10 +197,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>21</x>
-      <y>462</y>
-      <w>637</w>
-      <h>105</h>
+      <x>160</x>
+      <y>390</y>
+      <w>455</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Aircraft
@@ -217,10 +217,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>819</x>
-      <y>539</y>
-      <w>147</w>
-      <h>266</h>
+      <x>730</x>
+      <y>445</y>
+      <w>105</w>
+      <h>190</h>
     </coordinates>
     <panel_attributes>Operates in &gt;
 lt=&lt;-x
