@@ -27,13 +27,7 @@ public class Claim extends AbstractEntity {
 	 * 
 	 */
 	private static final long	serialVersionUID	= 1L;
-	/*
-	 * registrationMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP)}
-	 * + passengerEmail: String {Mandatory, ValidEmail, Automapped}
-	 * + description: String {Mandatory, ValidLongText, Automapped}
-	 * + type: ClaimType {Mandatory, Valid, Automapped}
-	 * + isAccepted : Boolean {Mandatory, Valid, Automapped}
-	 */
+
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
