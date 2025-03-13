@@ -10,8 +10,7 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.constraints.ValidCapacity;
-import acme.constraints.ValidCargoWeight;
+import acme.client.components.validation.ValidNumber;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidShortText;
 import acme.datatypes.AircraftStatus;
@@ -37,12 +36,12 @@ public class Aircraft extends AbstractEntity {
 	private String				registrationNumber;
 
 	@Mandatory
-	@ValidCapacity
+	@ValidNumber(min = 1)
 	@Automapped
 	private Integer				capacity;
 
 	@Mandatory
-	@ValidCargoWeight
+	@ValidNumber(min = 2000, max = 50000)
 	@Automapped
 	private Integer				cargoWeight;
 

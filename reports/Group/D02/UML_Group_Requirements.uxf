@@ -4,10 +4,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>615</x>
-      <y>75</y>
-      <w>410</w>
-      <h>75</h>
+      <x>644</x>
+      <y>77</y>
+      <w>574</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Review
@@ -24,15 +24,15 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>415</x>
-      <y>225</y>
-      <w>310</w>
-      <h>105</h>
+      <x>427</x>
+      <y>231</y>
+      <w>434</w>
+      <h>147</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Airport
 --
-+ name: String {NotBlank, ValidShortText, Automapped}
++ name: String {Mandatory, ValidShortText, Automapped}
 + IATA code: String {Mandatory, ValidString(pattern = "^[A-Z]{3}$"), Column(unique = true)}
 + operationalScope: OperationalScope {Mandatory, Valid, Automapped}
 + city: String {Mandatory, ValidShortText, Automapped}
@@ -46,10 +46,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>535</x>
-      <y>620</y>
-      <w>310</w>
-      <h>95</h>
+      <x>595</x>
+      <y>784</y>
+      <w>434</w>
+      <h>133</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Airline
@@ -67,10 +67,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>185</x>
-      <y>130</y>
-      <w>310</w>
-      <h>65</h>
+      <x>91</x>
+      <y>98</y>
+      <w>434</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Service {ValidPromotionCode}
@@ -86,10 +86,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
-      <y>460</y>
-      <w>390</w>
-      <h>170</h>
+      <x>266</x>
+      <y>560</y>
+      <w>546</w>
+      <h>238</h>
     </coordinates>
     <panel_attributes>Belongs to &gt;
 lt=&lt;-x
@@ -102,10 +102,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>315</x>
-      <y>190</y>
-      <w>255</w>
-      <h>50</h>
+      <x>273</x>
+      <y>182</y>
+      <w>371</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>Are offered by &gt;
 lt=&lt;-x
@@ -118,58 +118,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>400</x>
-      <y>85</y>
-      <w>230</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>Is posted for  &gt;
-lt=&lt;-x
-m1=1
-m2=*
-
-</panel_attributes>
-    <additional_attributes>10.0;90.0;440.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>625</x>
-      <y>140</y>
-      <w>65</w>
-      <h>95</h>
-    </coordinates>
-    <panel_attributes>Is posted for &gt;
-lt=&lt;-x
-m1=1
-m2=*
-
-</panel_attributes>
-    <additional_attributes>10.0;170.0;20.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>835</x>
-      <y>140</y>
-      <w>180</w>
-      <h>495</h>
-    </coordinates>
-    <panel_attributes>Is posted for &gt;
-lt=&lt;-x
-m1=1
-m2=*
-
-</panel_attributes>
-    <additional_attributes>10.0;970.0;320.0;780.0;60.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>595</x>
-      <y>325</y>
-      <w>220</w>
-      <h>100</h>
+      <x>679</x>
+      <y>371</y>
+      <w>308</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>Operates in &gt;
 lt=&lt;-x
@@ -182,10 +134,10 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>750</x>
-      <y>415</y>
-      <w>140</w>
-      <h>35</h>
+      <x>896</x>
+      <y>497</y>
+      <w>196</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 OperatesAt
@@ -197,18 +149,18 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>160</x>
-      <y>390</y>
-      <w>455</w>
-      <h>75</h>
+      <x>70</x>
+      <y>462</y>
+      <w>637</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Aircraft
 --
 + model: String {Mandatory, ValidShortText, Automapped}
 + registrationNumber: String {Mandatory, ValidShortText, Column(unique=true)}
-+ capacity: Integer {Mandatory, ValidCapacity, Automapped}
-+ cargoWeight: Integer {Mandatory,ValidCargoWeight, Automapped}
++ capacity: Integer {Mandatory, ValidNumber(min=0), Automapped}
++ cargoWeight: Integer {Mandatory,ValidNumber(min=2000,max=50000), Automapped}
 + status: AircraftStatus {Mandatory, Valid, Automapped}
 + details: String {Optional, ValidLongText, Automapped}
 bg=green</panel_attributes>
@@ -217,10 +169,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>730</x>
-      <y>445</y>
-      <w>105</w>
-      <h>190</h>
+      <x>868</x>
+      <y>539</y>
+      <w>147</w>
+      <h>266</h>
     </coordinates>
     <panel_attributes>Operates in &gt;
 lt=&lt;-x

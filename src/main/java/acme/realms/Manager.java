@@ -13,10 +13,10 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
 import acme.constraints.ValidManagerIdentifierNumber;
-import acme.constraints.ValidYearsOfExperience;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,7 +34,7 @@ public class Manager extends AbstractRole {
 	private String				identifierNumber;
 
 	@Mandatory
-	@ValidYearsOfExperience
+	@ValidNumber(min = 0, max = 75)
 	@Automapped
 	private Integer				yearsOfExperience;
 

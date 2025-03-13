@@ -9,18 +9,20 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
-
-import org.hibernate.validator.constraints.Range;
+import javax.validation.constraints.Size;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})
 @ReportAsSingleViolation
 
-@Range(min = 0, max = 75)
-public @interface ValidYearsOfExperience {
+@Size(max = 50)
 
-	String message() default "Años de experiencia no validos";
+public @interface ValidIncidentType {
+
+	// Standard validation properties -----------------------------------------
+
+	String message() default "";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
