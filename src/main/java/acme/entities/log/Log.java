@@ -8,24 +8,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
-import acme.constraints.ValidLog;
-import acme.entities.crew.FlightAssignment;
-import acme.entities.leg.Leg;
+import acme.constraints.ValidIncidentType;
+import acme.constraints.ValidLongText;
+import acme.constraints.ValidSeverity;
+import acme.entities.flight_assignment.FlightAssignment;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-@ValidLog
 public class Log extends AbstractEntity {
 
 	/*
@@ -37,46 +34,39 @@ public class Log extends AbstractEntity {
 	 * and 10 represents a highly critical situation).
 	 */
 
+	// Serialisation version --------------------------------------------------
+
 	private static final long	serialVersionUID	= 1L;
 
-	// crew member
+	// Attributes -------------------------------------------------------------
+
+	@Mandatory
+	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				registrationMoment;
+
+	@Mandatory
+	@ValidIncidentType
+	@Automapped
+	private String				incidentType;
+
+	@Mandatory
+	@ValidLongText
+	@Automapped
+	private String				description;
+
+	@Mandatory
+	@ValidSeverity
+	@Automapped
+	private Integer				severity;
+
+	// Derived attributes -----------------------------------------------------
+
+	// Relationships ----------------------------------------------------------
+
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
 	private FlightAssignment	flightAssignment;
-
-	// leg
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private Leg					leg;
-
-	// registration moment
-	@Mandatory
-	@ValidMoment
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date				registrationMoment;
-
-	// type of incident
-	@Mandatory
-	@Valid
-	@Automapped
-	@Size(max = 50)
-	private String				incidentType;
-
-	// description
-	@Mandatory
-	@Valid
-	@Automapped
-	@Size(max = 255)
-	private String				description;
-
-	// severity level
-	@Mandatory
-	@Valid
-	@Automapped
-	@Min(0)
-	@Max(10)
-	private Integer				severity;
 
 }
