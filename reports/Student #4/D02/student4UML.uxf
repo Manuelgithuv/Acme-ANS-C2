@@ -73,7 +73,7 @@ Claim
 + registrationMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP)}
 + passengerEmail: String {Mandatory, ValidEmail, Automapped}
 + description: String {Mandatory, ValidLongText, Automapped}
-+ type: ClaimType {Mandatory, Valid, Automapped}
++ claimType: ClaimType {Mandatory, Valid, Automapped}
 + isAccepted : Boolean {Mandatory, Valid, Automapped}
 ---
 bg=green</panel_attributes>
@@ -125,7 +125,7 @@ Claim Tracking Log {ValidClaimTrackingLog}
 + lastUpdateMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP)}
 + stepUndergoing: String {Mandatory, ValidShortText, Automapped}
 + resolutionPercentage: Double {Mandatory, ValidScore, Automapped}
-+ status: claimStatus {Mandatory, ValidScore, Automapped}
++ status: claimLogStatus {Mandatory, Valid, Automapped}
 + resolutionDescription: String {Optional, ValidLongText, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
