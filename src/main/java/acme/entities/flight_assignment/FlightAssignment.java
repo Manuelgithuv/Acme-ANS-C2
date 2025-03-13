@@ -1,5 +1,5 @@
 
-package acme.entities.crew;
+package acme.entities.flight_assignment;
 
 import java.util.Date;
 
@@ -17,7 +17,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidLongText;
 import acme.datatypes.AssignmentStatus;
 import acme.datatypes.CrewDuty;
-import acme.entities.leg.Leg;
+import acme.realms.FlightCrewMember;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,43 +33,39 @@ public class FlightAssignment extends AbstractEntity {
 	 * ("CONFIRMED", "PENDING", or "CANCELLED"), and some remarks (up to 255 characters), if necessary.
 	 */
 
+	// Serialisation version --------------------------------------------------
+
 	private static final long	serialVersionUID	= 1L;
 
-	// crew member
+	// Attributes -------------------------------------------------------------
+
 	@Mandatory
 	@Valid
-	@ManyToOne(optional = false)
-	private FlightCrewMember	asignee;
-
-	// leg
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private Leg					leg;
-
-	// duty
-	@Mandatory
 	@Automapped
-	@Valid
 	private CrewDuty			duty;
 
-	// last update
 	@Mandatory
-	@Automapped
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				lastUpdate;
 
-	// current status
 	@Mandatory
-	@Automapped
 	@Valid
+	@Automapped
 	private AssignmentStatus	status;
 
-	// remarks
 	@Optional
-	@Automapped
 	@ValidLongText
+	@Automapped
 	private String				remarks;
+
+	// Derived attributes -----------------------------------------------------
+
+	// Relationships ----------------------------------------------------------
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private FlightCrewMember	asignee;
 
 }

@@ -1,26 +1,32 @@
 
-package acme.entities.crew;
+package acme.realms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractEntity;
+import acme.client.components.basis.AbstractRole;
 import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoney;
+import acme.constraints.ValidExperience;
+import acme.constraints.ValidFlightCrewMemberIdentifier;
+import acme.constraints.ValidIdentifier;
 import acme.constraints.ValidLongText;
+import acme.constraints.ValidPhone;
 import acme.datatypes.Availability;
+import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-public class FlightCrewMember extends AbstractEntity {
+@ValidFlightCrewMemberIdentifier
+public class FlightCrewMember extends AbstractRole {
 
 	/*
 	 * The flight crew members are the people responsible for operating aircrafts and en-suring passenger safety
@@ -31,42 +37,49 @@ public class FlightCrewMember extends AbstractEntity {
 	 * the system may store his or her years of experience.
 	 */
 
+	// Serialisation version --------------------------------------------------
+
 	private static final long	serialVersionUID	= 1L;
 
-	// employee code
-	@Mandatory
-	@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$")
-	@Automapped
-	@Column(unique = true)
-	private String				code;
+	// Attributes -------------------------------------------------------------
 
-	// phone number
 	@Mandatory
-	@NotBlank
+	@ValidIdentifier
+	@Column(unique = true)
+	private String				identifier;
+
+	@Mandatory
+	@ValidPhone
 	@Automapped
-	@Pattern(regexp = "^\\+?\\d{6,15}$")
 	private String				phone;
 
-	// language skills
 	@Mandatory
-	@Automapped
 	@ValidLongText
+	@Automapped
 	private String				languageSkills;
 
-	// availability status
 	@Mandatory
+	@Valid
 	@Automapped
 	private Availability		availability;
 
-	// salary
 	@Mandatory
+	@ValidMoney
 	@Automapped
 	private Money				salary;
 
-	// years of experience
 	@Optional
+	@ValidExperience
 	@Automapped
-	@Min(0)
 	private Integer				experience;
+
+	// Derived attributes -----------------------------------------------------
+
+	// Relationships ----------------------------------------------------------
+
+	@Mandatory
+	@Automapped
+	@ManyToOne(optional = false)
+	private Airline				airline;
 
 }
