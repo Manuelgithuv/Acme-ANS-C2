@@ -5,18 +5,18 @@ import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
-import acme.realms.AssistanceAgentManagement;
+import acme.realms.AssistanceAgent;
 
 @Validator
-public class AssistanceAgentManagementEmployeCodeValidator extends AbstractValidator<ValidAssistanceAgentManagement, AssistanceAgentManagement> {
+public class AssistanceAgentEmployeCodeValidator extends AbstractValidator<ValidAssistanceAgent, AssistanceAgent> {
 
 	@Override
-	protected void initialise(final ValidAssistanceAgentManagement annotation) {
+	protected void initialise(final ValidAssistanceAgent annotation) {
 		assert annotation != null;
 	}
 
 	@Override
-	public boolean isValid(final AssistanceAgentManagement value, final ConstraintValidatorContext context) {
+	public boolean isValid(final AssistanceAgent value, final ConstraintValidatorContext context) {
 		String name = value.getIdentity().getName();
 		String surname = value.getIdentity().getSurname();
 		String identifierNumber = value.getEmployeCode();
