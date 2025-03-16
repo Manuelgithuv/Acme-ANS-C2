@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.entities.leg.Leg;
-import acme.entities.leg.LegRepository;
+import acme.features.manager.leg.LegRepository;
 
 public class TimeBetweenLegsValidator extends AbstractValidator<ValidTimeBetweenConsecutiveLegs, Leg> {
 

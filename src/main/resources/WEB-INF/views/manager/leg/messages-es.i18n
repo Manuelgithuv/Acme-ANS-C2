@@ -1,0 +1,25 @@
+
+authenticated.manager.list.label.flightCode = Código del vuelo
+
+authenticated.manager.list.label.scheduledDeparture = Fecha de salida
+
+authenticated.manager.list.label.scheduledArrival = Fecha de llegada
+
+authenticated.manager.list.label.status = Estado del tramo
+
+authenticated.manager.list.label.hours = Horas del tramo
+
+authenticated.manager.list.label.managerIdentity = Manager del tramo
+
+authenticated.manager.list.label.flight = Vuelo al que pertenece el tramo
+
+authenticated.manager.list.label.departureAirport = Aeropuerto de salida
+
+authenticated.manager.list.label.arrivalAirport = Aeropuerto de llegada
+
+authenticated.manager.list.label.aircraft = Aeronave
+
+manager.leg.list.title = Mis tramos
+
+manager.leg.form.title = Detalles del tramo 
+
