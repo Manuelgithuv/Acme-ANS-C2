@@ -17,7 +17,7 @@ import acme.client.components.validation.ValidMoney;
 import acme.client.helpers.SpringHelper;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidShortText;
-import acme.entities.leg.LegRepository;
+import acme.features.manager.leg.LegRepository;
 import acme.realms.Manager;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,5 +1,5 @@
 
-package acme.entities.leg;
+package acme.features.manager.leg;
 
 import java.util.Date;
 import java.util.List;
@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.leg.Leg;
 
 @Repository
 public interface LegRepository extends AbstractRepository {
@@ -41,5 +42,11 @@ public interface LegRepository extends AbstractRepository {
 		    AND l.scheduledArrival = (SELECT MAX(l2.scheduledArrival) FROM Leg l2 WHERE l2.flight.id = :flightId)
 		""")
 	Optional<String> findDestinationCity(@Param("flightId") int flightId);
+	
+	@Query("SELECT l from Leg l WHERE l.flight.manager.id =:managerId")
+	List<Leg> findByManagerId(@Param("managerId") int managerId);
+	
+	@Query("SELECT l from Leg l WHERE l.id =:legId")
+	Leg findById(@Param("legId") int legId);
 
 }
