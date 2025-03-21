@@ -9,6 +9,8 @@ authenticated.manager.list.label.status = Status
 
 authenticated.manager.list.label.hours = Hours of the leg
 
+authenticated.manager.list.label.published = Is published?
+
 authenticated.manager.list.label.managerIdentity = Manager 
 
 authenticated.manager.list.label.flight = Flight that leg belong to

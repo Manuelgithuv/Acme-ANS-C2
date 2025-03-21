@@ -5,6 +5,8 @@ authenticated.manager.list.label.indication = Indication
 
 authenticated.manager.list.label.cost = Cost
 
+authenticated.manager.list.label.published = Is published?
+
 authenticated.manager.list.label.description = Description
 
 authenticated.manager.list.label.identity = Flight Manager

@@ -9,6 +9,8 @@ authenticated.manager.list.label.status = Estado del tramo
 
 authenticated.manager.list.label.hours = Horas del tramo
 
+authenticated.manager.list.label.published = ¿Está publicado?
+
 authenticated.manager.list.label.managerIdentity = Manager del tramo
 
 authenticated.manager.list.label.flight = Vuelo al que pertenece el tramo

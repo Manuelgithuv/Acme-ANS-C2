@@ -18,10 +18,14 @@ public class ManagerLegController extends AbstractGuiController<Manager, Leg> {
 	@Autowired
 	private ManagerShowLegService showService;
 	
+	@Autowired
+	private ManagerCreateLegService createService;
+	
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("create", createService);
 	}
 
 }
