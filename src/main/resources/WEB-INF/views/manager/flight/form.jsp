@@ -13,4 +13,5 @@
 	<acme:input-textbox code="authenticated.manager.list.label.originCity" path="originCity" readonly="true"/>
 	<acme:input-textbox code="authenticated.manager.list.label.destinationCity" path="destinationCity" readonly="true"/>
 	<acme:input-integer code="authenticated.manager.list.label.numberOfLayovers" path="numberOfLayovers" readonly="true"/>
+	<acme:button code="authenticated.manager.list.button.legs" action="/manager/leg/list?flightId=${id}"/>
 </acme:form>

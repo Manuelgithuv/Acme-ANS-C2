@@ -19,6 +19,8 @@ authenticated.manager.list.label.destinationCity = Ciudad de destino
 
 authenticated.manager.list.label.numberOfLayovers = Número de escalas
 
+authenticated.manager.list.button.legs = Ver los tramos del vuelo
+
 manager.flight.list.title = Mis vuelos
 
 manager.flight.form.title = Detalles del vuelo

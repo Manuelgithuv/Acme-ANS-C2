@@ -19,6 +19,8 @@ authenticated.manager.list.label.destinationCity = Destination city
 
 authenticated.manager.list.label.numberOfLayovers = Number of layovers
 
+authenticated.manager.list.button.legs = See flight legs
+
 manager.flight.list.title = My flights
 
 manager.flight.form.title = Flight Details

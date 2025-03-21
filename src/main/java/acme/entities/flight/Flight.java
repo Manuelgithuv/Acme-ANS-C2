@@ -46,6 +46,10 @@ public class Flight extends AbstractEntity {
 	@Automapped
 	private Money				cost;
 
+	@Mandatory
+	@Automapped
+	private boolean				published;
+
 	@Optional
 	@ValidLongText
 	@Automapped

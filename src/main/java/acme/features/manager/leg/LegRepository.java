@@ -15,7 +15,7 @@ import acme.entities.leg.Leg;
 @Repository
 public interface LegRepository extends AbstractRepository {
 
-	@Query("SELECT DISTINCT l FROM Leg l WHERE l.flight.id = :flightId ORDER BY l.scheduledDeparture")
+	@Query("SELECT DISTINCT l FROM Leg l WHERE l.flight.id = :flightId ORDER BY l.scheduledDeparture ASC")
 	List<Leg> findDistinctByFlight(@Param("flightId") int flightId);
 
 	@Query("SELECT COUNT(l) - 1 FROM Leg l WHERE l.flight.id = :flightId")
@@ -42,10 +42,10 @@ public interface LegRepository extends AbstractRepository {
 		    AND l.scheduledArrival = (SELECT MAX(l2.scheduledArrival) FROM Leg l2 WHERE l2.flight.id = :flightId)
 		""")
 	Optional<String> findDestinationCity(@Param("flightId") int flightId);
-	
+
 	@Query("SELECT l from Leg l WHERE l.flight.manager.id =:managerId")
 	List<Leg> findByManagerId(@Param("managerId") int managerId);
-	
+
 	@Query("SELECT l from Leg l WHERE l.id =:legId")
 	Leg findById(@Param("legId") int legId);
 
