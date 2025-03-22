@@ -9,7 +9,7 @@ import acme.entities.flight.Flight;
 import acme.realms.Manager;
 
 @GuiService
-public class ManagerShowFlightService extends AbstractGuiService<Manager, Flight>  {
+public class ManagerCreateFlightService extends AbstractGuiService<Manager, Flight>{
 	
 	@Autowired
 	private FlightRepository flightRepository;
@@ -23,14 +23,34 @@ public class ManagerShowFlightService extends AbstractGuiService<Manager, Flight
 	public void load() {
 		
 		Flight flight;
+		Manager manager;
 		
-		int id;
-
-		id = super.getRequest().getData("id", int.class);
+		manager = (Manager) super.getRequest().getPrincipal().getActiveRealm();
 		
-		flight = flightRepository.findById(id);
-		
+		flight = new Flight();
+		flight.setPublished(false);
+		flight.setManager(manager);
 		super.getBuffer().addData(flight);
+		
+	}
+	
+	@Override
+	public void bind(final Flight flight) {
+		
+		super.bindObject(flight, "tag","indication","cost","description");
+		
+		
+	}
+	
+	@Override
+	public void validate(final Flight flight) {
+		;
+	}
+	
+	@Override
+	public void perform(final Flight flight) {
+		
+		this.flightRepository.save(flight);
 		
 	}
 	

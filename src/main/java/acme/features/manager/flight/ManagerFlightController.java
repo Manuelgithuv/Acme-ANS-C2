@@ -19,10 +19,27 @@ public class ManagerFlightController extends AbstractGuiController<Manager, Flig
 	@Autowired
 	private ManagerShowFlightService showService;
 	
+	@Autowired
+	private ManagerCreateFlightService createService;
+	
+	@Autowired
+	private ManagerUpdateFlightService updateService;
+	
+	@Autowired
+	private ManagerDeleteFlightService deleteService;
+	
+	@Autowired 
+	private ManagerPublishFlightService publishService;
+	
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("delete", this.deleteService);
+		
+		super.addCustomCommand("publish", "update", this.publishService);
 	}
 
 }

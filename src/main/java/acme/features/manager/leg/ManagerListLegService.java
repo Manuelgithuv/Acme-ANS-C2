@@ -1,6 +1,7 @@
 
 package acme.features.manager.leg;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +39,17 @@ public class ManagerListLegService extends AbstractGuiService<Manager, Leg> {
 
 		Dataset dataset;
 
-		dataset = super.unbindObject(leg, "flightCode", "scheduledDeparture", "scheduledArrival", "status", "hours", "manager.identity.fullName");
+		dataset = super.unbindObject(leg, "flightCode", "scheduledDeparture", "scheduledArrival", "status", "hours","published", "manager.identity.fullName");
 
 		super.getResponse().addData(dataset);
 
+	}
+	
+	@Override
+	public void unbind(final Collection<Leg> legs) {
+		
+		int flightId = super.getRequest().getData("flightId",int.class);
+		super.getResponse().addGlobal("flightId", flightId);
 	}
 
 }

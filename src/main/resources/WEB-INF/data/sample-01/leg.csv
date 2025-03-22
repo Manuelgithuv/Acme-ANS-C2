@@ -6,4 +6,4 @@ leg-04,KLM2222,2200/12/16 00:00,2200/12/16 04:30,CANCELLED,4.5,false,flight-02,a
 leg-05,KLM3333,2021/05/30 03:40,2021/05/30 07:55,LANDED,4.25,true,flight-03,airport-03,airport-02,aircraft-05,manager-02
 leg-07,AFR9802,2200/06/22 12:35,2200/06/22 17:55,ON_TIME,5.33,true,flight-04,airport-01,airport-04,aircraft-02,manager-02
 leg-08,AFR6713,2200/06/22 17:56,2200/06/22 22:00,DELAYED,4.07,true,flight-04,airport-04,airport-03,aircraft-01,manager-02
-leg-06,AFR7655,2021/05/30 07:56,2021/05/30 13:30,LANDED,5.57,true,flight-03,airport-03,airport-02,aircraft-01,manager-02
+leg-06,AFR7655,2021/05/30 07:56,2021/05/30 13:30,LANDED,5.57,true,flight-03,airport-02,airport-04,aircraft-01,manager-02

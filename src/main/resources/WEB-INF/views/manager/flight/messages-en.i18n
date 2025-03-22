@@ -5,6 +5,8 @@ authenticated.manager.list.label.indication = Indication
 
 authenticated.manager.list.label.cost = Cost
 
+authenticated.manager.list.label.published = Is published?
+
 authenticated.manager.list.label.description = Description
 
 authenticated.manager.list.label.identity = Flight Manager
@@ -17,10 +19,20 @@ authenticated.manager.list.label.originCity = Origin city
 
 authenticated.manager.list.label.destinationCity = Destination city
 
-authenticated.manager.list.label.numberOfLayovers = Number of layovers
+authenticated.manager.list.label.layovers = Number of layovers
 
 authenticated.manager.list.button.legs = See flight legs
 
 manager.flight.list.title = My flights
 
 manager.flight.form.title = Flight Details
+
+authenticated.manager.list.button.flight.create = Create a new flight
+
+authenticated.manager.form.button.flight.create = Create flight
+
+authenticated.manager.form.button.flight.publish = Publish flight
+
+authenticated.manager.form.button.flight.update = Edit flight
+
+authenticated.manager.form.button.flight.delete = Delete flight
