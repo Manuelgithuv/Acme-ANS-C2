@@ -40,11 +40,11 @@ public class FlightCodeValidator extends AbstractValidator<ValidFlightCode, Leg>
 
 		// Verificar si la aerolínea existe
 		if (this.airlineRepository.countByAirlineCode(airlineCode) == 0)
-			super.state(context, false, "flight code", "Airline does not exist");
+			super.state(context, false, "*", "airline.does.not.exist");
 		// Verificar si es el Iata code de la aerolinea asociada
 		if (!leg.getAircraft().getAirline().getIataCode().equals(airlineCode))
 
-			super.state(context, false, "flight code", "The firt digits must be the IATA code of the associated airline");
+			super.state(context, false, "*", "the.firt.digits.must.be.the.IATA.code.of.the.associated.airline");
 
 		result = !super.hasErrors(context);
 		return result;

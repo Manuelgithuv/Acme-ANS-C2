@@ -21,7 +21,16 @@ authenticated.manager.list.label.arrivalAirport = Aeropuerto de llegada
 
 authenticated.manager.list.label.aircraft = Aeronave
 
-manager.leg.list.title = Mis tramos
+manager.leg.list.title = Tramos del vuelo
 
 manager.leg.form.title = Detalles del tramo 
 
+authenticated.manager.button.create = Crear tramo para el vuelo
+
+authenticated.manager.form.button.leg.create = Crear tramo
+
+authenticated.manager.form.button.leg.publish = Publicar tramo
+
+authenticated.manager.form.button.leg.update = Editar tramo
+
+authenticated.manager.form.button.leg.delete = Borrar tramo

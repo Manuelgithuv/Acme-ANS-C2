@@ -21,7 +21,17 @@ authenticated.manager.list.label.arrivalAirport = Arrival Airport
 
 authenticated.manager.list.label.aircraft = Aircraft
 
-manager.leg.list.title = My legs
+manager.leg.list.title = Flight legs
 
 manager.leg.form.title = Leg Details
+
+authenticated.manager.list.button.leg.create = Create a leg for the flight
+
+authenticated.manager.form.button.leg.create = Create leg
+
+authenticated.manager.form.button.leg.publish = Publish Leg
+
+authenticated.manager.form.button.leg.update = Edit Leg
+
+authenticated.manager.form.button.leg.delete = Delete Leg
 

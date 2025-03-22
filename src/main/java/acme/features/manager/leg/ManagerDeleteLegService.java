@@ -1,7 +1,6 @@
 package acme.features.manager.leg;
 
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,13 +12,11 @@ import acme.entities.aircraft.Aircraft;
 import acme.entities.aircraft.AircraftRepository;
 import acme.entities.airport.Airport;
 import acme.entities.airport.AirportRepository;
-import acme.entities.flight.Flight;
 import acme.entities.leg.Leg;
-import acme.features.manager.flight.FlightRepository;
 import acme.realms.Manager;
 
 @GuiService
-public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg>{
+public class ManagerDeleteLegService extends AbstractGuiService<Manager, Leg>{
 	
 	@Autowired
 	private LegRepository legRepository;
@@ -27,34 +24,46 @@ public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg>{
 	@Autowired
 	private AirportRepository airportRepository;
 	
-	@Autowired
-	private FlightRepository flightRepository;
+	
 	
 	@Autowired
 	private AircraftRepository aircraftRepository;
 	
-
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		
+		boolean status;
+		
+		Leg leg;
+		
+		
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+		
+		leg = legRepository.findById(id);
+		
+		status = !leg.isPublished();
+		
+		super.getResponse().setAuthorised(status);
+		
 	}
 	
 	@Override
 	public void load() {
-		Leg leg;
-		Manager manager;
 		
-		manager = (Manager) super.getRequest().getPrincipal().getActiveRealm();
-		int flightId = super.getRequest().getData("flightId",int.class);
-		Flight flight = flightRepository.findById(flightId);
-		leg = new Leg();
-		leg.setPublished(false);
-		leg.setManager(manager);
-		leg.setFlight(flight);
+		Leg leg;
+		
+		
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+		
+		leg = legRepository.findById(id);
+		
 		super.getBuffer().addData(leg);
 		
 	}
-	
 	@Override
 	public void bind(final Leg leg) {
 		
@@ -68,6 +77,7 @@ public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg>{
 		Airport arrivalAirport;
 		
 		
+		
 		aircraftId = super.getRequest().getData("aircraft",int.class);
 		aircraft = this.aircraftRepository.findById(aircraftId);
 		
@@ -79,42 +89,27 @@ public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg>{
 		
 		super.bindObject(leg, "flightCode","scheduledDeparture","scheduledArrival","status","hours");
 		
+		
 		leg.setAircraft(aircraft);
 		leg.setDepartureAirport(departureAirport);
 		leg.setArrivalAirport(arrivalAirport);
-		
 		
 	}
 	
 	@Override
 	public void validate(final Leg leg) {
-		boolean status;
-		Airport departureAirport = this.airportRepository.findById(leg.getDepartureAirport().getId());
-		Airport arrivalAirport = this.airportRepository.findById(leg.getArrivalAirport().getId());
-		boolean areAirportsEquals = departureAirport!=null && arrivalAirport!=null && departureAirport.getId()==arrivalAirport.getId();
-		
-		Date scheduledDeparture = leg.getScheduledDeparture();
-		Date scheduledArrival = leg.getScheduledArrival();
-		boolean isDepartureBeforeArrival = scheduledDeparture!=null && scheduledArrival!=null && scheduledDeparture.before(scheduledArrival);
-		
-		status = !areAirportsEquals && isDepartureBeforeArrival;
-		
-		
-		super.state(status, "*", "manager.leg.create.dates-and-airports");
-		
-		
+		;
 	}
 	
 	@Override
 	public void perform(final Leg leg) {
-		this.legRepository.save(leg);
+		this.legRepository.delete(leg);
 		
 	}
 	
 	@Override
 	public void unbind(final Leg leg) {
 	    Dataset dataset = buildDataset(leg);
-	    dataset.put("flightId", super.getRequest().getData("flightId", int.class));
 	    
 	    populateDatasetWithChoices(dataset, leg);
 	    
@@ -142,6 +137,7 @@ public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg>{
 	    dataset.put("arrivalAirports", arrivalAirportChoices);
 	    dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 	    dataset.put("aircrafts", aircraftChoices);
+	    
 	}
 
 }
