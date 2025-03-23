@@ -22,7 +22,7 @@ public @interface ValidExperience {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "";
+	String message() default "{invalid.experience}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

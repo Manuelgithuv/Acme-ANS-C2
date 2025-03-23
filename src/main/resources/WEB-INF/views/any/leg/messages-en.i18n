@@ -1,0 +1,14 @@
+
+any.manager.list.leg.label.flightCode = Flight code
+
+any.manager.list.leg.label.scheduledDeparture = Scheduled departure
+
+any.manager.list.leg.label.scheduledArrival = Scheduled arrival
+
+any.manager.list.leg.label.status = Status
+
+any.manager.list.leg.label.hours = Hours
+
+any.manager.list.leg.label.managerIdentity = Manager of the leg
+
+any.leg.list.title = Legs of the flight

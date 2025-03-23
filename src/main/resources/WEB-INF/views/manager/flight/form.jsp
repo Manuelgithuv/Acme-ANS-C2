@@ -22,6 +22,14 @@
 			<acme:submit code="authenticated.manager.form.button.flight.update" action="/manager/flight/update"/>
 			<acme:submit code="authenticated.manager.form.button.flight.delete" action="/manager/flight/delete"/>
 		</jstl:when>
+		<jstl:when test="${_command == 'show'&& published== true}">
+		<acme:input-moment code="authenticated.manager.list.label.scheduledDeparture" path="scheduledDeparture" readonly="true"/>
+				<acme:input-moment code="authenticated.manager.list.label.scheduledArrival" path="scheduledArrival" readonly="true"/>
+				<acme:input-textbox code="authenticated.manager.list.label.originCity" path="originCity" readonly="true"/>
+				<acme:input-textbox code="authenticated.manager.list.label.destinationCity" path="destinationCity" readonly="true"/>
+				<acme:input-integer code="authenticated.manager.list.label.layovers" path="layovers" readonly="true"/>
+				<acme:button code="authenticated.manager.list.button.legs" action="/manager/leg/list?flightId=${id}"/>
+		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="authenticated.manager.form.button.flight.create" action="/manager/flight/create"/>
 		</jstl:when>	

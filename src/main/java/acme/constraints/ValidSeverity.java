@@ -24,7 +24,7 @@ public @interface ValidSeverity {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "";
+	String message() default "{invalid.severity}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
