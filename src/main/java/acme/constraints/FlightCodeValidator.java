@@ -32,7 +32,7 @@ public class FlightCodeValidator extends AbstractValidator<ValidFlightCode, Leg>
 
 		boolean result;
 		if (leg.getFlightCode() == null || leg.getFlightCode().isBlank())
-			super.state(context, false, "flight code", "Flight code cannot be empty");
+			super.state(context, false, "flightCode", "Flight code cannot be empty");
 
 		// Extraer el código de aerolínea (los caracteres iniciales antes de los 4 dígitos finales)
 		String flightCode = leg.getFlightCode();
@@ -40,11 +40,11 @@ public class FlightCodeValidator extends AbstractValidator<ValidFlightCode, Leg>
 
 		// Verificar si la aerolínea existe
 		if (this.airlineRepository.countByAirlineCode(airlineCode) == 0)
-			super.state(context, false, "*", "airline.does.not.exist");
+			super.state(context, false, "airline", "airline.does.not.exist");
 		// Verificar si es el Iata code de la aerolinea asociada
 		if (!leg.getAircraft().getAirline().getIataCode().equals(airlineCode))
 
-			super.state(context, false, "*", "the.firt.digits.must.be.the.IATA.code.of.the.associated.airline");
+			super.state(context, false, "flightCode", "the.firt.digits.must.be.the.IATA.code.of.the.associated.airline");
 
 		result = !super.hasErrors(context);
 		return result;

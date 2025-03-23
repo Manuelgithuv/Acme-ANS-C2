@@ -44,8 +44,11 @@ public class TimeBetweenLegsValidator extends AbstractValidator<ValidTimeBetween
 			Leg currentLeg = sortedLegs.get(i);
 			Leg nextLeg = sortedLegs.get(i + 1);
 
-			if (this.areLegsConsecutive(currentLeg, nextLeg) || !this.areAirportsConcording(currentLeg, nextLeg))
-				super.state(context, false, "*", "consecutive.legs.diferent.moments.and.airports");
+			if (this.areLegsConsecutive(currentLeg, nextLeg))
+				super.state(context, false, "scheduledDeparture", "consecutive.legs.must.be.different.moments");
+			if(!this.areAirportsConcording(currentLeg, nextLeg))
+				super.state(context, false, "departureAirport", "consecutive.legs.must.have.same.arrival-departure-airports");
+				
 		}
 
 		result = !super.hasErrors(context);

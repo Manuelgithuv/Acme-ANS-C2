@@ -1,0 +1,26 @@
+
+any.flight.list.label.tag  = Tag
+
+any.flight.list.label.indication  = Indication
+
+any.flight.list.label.cost = Cost
+
+any.flight.list.label.description = Description
+
+any.manager.list.flight.label.managerIdentity = Manager of the flight
+
+any.flight.list.label.scheduledDeparture = Scheduled departure
+
+any.flight.list.label.scheduledArrival = Scheduled arrival
+
+any.flight.list.label.originCity = Origin city
+
+any.flight.list.label.destinationCity = Destination city
+
+any.flight.list.label.layovers = Number of layovers
+
+any.flight.list.button.legs = See flight legs
+
+any.flight.list.title = Published flights
+
+any.flight.form.title = Details of the flight

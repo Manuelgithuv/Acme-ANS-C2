@@ -14,7 +14,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = MaintenanceRecordValidator.class)
 public @interface ValidMaintenanceRecord {
 
-	String message() default "Invalid Maintenance record";
+	String message() default "{invalid.maintenance.record}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

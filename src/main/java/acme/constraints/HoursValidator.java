@@ -17,7 +17,7 @@ public class HoursValidator extends AbstractValidator<ValidHours, Double> {
 	@Override
 	public boolean isValid(final Double value, final ConstraintValidatorContext context) {
 		if (value == null || value <= 0.0)
-			super.state(context, false, "Hours", "The hours of a leg must be positive");
+			super.state(context, false, "hours", "The hours of a leg must be positive");
 		return !super.hasErrors(context);
 	}
 

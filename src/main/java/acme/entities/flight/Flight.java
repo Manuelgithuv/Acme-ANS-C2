@@ -3,6 +3,7 @@ package acme.entities.flight;
 
 import java.util.Date;
 
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
@@ -14,8 +15,8 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
+import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
-import acme.constraints.ValidLongText;
 import acme.constraints.ValidShortText;
 import acme.features.manager.leg.LegRepository;
 import acme.realms.Manager;
@@ -51,7 +52,7 @@ public class Flight extends AbstractEntity {
 	private boolean				published;
 
 	@Optional
-	@ValidLongText
+	@ValidString(max=255)
 	@Automapped
 	private String				description;
 

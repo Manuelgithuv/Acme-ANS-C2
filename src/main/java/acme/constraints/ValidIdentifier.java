@@ -24,7 +24,7 @@ public @interface ValidIdentifier {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "";
+	String message() default "{invalid.identifier}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
