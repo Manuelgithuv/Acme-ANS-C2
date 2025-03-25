@@ -341,8 +341,7 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/webapp"/>
-                        
-        
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-test-sources/test-annotations"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/acme-framework-25.3.0"/>
         <dependent-module archiveName="Acme-Framework-25.3.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Acme-Framework-25.3.0/Acme-Framework-25.3.0">
             <dependency-type>uses</dependency-type>

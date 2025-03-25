@@ -24,7 +24,7 @@ public @interface ValidPhone {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "";
+	String message() default "{invalid.phone}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

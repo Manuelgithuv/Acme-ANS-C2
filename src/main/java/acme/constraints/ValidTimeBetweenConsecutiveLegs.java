@@ -14,7 +14,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = TimeBetweenLegsValidator.class)
 public @interface ValidTimeBetweenConsecutiveLegs {
 
-	String message() default "Consecutive legs of a flight can not be solapated";
+	String message() default "";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

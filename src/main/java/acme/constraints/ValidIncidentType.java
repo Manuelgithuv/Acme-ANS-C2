@@ -22,7 +22,7 @@ public @interface ValidIncidentType {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "";
+	String message() default "{invalid.incident.type}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

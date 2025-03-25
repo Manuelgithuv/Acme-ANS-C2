@@ -17,7 +17,7 @@ import javax.validation.Payload;
 
 public @interface ValidHours {
 
-	String message() default "Invalid hours";
+	String message() default "";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

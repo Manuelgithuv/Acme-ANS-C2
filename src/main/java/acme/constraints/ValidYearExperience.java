@@ -23,7 +23,7 @@ public @interface ValidYearExperience {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "Años de experiencia no validos";
+	String message() default "{invalid.experience.years}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

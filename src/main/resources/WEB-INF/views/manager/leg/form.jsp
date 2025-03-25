@@ -9,8 +9,17 @@
 	<acme:input-moment code="authenticated.manager.list.label.scheduledArrival" path="scheduledArrival" />
 	<acme:input-textbox code="authenticated.manager.list.label.status" path="status"/>
 	<acme:input-double code="authenticated.manager.list.label.hours" path="hours"/>
-	<acme:input-select code="authenticated.manager.list.label.flight" path="flight" choices="${flights}" />
 	<acme:input-select code="authenticated.manager.list.label.departureAirport" path="departureAirport" choices="${departureAirports}" />
 	<acme:input-select code="authenticated.manager.list.label.arrivalAirport" path="arrivalAirport" choices="${arrivalAirports}"/>
 	<acme:input-select code="authenticated.manager.list.label.aircraft" path="aircraft" choices="${aircrafts}"/>
+	<jstl:choose>
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && published == false}">
+			<acme:submit code="authenticated.manager.form.button.leg.publish" action="/manager/leg/publish"/>
+			<acme:submit code="authenticated.manager.form.button.leg.update" action="/manager/leg/update"/>
+			<acme:submit code="authenticated.manager.form.button.leg.delete" action="/manager/leg/delete"/>
+		</jstl:when>
+		<jstl:when test="${_command == 'create'}">
+			<acme:submit code="authenticated.manager.form.button.leg.create" action="/manager/leg/create?flightId=${flightId}"/>
+		</jstl:when>	
+	</jstl:choose>
 </acme:form>

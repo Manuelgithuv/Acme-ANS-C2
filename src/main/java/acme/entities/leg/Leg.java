@@ -62,6 +62,10 @@ public class Leg extends AbstractEntity {
 	@Automapped
 	private Double				hours;
 
+	@Mandatory
+	@Automapped
+	private boolean				published;
+
 	// -------------------------------------------------------------------
 	// Relaciones 
 

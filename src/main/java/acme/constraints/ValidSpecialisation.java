@@ -25,7 +25,7 @@ public @interface ValidSpecialisation {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "Specialize your technician correctly ";
+	String message() default "{invalid.specialization}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

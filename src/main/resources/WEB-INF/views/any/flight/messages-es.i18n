@@ -1,0 +1,26 @@
+
+any.flight.list.label.tag  = Etiqueta
+
+any.flight.list.label.indication  = Indicación
+
+any.flight.list.label.cost = Coste
+
+any.flight.list.label.description = Descripción
+
+any.manager.list.flight.label.managerIdentity = Manager del vuelo
+
+any.flight.list.label.scheduledDeparture = Fecha de salida
+
+any.flight.list.label.scheduledArrival = Fecha de llegada
+
+any.flight.list.label.originCity = Ciudad de origen
+
+any.flight.list.label.destinationCity = Ciudad de destino
+
+any.flight.list.label.layovers = Número de escalas
+
+any.flight.list.button.legs = Tramos del vuelo
+
+any.flight.list.title = Vuelos publicados
+
+any.flight.form.title = Detalles del vuelo
