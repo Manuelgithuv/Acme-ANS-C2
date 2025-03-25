@@ -1,10 +1,10 @@
-key,fullName,email,passportNumber,dateOfBirth,specialNeeds,key:booking
-passenger-01,Lorem ipsum dolor sit amet consectetur adipiscing elit. Nulla facilisi. Donec vehicula erat sit amet aliquet vehicula neque ex fermentum justo eget tincidunt sapien lacus sit amet lorem. Phasellus ut orci eu odio vehicula fringilla non eu odio.,test@gmail.com,A1B2C3D4E,2000/01/02 11:30,Discapacitado,booking-01
-passenger-02,A,lorem@gmail.com,ABCD12,2002/01/02 11:30,Hola esto es una cadena de prueba con 50 chars. :),booking-01
-passenger-03,Pepito Sachez,pepito@gmail.com,ABCDEF123,2004/01/02 11:30,Manco,booking-02
-passenger-04,Pepito Torres,torres@hotmail.com,ABCDEFGHI,2016/04/09 11:30,Ciego,booking-02
-passenger-05,Pepito Gutierrez,gutierrez@gmail.com,123456789,2006/04/09 11:30,Cojo,booking-03
-passenger-06,Alejandro Fernandez,alejandro@gmail.com,ABCD12345,2000/04/09 11:30,Necesita ayuda,booking-04
-passenger-07,Manuel Artero,manolo@gmail.com,12345ABCD,2004/04/09 11:30,Necesito ayuda,booking-05
-passenger-08,Claudio Calderon,claudio@gmail.com,12345BD,2010/04/09 11:30,Le gusta la pizza con piña,booking-05
-passenger-09,Juan Jimenez,juanito@gmail.com,765BDC,2009/04/09 11:30,Probando,booking-06
+key,fullName,email,passportNumber,dateOfBirth,specialNeeds
+passenger-01,Lorem ipsum dolor sit amet consectetur adipiscing elit. Nulla facilisi. Donec vehicula erat sit amet aliquet vehicula neque ex fermentum justo eget tincidunt sapien lacus sit amet lorem. Phasellus ut orci eu odio vehicula fringilla non eu odio.,test@gmail.com,A1B2C3D4E,2000/01/02 11:30,Discapacitado
+passenger-02,A,lorem@gmail.com,ABCD12,2002/01/02 11:30,Hola esto es una cadena de prueba con 50 chars. :)
+passenger-03,Pepito Sachez,pepito@gmail.com,ABCDEF123,2004/01/02 11:30,Manco
+passenger-04,Pepito Torres,torres@hotmail.com,ABCDEFGHI,2016/04/09 11:30,Ciego
+passenger-05,Pepito Gutierrez,gutierrez@gmail.com,123456789,2006/04/09 11:30,Cojo
+passenger-06,Alejandro Fernandez,alejandro@gmail.com,ABCD12345,2000/04/09 11:30,Necesita ayuda
+passenger-07,Manuel Artero,manolo@gmail.com,12345ABCD,2004/04/09 11:30,Necesito ayuda
+passenger-08,Claudio Calderon,claudio@gmail.com,12345BD,2010/04/09 11:30,Le gusta la pizza con piña
+passenger-09,Juan Jimenez,juanito@gmail.com,765BDC,2009/04/09 11:30,Probando
