@@ -1,8 +1,8 @@
 key,name,pictureLink,averageDwellTime,promotionCode,discount,key:airport
-service-01,2 for one deal,http://lorem.com/ipsum,1.2,ABCD-25,EUR 30.00,airport-01
-service-02,free meal,ftp://a.b,2.2,ACCD-25,EUR 15.00,airport-02
-service-03,l,https://www.lorem-ipsum.org,0.1,AAAA-25,EUR 0.01,airport-01
-service-04,la,http://www.lorem-ipsum.org/dolor/sit.html,1.01,AAAB-25,EUR 1.01,airport-01
-service-05,normal amount,http://example.org/a/b?,20.00,null,null,airport-01
-service-06,largest exmaple number of characterssssssssssssss,http://example.org?a=1&b=2,999.0,ZZZY-25,EUR 999.00,airport-01
-service-07,largest exmaple number of charactersssssssssssssss,http://example.org?a=1&b=2,1000.0,ZZZZ-25,EUR 1000.00,airport-01
+service-01,2 for one deal,https://i.imgur.com/8YcXhS0.png,1.2,ABCD-25,EUR 30.00,airport-01
+service-02,free meal,https://i.imgur.com/fihihcF.png,2.2,ACCD-25,EUR 15.00,airport-02
+service-03,l,https://i.imgur.com/MtBRoNP.png,0.1,AAAA-25,EUR 0.01,airport-01
+service-04,la,https://i.imgur.com/NGLSjk6.pnghttps://i.imgur.com/NGLSjk6.png,1.01,AAAB-25,EUR 1.01,airport-01
+service-05,normal amount,https://i.imgur.com/qu5SrLN.png,20.00,null,null,airport-01
+service-06,largest exmaple number of characterssssssssssssss,https://i.imgur.com/8n7KfX1.png,999.0,ZZZY-25,EUR 999.00,airport-01
+service-07,largest exmaple number of charactersssssssssssssss,https://i.imgur.com/fihihcF.png,1000.0,ZZZZ-25,EUR 1000.00,airport-01

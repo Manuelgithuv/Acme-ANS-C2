@@ -42,7 +42,7 @@ public class ManagerIdentifierNumberValidator extends AbstractValidator<ValidMan
 		identifierNumber = identifierNumber.trim();
 
 		// Comparar iniciales con el identificador
-		if (identifierNumber.charAt(0) != nameInitial || identifierNumber.charAt(1) != surnameInitial)
+		if (identifierNumber == null || identifierNumber.isBlank() || identifierNumber.charAt(0) != nameInitial || identifierNumber.charAt(1) != surnameInitial)
 			super.state(context, false, "identifierNumber", "the.first.two.digits.are.not.the.initials");
 
 		return !super.hasErrors(context);

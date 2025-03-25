@@ -1,0 +1,42 @@
+
+flight.code.cannot.be.null = Flight code cannot be null
+
+airline.does.not.exist = Airline does not exist
+
+the.first.digits.must.be.the.IATA.code.of.the.associated.airline = The first digits must be the IATA code of the associated airline
+
+the.hours.of.a.leg.must.be.positive = The hours of a leg must be positive
+
+name.does.not.exist = Name does not exist
+
+surname.does.not.exist = Surname does not exist
+
+the.first.two.digits.are.not.the.initials = The first two digits  must be the initials
+
+flight.cannot.be.null = Flight cannot be null
+
+consecutive.legs.must.be.different.moments = Consecutive legs must be at different moments
+
+consecutive.legs.must.have.same.arrival-departure-airports = Consecutive legs must have the same arrival and departure airports
+
+acme.validation.header.message = The text must be between 1 and 50 characters
+
+aircraft.or.airline.cannot.be.null = The airline and aircraft associate can not be null
+
+flight.manager.is.not.logged-manager = The manager chosen for the flight is not the logged manager
+
+manager.flight.publish.there-is-at-least-one-leg-published = To delete the flight all legs must be unpublished
+
+manager.flight.publish.not-all-legs-published = All the legs corresponding to this flight must be published before performing this operation
+
+manager.leg.create.null-leg =  Leg can not be null
+
+manager.leg.create.null-flight = Flight can not be null 
+
+manager.leg.create.null-aircraft = Aircraft can not be null
+
+leg.manager.is.not.logged-manager = The manager associated to the must be the logged manager
+
+manager.leg.create.airports = The arrival airport of a leg must be the same as the departure airport from the consequent leg
+
+manager.leg.create.dates = The date of arrival of a leg can not be the same as the departure from the consequent leg

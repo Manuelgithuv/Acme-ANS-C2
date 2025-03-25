@@ -1,3 +1,4 @@
+
 package acme.features.manager.flight;
 
 import java.util.List;
@@ -12,35 +13,43 @@ import acme.realms.Manager;
 
 @GuiService
 public class ManagerListFlightService extends AbstractGuiService<Manager, Flight> {
-	
+
 	@Autowired
 	private FlightRepository flightRepository;
-	
+
+
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+
+		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+		List<Flight> flights = this.flightRepository.findFlightsByManagerId(managerId);
+
+		status = flights.stream().allMatch(l -> l.getManager().getId() == managerId);
+
+		super.getResponse().setAuthorised(status);
 	}
-	
-	
+
 	@Override
 	public void load() {
-		
+
 		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		
-		List<Flight> flights = flightRepository.findFlightsByManagerId(managerId);
-		
+
+		List<Flight> flights = this.flightRepository.findFlightsByManagerId(managerId);
+
 		super.getBuffer().addData(flights);
 	}
-	
+
 	@Override
 	public void unbind(final Flight flight) {
-		
+
 		Dataset dataset;
-		
-		dataset = super.unbindObject(flight, "tag","indication","cost","published","description","manager.identity.fullName");
-		
+
+		dataset = super.unbindObject(flight, "tag", "indication", "cost", "published", "description");
+
 		super.getResponse().addData(dataset);
-		
+
 	}
 
 }
