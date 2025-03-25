@@ -1,6 +1,7 @@
 
 package acme.constraints;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -33,13 +34,21 @@ public class TimeBetweenLegsValidator extends AbstractValidator<ValidTimeBetween
 		boolean result;
 
 		List<Leg> legs = this.legRepository.findDistinctByFlight(leg.getFlight().getId());
-
-		for (int i = 0; i < legs.size() - 1; i++) {
-			Leg currentLeg = legs.get(i);
-			Leg nextLeg = legs.get(i + 1);
+		if(!legs.contains(leg)) {
+			legs.add(leg);
+		}
+		List<Leg> sortedLegs = legs.stream()
+		    .sorted(Comparator.comparing(Leg::getScheduledDeparture))
+		    .toList();
+		for (int i = 0; i < sortedLegs.size() - 1; i++) {
+			Leg currentLeg = sortedLegs.get(i);
+			Leg nextLeg = sortedLegs.get(i + 1);
 
 			if (this.areLegsConsecutive(currentLeg, nextLeg))
-				super.state(context, false, "Consecutive Legs", "Consecutive legs of a flight can not be at the same moment");
+				super.state(context, false, "scheduledDeparture", "consecutive.legs.must.be.different.moments");
+			if(!this.areAirportsConcording(currentLeg, nextLeg))
+				super.state(context, false, "departureAirport", "consecutive.legs.must.have.same.arrival-departure-airports");
+				
 		}
 
 		result = !super.hasErrors(context);
@@ -55,6 +64,10 @@ public class TimeBetweenLegsValidator extends AbstractValidator<ValidTimeBetween
 		long nextDepartureInMinutes = nextDeparture.getTime() / 60000;
 
 		return currentArrivalInMinutes == nextDepartureInMinutes;
+	}
+	private boolean areAirportsConcording(final Leg currentLeg, final Leg nextLeg) {
+		
+		return currentLeg.getArrivalAirport().getIataCode().equals(nextLeg.getDepartureAirport().getIataCode());
 	}
 
 }

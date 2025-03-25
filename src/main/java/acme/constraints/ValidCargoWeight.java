@@ -21,7 +21,7 @@ import org.hibernate.validator.constraints.Range;
 public @interface ValidCargoWeight {
 	// Standard validation properties -----------------------------------------
 
-	String message() default "Invalid cargo weight";
+	String message() default "{Invalid cargo weight}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

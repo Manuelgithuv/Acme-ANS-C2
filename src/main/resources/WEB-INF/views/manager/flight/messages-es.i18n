@@ -5,6 +5,8 @@ authenticated.manager.list.label.indication = Indicación
 
 authenticated.manager.list.label.cost = Coste
 
+authenticated.manager.list.label.published = ¿Está publicado?
+
 authenticated.manager.list.label.description = Descripción
 
 authenticated.manager.list.label.identity  = Manager del vuelo
@@ -17,8 +19,20 @@ authenticated.manager.list.label.originCity = Ciudad de origen
 
 authenticated.manager.list.label.destinationCity = Ciudad de destino
 
-authenticated.manager.list.label.numberOfLayovers = Número de escalas
+authenticated.manager.list.label.layovers = Número de escalas
+
+authenticated.manager.list.button.legs = Ver los tramos del vuelo
 
 manager.flight.list.title = Mis vuelos
 
 manager.flight.form.title = Detalles del vuelo
+
+authenticated.manager.list.button.flight.create = Crear un nuevo vuelo
+
+authenticated.manager.form.button.flight.create = Crear vuelo
+
+authenticated.manager.form.button.flight.publish = Publicar vuelo
+
+authenticated.manager.form.button.flight.update = Editar vuelo
+
+authenticated.manager.form.button.flight.delete = Borrar vuelo

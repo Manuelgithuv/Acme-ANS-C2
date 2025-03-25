@@ -63,7 +63,7 @@ public class ManagerShowLegService extends  AbstractGuiService<Manager, Leg> {
 	}
 
 	private Dataset buildDataset(final Leg leg) {
-	    return super.unbindObject(leg, "flightCode", "scheduledDeparture", "scheduledArrival","status", "hours");
+	    return super.unbindObject(leg, "flightCode", "scheduledDeparture", "scheduledArrival","status", "hours","published");
 	}
 
 	private void populateDatasetWithChoices(Dataset dataset, final Leg leg) {

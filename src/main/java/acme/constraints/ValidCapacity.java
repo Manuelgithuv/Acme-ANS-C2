@@ -21,7 +21,7 @@ import javax.validation.constraints.Min;
 public @interface ValidCapacity {
 	// Standard validation properties -----------------------------------------
 
-	String message() default "Invalid cargo weight";
+	String message() default "{Invalid cargo weight}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

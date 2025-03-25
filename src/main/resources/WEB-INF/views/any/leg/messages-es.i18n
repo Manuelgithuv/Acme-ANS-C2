@@ -1,0 +1,14 @@
+
+any.manager.list.leg.label.flightCode = Código del vuelo
+
+any.manager.list.leg.label.scheduledDeparture = Fecha de salida
+
+any.manager.list.leg.label.scheduledArrival = fecha de llegada
+
+any.manager.list.leg.label.status = Estado
+
+any.manager.list.leg.label.hours = Horas
+
+any.manager.list.leg.label.managerIdentity = Manager del tramo
+
+any.leg.list.title = Tramos del vuelo
