@@ -27,6 +27,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@ValidHours
 @ValidFlightCode
 @ValidTimeBetweenConsecutiveLegs
 @Entity
@@ -58,7 +59,7 @@ public class Leg extends AbstractEntity {
 	private LegStatus			status;
 
 	@Mandatory
-	@ValidHours
+	@Valid
 	@Automapped
 	private Double				hours;
 
