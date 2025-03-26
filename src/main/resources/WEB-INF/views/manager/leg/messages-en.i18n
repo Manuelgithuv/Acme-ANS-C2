@@ -25,7 +25,7 @@ manager.leg.list.title = Flight legs
 
 manager.leg.form.title = Leg Details
 
-authenticated.manager.list.button.leg.create = Create a leg for the flight
+authenticated.manager.list.button.leg.create = Create leg
 
 authenticated.manager.form.button.leg.create = Create leg
 
