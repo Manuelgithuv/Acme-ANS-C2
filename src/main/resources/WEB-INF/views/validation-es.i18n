@@ -41,3 +41,5 @@ manager.leg.create.airports = El aeropuerto de llegada de un tramo debe ser el m
 
 manager.leg.create.dates = La fecha de llegada de un tramo no puede ser la misma que la fecha de salida del tramo consecutivo
 
+manager.leg.flightCode.alreadyExists = Código de vuelo ya existente
+

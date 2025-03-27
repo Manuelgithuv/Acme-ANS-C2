@@ -40,3 +40,5 @@ leg.manager.is.not.logged-manager = The manager associated to the must be the lo
 manager.leg.create.airports = The arrival airport of a leg must be the same as the departure airport from the consequent leg
 
 manager.leg.create.dates = The date of arrival of a leg can not be the same as the departure from the consequent leg
+
+manager.leg.flightCode.alreadyExists = Flight Code already exists
