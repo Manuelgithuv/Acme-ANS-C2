@@ -25,7 +25,7 @@ manager.leg.list.title = Tramos del vuelo
 
 manager.leg.form.title = Detalles del tramo 
 
-authenticated.manager.button.create = Crear tramo 
+authenticated.manager.list.button.leg.create = Crear tramo 
 
 authenticated.manager.form.button.leg.create = Crear tramo
 

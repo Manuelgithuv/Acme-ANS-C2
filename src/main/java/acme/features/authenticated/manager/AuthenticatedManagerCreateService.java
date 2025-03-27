@@ -1,5 +1,7 @@
 package acme.features.authenticated.manager;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -53,6 +55,12 @@ public class AuthenticatedManagerCreateService extends AbstractGuiService<Authen
 	@Override
 	public void validate(final Manager manager) {
 		assert manager!=null;
+		
+		Optional<Manager> existingManager = this.authenticatedManagerRepository.findByIdentifierNumber(manager.getIdentifierNumber());
+		
+		if(!existingManager.isEmpty()) {
+			super.state(false, "identifierNumber", "manager.authenticated.invalidIdentifierNumber");
+		}
 	}
 	
 	@Override
