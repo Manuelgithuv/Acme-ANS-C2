@@ -3,6 +3,7 @@ package acme.features.manager.leg;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -97,6 +98,12 @@ public class ManagerPublishLegService extends AbstractGuiService<Manager, Leg> {
 		if (leg.getFlight() == null) {
 			super.state(false, "*", "manager.leg.create.null-flight");
 			return;
+		}
+		
+		Optional<Leg> existingLeg = legRepository.findByFlightCode(leg.getFlightCode());
+		
+		if(!existingLeg.isEmpty()) {
+			super.state(false, "flightCode", "manager.leg.flightCode.alreadyExists");
 		}
 
 		boolean status;

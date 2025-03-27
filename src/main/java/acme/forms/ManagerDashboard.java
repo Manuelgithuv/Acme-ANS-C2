@@ -1,13 +1,9 @@
 
 package acme.forms;
 
-import java.util.Map;
 
 import acme.client.components.basis.AbstractForm;
-import acme.datatypes.LegStatus;
 import acme.entities.airport.Airport;
-import acme.entities.flight.Flight;
-import acme.entities.leg.Leg;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,11 +21,17 @@ public class ManagerDashboard extends AbstractForm {
 
 	private Double					ratioDelayedLegs;
 
-	private Map<Airport, Flight>	mostPopularAirports;
+	private Airport					mostPopularAirport;
 
-	private Map<Airport, Flight>	lessPopularAirports;
+	private Airport					lessPopularAirport;
 
-	private Map<Leg, LegStatus>		legsByStatus;
+	private Integer 				numberOfLegsPending;
+	
+	private Integer 				numberOfLegsCancelled;
+	
+	private Integer 				numberOfLegsDelayed;
+	
+	private Integer 				numberOfLegsOnTTime;
 
 	private Double					averageCostDesviationOfFlights;
 
