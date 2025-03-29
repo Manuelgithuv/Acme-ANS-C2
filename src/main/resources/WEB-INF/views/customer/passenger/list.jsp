@@ -4,13 +4,12 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column sortable="false" code="authenticated.manager.list.label.flightCode" path="flightCode"/>
-	<acme:list-column sortable="true" code="authenticated.manager.list.label.scheduledDeparture" path="scheduledDeparture"/>
-	<acme:list-column sortable="false" code="authenticated.manager.list.label.scheduledArrival" path="scheduledArrival"/>
-	<acme:list-column sortable="false" code="authenticated.manager.list.label.status" path="status"/>
-	<acme:list-column sortable="false" code="authenticated.manager.list.label.hours" path="hours"/>
-	<acme:list-column sortable="false" code="authenticated.manager.list.label.published" path="published"/>
+	<acme:list-column sortable="false" code="authenticated.customer.list.label.fullName" path="fullName"/>
+	<acme:list-column sortable="true" code="authenticated.customer.list.label.email" path="email"/>
+	<acme:list-column sortable="false" code="authenticated.customer.list.label.passportNumber" path="passportNumber"/>
+	<acme:list-column sortable="false" code="authenticated.customer.list.label.dateOfBirth" path="dateOfBirth"/>
+	<acme:list-column sortable="false" code="authenticated.customer.list.label.specialNeeds" path="specialNeeds"/>
 </acme:list>
-<jstl:if test="${_command == 'list' && isFlightPublished==false}">
-	<acme:button code="authenticated.manager.list.button.leg.create" action="/manager/leg/create?flightId=${flightId}"/>
+<jstl:if test="${_command == 'list' && isBookingPublished==false}">
+	<acme:button code="authenticated.customer.list.button.passenger.create" action="/customer/passenger/create?bookingId=${bookingId}"/>
 </jstl:if>	

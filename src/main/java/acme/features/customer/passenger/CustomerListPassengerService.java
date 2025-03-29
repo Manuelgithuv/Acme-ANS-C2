@@ -1,5 +1,5 @@
 
-package acme.features.costumer.passenger;
+package acme.features.customer.passenger;
 
 import java.util.Collection;
 import java.util.List;
@@ -11,7 +11,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
 import acme.entities.passenger.Passenger;
-import acme.features.costumer.booking.BookingRepository;
+import acme.features.customer.booking.BookingRepository;
 import acme.realms.Customer;
 
 @GuiService
@@ -34,8 +34,6 @@ public class CustomerListPassengerService extends AbstractGuiService<Customer, P
 
 		Booking booking = this.bookingRepository.findById(bookingId);
 
-		List<Passenger> passengers = this.passengerRepository.findPassengersByBookingId(bookingId);
-
 		status = booking != null && booking.getCustomer().getId() == customerId;
 
 		super.getResponse().setAuthorised(status);
@@ -45,7 +43,7 @@ public class CustomerListPassengerService extends AbstractGuiService<Customer, P
 	@Override
 	public void load() {
 
-		int bookingId = super.getRequest().getData("BookingId", int.class);
+		int bookingId = super.getRequest().getData("bookingId", int.class);
 
 		List<Passenger> passengers = this.passengerRepository.findPassengersByBookingId(bookingId);
 
@@ -57,13 +55,14 @@ public class CustomerListPassengerService extends AbstractGuiService<Customer, P
 
 		Dataset dataset;
 
-		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
+		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds", "published");
+
 		super.getResponse().addData(dataset);
 
 	}
 
 	@Override
-	public void unbind(final Collection<Passenger> Passengers) {
+	public void unbind(final Collection<Passenger> passengers) {
 
 		int bookingId = super.getRequest().getData("bookingId", int.class);
 		Booking booking = this.bookingRepository.findById(bookingId);

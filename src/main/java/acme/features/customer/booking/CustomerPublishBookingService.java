@@ -1,19 +1,29 @@
 
-package acme.features.costumer.booking;
+package acme.features.customer.booking;
+
+import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.datatypes.TravelClass;
 import acme.entities.booking.Booking;
+import acme.entities.flight.Flight;
+import acme.features.manager.flight.FlightRepository;
 import acme.realms.Customer;
 
 @GuiService
 public class CustomerPublishBookingService extends AbstractGuiService<Customer, Booking> {
 
 	@Autowired
-	private BookingRepository bookingRepository;
+	private BookingRepository	bookingRepository;
+
+	@Autowired
+	private FlightRepository	flightRepository;
 
 
 	@Override
@@ -55,21 +65,32 @@ public class CustomerPublishBookingService extends AbstractGuiService<Customer, 
 	@Override
 	public void bind(final Booking booking) {
 
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCardnibble");
+		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCardNibble");
 
 	}
 
 	@Override
 	public void validate(final Booking booking) {
+		if (booking.getLastCardNibble() != null) {
+			super.state(false, "*", "customer.booking.create.null-lastCardNibble");
+			return;
+		}
 
 		boolean status;
+		if (booking.getFlight() == null) {
+			super.state(false, "flight", "customer.booking.create.null-flight");
+			return;
+		}
 
-		int id = booking.getId();
+		Optional<Booking> existingBooking = this.bookingRepository.findBookingsByLocatorCode(booking.getLocatorCode(), booking.getId());
+		if (!existingBooking.isEmpty())
+			super.state(false, "locatorCode", "customer.booking.locatorCode.alreadyExists");
 
-		boolean lastCardNibbleExist = booking.getLastCardNibble() != null;
-		status = lastCardNibbleExist;
+		Customer customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
-		super.state(status, "*", "Customer.Booking.publish.not-all-legs-published");
+		status = booking.getCustomer().getId() == customer.getId();
+
+		super.state(status, "customer", "booking.customer.is.not.logged-customer");
 
 	}
 
@@ -85,9 +106,17 @@ public class CustomerPublishBookingService extends AbstractGuiService<Customer, 
 	public void unbind(final Booking booking) {
 
 		Dataset dataset;
+		Collection<Flight> flights = this.flightRepository.findAllFlights();
+		SelectChoices travelClassChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
+		Flight flight = booking.getFlight() == null || booking.getFlight().getId() == 0 ? null : booking.getFlight();
 
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCardnibble");
+		SelectChoices flightChoices = SelectChoices.from(flights, "tag", flight);
 
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCardNibble", "published");
+
+		dataset.put("travelClasses", travelClassChoices);
+		dataset.put("flight", flightChoices.getSelected().getKey());
+		dataset.put("flights", flightChoices);
 		super.getResponse().addData(dataset);
 	}
 

@@ -1,5 +1,5 @@
 
-package acme.features.costumer.passenger;
+package acme.features.customer.passenger;
 
 import javax.annotation.PostConstruct;
 

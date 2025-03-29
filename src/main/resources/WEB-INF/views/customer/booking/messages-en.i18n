@@ -1,38 +1,12 @@
+authenticated.customer.list.label.locatorCode = Locator Code
+authenticated.customer.list.label.purchaseMoment = Purchase Moment
+authenticated.customer.list.label.travelClass = Travel Class
+authenticated.customer.list.label.price = Price
+authenticated.customer.list.label.lastCardNibble = Last Card Nibble
+authenticated.customer.list.label.flight = Flight
 
-authenticated.manager.list.label.tag = Tag
-
-authenticated.manager.list.label.indication = Indication
-
-authenticated.manager.list.label.cost = Cost
-
-authenticated.manager.list.label.published = Is published?
-
-authenticated.manager.list.label.description = Description
-
-authenticated.manager.list.label.identity = Flight Manager
-
-authenticated.manager.list.label.scheduledDeparture = Scheduled Departure
-
-authenticated.manager.list.label.scheduledArrival = Scheduled Arrival
-
-authenticated.manager.list.label.originCity = Origin city
-
-authenticated.manager.list.label.destinationCity = Destination city
-
-authenticated.manager.list.label.layovers = Number of layovers
-
-authenticated.manager.list.button.legs = See flight legs
-
-manager.flight.list.title = My flights
-
-manager.flight.form.title = Flight Details
-
-authenticated.manager.list.button.flight.create = Create a new flight
-
-authenticated.manager.form.button.flight.create = Create flight
-
-authenticated.manager.form.button.flight.publish = Publish flight
-
-authenticated.manager.form.button.flight.update = Edit flight
-
-authenticated.manager.form.button.flight.delete = Delete flight
+authenticated.customer.list.button.passengers = See Passengers
+authenticated.customer.form.button.flight.publish = Publish
+authenticated.customer.form.button.flight.update = Update
+authenticated.customer.form.button.flight.create = Create
+authenticated.customer.list.button.booking.create = Create

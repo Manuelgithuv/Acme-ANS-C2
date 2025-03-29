@@ -1,5 +1,5 @@
 
-package acme.features.costumer.passenger;
+package acme.features.customer.passenger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -7,9 +7,8 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.AircraftRepository;
-import acme.entities.booking.Booking;
 import acme.entities.passenger.Passenger;
-import acme.features.costumer.booking.BookingRepository;
+import acme.features.customer.booking.BookingRepository;
 import acme.realms.Customer;
 
 @GuiService
@@ -32,14 +31,13 @@ public class CustomerUpdatePassengerService extends AbstractGuiService<Customer,
 		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
 		int id = super.getRequest().getData("id", int.class);
-		int bookingId = super.getRequest().getData("bookingId", int.class);
 
 		Passenger passenger = this.passengerRepository.findById(id);
-		Booking booking = this.bookingRepository.findById(bookingId);
 
-		status = passenger != null && booking.getCustomer().getId() == customerId && !booking.isPublished() && !passenger.isPublished();
+		status = passenger.getCustomer().getId() == customerId;
 
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
@@ -73,10 +71,8 @@ public class CustomerUpdatePassengerService extends AbstractGuiService<Customer,
 		boolean status;
 
 		Customer customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
-		int bookingId = super.getRequest().getData("bookingId", int.class);
-		Booking booking = this.bookingRepository.findById(bookingId);
 
-		if (booking.getCustomer().getId() != customer.getId())
+		if (passenger.getCustomer().getId() != customer.getId())
 			super.state(false, "Customer", "Passenger.Customer.is.not.logged-Customer");
 		;
 	}
@@ -94,7 +90,7 @@ public class CustomerUpdatePassengerService extends AbstractGuiService<Customer,
 		super.getResponse().addData(dataset);
 	}
 
-	private Dataset buildDataset(final Passenger Passenger) {
-		return super.unbindObject(Passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds", "published");
+	private Dataset buildDataset(final Passenger passenger) {
+		return super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds", "published");
 	}
 }

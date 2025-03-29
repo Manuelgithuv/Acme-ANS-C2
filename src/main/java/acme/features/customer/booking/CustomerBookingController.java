@@ -1,5 +1,5 @@
 
-package acme.features.costumer.booking;
+package acme.features.customer.booking;
 
 import javax.annotation.PostConstruct;
 
@@ -14,7 +14,7 @@ import acme.realms.Customer;
 public class CustomerBookingController extends AbstractGuiController<Customer, Booking> {
 
 	@Autowired
-	private CustomerListbookingService		listService;
+	private CustomerListBookingService		listService;
 
 	@Autowired
 	private CustomerShowBookingService		showService;

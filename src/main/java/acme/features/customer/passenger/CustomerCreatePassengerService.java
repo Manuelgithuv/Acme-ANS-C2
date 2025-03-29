@@ -1,5 +1,5 @@
 
-package acme.features.costumer.passenger;
+package acme.features.customer.passenger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,7 +11,7 @@ import acme.entities.airport.AirportRepository;
 import acme.entities.booking.Booking;
 import acme.entities.booking.BookingPassenger;
 import acme.entities.passenger.Passenger;
-import acme.features.costumer.booking.BookingRepository;
+import acme.features.customer.booking.BookingRepository;
 import acme.realms.Customer;
 
 @GuiService
@@ -38,11 +38,11 @@ public class CustomerCreatePassengerService extends AbstractGuiService<Customer,
 		int bookingId = super.getRequest().getData("bookingId", int.class);
 		Booking booking = this.bookingRepository.findById(bookingId);
 
-		Customer Customer;
+		Customer customer;
 
-		Customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
+		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
-		status = !booking.isPublished() && Customer.getId() == booking.getCustomer().getId();
+		status = !booking.isPublished() && customer.getId() == booking.getCustomer().getId();
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -50,16 +50,15 @@ public class CustomerCreatePassengerService extends AbstractGuiService<Customer,
 	@Override
 	public void load() {
 		Passenger passenger;
-		Customer customer;
-		BookingPassenger bookingPassenger;
 
-		int bookingId = super.getRequest().getData("bookingId", int.class);
-		Booking booking = this.bookingRepository.findById(bookingId);
+		Customer customer;
+
+		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
+
 		passenger = new Passenger();
 		passenger.setPublished(false);
-		bookingPassenger = new BookingPassenger();
-		bookingPassenger.setBooking(booking);
-		bookingPassenger.setPassenger(passenger);
+		passenger.setCustomer(customer);
+
 		super.getBuffer().addData(passenger);
 
 	}
@@ -91,7 +90,14 @@ public class CustomerCreatePassengerService extends AbstractGuiService<Customer,
 
 	@Override
 	public void perform(final Passenger passenger) {
+		BookingPassenger bookingPassenger;
+		int bookingId = super.getRequest().getData("bookingId", int.class);
+		Booking booking = this.bookingRepository.findById(bookingId);
+		bookingPassenger = new BookingPassenger();
+		bookingPassenger.setBooking(booking);
+		bookingPassenger.setPassenger(passenger);
 		this.passengerRepository.save(passenger);
+		this.bookingRepository.save(bookingPassenger);
 
 	}
 
@@ -103,8 +109,8 @@ public class CustomerCreatePassengerService extends AbstractGuiService<Customer,
 		super.getResponse().addData(dataset);
 	}
 
-	private Dataset buildDataset(final Passenger Passenger) {
-		return super.unbindObject(Passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds", "published");
+	private Dataset buildDataset(final Passenger passenger) {
+		return super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds", "published");
 	}
 
 }

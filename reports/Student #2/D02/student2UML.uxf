@@ -7,7 +7,7 @@
     <coordinates>
       <x>584</x>
       <y>368</y>
-      <w>168</w>
+      <w>176</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>Belongs to &gt;
@@ -16,7 +16,7 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>200.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -75,7 +75,7 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>736</x>
+      <x>744</x>
       <y>312</y>
       <w>504</w>
       <h>112</h>
@@ -160,5 +160,21 @@ m2=*
 
 </panel_attributes>
     <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>520</x>
+      <y>416</y>
+      <w>520</w>
+      <h>408</h>
+    </coordinates>
+    <panel_attributes>Belongs to &gt;
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>620.0;10.0;620.0;470.0;10.0;470.0</additional_attributes>
   </element>
 </diagram>

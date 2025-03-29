@@ -1,5 +1,5 @@
 
-package acme.features.costumer.passenger;
+package acme.features.customer.passenger;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

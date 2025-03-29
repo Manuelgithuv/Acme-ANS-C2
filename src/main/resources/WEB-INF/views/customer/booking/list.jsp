@@ -4,12 +4,12 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="authenticated.manager.list.label.tag" path="tag"/>
-	<acme:list-column code="authenticated.manager.list.label.indication" path="indication"/>
-	<acme:list-column code="authenticated.manager.list.label.cost" path="cost"/>
-	<acme:list-column code="authenticated.manager.list.label.published" path="published"/>
-	<acme:list-column code="authenticated.manager.list.label.description" path="description"/>
+	<acme:list-column code="authenticated.customer.list.label.locatorCode" path="locatorCode"/>
+	<acme:list-column code="authenticated.customer.list.label.travelClass" path="travelClass"/>
+	<acme:list-column code="authenticated.customer.list.label.price" path="price"/>
+	<acme:list-column code="authenticated.customer.list.label.published" path="published"/>
+	<acme:list-column code="authenticated.customer.list.label.lastCardNibble" path="lastCardNibble"/>
 </acme:list>
 <jstl:if test="${_command == 'list'}">
-	<acme:button code="authenticated.manager.list.button.flight.create" action="/manager/flight/create"/>
+	<acme:button code="authenticated.customer.list.button.booking.create" action="/customer/booking/create"/>
 </jstl:if>	
