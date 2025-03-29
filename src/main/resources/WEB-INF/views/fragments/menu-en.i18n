@@ -8,12 +8,6 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-# master.menu.any #####################################################
-
-master.menu.any = Any
-
-master.menu.any.public.flights = Published flights
-
 # master.menu.anonymous #######################################################
 
 master.menu.anonymous = Anonymous
@@ -40,11 +34,6 @@ master.menu.provider.favourite-link = Favourite link
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
-# master.menu.manager ##########################################################
-master.menu.manager = Manager
-master.menu.manager.list-my-flights = See my flights
-master.menu.manager.list-my-legs = See my legs
-
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
@@ -53,5 +42,8 @@ master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.provider-profile = Provider profile
 master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.consumer-profile = Consumer profile
-master.menu.user-account.become-manager = Become a manager
-master.menu.user-account.manager-profile = Manager profile
+
+# master.menu.technician ########################################################
+master.menu.technician = Technician
+master.menu.technician.tasks.tasks-list = Tasks List
+master.menu.technician.maintenanceRecords.maintenanceRecords-list = Maintenance Records List

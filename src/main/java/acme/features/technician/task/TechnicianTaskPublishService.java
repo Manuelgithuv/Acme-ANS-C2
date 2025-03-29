@@ -12,28 +12,31 @@ import acme.entities.task.Task;
 import acme.realms.Technician;
 
 @GuiService
-public class TechnicianTaskShowService extends AbstractGuiService<Technician, Task> {
+public class TechnicianTaskPublishService extends AbstractGuiService<Technician, Task> {
 
-	//Internal state ----------------------------------------------------------
+	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private TechnicianTaskRepository repository;
 
-	//AbstractGuiService state ----------------------------------------------------------
 
-
+	// AbstractGuiService interface -------------------------------------------
 	@Override
 	public void authorise() {
+		boolean exist;
 		Task task;
+		Technician technician;
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
 		task = this.repository.findTaskById(id);
-		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
 
-		if (technician.equals(task.getTechnician()))
-			super.getResponse().setAuthorised(true);
-
+		exist = task != null;
+		if (exist) {
+			technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+			if (technician.equals(task.getTechnician()))
+				super.getResponse().setAuthorised(true);
+		}
 	}
 
 	@Override
@@ -48,15 +51,30 @@ public class TechnicianTaskShowService extends AbstractGuiService<Technician, Ta
 	}
 
 	@Override
-	public void unbind(final Task task) {
+	public void bind(final Task task) {
+		super.bindObject(task, "type", "description", "priority", "estimatedDuration");
+	}
 
-		SelectChoices types;
+	@Override
+	public void validate(final Task task) {
+
+	}
+
+	@Override
+	public void perform(final Task task) {
+		task.setDraftMode(false);
+		this.repository.save(task);
+	}
+
+	@Override
+	public void unbind(final Task task) {
+		SelectChoices choices;
 
 		Dataset dataset;
-		types = SelectChoices.from(TaskType.class, task.getType());
+		choices = SelectChoices.from(TaskType.class, task.getType());
 
 		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration", "draftMode");
-		dataset.put("type", types);
+		dataset.put("type", choices.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
 	}
