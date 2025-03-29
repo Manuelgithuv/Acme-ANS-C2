@@ -1,7 +1,13 @@
 key,model,registrationNumber,capacity,cargoWeight,status,details,key:airline
-aircraft-01,one,1234,50,2100,ACTIVE_SERVICE,no details,airline-01
-aircraft-02,model number2,5678,100,4500,ACTIVE_SERVICE,null,airline-01
-aircraft-03,largest exmaple number of characters,983453,30,2000,UNDER_MAINTENANCE,Q,airline-02
-aircraft-04,other invented of course,31879,40,5000,UNDER_MAINTENANCE,I am running out of names,airline-03
-aircraft-05,acme aircraft,5235462,25,3000,ACTIVE_SERVICE,null,airline-04
-aircraft-06,a,7954979,15,4200,ACTIVE_SERVICE,holatyrgiodfdrtewshfrothryeitgcjsdvjoasnvihjpbeaghiabtuarogbupagoprsjbguaisodsfvnpñoauebnñabgñvaogdgspobdpño9uhbñpahnbñuiwrgarwupwurhgbowejbpgboiapgrweoijbpgoncdpuonpwocjoqwfbilhwbfyhuqwyikvfykuwqvfeagobeuighbwi9arbgqwuirgbqrwuoibgiuwerbgiebigbiouguieeerr,airline-03
+aircraft-01,L,L,1,2000,ACTIVE_SERVICE,"",airline-01
+aircraft-02,Lo,Lol,2,2001,ACTIVE_SERVICE,L,airline-01
+aircraft-03,"Lorem ipsum dolor sit amet, consectetur adipiscin","Lorem ipsum dolor sit amet, consectetur adipiscin",199,50000,UNDER_MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",airline-02
+aircraft-04,"Lorem ipsum dolor sit amet, consectetur adipiscing","Lorem ipsum dolor sit amet, consectetur adipiscing",200,49999,UNDER_MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",airline-03
+aircraft-05,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,150,30000,ACTIVE_SERVICE,null,airline-04
+aircraft-06,Lo,Lorem,170,40000,ACTIVE_SERVICE,Lorem ipsum,airline-03
+aircraft-07,โลเร็ม อิปซัม,โลเร็ม อิปซัม,100,2000,ACTIVE_SERVICE,โลเร็ม อิปซัม,airline-01
+aircraft-08,لوريم إيبسوم,لوريم إيبسوم,50,2001,UNDER_MAINTENANCE,لوريم إيبسوم,airline-02
+aircraft-09,洛伦·伊普森,洛伦·伊普森,80,50000,UNDER_MAINTENANCE,洛伦·伊普森,airline-03
+aircraft-10,<marquee>Hacked</marquee>,<marquee>Hacked</marquee>,40,49999,ACTIVE_SERVICE,<marquee>Hacked</marquee>,airline-04
+aircraft-11,<script>alert(‘Hacked!’);</script>,<script>alert(‘Hacked!’);</script>,56,30000,UNDER_MAINTENANCE,<script>alert(‘Hacked!’);</script>,airline-01
+aircraft-12,' or 'A' = 'A,' or 'A' = 'A,120,40000,ACTIVE_SERVICE,' or 'A' = 'A,airline-02

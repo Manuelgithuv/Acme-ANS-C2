@@ -12,10 +12,10 @@ import javax.validation.Payload;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {
-	HoursValidator.class
+	DwellTimeValidator.class
 })
 
-public @interface ValidHours {
+public @interface ValidServiceDwellTime {
 
 	String message() default "";
 
