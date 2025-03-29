@@ -2,7 +2,6 @@
 package acme.constraints;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import javax.validation.ConstraintValidatorContext;
@@ -46,14 +45,16 @@ public class TimeBetweenLegsValidator extends AbstractValidator<ValidTimeBetween
 
 		if (legs.stream().noneMatch(l -> l.getId() == leg.getId()))
 			legs.add(leg);
+		else
+			for (int i = 0; i < legs.size(); i++)
+				if (legs.get(i).getId() == leg.getId()) {
+					legs.set(i, leg); // Reemplazar el leg existente con el nuevo
+					break; // Salimos del bucle una vez reemplazado
+				}
 
-		// Filtrar cualquier elemento nulo antes de ordenar
-		List<Leg> sortedLegs = legs.stream().filter(l -> l != null && l.getScheduledDeparture() != null) // Filtrar nulos
-			.sorted(Comparator.comparing(Leg::getScheduledDeparture, Comparator.nullsLast(Comparator.naturalOrder()))).toList();
-
-		for (int i = 0; i < sortedLegs.size() - 1; i++) {
-			Leg currentLeg = sortedLegs.get(i);
-			Leg nextLeg = sortedLegs.get(i + 1);
+		for (int i = 0; i < legs.size() - 1; i++) {
+			Leg currentLeg = legs.get(i);
+			Leg nextLeg = legs.get(i + 1);
 
 			if (currentLeg == null || nextLeg == null)
 				continue; // Evitar procesar elementos nulos

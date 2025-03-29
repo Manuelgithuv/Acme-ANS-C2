@@ -37,7 +37,7 @@ manager.leg.create.null-aircraft = El avión no debe ser nulo
 
 leg.manager.is.not.logged-manager = El manager asociado al tramo debe ser el manager autenticado
 
-manager.leg.create.airports = El aeropuerto de llegada de un tramo debe ser el mismo que el aeropuerto de salida del tramo consecutivo
+manager.leg.create.airports = Los aeropuertos de llegada y salida de un tramo no pueden ser iguales
 
 manager.leg.create.dates = La fecha de llegada de un tramo no puede ser la misma que la fecha de salida del tramo consecutivo
 

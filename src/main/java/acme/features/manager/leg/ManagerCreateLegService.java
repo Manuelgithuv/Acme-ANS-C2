@@ -102,25 +102,11 @@ public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void validate(final Leg leg) {
-		if (leg == null) {
-			super.state(false, "*", "manager.leg.create.null-leg");
-			return;
-		}
-		if (leg.getFlight() == null) {
-			super.state(false, "flight", "manager.leg.create.null-flight");
-			return;
-		}
 
-		if (leg.getAircraft() == null) {
-			super.state(false, "aircraft", "manager.leg.create.null-aircraft");
-			return;
-		}
-		
-		Optional<Leg> existingLeg = legRepository.findByFlightCode(leg.getFlightCode());
-		
-		if(!existingLeg.isEmpty()) {
+		Optional<Leg> existingLeg = this.legRepository.findByFlightCode(leg.getFlightCode());
+
+		if (!existingLeg.isEmpty())
 			super.state(false, "flightCode", "manager.leg.flightCode.alreadyExists");
-		}
 
 		boolean status;
 
@@ -148,7 +134,7 @@ public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg> {
 
 		status = isDepartureBeforeArrival;
 
-		if (!areAirportsEquals)
+		if (areAirportsEquals)
 			super.state(false, "*", "manager.leg.create.airports");
 
 		super.state(status, "*", "manager.leg.create.dates");
@@ -176,7 +162,7 @@ public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg> {
 
 	private void populateDatasetWithChoices(final Dataset dataset, final Leg leg) {
 		Collection<Airport> airports = this.airportRepository.findAllAirports();
-		Collection<Aircraft> aircrafts = this.aircraftRepository.findAllAircrafts();
+		Collection<Aircraft> aircrafts = this.aircraftRepository.findAllActiveAircrafts();
 
 		SelectChoices departureAirportChoices = SelectChoices.from(airports, "iataCode", leg.getDepartureAirport());
 		SelectChoices arrivalAirportChoices = SelectChoices.from(airports, "iataCode", leg.getArrivalAirport());
