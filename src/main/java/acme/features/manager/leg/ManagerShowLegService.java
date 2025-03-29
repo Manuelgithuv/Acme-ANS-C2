@@ -75,7 +75,7 @@ public class ManagerShowLegService extends AbstractGuiService<Manager, Leg> {
 
 	private void populateDatasetWithChoices(final Dataset dataset, final Leg leg) {
 		Collection<Airport> airports = this.airportRepository.findAllAirports();
-		Collection<Aircraft> aircrafts = this.aircraftRepository.findAllAircrafts();
+		Collection<Aircraft> aircrafts = this.aircraftRepository.findAllActiveAircrafts();
 
 		SelectChoices departureAirportChoices = SelectChoices.from(airports, "iataCode", leg.getDepartureAirport());
 		SelectChoices arrivalAirportChoices = SelectChoices.from(airports, "iataCode", leg.getArrivalAirport());

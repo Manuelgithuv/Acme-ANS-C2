@@ -3,6 +3,7 @@ package acme.features.manager.leg;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -91,14 +92,11 @@ public class ManagerUpdateLegService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void validate(final Leg leg) {
-		if (leg == null) {
-			super.state(false, "*", "manager.leg.create.null-leg");
-			return;
-		}
-		if (leg.getFlight() == null) {
-			super.state(false, "*", "manager.leg.create.null-flight");
-			return;
-		}
+
+		Optional<Leg> existingLeg = this.legRepository.findByFlightCode(leg.getFlightCode());
+
+		if (!existingLeg.isEmpty() && !leg.getFlightCode().equals(existingLeg.get().getFlightCode()))
+			super.state(false, "flightCode", "manager.leg.flightCode.alreadyExists");
 
 		boolean status;
 
@@ -120,7 +118,7 @@ public class ManagerUpdateLegService extends AbstractGuiService<Manager, Leg> {
 
 		status = isDepartureBeforeArrival;
 
-		if (!areAirportsEquals)
+		if (areAirportsEquals)
 			super.state(false, "*", "manager.leg.create.airports");
 
 		super.state(status, "*", "manager.leg.create.dates");
@@ -147,7 +145,7 @@ public class ManagerUpdateLegService extends AbstractGuiService<Manager, Leg> {
 
 	private void populateDatasetWithChoices(final Dataset dataset, final Leg leg) {
 		Collection<Airport> airports = this.airportRepository.findAllAirports();
-		Collection<Aircraft> aircrafts = this.aircraftRepository.findAllAircrafts();
+		Collection<Aircraft> aircrafts = this.aircraftRepository.findAllActiveAircrafts();
 
 		SelectChoices departureAirportChoices = SelectChoices.from(airports, "iataCode", leg.getDepartureAirport());
 		SelectChoices arrivalAirportChoices = SelectChoices.from(airports, "iataCode", leg.getArrivalAirport());

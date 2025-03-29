@@ -27,7 +27,7 @@ flight.manager.is.not.logged-manager = El manager elegido para el vuelo no es el
 
 manager.flight.publish.there-is-at-least-one-leg-published = Para borrar un vuelo sus tramos deben estar sin publicar
 
-manager.flight.publish.not-all-legs-published = Todos los tramos del vuelo deben de haber sido publicados antes de realizar esta operación
+manager.flight.publish.not-all-legs-published = El número mínimo de tramos es 1 y todos los tramos del vuelo deben de haber sido publicados antes de realizar esta operación
 
 manager.leg.create.null-leg =  El tramo no debe ser nulo
 
@@ -37,7 +37,13 @@ manager.leg.create.null-aircraft = El avión no debe ser nulo
 
 leg.manager.is.not.logged-manager = El manager asociado al tramo debe ser el manager autenticado
 
-manager.leg.create.airports = El aeropuerto de llegada de un tramo debe ser el mismo que el aeropuerto de salida del tramo consecutivo
+manager.leg.create.airports = Los aeropuertos de llegada y salida de un tramo no pueden ser iguales
 
 manager.leg.create.dates = La fecha de llegada de un tramo no puede ser la misma que la fecha de salida del tramo consecutivo
+
+manager.leg.flightCode.alreadyExists = Código de vuelo ya existente
+
+manager.authenticated.invalidIdentifierNumber = Número identificador ya existente
+
+manager.flight.invalid-currency = Moneda inválida, las monedas aceptadas son EUR USD y GBP
 

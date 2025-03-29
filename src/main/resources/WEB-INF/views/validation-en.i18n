@@ -29,7 +29,7 @@ flight.manager.is.not.logged-manager = The manager chosen for the flight is not 
 
 manager.flight.publish.there-is-at-least-one-leg-published = To delete the flight all legs must be unpublished
 
-manager.flight.publish.not-all-legs-published = All the legs corresponding to this flight must be published before performing this operation
+manager.flight.publish.not-all-legs-published = Minimum number of legs must be 1 and all the legs corresponding to this flight must be published before performing this operation
 
 manager.leg.create.null-leg =  Leg can not be null
 
@@ -39,6 +39,12 @@ manager.leg.create.null-aircraft = Aircraft can not be null
 
 leg.manager.is.not.logged-manager = The manager associated to the must be the logged manager
 
-manager.leg.create.airports = The arrival airport of a leg must be the same as the departure airport from the consequent leg
+manager.leg.create.airports = The arrival and departure airports of a leg can not be the same
 
 manager.leg.create.dates = The date of arrival of a leg can not be the same as the departure from the consequent leg
+
+manager.leg.flightCode.alreadyExists = Flight Code already exists
+
+manager.authenticated.invalidIdentifierNumber = Identifer number already exists
+
+manager.flight.invalid-currency = Invalid currency, the accepted currencies are EUR, USD and GBP

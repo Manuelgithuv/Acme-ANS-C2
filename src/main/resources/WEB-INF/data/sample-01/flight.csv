@@ -1,5 +1,13 @@
 key,tag,indication,cost,published,description,key:manager
-flight-01,the fastest,true,EUR 200.00,false,I do not know what to write,manager-01
-flight-02,the cheapest,false,EUR 50.00,false,S,manager-01
-flight-03,the prettiest,false,EUR 100.00,true,holatyrgiodfdrtewshfrothryeitgcjsdvjoasnvihjpbeaghiabtuarogbupagoprsjbguaisodsfvnpñoauebnñabgñvaogdgspobdpño9uhbñpahnbñuiwrgarwupwurhgbowejbpgboiapgrweoijbpgoncdpuonpwocjoqwfbilhwbfyhuqwyikvfykuwqvfeagobeuighbwi9arbgqwuirgbqrwuoibgiuwerbgiebigbiouguieeerr,manager-02
-flight-04,the king,true,EUR 150.00,true,null,manager-02
+flight-01,Lorem ipsum dolor sit ame,true,EUR 500000.00,false,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01
+flight-02,L,false,USD 0.00,false,"",manager-01
+flight-03,Lo,false,GBP 0.01,true,L,manager-02
+flight-04,"Lorem ipsum dolor sit amet, consectetur adipiscin",true,EUR 999999.99,true,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",manager-02
+flight-05,"Lorem ipsum dolor sit amet, consectetur adipiscing",false,USD 1000000.00,false,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",manager-01
+flight-06,Lorem ipsum dolor sit ame,true,GBP 500000.00,false,null,manager-02
+flight-07,โลเร็ม อิปซัม,true,EUR 0.00,false,โลเร็ม อิปซัม,manager-01
+flight-08,لوريم إيبسوم,false,EUR 0.01,false,لوريم إيبسوم,manager-01
+flight-09,洛伦·伊普森,true,GBP 999999.99,false,洛伦·伊普森,manager-02
+flight-10,<marquee>Hacked</marquee>,false,USD 999999.99,false,<marquee>Hacked</marquee>,manager-02
+flight-11,<script>alert(‘Hacked!’);</script>,true,USD 0.01,false,<script>alert(‘Hacked!’);</script>,manager-01
+flight-12,' or 'A' = 'A,false,GBP1000000.00,false,' or 'A' = 'A,manager-02
