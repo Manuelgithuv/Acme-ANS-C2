@@ -7,17 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
-import acme.entities.flight.Flight;
-import acme.realms.Manager;
+import acme.entities.booking.Booking;
+import acme.realms.Customer;
 
 @GuiController
-public class CustomerBookingController extends AbstractGuiController<Manager, Flight> {
+public class CustomerBookingController extends AbstractGuiController<Customer, Booking> {
 
 	@Autowired
 	private CustomerListbookingService		listService;
 
 	@Autowired
-	private ManagerShowFlightService		showService;
+	private CustomerShowBookingService		showService;
 
 	@Autowired
 	private CustomerCreateBookingService	createService;
@@ -26,7 +26,7 @@ public class CustomerBookingController extends AbstractGuiController<Manager, Fl
 	private CustomerUpdateBookingService	updateService;
 
 	@Autowired
-	private CustomerPublishBookingService		publishService;
+	private CustomerPublishBookingService	publishService;
 
 
 	@PostConstruct

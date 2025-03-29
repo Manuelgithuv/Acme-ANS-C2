@@ -1,26 +1,19 @@
 
 package acme.features.costumer.booking;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
-import acme.entities.leg.Leg;
-import acme.features.manager.leg.LegRepository;
 import acme.realms.Customer;
 
 @GuiService
 public class CustomerPublishBookingService extends AbstractGuiService<Customer, Booking> {
 
 	@Autowired
-	private BookingRepository	bookingRepository;
-
-	@Autowired
-	private LegRepository		legRepository;
+	private BookingRepository bookingRepository;
 
 
 	@Override
@@ -28,15 +21,15 @@ public class CustomerPublishBookingService extends AbstractGuiService<Customer, 
 
 		boolean status;
 
-		Booking Booking;
+		Booking booking;
 
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
 
-		Booking = this.bookingRepository.findById(id);
+		booking = this.bookingRepository.findById(id);
 
-		boolean isBookingPublished = Booking != null && Booking.isPublished();
+		boolean isBookingPublished = booking != null && booking.isPublished();
 
 		status = !isBookingPublished;
 
@@ -73,10 +66,8 @@ public class CustomerPublishBookingService extends AbstractGuiService<Customer, 
 
 		int id = booking.getId();
 
-		List<Leg> legs = this.legRepository.findDistinctByBooking(id);
-		boolean areLegsPublished = !legs.isEmpty() && legs.stream().allMatch(l -> l != null && l.isPublished());
-
-		status = areLegsPublished;
+		boolean lastCardNibbleExist = booking.getLastCardNibble() != null;
+		status = lastCardNibbleExist;
 
 		super.state(status, "*", "Customer.Booking.publish.not-all-legs-published");
 

@@ -1,0 +1,37 @@
+
+authenticated.manager.list.label.flightCode = Flight Code
+
+authenticated.manager.list.label.scheduledDeparture = Scheduled Departure
+
+authenticated.manager.list.label.scheduledArrival = Scheduled Arrival 
+
+authenticated.manager.list.label.status = Status
+
+authenticated.manager.list.label.hours = Hours of the leg
+
+authenticated.manager.list.label.published = Is published?
+
+authenticated.manager.list.label.managerIdentity = Manager 
+
+authenticated.manager.list.label.flight = Flight that leg belong to
+
+authenticated.manager.list.label.departureAirport = Departure Airport
+
+authenticated.manager.list.label.arrivalAirport = Arrival Airport
+
+authenticated.manager.list.label.aircraft = Aircraft
+
+manager.leg.list.title = Flight legs
+
+manager.leg.form.title = Leg Details
+
+authenticated.manager.list.button.leg.create = Create leg
+
+authenticated.manager.form.button.leg.create = Create leg
+
+authenticated.manager.form.button.leg.publish = Publish Leg
+
+authenticated.manager.form.button.leg.update = Edit Leg
+
+authenticated.manager.form.button.leg.delete = Delete Leg
+
