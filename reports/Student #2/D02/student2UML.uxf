@@ -6,8 +6,8 @@
     <id>Relation</id>
     <coordinates>
       <x>584</x>
-      <y>480</y>
-      <w>168</w>
+      <y>368</y>
+      <w>176</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>Belongs to &gt;
@@ -16,13 +16,13 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>200.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>8</x>
-      <y>440</y>
+      <y>328</y>
       <w>584</w>
       <h>120</h>
     </coordinates>
@@ -59,24 +59,24 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>232</x>
-      <y>552</y>
-      <w>80</w>
-      <h>184</h>
+      <x>256</x>
+      <y>584</y>
+      <w>88</w>
+      <h>160</h>
     </coordinates>
-    <panel_attributes>Includes &gt;
+    <panel_attributes>Has many &gt;
 lt=&lt;-x
 m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>20.0;10.0;10.0;210.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>736</x>
-      <y>424</y>
+      <x>744</x>
+      <y>312</y>
       <w>504</w>
       <h>112</h>
     </coordinates>
@@ -96,7 +96,7 @@ bg=orange</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>232</x>
-      <y>272</y>
+      <y>160</y>
       <w>88</w>
       <h>184</h>
     </coordinates>
@@ -112,7 +112,7 @@ m2=*
     <id>UMLClass</id>
     <coordinates>
       <x>56</x>
-      <y>112</y>
+      <y>0</y>
       <w>352</w>
       <h>168</h>
     </coordinates>
@@ -131,5 +131,50 @@ Flight
 + getNumberOfLayovers(): Integer
 bg=green</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>16</x>
+      <y>544</y>
+      <w>496</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+BookingPassenger
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>256</x>
+      <y>440</y>
+      <w>80</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Includes &gt;
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>520</x>
+      <y>416</y>
+      <w>520</w>
+      <h>408</h>
+    </coordinates>
+    <panel_attributes>Belongs to &gt;
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>620.0;10.0;620.0;470.0;10.0;470.0</additional_attributes>
   </element>
 </diagram>

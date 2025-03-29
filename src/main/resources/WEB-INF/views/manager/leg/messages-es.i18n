@@ -34,3 +34,5 @@ authenticated.manager.form.button.leg.publish = Publicar tramo
 authenticated.manager.form.button.leg.update = Editar tramo
 
 authenticated.manager.form.button.leg.delete = Borrar tramo
+
+acme.validation.text.message= El texto debe tener entre 1 y 255 caracteres. 

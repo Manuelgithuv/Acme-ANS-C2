@@ -48,6 +48,10 @@ master.menu.manager = Manager
 master.menu.manager.list-my-flights = Ver mis vuelos
 master.menu.manager.list-my-legs = Ver mis tramos
 
+# master.menu.customer ##########################################################
+master.menu.customer = Cliente
+master.menu.customer.list-my-bookings = Ver mis reservas
+
 master.menu.user-account = Cuenta
 master.menu.user-account.general-profile = Perfil general
 master.menu.user-account.become-provider = Hacerse proveedor
