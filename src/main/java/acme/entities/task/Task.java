@@ -46,6 +46,11 @@ public class Task extends AbstractEntity {
 	@Automapped
 	private int					estimatedDuration;
 
+	@Mandatory
+	// HINT: @Valid by default.
+	@Automapped
+	private boolean				draftMode;
+
 	// Relationships ----------------------------------------------------------
 
 	@Mandatory
