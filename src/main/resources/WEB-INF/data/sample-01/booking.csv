@@ -1,7 +1,7 @@
-key,locatorCode,purchaseMoment,travelClass,price,lastCardNibble,key:customer,key:flight
-booking-01,ABCDEF,2000/01/01 00:00,ECONOMY,EUR 200.00,3942,customer-01,flight-03
-booking-02,ABCDEFGH,2025/01/01 00:00,BUSINESS,EUR 1000.00,4267,customer-01,flight-04
-booking-03,ABCDEFG,2024/12/31 23:59,ECONOMY,EUR 100.00,null,customer-02,flight-03
-booking-04,PEPITO1,2000/01/01 00:01,BUSINESS,EUR 500.00,null,customer-02,flight-04
-booking-05,PEPITO2,2022/01/29 00:00,BUSINESS,EUR 500.00,null,customer-01,flight-04
-booking-06,PEPITO3,2022/01/29 00:00,BUSINESS,EUR 500.00,null,customer-02,flight-04
+key,locatorCode,purchaseMoment,travelClass,price,published,lastCardNibble,key:customer,key:flight
+booking-01,ABCDEF,2020/02/02 10:00,ECONOMY,EUR 200.00,true,3942,customer-01,flight-03
+booking-02,ABCDEFGH,2022/07/29 00:00,BUSINESS,EUR 1000.00,false,4267,customer-01,flight-04
+booking-03,ABCDEFG,2021/07/29 00:00,ECONOMY,EUR 100.00,true,null,customer-02,flight-03
+booking-04,PEPITO1,2022/01/29 00:00,BUSINESS,EUR 500.00,false,null,customer-02,flight-04
+booking-05,PEPITO2,2022/01/29 00:00,BUSINESS,EUR 500.00,false,null,customer-01,flight-04
+booking-06,PEPITO3,2022/01/29 00:00,BUSINESS,EUR 500.00,false,null,customer-02,flight-04

@@ -18,7 +18,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidShortText;
-import acme.entities.booking.Booking;
+import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,7 +34,7 @@ public class Passenger extends AbstractEntity {
 	@Automapped
 	private String				fullName;
 
-	@Optional
+	@Mandatory
 	@ValidEmail
 	@Automapped
 	private String				email;
@@ -49,16 +49,21 @@ public class Passenger extends AbstractEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				dateOfBirth;
 
+	@Mandatory
+	@Automapped
+	private boolean				published;
+
 	@Optional
 	@ValidShortText
 	@Automapped
 	private String				specialNeeds;
 
-	// Relaciones
+	// Relaciones 
 	// -------------------------------------------------------------------
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Booking				booking;
+	private Customer			customer;
+
 }
