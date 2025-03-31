@@ -5,21 +5,21 @@ import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
-import acme.realms.FlightCrewMember;
+import acme.realms.FlightCrew;
 
 @Validator
-public class FlightCrewMemberIdentifierValidator extends AbstractValidator<ValidFlightCrewMemberIdentifier, FlightCrewMember> {
+public class FlightCrewIdentifierValidator extends AbstractValidator<ValidFlightCrewIdentifier, FlightCrew> {
 
 	@Override
-	protected void initialise(final ValidFlightCrewMemberIdentifier annotation) {
+	protected void initialise(final ValidFlightCrewIdentifier annotation) {
 		assert annotation != null;
 	}
 
 	@Override
-	public boolean isValid(final FlightCrewMember flightCrewMember, final ConstraintValidatorContext context) {
-		String name = flightCrewMember.getIdentity().getName();
-		String surname = flightCrewMember.getIdentity().getSurname();
-		String identifierNumber = flightCrewMember.getIdentifier();
+	public boolean isValid(final FlightCrew flightCrew, final ConstraintValidatorContext context) {
+		String name = flightCrew.getIdentity().getName();
+		String surname = flightCrew.getIdentity().getSurname();
+		String identifierNumber = flightCrew.getIdentifier();
 		// Inicializar las iniciales por si name o surname son null y que no se produzca null pointer exception
 		char nameInitial = '-';
 		char surnameInitial = '-';

@@ -9,6 +9,7 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 @Target(ElementType.FIELD)
@@ -17,6 +18,7 @@ import javax.validation.constraints.Min;
 @ReportAsSingleViolation
 
 @Min(0)
+@Max(120)
 
 public @interface ValidExperience {
 

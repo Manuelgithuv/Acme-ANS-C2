@@ -17,7 +17,8 @@ import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidLongText;
 import acme.datatypes.AssignmentStatus;
 import acme.datatypes.CrewDuty;
-import acme.realms.FlightCrewMember;
+import acme.entities.leg.Leg;
+import acme.realms.FlightCrew;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -59,6 +60,10 @@ public class FlightAssignment extends AbstractEntity {
 	@Automapped
 	private String				remarks;
 
+	@Mandatory
+	@Automapped
+	private Boolean				published;
+
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
@@ -66,6 +71,35 @@ public class FlightAssignment extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private FlightCrewMember	asignee;
+	private FlightCrew	assignee;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Leg					leg;
+
+	// Methods ----------------------------------------------------------------
+
+
+	public Boolean existsConflict(final FlightAssignment newAssignment) {
+		Boolean conflicts;
+
+		// fechas del assignment actual
+		Date departure = this.getLeg().getScheduledDeparture();
+		Date arrival = this.getLeg().getScheduledArrival();
+
+		// fechas del nuevo assignment
+		Date newDeparture = newAssignment.getLeg().getScheduledDeparture();
+		Date newArrival = newAssignment.getLeg().getScheduledArrival();
+
+		// comprobamos que la fecha de inicio del nuevo assignment no cae durante el actual
+		conflicts = departure.before(newDeparture) && arrival.after(newDeparture);
+
+		// comprobamos que la fecha de aterrizaje del nuevo assignment no cae durante el actual
+		if (!conflicts)
+			conflicts = departure.before(newArrival) && arrival.after(newArrival);
+
+		return conflicts;
+	}
 
 }
