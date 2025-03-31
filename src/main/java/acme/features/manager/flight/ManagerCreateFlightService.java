@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.components.MoneyService;
 import acme.entities.flight.Flight;
 import acme.realms.Manager;
 
@@ -14,6 +15,8 @@ public class ManagerCreateFlightService extends AbstractGuiService<Manager, Flig
 
 	@Autowired
 	private FlightRepository flightRepository;
+	
+	@Autowired MoneyService moneyService;
 
 
 	@Override
@@ -52,6 +55,12 @@ public class ManagerCreateFlightService extends AbstractGuiService<Manager, Flig
 		status = flight.getManager().getId() == manager.getId();
 
 		super.state(status, "manager", "flight.manager.is.not.logged-manager");
+		
+		boolean currencyState = flight.getCost() != null && this.moneyService.checkContains(flight.getCost().getCurrency());
+		
+		if(!currencyState) {
+			super.state(currencyState, "cost", "manager.flight.invalid-currency");
+		}
 	}
 
 	@Override

@@ -1,0 +1,11 @@
+
+authenticated.customer.list.label.specialNeeds = Necesidades Especiales
+authenticated.customer.list.label.dateOfBirth = Fecha de Nacimiento
+authenticated.customer.list.label.passportNumber = Numero de Pasaporte
+authenticated.customer.list.label.email= Email 
+authenticated.customer.list.label.fullName = Nombre Completo
+
+authenticated.customer.form.button.passenger.publish = Publicar
+authenticated.customer.form.button.passenger.update= Actualizar
+authenticated.customer.form.button.passenger.create = Crear
+authenticated.customer.list.button.passenger.create = Crear

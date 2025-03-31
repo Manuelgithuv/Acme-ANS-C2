@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.components.MoneyService;
 import acme.entities.flight.Flight;
 import acme.entities.leg.Leg;
 import acme.features.manager.leg.LegRepository;
@@ -21,6 +22,9 @@ public class ManagerPublishFlightService extends AbstractGuiService<Manager, Fli
 
 	@Autowired
 	private LegRepository		legRepository;
+	
+	@Autowired
+	private MoneyService moneyService;
 
 
 	@Override
@@ -79,6 +83,12 @@ public class ManagerPublishFlightService extends AbstractGuiService<Manager, Fli
 		status = areLegsPublished;
 
 		super.state(status, "*", "manager.flight.publish.not-all-legs-published");
+		
+		boolean currencyState = flight.getCost() != null && this.moneyService.checkContains(flight.getCost().getCurrency());
+		
+		if(!currencyState) {
+			super.state(currencyState, "cost", "manager.flight.invalid-currency");
+		}
 
 	}
 
