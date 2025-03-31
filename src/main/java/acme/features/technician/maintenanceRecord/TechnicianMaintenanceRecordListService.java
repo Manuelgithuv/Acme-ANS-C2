@@ -39,13 +39,20 @@ public class TechnicianMaintenanceRecordListService extends AbstractGuiService<T
 		super.getBuffer().addData(maintenanceRecord);
 	}
 
+	private boolean predicado(final MaintenanceRecord mr, final int technicianId) {
+		boolean result = !mr.isDraftMode();
+		if (mr.isDraftMode() && mr.getTechnician().getId() == technicianId)
+			result = true;
+		return result;
+	}
+
 	@Override
 	public void unbind(final MaintenanceRecord maintenanceRecord) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(maintenanceRecord, "moment", "status", "inspectionDueDate");
+		dataset = super.unbindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "draftMode");
 
-		super.addPayload(dataset, maintenanceRecord, "moment");
+		super.addPayload(dataset, maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "draftMode");
 
 		super.getResponse().addData(dataset);
 	}

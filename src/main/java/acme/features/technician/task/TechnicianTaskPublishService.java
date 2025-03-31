@@ -58,6 +58,17 @@ public class TechnicianTaskPublishService extends AbstractGuiService<Technician,
 	@Override
 	public void validate(final Task task) {
 
+		if (!this.getBuffer().getErrors().hasErrors("type"))
+			super.state(task.getType() != null, "type", "technician.task.form.error.noType", task);
+
+		if (!this.getBuffer().getErrors().hasErrors("description") && task.getDescription() != null)
+			super.state(task.getDescription().length() <= 255, "description", "technician.task.form.error.description", task);
+
+		if (!this.getBuffer().getErrors().hasErrors("priority"))
+			super.state(0 <= task.getPriority() && task.getPriority() <= 10, "priority", "technician.task.form.error.priority", task);
+
+		if (!this.getBuffer().getErrors().hasErrors("estimatedDuration"))
+			super.state(0 <= task.getEstimatedDuration() && task.getEstimatedDuration() <= 10000, "estimatedDuration", "technician.task.form.error.estimatedDuration", task);
 	}
 
 	@Override
@@ -75,6 +86,7 @@ public class TechnicianTaskPublishService extends AbstractGuiService<Technician,
 
 		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration", "draftMode");
 		dataset.put("type", choices.getSelected().getKey());
+		dataset.put("type", choices);
 
 		super.getResponse().addData(dataset);
 	}

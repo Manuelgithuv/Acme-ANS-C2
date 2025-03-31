@@ -3,8 +3,13 @@ technician.task.form.title = Task details
 
 technician.task.list.label.type = Type
 technician.task.list.label.priority = Priority
+technician.task.list.label.draftMode = Is in draft mode?
+technician.task.list.label.estimatedDuration = Estimated Duration
+technician.task.list.label.description = Description
 
 technician.task.list.button.create = Create
+technician.task.list.button.createTask = Create task
+technician.task.list.button.addTask = Connect task
 
 technician.task.form.button.update = Update
 technician.task.form.button.create = Create

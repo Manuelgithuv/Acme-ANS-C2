@@ -4,13 +4,15 @@ technician.maintenance-record.form.title = Detalles del documento de mantenimien
 technician.maintenance-record.list.label.moment = Momento
 technician.maintenance-record.list.label.status = Estado
 technician.maintenance-record.list.label.inspectionDueDate = Fecha de la próxima inspección
+technician.maintenance-record.list.label.estimatedCost = coste estimado
+technician.maintenance-record.list.label.draftMode = ¿Esta en modo borrador?
 
 technician.maintenance-record.list.button.create = Crear
-
+technician.maintenance-record.form.button.listByMaintenanceRecord = Ver tareas asociadas
 technician.maintenance-record.form.button.create = Crear
 technician.maintenance-record.form.button.update = Actualizar
 technician.maintenance-record.form.button.delete = Borrar
-
+technician.maintenance-record.form.button.publish = Publicar
 
 technician.maintenance-record.form.label.moment = Momento
 technician.maintenance-record.form.label.status = Estado

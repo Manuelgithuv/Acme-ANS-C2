@@ -3,8 +3,13 @@ technician.task.form.title = Detalles de la tarea
 
 technician.task.list.label.type = Tipo
 technician.task.list.label.priority = Prioridad
+technician.task.list.label.draftMode = ¿Esta en modo borrador?
+technician.task.list.label.estimatedDuration = Duración Estimada
+technician.task.list.label.description = Descripción
 
 technician.task.list.button.create = Crear
+technician.task.list.button.createTask = Crear tarea
+technician.task.list.button.addTask = Conectar tarea
 
 technician.task.form.button.update = Actualizar
 technician.task.form.button.create = Crear

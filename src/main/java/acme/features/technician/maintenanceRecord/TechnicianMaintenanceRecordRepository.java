@@ -25,4 +25,7 @@ public interface TechnicianMaintenanceRecordRepository extends AbstractRepositor
 	@Query("select mr from MaintenanceRecord mr where mr.id = :maintenanceRecordId")
 	MaintenanceRecord findMaintenanceRecordById(int maintenanceRecordId);
 
+	@Query("select mr from MaintenanceRecord mr where mr.draftMode = false")
+	Collection<MaintenanceRecord> findAllMaintenanceRecordsPublished();
+
 }
