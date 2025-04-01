@@ -19,7 +19,9 @@ consecutive.legs.must.be.different.moments = Consecutive legs must be at differe
 
 consecutive.legs.must.have.same.arrival-departure-airports = Consecutive legs must have the same arrival and departure airports
 
-acme.validation.text.message= The text must be between 1 and 255 characters.
+acme.validation.text.message= The text must be between 1 and 255 characters
+
+invalid.maintenance.record = invalid maintenance record
 
 acme.validation.header.message = The text must be between 1 and 50 characters
 

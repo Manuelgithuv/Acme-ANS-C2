@@ -34,7 +34,7 @@ public class TechnicianTaskPublishService extends AbstractGuiService<Technician,
 		exist = task != null;
 		if (exist) {
 			technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-			if (technician.equals(task.getTechnician()))
+			if (technician.equals(task.getTechnician()) && task.isDraftMode())
 				super.getResponse().setAuthorised(true);
 		}
 	}

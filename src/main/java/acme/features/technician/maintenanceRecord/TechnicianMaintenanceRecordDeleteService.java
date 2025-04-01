@@ -13,7 +13,7 @@ import acme.datatypes.MaintenanceRecordStatus;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.involves.Involves;
 import acme.entities.maintenanceRecord.MaintenanceRecord;
-import acme.features.technician.Involves.TechnicianInvolvesRepository;
+import acme.features.technician.involves.TechnicianInvolvesRepository;
 import acme.realms.Technician;
 
 @GuiService
@@ -44,7 +44,7 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 
 		if (exist) {
 			technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-			if (technician.equals(maintenanceRecord.getTechnician()))
+			if (technician.equals(maintenanceRecord.getTechnician()) && !maintenanceRecord.isDraftMode())
 				super.getResponse().setAuthorised(true);
 			else
 				super.getResponse().setAuthorised(false);

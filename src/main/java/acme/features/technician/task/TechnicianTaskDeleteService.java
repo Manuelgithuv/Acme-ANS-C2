@@ -12,7 +12,7 @@ import acme.client.services.GuiService;
 import acme.datatypes.TaskType;
 import acme.entities.involves.Involves;
 import acme.entities.task.Task;
-import acme.features.technician.Involves.TechnicianInvolvesRepository;
+import acme.features.technician.involves.TechnicianInvolvesRepository;
 import acme.realms.Technician;
 
 @GuiService

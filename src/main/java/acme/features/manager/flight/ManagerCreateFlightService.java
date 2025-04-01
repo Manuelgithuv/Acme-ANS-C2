@@ -14,9 +14,10 @@ import acme.realms.Manager;
 public class ManagerCreateFlightService extends AbstractGuiService<Manager, Flight> {
 
 	@Autowired
-	private FlightRepository flightRepository;
-	
-	@Autowired MoneyService moneyService;
+	private FlightRepository	flightRepository;
+
+	@Autowired
+	private MoneyService		moneyService;
 
 
 	@Override
@@ -55,12 +56,11 @@ public class ManagerCreateFlightService extends AbstractGuiService<Manager, Flig
 		status = flight.getManager().getId() == manager.getId();
 
 		super.state(status, "manager", "flight.manager.is.not.logged-manager");
-		
+
 		boolean currencyState = flight.getCost() != null && this.moneyService.checkContains(flight.getCost().getCurrency());
-		
-		if(!currencyState) {
+
+		if (!currencyState)
 			super.state(currencyState, "cost", "manager.flight.invalid-currency");
-		}
 	}
 
 	@Override

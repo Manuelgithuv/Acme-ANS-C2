@@ -14,9 +14,7 @@
 	
 	<jstl:choose>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
-			<jstl:if test="${_command == 'show'}">
-				<acme:button code="technician.maintenance-record.form.button.listByMaintenanceRecord" action="/technician/task/listByMaintenanceRecord?maintenanceRecordId=${id}"/>
-			</jstl:if>
+			<acme:button code="technician.maintenance-record.form.button.listByMaintenanceRecord" action="/technician/task/listByMaintenanceRecord?maintenanceRecordId=${id}"/>
 			<acme:submit code="technician.maintenance-record.form.button.publish" action="/technician/maintenance-record/publish?id=${id}"/>
 			<acme:submit code="technician.maintenance-record.form.button.update" action="/technician/maintenance-record/update?id=${id}"/>	
 			<acme:submit code="technician.maintenance-record.form.button.delete" action="/technician/maintenance-record/delete?id=${id}"/>	

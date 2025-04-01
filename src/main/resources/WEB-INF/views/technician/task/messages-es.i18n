@@ -15,6 +15,7 @@ technician.task.form.button.update = Actualizar
 technician.task.form.button.create = Crear
 technician.task.form.button.delete = Borrar
 technician.task.form.button.publish = Publicar
+technician.task.list.button.removeTask = Desconectar tarea
 
 technician.task.form.label.type = Tipo
 technician.task.form.label.description = Descripción

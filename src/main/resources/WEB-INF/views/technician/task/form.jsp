@@ -21,7 +21,7 @@
 			<acme:submit code="technician.task.form.button.create" action="/technician/task/create"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'createByMaintenanceRecord'}">
-			<acme:submit code="technician.task.form.button.create" action="/technician/task/create?maintenanceRecordId=${maintenanceRecordId}"/>
+			<acme:submit code="technician.task.form.button.createNewTask" action="/technician/task/createByMaintenanceRecord?maintenanceRecordId=${maintenanceRecordId}"/>
 		</jstl:when>    
 	</jstl:choose>
 </acme:form>
