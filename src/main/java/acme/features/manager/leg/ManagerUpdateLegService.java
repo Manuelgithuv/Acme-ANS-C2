@@ -11,6 +11,7 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.datatypes.LegStatus;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.aircraft.AircraftRepository;
 import acme.entities.airport.Airport;
@@ -151,6 +152,7 @@ public class ManagerUpdateLegService extends AbstractGuiService<Manager, Leg> {
 		SelectChoices arrivalAirportChoices = SelectChoices.from(airports, "iataCode", leg.getArrivalAirport());
 		Aircraft aircraft = leg.getAircraft() == null || leg.getAircraft().getId() == 0 ? null : leg.getAircraft();
 		SelectChoices aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", aircraft);
+		SelectChoices statusChoices = SelectChoices.from(LegStatus.class, leg.getStatus());
 
 		dataset.put("departureAirport", departureAirportChoices.getSelected().getKey());
 		dataset.put("departureAirports", departureAirportChoices);
@@ -158,6 +160,7 @@ public class ManagerUpdateLegService extends AbstractGuiService<Manager, Leg> {
 		dataset.put("arrivalAirports", arrivalAirportChoices);
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("aircrafts", aircraftChoices);
+		dataset.put("statuses", statusChoices);
 
 	}
 
