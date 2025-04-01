@@ -21,6 +21,10 @@ consecutive.legs.must.have.same.arrival-departure-airports = Los tramos consecut
 
 acme.validation.header.message = El texto debe de estar entre 1 y 50  caracteres
 
+acme.validation.text.message= El texto debe tener entre 1 y 255 caracteres
+
+invalid.maintenance.record = Documento de mantenimiento inválido
+
 aircraft.or.airline.cannot.be.null = El avión y la aerolínea correspondientes no deben ser nulas
 
 flight.manager.is.not.logged-manager = El manager elegido para el vuelo no es el manager autenticado
@@ -47,3 +51,8 @@ manager.authenticated.invalidIdentifierNumber = Número identificador ya existen
 
 manager.flight.invalid-currency = Moneda inválida, las monedas aceptadas son EUR USD y GBP
 
+technician.maintenance-record.publish.is-not-in-draft-mode = Se encuentra publicado
+
+technician.maintenance-record.invalid-currency = coste estimado inválido
+
+technician.maintenance-record.publish.there-are-all-tasks-published = Debe tener al menos una tarea asignada y todas ellas han de estar publicadas
