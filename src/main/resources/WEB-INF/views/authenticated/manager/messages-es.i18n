@@ -1,14 +1,24 @@
 
-authenticated.manager.form.title = Formulario de manager
+authenticated.technician.form.title = Formulario para ser técnico
 
-authenticated.manager.form.label.identifierNumber = Número de identificación
+authenticated.technician.form.label.licenseNumber = Número de licencia
 
-authenticated.manager.form.label.yearsOfExperience = Años de experiencia
+authenticated.technician.form.label.phoneNumber = Número de teléfono
 
-authenticated.manager.form.label.dateOfBirth = Fecha de nacimiento
+authenticated.technician.form.label.specialisation = Especialización
 
-authenticated.manager.form.label.picture = URL de la imagen de perfil
+authenticated.technician.form.label.annualHealthTestPassed = ¿Has pasado la prueba de salud anual?
 
-authenticated.manager.form.button.create = Crear
+authenticated.technician.form.label.yearsOfExperience = Años de experiencia
 
-authenticated.manager.form.button.update = Actualizar
+authenticated.technician.form.label.certifications = Certificaciones
+
+authenticated.technician.form.button.create = Crear
+
+authenticated.technician.form.button.update = Actualizar
+
+invalid.experience.years = Los años de experiencia tienen que estar entre 0 y 120 años
+
+invalid.specialization = La especialización tiene que estar entre 1 y 255 caracteres 
+
+invalid.license.number = El número de la licencia debe de seguir la estructura "^[A-Z]{2,3}\\d{6}$", 
