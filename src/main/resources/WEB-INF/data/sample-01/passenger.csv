@@ -1,9 +1,9 @@
 key,fullName,email,passportNumber,dateOfBirth,specialNeeds,published,key:customer
-passenger-01,Lorem ipsum dolor sit amet consectetur adipiscing elit. Nulla facilisi. Donec vehicula erat sit amet aliquet vehicula neque ex fermentum justo eget tincidunt sapien lacus sit amet lorem. Phasellus ut orci eu odio vehicula fringilla non eu odio.,test@gmail.com,A1B2C3D4E,2000/01/02 11:30,Discapacitado,false,customer-01
-passenger-02,A,lorem@gmail.com,ABCD12,2002/01/02 11:30,Hola esto es una cadena de prueba con 50 chars. :),false,customer-01
+passenger-01,Lorem ipsum dolor sit amet consectetur adipiscing elit. Nulla facilisi. Donec vehicula erat sit amet aliquet vehicula neque ex fermentum justo eget tincidunt sapien lacus sit amet lorem. Phasellus ut orci eu odio vehicula fringilla non eu odio.,test@gmail.com,A1B2C3D4E,2000/01/02 11:30,Discapacitado,true,customer-01
+passenger-02,A,lorem@gmail.com,ABCD12,2002/01/02 11:30,Hola esto es una cadena de prueba con 50 chars. :),true,customer-01
 passenger-03,Pepito Sachez,pepito@gmail.com,ABCDEF123,2004/01/02 11:30,Manco,false,customer-01
 passenger-04,Pepito Torres,torres@hotmail.com,ABCDEFGHI,2016/04/09 11:30,Ciego,false,customer-01
-passenger-05,Pepito Gutierrez,gutierrez@gmail.com,123456789,2006/04/09 11:30,Cojo,false,customer-02
+passenger-05,Pepito Gutierrez,gutierrez@gmail.com,123456789,2006/04/09 11:30,Cojo,true,customer-02
 passenger-06,Alejandro Fernandez,alejandro@gmail.com,ABCD12345,2000/04/09 11:30,Necesita ayuda,false,customer-02
 passenger-07,Manuel Artero,manolo@gmail.com,12345ABCD,2004/04/09 11:30,Necesito ayuda,false,customer-01
 passenger-08,Claudio Calderon,claudio@gmail.com,12345BD,2010/04/09 11:30,Le gusta la pizza con piña,false,customer-01
