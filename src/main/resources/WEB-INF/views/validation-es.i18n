@@ -39,7 +39,7 @@ leg.manager.is.not.logged-manager = El manager asociado al tramo debe ser el man
 
 manager.leg.create.airports = Los aeropuertos de llegada y salida de un tramo no pueden ser iguales
 
-manager.leg.create.dates = La fecha de llegada de un tramo no puede ser la misma que la fecha de salida del tramo consecutivo
+manager.leg.create.dates = La fecha de llegada de un tramo debe ser posterior a la de salida
 
 manager.leg.flightCode.alreadyExists = Código de vuelo ya existente
 
@@ -47,3 +47,6 @@ manager.authenticated.invalidIdentifierNumber = Número identificador ya existen
 
 manager.flight.invalid-currency = Moneda inválida, las monedas aceptadas son EUR USD y GBP
 
+departure.minimum.currentDate = La fecha mínima de salida debe ser la fecha actual
+
+manager.consecutive.legs.invalid.dates-or-airports = La fecha de llegada de un tramo no puede ser igual o posterior a la fecha de salida del siguiente, y el aeropuerto de llegada debe coincidir con el de salida del siguiente tramo.
