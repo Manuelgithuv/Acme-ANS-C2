@@ -11,7 +11,9 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.datatypes.MaintenanceRecordStatus;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.involves.Involves;
 import acme.entities.maintenanceRecord.MaintenanceRecord;
+import acme.features.technician.involves.TechnicianInvolvesRepository;
 import acme.realms.Technician;
 
 @GuiService
@@ -20,7 +22,10 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private TechnicianMaintenanceRecordRepository repository;
+	private TechnicianMaintenanceRecordRepository	repository;
+
+	@Autowired
+	private TechnicianInvolvesRepository			repositoryInvolves;
 
 
 	// AbstractGuiService interface -------------------------------------------
@@ -32,13 +37,17 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
+
 		maintenanceRecord = this.repository.findMaintenanceRecordById(id);
 
 		exist = maintenanceRecord != null;
+
 		if (exist) {
 			technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-			if (technician.equals(maintenanceRecord.getTechnician()))
+			if (technician.equals(maintenanceRecord.getTechnician()) && maintenanceRecord.isDraftMode())
 				super.getResponse().setAuthorised(true);
+			else
+				super.getResponse().setAuthorised(false);
 		}
 	}
 
@@ -61,10 +70,16 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
 
+		if (!maintenanceRecord.isDraftMode())
+			super.state(!maintenanceRecord.isDraftMode(), "*", "technician.maintenance-record.publish.is-not-in-draft-mode");
 	}
 
 	@Override
 	public void perform(final MaintenanceRecord maintenanceRecord) {
+		Collection<Involves> involvesAsociadas = this.repositoryInvolves.findAllInvolvesByMaintenanceRecordId(maintenanceRecord.getId());
+
+		this.repositoryInvolves.deleteAll(involvesAsociadas);
+
 		this.repository.delete(maintenanceRecord);
 	}
 

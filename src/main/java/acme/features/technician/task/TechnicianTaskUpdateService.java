@@ -34,7 +34,7 @@ public class TechnicianTaskUpdateService extends AbstractGuiService<Technician, 
 		exist = task != null;
 		if (exist) {
 			technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-			if (technician.equals(task.getTechnician()))
+			if (technician.equals(task.getTechnician()) && task.isDraftMode())
 				super.getResponse().setAuthorised(true);
 		}
 	}
@@ -68,7 +68,7 @@ public class TechnicianTaskUpdateService extends AbstractGuiService<Technician, 
 			super.state(0 <= task.getPriority() && task.getPriority() <= 10, "priority", "technician.task.form.error.priority", task);
 
 		if (!this.getBuffer().getErrors().hasErrors("estimatedDuration"))
-			super.state(0 <= task.getEstimatedDuration() && task.getEstimatedDuration() <= 1000, "estimatedDuration", "technician.task.form.error.estimatedDuration", task);
+			super.state(0 <= task.getEstimatedDuration() && task.getEstimatedDuration() <= 10000, "estimatedDuration", "technician.task.form.error.estimatedDuration", task);
 	}
 
 	@Override

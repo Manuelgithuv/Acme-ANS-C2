@@ -11,6 +11,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.components.MoneyService;
 import acme.datatypes.MaintenanceRecordStatus;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.maintenanceRecord.MaintenanceRecord;
@@ -22,7 +23,10 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private TechnicianMaintenanceRecordRepository repository;
+	private TechnicianMaintenanceRecordRepository	repository;
+
+	@Autowired
+	private MoneyService							moneyService;
 
 
 	// AbstractGuiService interface -------------------------------------------
@@ -38,6 +42,7 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
 
 		maintenanceRecord = new MaintenanceRecord();
+		maintenanceRecord.setDraftMode(true);
 		maintenanceRecord.setTechnician(technician);
 		maintenanceRecord.setMoment(moment);
 		super.getBuffer().addData(maintenanceRecord);
@@ -65,6 +70,11 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 
 		if (!this.getBuffer().getErrors().hasErrors("aircraft") && maintenanceRecord.getAircraft() != null)
 			super.state(this.repository.findAllAircrafts().contains(maintenanceRecord.getAircraft()), "aircraft", "technician.maintenance-record.form.error.aircraft", maintenanceRecord);
+
+		boolean currencyState = maintenanceRecord.getEstimatedCost() != null && this.moneyService.checkContains(maintenanceRecord.getEstimatedCost().getCurrency());
+
+		if (!currencyState)
+			super.state(currencyState, "estimatedCost", "technician.maintenance-record.invalid-currency");
 	}
 
 	@Override
