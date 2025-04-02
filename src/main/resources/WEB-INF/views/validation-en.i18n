@@ -53,7 +53,8 @@ manager.flight.invalid-currency = Invalid currency, the accepted currencies are 
 
 departure.minimum.currentDate = Minimun departure must be actual date
 
-manager.consecutive.legs.invalid.dates-or-airports = The arrival date of one leg cannot be later or equals than the departure date of the next, and the arrival airport must match the departure airport of the next leg.
+manager.consecutive.legs.invalid.dates = Legs can not be overlapped
+
 technician.maintenance-record.publish.is-not-in-draft-mode = It is published
 
 technician.maintenance-record.publish.there-are-all-tasks-published = You must have at least one task assigned and all linked tasks must be published

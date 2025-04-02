@@ -53,7 +53,8 @@ manager.flight.invalid-currency = Moneda inválida, las monedas aceptadas son EU
 
 departure.minimum.currentDate = La fecha mínima de salida debe ser la fecha actual
 
-manager.consecutive.legs.invalid.dates-or-airports = La fecha de llegada de un tramo no puede ser igual o posterior a la fecha de salida del siguiente, y el aeropuerto de llegada debe coincidir con el de salida del siguiente tramo.
+manager.consecutive.legs.invalid.dates = Los tramos no deben de estar solapados.
+
 technician.maintenance-record.publish.is-not-in-draft-mode = Se encuentra publicado
 
 technician.maintenance-record.invalid-currency = coste estimado inválido
