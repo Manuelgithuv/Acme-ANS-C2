@@ -86,6 +86,14 @@ public class CustomerPublishBookingService extends AbstractGuiService<Customer, 
 		if (!existingBooking.isEmpty())
 			super.state(false, "locatorCode", "customer.booking.locatorCode.alreadyExists");
 
+		Optional<Booking> existingPassenger = this.bookingRepository.findBookingsByLocatorCode(booking.getLocatorCode(), booking.getId());
+		if (!existingBooking.isEmpty())
+			super.state(false, "locatorCode", "customer.booking.locatorCode.alreadyExists");
+
+		Optional<Booking> allPassengerPublish = this.bookingRepository.findBookingsByLocatorCode(booking.getLocatorCode(), booking.getId());
+		if (!existingBooking.isEmpty())
+			super.state(false, "locatorCode", "customer.booking.locatorCode.alreadyExists");
+
 		Customer customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
 		status = booking.getCustomer().getId() == customer.getId();
@@ -106,7 +114,7 @@ public class CustomerPublishBookingService extends AbstractGuiService<Customer, 
 	public void unbind(final Booking booking) {
 
 		Dataset dataset;
-		Collection<Flight> flights = this.flightRepository.findAllFlights();
+		Collection<Flight> flights = this.flightRepository.findPublicFlights();
 		SelectChoices travelClassChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		Flight flight = booking.getFlight() == null || booking.getFlight().getId() == 0 ? null : booking.getFlight();
 

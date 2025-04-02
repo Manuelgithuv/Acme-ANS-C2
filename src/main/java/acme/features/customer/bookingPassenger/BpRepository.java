@@ -9,11 +9,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
-import acme.entities.booking.Booking;
 import acme.entities.booking.BookingPassenger;
 
 @Repository
-public interface BookingPassengerRepository extends AbstractRepository {
+public interface BpRepository extends AbstractRepository {
 
 	@Query("SELECT bp from BookingPassenger bp WHERE bp.customer.id=:customerId")
 	List<BookingPassenger> findBookingPassengersByCustomerId(@Param("customerId") int customerId);
@@ -21,7 +20,7 @@ public interface BookingPassengerRepository extends AbstractRepository {
 	@Query("SELECT bp from BookingPassenger bp WHERE bp.id=:bookingPassengerId")
 	BookingPassenger findById(@Param("bookingPassengerId") int bookingPassengerId);
 
-	@Query("SELECT b FROM Booking b WHERE b.locatorCode = :locatorCode AND b.id <> :bookingId")
-	Optional<Booking> findBookingsByLocatorCode(@Param("locatorCode") String locatorCode, @Param("bookingId") int bookingId);
+	@Query("SELECT bp FROM BookingPassenger bp WHERE bp.passenger.id = :passengerId AND bp.booking.id = :bookingId")
+	Optional<BookingPassenger> findBookingPassengerByPassengerAndBooking(@Param("passengerId") int passengerId, @Param("bookingId") int bookingId);
 
 }

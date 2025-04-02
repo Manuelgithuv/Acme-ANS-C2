@@ -19,7 +19,7 @@ public interface BookingRepository extends AbstractRepository {
 	@Query("SELECT b from Booking b WHERE b.customer.id=:customerId")
 	List<Booking> findBookingsByCustomerId(@Param("customerId") int customerId);
 
-	@Query("SELECT b from Booking b WHERE b.published=:false AND b.customer.id=:customerId")
+	@Query("SELECT b FROM Booking b WHERE b.published = false AND b.customer.id = :customerId")
 	Collection<Booking> findBookingsNotPublishedByCustomerId(@Param("customerId") int customerId);
 
 	@Query("SELECT b from Booking b WHERE b.id=:bookingId")

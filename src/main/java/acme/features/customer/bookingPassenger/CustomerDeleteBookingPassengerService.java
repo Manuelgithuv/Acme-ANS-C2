@@ -18,7 +18,7 @@ import acme.features.customer.passenger.PassengerRepository;
 import acme.realms.Customer;
 
 @GuiService
-public class CustomerPublishBookingPassengerService extends AbstractGuiService<Customer, BookingPassenger> {
+public class CustomerDeleteBookingPassengerService extends AbstractGuiService<Customer, BookingPassenger> {
 
 	@Autowired
 	private BpRepository	bookingPassengerRepository;
@@ -109,8 +109,7 @@ public class CustomerPublishBookingPassengerService extends AbstractGuiService<C
 	@Override
 	public void perform(final BookingPassenger bookingPassenger) {
 
-		bookingPassenger.setPublished(true);
-		this.bookingPassengerRepository.save(bookingPassenger);
+		this.bookingRepository.delete(bookingPassenger);
 
 	}
 

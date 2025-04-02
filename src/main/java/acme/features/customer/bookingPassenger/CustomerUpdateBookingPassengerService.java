@@ -2,6 +2,7 @@
 package acme.features.customer.bookingPassenger;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,7 +21,7 @@ import acme.realms.Customer;
 public class CustomerUpdateBookingPassengerService extends AbstractGuiService<Customer, BookingPassenger> {
 
 	@Autowired
-	private BookingPassengerRepository	bookingPassengerRepository;
+	private BpRepository	bookingPassengerRepository;
 
 	@Autowired
 	private BookingRepository			bookingRepository;
@@ -69,22 +70,40 @@ public class CustomerUpdateBookingPassengerService extends AbstractGuiService<Cu
 
 	@Override
 	public void bind(final BookingPassenger bookingPassenger) {
+		int bookingId;
+		Booking booking;
+
+		int passengerId;
+		Passenger passenger;
+
+		bookingId = super.getRequest().getData("booking", int.class);
+		booking = this.bookingRepository.findById(bookingId);
+
+		passengerId = super.getRequest().getData("passenger", int.class);
+		passenger = this.passengerRepository.findById(passengerId);
 
 		super.bindObject(bookingPassenger);
+
+		bookingPassenger.setBooking(booking);
+
+		bookingPassenger.setPassenger(passenger);
+
 	}
 
 	@Override
 	public void validate(final BookingPassenger bookingPassenger) {
-		if (bookingPassenger.getBooking() != null) {
-			super.state(false, "*", "customer.bookingPassenger.create.null-booking");
+		if (bookingPassenger.getBooking() == null) {
+			super.state(false, "booking", "customer.bookingPassenger.create.null-booking");
 			return;
 		}
 
-		boolean status;
 		if (bookingPassenger.getPassenger() == null) {
-			super.state(false, "flight", "customer.booking.create.null-passenger");
+			super.state(false, "passenger", "customer.booking.create.null-passenger");
 			return;
 		}
+		Optional<BookingPassenger> existingBookingPassenger = this.bookingPassengerRepository.findBookingPassengerByPassengerAndBooking(bookingPassenger.getPassenger().getId(), bookingPassenger.getBooking().getId());
+		if (!existingBookingPassenger.isEmpty() && existingBookingPassenger.get().getId() != bookingPassenger.getId())
+			super.state(false, "*", "customer.bookingPassenger.alreadyExists");
 	}
 
 	@Override

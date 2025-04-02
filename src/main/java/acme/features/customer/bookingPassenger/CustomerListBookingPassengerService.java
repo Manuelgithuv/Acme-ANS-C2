@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
-import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
@@ -21,7 +20,7 @@ import acme.realms.Customer;
 public class CustomerListBookingPassengerService extends AbstractGuiService<Customer, BookingPassenger> {
 
 	@Autowired
-	private BookingPassengerRepository	bookingPassengerRepository;
+	private BpRepository	bookingPassengerRepository;
 
 	@Autowired
 	private BookingRepository			bookingRepository;
@@ -44,6 +43,27 @@ public class CustomerListBookingPassengerService extends AbstractGuiService<Cust
 	}
 
 	@Override
+	public void bind(final BookingPassenger bookingPassenger) {
+		int bookingId;
+		Booking booking;
+
+		int passengerId;
+		Passenger passenger;
+
+		bookingId = super.getRequest().getData("booking", int.class);
+		booking = this.bookingRepository.findById(bookingId);
+
+		passengerId = super.getRequest().getData("passenger", int.class);
+		passenger = this.passengerRepository.findById(passengerId);
+
+		super.bindObject(bookingPassenger);
+
+		bookingPassenger.setBooking(booking);
+
+		bookingPassenger.setPassenger(passenger);
+
+	}
+	@Override
 	public void load() {
 
 		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
@@ -62,19 +82,18 @@ public class CustomerListBookingPassengerService extends AbstractGuiService<Cust
 		Collection<Booking> bookings = this.bookingRepository.findBookingsNotPublishedByCustomerId(customer.getId());
 		Booking booking = bookingPassenger.getBooking() == null || bookingPassenger.getBooking().getId() == 0 ? null : bookingPassenger.getBooking();
 
-		SelectChoices bookingChoices = SelectChoices.from(bookings, "locatorCode", booking);
-
 		Collection<Passenger> passengers = this.passengerRepository.findAvailablePassengers(customer.getId());
 		Passenger passenger = bookingPassenger.getPassenger() == null || bookingPassenger.getPassenger().getId() == 0 ? null : bookingPassenger.getPassenger();
 
-		SelectChoices passengerChoices = SelectChoices.from(passengers, "fullName", passenger);
-
 		dataset = super.unbindObject(bookingPassenger, "published");
 
-		dataset.put("booking", bookingChoices.getSelected().getKey());
-		dataset.put("bookings", bookingChoices);
-		dataset.put("passenger", passengerChoices.getSelected().getKey());
-		dataset.put("passengers", passengerChoices);
+		String fullName = passenger.getFullName();
+		String shortName = fullName.length() > 15 ? fullName.substring(0, 15) : fullName;
+
+		dataset.put("booking", booking.getLocatorCode());
+
+		dataset.put("passenger", shortName);
+
 		super.getResponse().addData(dataset);
 
 	}
