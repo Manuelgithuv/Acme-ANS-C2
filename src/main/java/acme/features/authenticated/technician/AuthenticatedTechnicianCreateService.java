@@ -11,7 +11,6 @@ import acme.client.components.principals.UserAccount;
 import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.realms.Manager;
 import acme.realms.Technician;
 
 @GuiService
@@ -57,7 +56,7 @@ public class AuthenticatedTechnicianCreateService extends AbstractGuiService<Aut
 	public void validate(final Technician technician) {
 		assert technician != null;
 
-		Optional<Manager> existingTechnician = this.authenticatedTechnicianRepository.findByLicenseNumber(technician.getLicenseNumber());
+		Optional<Technician> existingTechnician = this.authenticatedTechnicianRepository.findByLicenseNumber(technician.getLicenseNumber());
 
 		if (!existingTechnician.isEmpty())
 			super.state(false, "licenseNumber", "manager.authenticated.invalidLicenseNumber");
