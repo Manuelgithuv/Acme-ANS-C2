@@ -20,6 +20,7 @@
 	<acme:menu-left>
 		<acme:menu-option code="master.menu.any">
 			<acme:menu-suboption code="master.menu.any.public.flights" action="/any/flight/list"/>
+			<acme:menu-suboption code="master.menu.any.public.maintenanceRecord" action="/any/maintenance-record/list"/>
 		</acme:menu-option>
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link" action="http://www.example.com/"/>
