@@ -30,3 +30,4 @@ technician.maintenance-record.form.error.aircraft = The selected aircraft does n
 
 technician.maintenance-record.invalid-currency = invalid cost
 {acme.validation.text.message} = The maximum length of notes is 255 characters
+acme.validation.length. = The maximum length of notes is 255 characters
