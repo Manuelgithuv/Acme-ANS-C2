@@ -13,6 +13,7 @@ import acme.entities.involves.Involves;
 import acme.entities.maintenanceRecord.MaintenanceRecord;
 import acme.entities.task.Task;
 import acme.features.technician.maintenanceRecord.TechnicianMaintenanceRecordRepository;
+import acme.features.technician.task.TechnicianTaskRepository;
 import acme.realms.Technician;
 
 @GuiService
@@ -24,6 +25,9 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 
 	@Autowired
 	private TechnicianMaintenanceRecordRepository	maintenanceRepository;
+
+	@Autowired
+	private TechnicianTaskRepository				taskRepository;
 
 
 	// AbstractGuiService interface -------------------------------------------
@@ -61,7 +65,9 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 
 	@Override
 	public void validate(final Involves involves) {
-		;
+		int taskId = super.getRequest().getData("task", int.class);
+		Task task = this.taskRepository.findTaskById(taskId);
+		super.state(task != null && !task.isDraftMode() || task.getTechnician().getId() == super.getRequest().getPrincipal().getActiveRealm().getId(), "*", "technician.involves.form.error.invalid-task");
 	}
 
 	@Override
@@ -83,7 +89,7 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 
 		tasks = this.repository.findValidTasksToAdd(maintenanceRecord, technician);
-		choices = SelectChoices.from(tasks, "description", involves.getTask());
+		choices = SelectChoices.from(tasks, "id", involves.getTask());
 
 		dataset = super.unbindObject(involves, "maintenanceRecord");
 		dataset.put("maintenanceRecordId", involves.getMaintenanceRecord().getId());
