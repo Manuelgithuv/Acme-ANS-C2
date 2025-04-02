@@ -19,7 +19,7 @@
 			<acme:submit code="authenticated.customer.form.button.flight.update" action="/customer/booking/update"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'show'&& published== true}">
-				<acme:button code="authenticated.customer.list.button.passengers" action="/customer/passenger/list?bookingId=${id}"/>
+				<acme:button code="authenticated.customer.list.button.passengers" action="/customer/passenger/listPassengerByBooking?bookingId=${id}"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="authenticated.customer.form.button.flight.create" action="/customer/booking/create"/>

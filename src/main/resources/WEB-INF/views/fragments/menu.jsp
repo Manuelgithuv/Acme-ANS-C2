@@ -33,6 +33,7 @@
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.list-user-accounts" action="/administrator/user-account/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-airlines" action="/administrator/airline/list"/>
+				<acme:menu-suboption code="master.menu.administrator.list-airports" action="/administrator/airport/list"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-initial" action="/administrator/system/populate-initial"/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-sample" action="/administrator/system/populate-sample"/>			
@@ -59,6 +60,8 @@
 		</acme:menu-option>
 		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')">
 			<acme:menu-suboption code="master.menu.customer.list-my-bookings" action="/customer/booking/list"/>
+			<acme:menu-suboption code="master.menu.customer.list-my-bookingPassenger" action="/customer/booking-passenger/list"/>
+			<acme:menu-suboption code="master.menu.customer.list-my-passengers" action="/customer/passenger/list"/>
 		</acme:menu-option>
 		
 	</acme:menu-left>

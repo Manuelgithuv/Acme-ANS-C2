@@ -1,5 +1,5 @@
 
-package acme.features.customer.passenger;
+package acme.features.customer.bookingPassenger;
 
 import javax.annotation.PostConstruct;
 
@@ -7,29 +7,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
-import acme.entities.passenger.Passenger;
+import acme.entities.booking.BookingPassenger;
 import acme.realms.Customer;
 
 @GuiController
-public class CustomerPassengerController extends AbstractGuiController<Customer, Passenger> {
+public class CustomerBookingPassengerController extends AbstractGuiController<Customer, BookingPassenger> {
 
 	@Autowired
-	private CustomerListPassengerService			listService;
+	private CustomerListBookingPassengerService		listService;
 
 	@Autowired
-	private CustomerShowPassengerService			showService;
+	private CustomerShowBookingPassengerService		showService;
 
 	@Autowired
-	private CustomerCreatePassengerService			createService;
+	private CustomerCreateBookingPassengerService	createService;
 
 	@Autowired
-	private CustomerUpdatePassengerService			updateService;
+	private CustomerUpdateBookingPassengerService	updateService;
 
 	@Autowired
-	private CustomerPublishPassengerService			publishService;
-
+	private CustomerPublishBookingPassengerService	publishService;
 	@Autowired
-	private CustomerListPassengerByBookingService	listPassengerByBookingService;
+	private CustomerDeleteBookingPassengerService	deleteService;
 
 
 	@PostConstruct
@@ -38,9 +37,9 @@ public class CustomerPassengerController extends AbstractGuiController<Customer,
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("delete", this.deleteService);
 
 		super.addCustomCommand("publish", "update", this.publishService);
-		super.addCustomCommand("listPassengerByBooking", "list", this.listPassengerByBookingService);
 	}
 
 }
