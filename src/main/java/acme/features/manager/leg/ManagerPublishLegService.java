@@ -2,15 +2,19 @@
 package acme.features.manager.leg;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.datatypes.LegStatus;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.aircraft.AircraftRepository;
 import acme.entities.airport.Airport;
@@ -119,8 +123,51 @@ public class ManagerPublishLegService extends AbstractGuiService<Manager, Leg> {
 
 		if (areAirportsEquals)
 			super.state(false, "*", "manager.leg.create.airports");
+		if (leg.getFlight() != null) {
+			boolean res = this.validateTimeInConsecutiveLegs(leg);
+			super.state(res, "*", "manager.consecutive.legs.invalid.dates");
+		}
+		if (leg.getScheduledDeparture() != null) {
+			long actualUpperLimit = MomentHelper.getCurrentMoment().getTime() / 60000;
+			long departureInMinutes = leg.getScheduledDeparture().getTime() / 60000;
+			if (departureInMinutes < actualUpperLimit)
+				super.state(false, "scheduledDeparture", "departure.minimum.currentDate");
+		}
 
 		super.state(status, "*", "manager.leg.create.dates");
+	}
+
+	private boolean validateTimeInConsecutiveLegs(final Leg leg) {
+
+		boolean res = false;
+		List<Leg> legs = this.legRepository.findDistinctByFlight(leg.getFlight().getId());
+
+		if (leg.getScheduledDeparture() != null && leg.getScheduledArrival() != null && leg.getArrivalAirport() != null && leg.getDepartureAirport() != null) {
+			for (int i = 0; i < legs.size(); i++)
+				if (legs.get(i).getId() == leg.getId()) {
+					legs.set(i, leg);
+					break;
+				}
+			legs.sort(Comparator.comparing(Leg::getScheduledDeparture));
+			for (int i = 0; i < legs.size() - 1; i++) {
+
+				Leg currentLeg = legs.get(i);
+				Leg nextLeg = legs.get(i + 1);
+
+				long currentArrivalInMinutes = currentLeg.getScheduledArrival().getTime() / 60000;
+				long nextDepartureInMinutes = nextLeg.getScheduledDeparture().getTime() / 60000;
+				
+				long currentDepartureInMinutes = currentLeg.getScheduledDeparture().getTime() / 60000;
+				long nextArrivalInMinutes =  nextLeg.getScheduledArrival().getTime() / 60000;
+
+
+				if (currentArrivalInMinutes >= nextDepartureInMinutes || currentDepartureInMinutes==nextDepartureInMinutes || currentArrivalInMinutes==nextArrivalInMinutes)
+					res = false;
+				else
+					res = true;
+			}
+		}
+		return res;
 	}
 
 	@Override
@@ -151,6 +198,7 @@ public class ManagerPublishLegService extends AbstractGuiService<Manager, Leg> {
 		SelectChoices arrivalAirportChoices = SelectChoices.from(airports, "iataCode", leg.getArrivalAirport());
 		Aircraft aircraft = leg.getAircraft() == null || leg.getAircraft().getId() == 0 ? null : leg.getAircraft();
 		SelectChoices aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", aircraft);
+		SelectChoices statusChoices = SelectChoices.from(LegStatus.class, leg.getStatus());
 
 		dataset.put("departureAirport", departureAirportChoices.getSelected().getKey());
 		dataset.put("departureAirports", departureAirportChoices);
@@ -158,6 +206,7 @@ public class ManagerPublishLegService extends AbstractGuiService<Manager, Leg> {
 		dataset.put("arrivalAirports", arrivalAirportChoices);
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("aircrafts", aircraftChoices);
+		dataset.put("statuses", statusChoices);
 
 	}
 

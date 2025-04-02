@@ -16,7 +16,6 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidFlightCode;
 import acme.constraints.ValidHours;
-import acme.constraints.ValidTimeBetweenConsecutiveLegs;
 import acme.datatypes.LegStatus;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airport.Airport;
@@ -29,7 +28,6 @@ import lombok.Setter;
 @Setter
 @ValidHours
 @ValidFlightCode
-@ValidTimeBetweenConsecutiveLegs
 @Entity
 public class Leg extends AbstractEntity {
 

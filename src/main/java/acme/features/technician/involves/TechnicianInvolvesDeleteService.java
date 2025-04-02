@@ -86,7 +86,7 @@ public class TechnicianInvolvesDeleteService extends AbstractGuiService<Technici
 		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 
 		tasks = this.repository.findValidTasksToRemove(maintenanceRecord);
-		choices = SelectChoices.from(tasks, "description", involves.getTask());
+		choices = SelectChoices.from(tasks, "id", involves.getTask());
 
 		dataset = super.unbindObject(involves, "maintenanceRecord");
 		dataset.put("maintenanceRecordId", involves.getMaintenanceRecord().getId());

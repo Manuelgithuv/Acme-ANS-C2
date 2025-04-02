@@ -44,7 +44,7 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 
 		if (exist) {
 			technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-			if (technician.equals(maintenanceRecord.getTechnician()) && !maintenanceRecord.isDraftMode())
+			if (technician.equals(maintenanceRecord.getTechnician()) && maintenanceRecord.isDraftMode())
 				super.getResponse().setAuthorised(true);
 			else
 				super.getResponse().setAuthorised(false);
