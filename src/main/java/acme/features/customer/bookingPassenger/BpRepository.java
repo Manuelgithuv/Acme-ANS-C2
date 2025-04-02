@@ -17,6 +17,9 @@ public interface BpRepository extends AbstractRepository {
 	@Query("SELECT bp from BookingPassenger bp WHERE bp.customer.id=:customerId")
 	List<BookingPassenger> findBookingPassengersByCustomerId(@Param("customerId") int customerId);
 
+	@Query("SELECT bp from BookingPassenger bp WHERE bp.booking.id=:bookingId")
+	List<BookingPassenger> findBookingPassengersByBookingId(@Param("bookingId") int bookingId);
+
 	@Query("SELECT bp from BookingPassenger bp WHERE bp.id=:bookingPassengerId")
 	BookingPassenger findById(@Param("bookingPassengerId") int bookingPassengerId);
 

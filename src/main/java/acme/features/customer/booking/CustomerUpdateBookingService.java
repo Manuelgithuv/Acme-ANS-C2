@@ -10,6 +10,7 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.components.MoneyService;
 import acme.datatypes.TravelClass;
 import acme.entities.booking.Booking;
 import acme.entities.flight.Flight;
@@ -24,6 +25,9 @@ public class CustomerUpdateBookingService extends AbstractGuiService<Customer, B
 
 	@Autowired
 	private FlightRepository	flightRepository;
+
+	@Autowired
+	private MoneyService		moneyService;
 
 
 	@Override
@@ -85,6 +89,10 @@ public class CustomerUpdateBookingService extends AbstractGuiService<Customer, B
 			return;
 		}
 		Customer customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
+
+		boolean currencyState = booking.getPrice() != null && this.moneyService.checkContains(booking.getPrice().getCurrency());
+		if (!currencyState)
+			super.state(currencyState, "price", "manager.flight.invalid-currency");
 
 		status = booking.getCustomer() != null && booking.getCustomer().getId() == customer.getId();
 

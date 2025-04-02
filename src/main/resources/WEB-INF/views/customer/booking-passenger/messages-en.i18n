@@ -1,3 +1,11 @@
+
+authenticated.customer.list.label.passenger = Passenger
+authenticated.customer.list.label.booking = Booking
+authenticated.customer.form.button.flight.delete = Delete
+authenticated.customer.list.label.published = Published
+customer.booking-passenger.list.title = Listing BookingPassengers
+customer.booking-passenger.form.title = BookingPassenger details
+
 authenticated.customer.list.label.locatorCode = Locator Code
 authenticated.customer.list.label.purchaseMoment = Purchase Moment
 authenticated.customer.list.label.travelClass = Travel Class

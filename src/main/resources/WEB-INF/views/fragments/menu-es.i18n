@@ -32,6 +32,7 @@ master.menu.administrator.list-airlines = Ver aerolíneas
 master.menu.administrator.populate-db-initial = Poblar BD (inicial)
 master.menu.administrator.populate-db-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-system-down = Parar el sistema
+master.menu.administrator.list-airports = Ver aeropuertos
 
 # master.menu.provider ########################################################
 
@@ -52,6 +53,8 @@ master.menu.manager.list-my-legs = Ver mis tramos
 # master.menu.customer ##########################################################
 master.menu.customer = Cliente
 master.menu.customer.list-my-bookings = Ver mis reservas
+master.menu.customer.list-my-bookingPassenger = Ver mis Reservas-Pasajero
+master.menu.customer.list-my-passengers = Ver mis pasajeros
 
 master.menu.user-account = Cuenta
 master.menu.user-account.general-profile = Perfil general
