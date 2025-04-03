@@ -1,4 +1,4 @@
-administrator.bookinglist.title = Listado de Reservas
+administrator.booking.list.title = Listado de Reservas
 administrator.booking.form.title = Detalles de la reserva
 administrator.booking.create.null-lastCardNibble = Los cuatro últimos dígitos de la tarjeta son  nulos
 administrator.booking.locatorCode.alreadyExists = Codigo de localizado ya existe

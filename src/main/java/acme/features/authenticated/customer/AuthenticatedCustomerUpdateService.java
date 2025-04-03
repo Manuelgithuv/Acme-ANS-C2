@@ -51,11 +51,15 @@ public class AuthenticatedCustomerUpdateService extends AbstractGuiService<Authe
 	@Override
 	public void validate(final Customer customer) {
 		assert customer != null;
+		System.out.println(customer.getIdentifier());
 
-		Optional<Customer> existingCustomer = this.authenticatedCustomerRepository.findByIdentifier(customer.getIdentifier());
+		if (customer.getIdentifier() != null && !customer.getIdentifier().isEmpty()) {
+			Optional<Customer> existingCustomer = this.authenticatedCustomerRepository.findByIdentifier(customer.getIdentifier());
 
-		if (!existingCustomer.isEmpty())
-			super.state(false, "identifier", "Customer.authenticated.invalidIdentifierNumber");
+			if (existingCustomer.isPresent() && existingCustomer.get().getId() != customer.getId())
+				super.state(false, "identifier", "Customer.authenticated.invalidIdentifierNumber");
+		} else
+			super.state(false, "identifier", "Customer.authenticated.identifierRequired");
 	}
 
 	@Override
