@@ -1,0 +1,23 @@
+administrator.booking.list.title = Listing Booking
+administrator.booking.form.title = Booking details
+administrator.booking.create.null-lastCardNibble = The last card nibble is null
+administrator.booking.locatorCode.alreadyExists = Locator Code already exist
+administrator.booking.all-passengers-are-published = All the passengers from the booking must be published
+administrator.booking.all-booking-passengers-are-published = All the  bookingPassengers from the booking must be published
+administrator.booking.create.null-flight= The flight must not be null
+
+authenticated.administrator.list.label.locatorCode = Locator Code
+authenticated.administrator.list.label.purchaseMoment = Purchase Moment
+authenticated.administrator.list.label.travelClass = Travel Class
+authenticated.administrator.list.label.price = Price
+authenticated.administrator.list.label.lastCardNibble = Last Card Nibble
+authenticated.administrator.list.label.flight = Flight
+authenticated.administrator.list.label.published = Published
+manager.flight.invalid-currency = Invalid Currency
+administrator.booking.at-least-one-passenger = Booking must have at least one passenger
+
+authenticated.administrator.list.button.passengers = See Passengers
+authenticated.administrator.form.button.flight.publish = Publish
+authenticated.administrator.form.button.flight.update = Update
+authenticated.administrator.form.button.flight.create = Create
+authenticated.administrator.list.button.booking.create = Create

@@ -7,7 +7,7 @@
 	<acme:input-textbox code="authenticated.manager.list.label.flightCode" path="flightCode" />
 	<acme:input-moment code="authenticated.manager.list.label.scheduledDeparture" path="scheduledDeparture"/>
 	<acme:input-moment code="authenticated.manager.list.label.scheduledArrival" path="scheduledArrival" />
-	<acme:input-textbox code="authenticated.manager.list.label.status" path="status"/>
+	<acme:input-select code="authenticated.manager.list.label.status" path="status" choices="${statuses}"/>
 	<acme:input-double code="authenticated.manager.list.label.hours" path="hours"/>
 	<acme:input-select code="authenticated.manager.list.label.departureAirport" path="departureAirport" choices="${departureAirports}" />
 	<acme:input-select code="authenticated.manager.list.label.arrivalAirport" path="arrivalAirport" choices="${arrivalAirports}"/>

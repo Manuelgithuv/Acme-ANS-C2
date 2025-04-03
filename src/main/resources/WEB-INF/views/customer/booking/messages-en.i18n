@@ -1,9 +1,20 @@
+customer.booking.list.title = Listing Booking
+customer.booking.form.title = Booking details
+customer.booking.create.null-lastCardNibble = The last card nibble is null
+customer.booking.locatorCode.alreadyExists = Locator Code already exist
+customer.booking.all-passengers-are-published = All the passengers from the booking must be published
+customer.booking.all-booking-passengers-are-published = All the  bookingPassengers from the booking must be published
+customer.booking.create.null-flight= The flight must not be null
+
 authenticated.customer.list.label.locatorCode = Locator Code
 authenticated.customer.list.label.purchaseMoment = Purchase Moment
 authenticated.customer.list.label.travelClass = Travel Class
 authenticated.customer.list.label.price = Price
 authenticated.customer.list.label.lastCardNibble = Last Card Nibble
 authenticated.customer.list.label.flight = Flight
+authenticated.customer.list.label.published = Published
+manager.flight.invalid-currency = Invalid Currency
+customer.booking.at-least-one-passenger = Booking must have at least one passenger
 
 authenticated.customer.list.button.passengers = See Passengers
 authenticated.customer.form.button.flight.publish = Publish

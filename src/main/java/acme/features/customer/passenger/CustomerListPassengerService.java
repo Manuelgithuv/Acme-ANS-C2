@@ -1,7 +1,6 @@
 
 package acme.features.customer.passenger;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.booking.Booking;
 import acme.entities.passenger.Passenger;
 import acme.features.customer.booking.BookingRepository;
 import acme.realms.Customer;
@@ -26,26 +24,16 @@ public class CustomerListPassengerService extends AbstractGuiService<Customer, P
 
 	@Override
 	public void authorise() {
-		boolean status;
-
-		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-
-		int bookingId = super.getRequest().getData("bookingId", int.class);
-
-		Booking booking = this.bookingRepository.findById(bookingId);
-
-		status = booking != null && booking.getCustomer().getId() == customerId;
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 
 	}
 
 	@Override
 	public void load() {
 
-		int bookingId = super.getRequest().getData("bookingId", int.class);
+		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		List<Passenger> passengers = this.passengerRepository.findPassengersByBookingId(bookingId);
+		List<Passenger> passengers = this.passengerRepository.findPassengersByCustomerId(customerId);
 
 		super.getBuffer().addData(passengers);
 	}
@@ -59,17 +47,6 @@ public class CustomerListPassengerService extends AbstractGuiService<Customer, P
 
 		super.getResponse().addData(dataset);
 
-	}
-
-	@Override
-	public void unbind(final Collection<Passenger> passengers) {
-
-		int bookingId = super.getRequest().getData("bookingId", int.class);
-		Booking booking = this.bookingRepository.findById(bookingId);
-		boolean isBookingPublished;
-		isBookingPublished = booking != null && booking.isPublished();
-		super.getResponse().addGlobal("bookingId", bookingId);
-		super.getResponse().addGlobal("isBookingPublished", isBookingPublished);
 	}
 
 }

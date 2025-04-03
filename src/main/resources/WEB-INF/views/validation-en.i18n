@@ -19,7 +19,9 @@ consecutive.legs.must.be.different.moments = Consecutive legs must be at differe
 
 consecutive.legs.must.have.same.arrival-departure-airports = Consecutive legs must have the same arrival and departure airports
 
-acme.validation.text.message= The text must be between 1 and 255 characters.
+acme.validation.text.message= The text must be between 1 and 255 characters
+
+invalid.maintenance.record = invalid maintenance record
 
 acme.validation.header.message = The text must be between 1 and 50 characters
 
@@ -41,10 +43,18 @@ leg.manager.is.not.logged-manager = The manager associated to the must be the lo
 
 manager.leg.create.airports = The arrival and departure airports of a leg can not be the same
 
-manager.leg.create.dates = The date of arrival of a leg can not be the same as the departure from the consequent leg
+manager.leg.create.dates = The date of arrival of a leg must be after the departure date
 
 manager.leg.flightCode.alreadyExists = Flight Code already exists
 
 manager.authenticated.invalidIdentifierNumber = Identifer number already exists
 
 manager.flight.invalid-currency = Invalid currency, the accepted currencies are EUR, USD and GBP
+
+departure.minimum.currentDate = Minimun departure must be actual date
+
+manager.consecutive.legs.invalid.dates = Legs can not be overlapped
+
+technician.maintenance-record.publish.is-not-in-draft-mode = It is published
+
+technician.maintenance-record.publish.there-are-all-tasks-published = You must have at least one task assigned and all linked tasks must be published

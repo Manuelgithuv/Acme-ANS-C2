@@ -8,7 +8,7 @@ import java.util.Set;
 import acme.client.components.basis.AbstractForm;
 import acme.datatypes.AssignmentStatus;
 import acme.entities.flight_assignment.FlightAssignment;
-import acme.realms.FlightCrewMember;
+import acme.realms.FlightCrew;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,7 +35,7 @@ public class FlightCrewMemberDashboard extends AbstractForm {
 
 	private Double									mayorIncidentLogs; // number of logs with a severity greater or equal to 8
 
-	private Set<FlightCrewMember>					lastCoworkers;
+	private Set<FlightCrew>					lastCoworkers;
 
 	private Map<AssignmentStatus, FlightAssignment>	assignmentByStatus;
 

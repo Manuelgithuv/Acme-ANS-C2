@@ -1,6 +1,7 @@
 
 package acme.features.customer.passenger;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -13,14 +14,17 @@ import acme.entities.passenger.Passenger;
 @Repository
 public interface PassengerRepository extends AbstractRepository {
 
-	@Query("SELECT p FROM Passenger p JOIN BookingPassenger bp ON bp.passenger.id = p.id JOIN Booking b ON bp.booking.id = b.id WHERE b.customer.id = :customerId")
+	@Query("SELECT p FROM Passenger p  WHERE p.customer.id = :customerId OR p.published = true ")
 	List<Passenger> findPassengersByCustomerId(@Param("customerId") int customerId);
 
 	@Query("SELECT bp.passenger FROM BookingPassenger bp WHERE bp.booking.id = :bookingId")
 	List<Passenger> findPassengersByBookingId(@Param("bookingId") int bookingId);
 
 	@Query("SELECT p FROM Passenger p")
-	List<Passenger> findAllPassengers();
+	List<Passenger> findAllPassengers(@Param("customerId") int customerId);
+
+	@Query("SELECT p FROM Passenger p WHERE p.published = true OR p.customer.id = :customerId")
+	Collection<Passenger> findAvailablePassengers(@Param("customerId") int customerId);
 
 	@Query("SELECT p from Passenger p WHERE p.id =:passengerId")
 	Passenger findById(@Param("passengerId") int passengerId);
