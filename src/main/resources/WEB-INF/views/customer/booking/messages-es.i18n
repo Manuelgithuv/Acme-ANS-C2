@@ -13,6 +13,8 @@ authenticated.customer.list.label.price = Precio
 authenticated.customer.list.label.lastCardNibble = Cuatro últimos dígitos de la tarjeta
 authenticated.customer.list.label.flight = Vuelo
 manager.flight.invalid-currency = Moneda Invalida
+authenticated.customer.list.label.published = Publicado
+customer.booking.at-least-one-passenger = La reserva debe tener al menos un pasajero
 
 authenticated.customer.list.button.passengers = Ver Pasajeros
 authenticated.customer.form.button.flight.publish = Publicar

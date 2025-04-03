@@ -18,3 +18,6 @@ authenticated.customer.form.button.flight.publish = Publish
 authenticated.customer.form.button.flight.update = Update
 authenticated.customer.form.button.flight.create = Create
 authenticated.customer.list.button.booking.create = Create
+authenticated.customer.list.button.bookingPassenger.create = Create
+customer.bookingPassenger.create.null-booking = Booking must not be null
+customer.bookingPassenger.create.null-passenger = Passenger must not be null

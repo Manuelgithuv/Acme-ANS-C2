@@ -1,3 +1,6 @@
+customer.passenger.list.title = Listing Passenger
+customer.passenger.form.title = Passenger details
+
 
 authenticated.customer.list.label.specialNeeds = Special Needs
 authenticated.customer.list.label.dateOfBirth = Date Of Birth

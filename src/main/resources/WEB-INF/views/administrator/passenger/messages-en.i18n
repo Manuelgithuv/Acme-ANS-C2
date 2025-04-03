@@ -1,0 +1,15 @@
+administrator.passenger.list.title = Listing Passenger
+administrator.passenger.form.title = Passenger details
+
+
+authenticated.administrator.list.label.specialNeeds = Special Needs
+authenticated.administrator.list.label.dateOfBirth = Date Of Birth
+authenticated.administrator.list.label.passportNumber = Passport Number
+authenticated.administrator.list.label.email= Email 
+authenticated.administrator.list.label.fullName = Full Name
+
+authenticated.administrator.form.button.passenger.publish = Publish
+authenticated.administrator.form.button.passenger.update= Update
+authenticated.administrator.form.button.passenger.create = Create
+authenticated.administrator.list.button.passenger.create = Create
+

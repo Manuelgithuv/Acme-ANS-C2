@@ -10,6 +10,6 @@
 	<acme:list-column sortable="false" code="authenticated.customer.list.label.dateOfBirth" path="dateOfBirth"/>
 	<acme:list-column sortable="false" code="authenticated.customer.list.label.specialNeeds" path="specialNeeds"/>
 </acme:list>
-<jstl:if test="${_command == 'list' && isBookingPublished==false}">
-	<acme:button code="authenticated.customer.list.button.passenger.create" action="/customer/passenger/create?bookingId=${bookingId}"/>
+<jstl:if test="${_command == 'list'}">
+	<acme:button code="authenticated.customer.list.button.passenger.create" action="/customer/passenger/create"/>
 </jstl:if>	

@@ -1,3 +1,5 @@
+customer.passenger.list.title = Listado de pasajeros
+customer.passenger.form.title = Detalles del pasajero
 
 authenticated.customer.list.label.specialNeeds = Necesidades Especiales
 authenticated.customer.list.label.dateOfBirth = Fecha de Nacimiento
