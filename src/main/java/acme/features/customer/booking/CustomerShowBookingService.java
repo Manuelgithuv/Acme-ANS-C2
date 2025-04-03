@@ -27,6 +27,7 @@ public class CustomerShowBookingService extends AbstractGuiService<Customer, Boo
 
 	@Override
 	public void authorise() {
+
 		super.getResponse().setAuthorised(true);
 	}
 
@@ -49,13 +50,14 @@ public class CustomerShowBookingService extends AbstractGuiService<Customer, Boo
 	public void unbind(final Booking booking) {
 
 		Dataset dataset;
-		Collection<Flight> flights = this.flightRepository.findAllFlights();
+		Collection<Flight> flights = this.flightRepository.findPublicFlights();
 		SelectChoices travelClassChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		Flight flight = booking.getFlight() == null || booking.getFlight().getId() == 0 ? null : booking.getFlight();
 
 		SelectChoices flightChoices = SelectChoices.from(flights, "tag", flight);
 
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "published");
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCardNibble", "published");
+
 		dataset.put("travelClas", travelClassChoices.getSelected());
 		dataset.put("travelClasses", travelClassChoices);
 

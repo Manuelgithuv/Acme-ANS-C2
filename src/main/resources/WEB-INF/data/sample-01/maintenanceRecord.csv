@@ -1,7 +1,7 @@
 key,moment,status,inspectionDueDate,estimatedCost,notes,draftMode,key:aircraft,key:technician
-maintenanceRecord-04,2020/02/02 10:00,COMPLETED,2020/02/02 11:00,EUR 10078.00,Repaired cabin pressurization system. Verified pressure hold during ground test.,false,aircraft-01,technician-01
-maintenanceRecord-02,2022/02/28 00:00,IN_PROGRESS,2022/07/29 00:00,EUR 0.00,Performed routine inspection of landing gear. Lubricated joints and checked for wear.,false,aircraft-02,technician-02
-maintenanceRecord-03,2021/02/02 10:00,IN_PROGRESS,2021/02/07 10:00,EUR 10500.00,Conducted thorough inspection of turbine blades. Minor erosion found and addressed.,false,aircraft-03,technician-01
-maintenanceRecord-01,2020/07/02 10:00,PENDING,2021/12/02 10:00,EUR 1000000.00,null,false,aircraft-01,technician-01
-maintenanceRecord-05,2020/07/02 10:00,PENDING,2021/12/02 10:00,EUR 0.01,a,false,aircraft-01,technician-01
-maintenanceRecord-06,2020/07/02 10:00,PENDING,2021/12/02 10:00,EUR 999999.99,aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,false,aircraft-01,technician-01
+maintenanceRecord-04,2020/02/02 10:00,COMPLETED,2020/02/02 11:00,EUR 10078.00,Repaired cabin pressurization system. Verified pressure hold during ground test.,true,aircraft-01,technician-01
+maintenanceRecord-02,2022/02/28 00:00,IN_PROGRESS,2022/07/29 00:00,EUR 0.00,Performed routine inspection of landing gear. Lubricated joints and checked for wear.,true,aircraft-02,technician-02
+maintenanceRecord-03,2021/02/02 10:00,IN_PROGRESS,2021/02/07 10:00,EUR 10500.00,Conducted thorough inspection of turbine blades. Minor erosion found and addressed.,true,aircraft-03,technician-01
+maintenanceRecord-01,2020/07/02 10:00,PENDING,2021/12/02 10:00,EUR 1000000.00,null,true,aircraft-01,technician-01
+maintenanceRecord-05,2020/07/02 10:00,PENDING,2021/12/02 10:00,EUR 0.01,a,true,aircraft-01,technician-01
+maintenanceRecord-06,2020/07/02 10:00,PENDING,2021/12/02 10:00,EUR 999999.99,aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,true,aircraft-01,technician-01

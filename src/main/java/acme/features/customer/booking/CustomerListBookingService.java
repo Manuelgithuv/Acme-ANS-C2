@@ -46,7 +46,7 @@ public class CustomerListBookingService extends AbstractGuiService<Customer, Boo
 
 		Dataset dataset;
 		Collection<Flight> flights = this.flightRepository.findAllFlights();
-		SelectChoices travelClassChoices = SelectChoices.from(TravelClass.class, null);
+		SelectChoices travelClassChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		Flight flight = booking.getFlight() == null || booking.getFlight().getId() == 0 ? null : booking.getFlight();
 
 		SelectChoices flightChoices = SelectChoices.from(flights, "tag", flight);
