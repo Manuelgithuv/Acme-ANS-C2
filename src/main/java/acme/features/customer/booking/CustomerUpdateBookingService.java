@@ -10,6 +10,7 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.components.MoneyService;
 import acme.datatypes.TravelClass;
 import acme.entities.booking.Booking;
 import acme.entities.flight.Flight;
@@ -24,6 +25,9 @@ public class CustomerUpdateBookingService extends AbstractGuiService<Customer, B
 
 	@Autowired
 	private FlightRepository	flightRepository;
+
+	@Autowired
+	private MoneyService		moneyService;
 
 
 	@Override
@@ -86,6 +90,10 @@ public class CustomerUpdateBookingService extends AbstractGuiService<Customer, B
 		}
 		Customer customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
+		boolean currencyState = booking.getPrice() != null && this.moneyService.checkContains(booking.getPrice().getCurrency());
+		if (!currencyState)
+			super.state(currencyState, "price", "manager.flight.invalid-currency");
+
 		status = booking.getCustomer() != null && booking.getCustomer().getId() == customer.getId();
 
 		Optional<Booking> existingBooking = this.bookingRepository.findBookingsByLocatorCode(booking.getLocatorCode(), booking.getId());
@@ -106,13 +114,22 @@ public class CustomerUpdateBookingService extends AbstractGuiService<Customer, B
 	public void unbind(final Booking booking) {
 
 		Dataset dataset;
-		Collection<Flight> flights = this.flightRepository.findAllFlights();
+		Collection<Flight> flights = this.flightRepository.findPublicFlights();
 		SelectChoices travelClassChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
+		SelectChoices flightChoices = new SelectChoices();
 		Flight flight = booking.getFlight() == null || booking.getFlight().getId() == 0 ? null : booking.getFlight();
 
-		SelectChoices flightChoices = SelectChoices.from(flights, "tag", flight);
+		flightChoices.add("0", "----", flight == null); // Opción vacía
 
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "published");
+		for (Flight f : flights) {
+			String key = Integer.toString(f.getId());
+			String label = f.getScheduledDeparture() + " - " + f.getScheduledArrival();
+			boolean isSelected = f.equals(flight);
+
+			flightChoices.add(key, label, isSelected);
+		}
+
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastCardNibble", "price", "published");
 		dataset.put("travelClasses", travelClassChoices);
 
 		dataset.put("flight", flightChoices.getSelected().getKey());

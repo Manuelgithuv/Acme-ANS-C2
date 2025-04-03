@@ -23,7 +23,7 @@ public class CustomerIdentifierValidator extends AbstractValidator<ValidCustomer
 		char surnameInitial = '-';
 		// Validar nombre
 		if (name == null || name.isBlank())
-			super.state(context, false, "identifier number", "Name does not exist");
+			super.state(context, false, "name", "name.does.not.exist");
 		else {
 			name = name.trim().toUpperCase();
 			nameInitial = name.charAt(0);
@@ -31,7 +31,7 @@ public class CustomerIdentifierValidator extends AbstractValidator<ValidCustomer
 
 		// Validar apellido
 		if (surname == null || surname.isBlank())
-			super.state(context, false, "identifier number", "Surname does not exist");
+			super.state(context, false, "surname", "surname.does.not.exist");
 		else {
 			surname = surname.trim().toUpperCase();
 			surnameInitial = surname.charAt(0);
@@ -41,7 +41,7 @@ public class CustomerIdentifierValidator extends AbstractValidator<ValidCustomer
 
 		// Comparar iniciales con el identificador
 		if (identifierNumber.charAt(0) != nameInitial || identifierNumber.charAt(1) != surnameInitial)
-			super.state(context, false, "identifier number", "The first two digits are not the initials");
+			super.state(context, false, "identifier", "The first two digits are not the initials");
 
 		return !super.hasErrors(context);
 	}

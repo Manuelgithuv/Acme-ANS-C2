@@ -1,9 +1,20 @@
+customer.bookinglist.title = Listado de Reservas
+customer.booking.form.title = Detalles de la reserva
+customer.booking.create.null-lastCardNibble = Los cuatro últimos dígitos de la tarjeta son  nulos
+customer.booking.locatorCode.alreadyExists = Codigo de localizado ya existe
+customer.booking.all-passengers-are-published = Todos los pasajeros pertenecientes a la reserva deben estar publicados
+customer.booking.all-booking-passengers-are-published = Todas las reservas-pasajero pertenecientes a esta reserva deben estar publicadas
+customer.booking.create.null-flight= El vuelo no debe ser nulo
+
 authenticated.customer.list.label.locatorCode = Codigo Localizador
 authenticated.customer.list.label.purchaseMoment = Momento de Compra
 authenticated.customer.list.label.travelClass = Clase
 authenticated.customer.list.label.price = Precio
 authenticated.customer.list.label.lastCardNibble = Cuatro últimos dígitos de la tarjeta
 authenticated.customer.list.label.flight = Vuelo
+manager.flight.invalid-currency = Moneda Invalida
+authenticated.customer.list.label.published = Publicado
+customer.booking.at-least-one-passenger = La reserva debe tener al menos un pasajero
 
 authenticated.customer.list.button.passengers = Ver Pasajeros
 authenticated.customer.form.button.flight.publish = Publicar
