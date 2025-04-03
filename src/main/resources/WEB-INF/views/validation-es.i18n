@@ -62,3 +62,5 @@ technician.maintenance-record.invalid-currency = coste estimado inválido
 technician.maintenance-record.publish.there-are-all-tasks-published = Debe tener al menos una tarea asignada y todas ellas han de estar publicadas
 
 leg.aircraft.is-in-maintenance = El avión seleccionado está en mantenimiento
+
+leg.aircraft.in-use.for.that.period.of.time = El avión va a ser usado para ese periodo de tiempo

@@ -60,3 +60,5 @@ technician.maintenance-record.publish.is-not-in-draft-mode = It is published
 technician.maintenance-record.publish.there-are-all-tasks-published = You must have at least one task assigned and all linked tasks must be published
 
 leg.aircraft.is-in-maintenance = The aircraft selected is in maintenance
+
+leg.aircraft.in-use.for.that.period.of.time = The aircraft is going to be used for that period of time
