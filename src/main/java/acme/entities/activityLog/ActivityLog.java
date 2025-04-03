@@ -1,5 +1,5 @@
 
-package acme.entities.log;
+package acme.entities.activityLog;
 
 import java.util.Date;
 
@@ -13,17 +13,20 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
+import acme.constraints.ValidActivityLog;
 import acme.constraints.ValidIncidentType;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidSeverity;
 import acme.entities.flight_assignment.FlightAssignment;
+import acme.entities.leg.Leg;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-public class Log extends AbstractEntity {
+@ValidActivityLog
+public class ActivityLog extends AbstractEntity {
 
 	/*
 	 * An activity log records incidents that occur during a flight. They are logged by any of the flight crew
@@ -60,6 +63,10 @@ public class Log extends AbstractEntity {
 	@Automapped
 	private Integer				severity;
 
+	@Mandatory
+	@Automapped
+	private Boolean				published;
+
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
@@ -68,5 +75,10 @@ public class Log extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private FlightAssignment	flightAssignment;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Leg					leg;
 
 }
