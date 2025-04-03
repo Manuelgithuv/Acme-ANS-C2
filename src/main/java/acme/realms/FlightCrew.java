@@ -13,7 +13,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.constraints.ValidExperience;
-import acme.constraints.ValidFlightCrewMemberIdentifier;
+import acme.constraints.ValidFlightCrewIdentifier;
 import acme.constraints.ValidIdentifier;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidPhone;
@@ -25,8 +25,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@ValidFlightCrewMemberIdentifier
-public class FlightCrewMember extends AbstractRole {
+@ValidFlightCrewIdentifier
+public class FlightCrew extends AbstractRole {
 
 	/*
 	 * The flight crew members are the people responsible for operating aircrafts and en-suring passenger safety
