@@ -1,3 +1,4 @@
+Customer.authenticated.identifierRequired = Identificador del Cliente necesario
 
 authenticated.customer.form.title = Formulario de Cliente
 
