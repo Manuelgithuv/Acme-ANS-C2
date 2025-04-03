@@ -12,9 +12,9 @@
 	<acme:input-select code="authenticated.customer.list.label.flight" path="flight" choices="${flights}"/>
 	<jstl:choose>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && published == false}">
-			<jstl:if test="${_command == 'show'}">
-				<acme:button code="authenticated.customer.list.button.passengers" action="/customer/passenger/list?bookingId=${id}"/>
-			</jstl:if>
+		
+			<acme:button code="authenticated.customer.list.button.passengers" action="/customer/passenger/listPassengerByBooking?bookingId=${id}"/>
+		
 			<acme:submit code="authenticated.customer.form.button.flight.publish" action="/customer/booking/publish"/>
 			<acme:submit code="authenticated.customer.form.button.flight.update" action="/customer/booking/update"/>
 		</jstl:when>

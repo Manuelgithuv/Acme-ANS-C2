@@ -8,8 +8,6 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.AircraftRepository;
 import acme.entities.airport.AirportRepository;
-import acme.entities.booking.Booking;
-import acme.entities.booking.BookingPassenger;
 import acme.entities.passenger.Passenger;
 import acme.features.customer.booking.BookingRepository;
 import acme.realms.Customer;
@@ -33,24 +31,12 @@ public class CustomerCreatePassengerService extends AbstractGuiService<Customer,
 	@Override
 	public void authorise() {
 
-		boolean status;
-
-		int bookingId = super.getRequest().getData("bookingId", int.class);
-		Booking booking = this.bookingRepository.findById(bookingId);
-
-		Customer customer;
-
-		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
-
-		status = !booking.isPublished() && customer.getId() == booking.getCustomer().getId();
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
 		Passenger passenger;
-
 		Customer customer;
 
 		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
@@ -58,7 +44,6 @@ public class CustomerCreatePassengerService extends AbstractGuiService<Customer,
 		passenger = new Passenger();
 		passenger.setPublished(false);
 		passenger.setCustomer(customer);
-
 		super.getBuffer().addData(passenger);
 
 	}
@@ -77,34 +62,17 @@ public class CustomerCreatePassengerService extends AbstractGuiService<Customer,
 			return;
 		}
 
-		boolean status;
-
-		Customer customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
-		int bookingId = super.getRequest().getData("bookingId", int.class);
-		Booking booking = this.bookingRepository.findById(bookingId);
-
-		if (booking.getCustomer().getId() != customer.getId())
-			super.state(false, "Customer", "Passenger.Customer.is.not.logged-Customer");
-		;
 	}
 
 	@Override
 	public void perform(final Passenger passenger) {
-		BookingPassenger bookingPassenger;
-		int bookingId = super.getRequest().getData("bookingId", int.class);
-		Booking booking = this.bookingRepository.findById(bookingId);
-		bookingPassenger = new BookingPassenger();
-		bookingPassenger.setBooking(booking);
-		bookingPassenger.setPassenger(passenger);
 		this.passengerRepository.save(passenger);
-		this.bookingRepository.save(bookingPassenger);
 
 	}
 
 	@Override
 	public void unbind(final Passenger passenger) {
 		Dataset dataset = this.buildDataset(passenger);
-		dataset.put("bookingId", super.getRequest().getData("bookingId", int.class));
 
 		super.getResponse().addData(dataset);
 	}

@@ -21,13 +21,13 @@ import acme.realms.Customer;
 public class CustomerCreateBookingPassengerService extends AbstractGuiService<Customer, BookingPassenger> {
 
 	@Autowired
-	private BpRepository	bookingPassengerRepository;
+	private BpRepository		bookingPassengerRepository;
 
 	@Autowired
-	private BookingRepository			bookingRepository;
+	private BookingRepository	bookingRepository;
 
 	@Autowired
-	private PassengerRepository			passengerRepository;
+	private PassengerRepository	passengerRepository;
 
 
 	@Override
@@ -80,7 +80,7 @@ public class CustomerCreateBookingPassengerService extends AbstractGuiService<Cu
 		}
 
 		if (bookingPassenger.getPassenger() == null) {
-			super.state(false, "passenger", "customer.booking.create.null-passenger");
+			super.state(false, "passenger", "customer.bookingPassenger.create.null-passenger");
 			return;
 		}
 		Optional<BookingPassenger> existingBookingPassenger = this.bookingPassengerRepository.findBookingPassengerByPassengerAndBooking(bookingPassenger.getPassenger().getId(), bookingPassenger.getBooking().getId());

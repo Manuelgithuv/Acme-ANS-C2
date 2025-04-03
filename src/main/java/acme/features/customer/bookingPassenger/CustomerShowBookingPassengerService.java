@@ -99,11 +99,10 @@ public class CustomerShowBookingPassengerService extends AbstractGuiService<Cust
 		Collection<Passenger> passengers = this.passengerRepository.findAvailablePassengers(customer.getId());
 		Passenger passenger = bookingPassenger.getPassenger() == null || bookingPassenger.getPassenger().getId() == 0 ? null : bookingPassenger.getPassenger();
 
-		System.out.println(bookingPassenger.getPassenger().getFullName());
 		dataset = super.unbindObject(bookingPassenger, "published");
 
 		SelectChoices bookingChoices = SelectChoices.from(bookings, "locatorCode", bookingPassenger.getBooking());
-		System.out.println(bookingPassenger.getBooking().getLocatorCode());
+
 		SelectChoices passengerChoices = SelectChoices.from(passengers, "fullName", bookingPassenger.getPassenger());
 
 		dataset.put("bookings", bookingChoices);

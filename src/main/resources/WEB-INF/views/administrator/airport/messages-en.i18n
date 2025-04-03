@@ -18,7 +18,6 @@ administrator.airline.form.button.delete = Delete
 administrator.airline.form.button.publish = Publish
 administrator.airport.form.label.confirmation = Confirm that the airport data is correct.
 
-
 administrator.airline.list.label.name = Name
 administrator.airline.list.label.iataCode = Iata code
 administrator.airline.list.label.type = Type
