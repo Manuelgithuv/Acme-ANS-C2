@@ -33,6 +33,7 @@ master.menu.administrator.populate-db-initial = Poblar BD (inicial)
 master.menu.administrator.populate-db-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-system-down = Parar el sistema
 master.menu.administrator.list-airports = Ver aeropuertos
+master.menu.administrator.list-my-bookings = Ver reservas
 
 # master.menu.provider ########################################################
 
