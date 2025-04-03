@@ -81,7 +81,7 @@ public class CustomerPublishBookingService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void validate(final Booking booking) {
-		System.out.println(booking.getLastCardNibble());
+
 		if (booking.getLastCardNibble() == null || booking.getLastCardNibble().trim().isEmpty()) {
 			super.state(false, "*", "customer.booking.create.null-lastCardNibble");
 			return;
@@ -92,6 +92,7 @@ public class CustomerPublishBookingService extends AbstractGuiService<Customer, 
 		boolean status;
 		boolean allPassengerPublish;
 		boolean allBookingPassengerPublish;
+		boolean atLeastOneBookingPassenger;
 		if (booking.getFlight() == null) {
 			super.state(false, "flight", "customer.booking.create.null-flight");
 			return;
@@ -102,13 +103,15 @@ public class CustomerPublishBookingService extends AbstractGuiService<Customer, 
 			super.state(false, "locatorCode", "customer.booking.locatorCode.alreadyExists");
 
 		Collection<BookingPassenger> allBookingPassengerByBooking = this.bookingPassengerRepository.findBookingPassengersByBookingId(booking.getId());
-		allBookingPassengerPublish = allBookingPassengerByBooking.stream().allMatch(p -> p.isPublished());
-		if (allBookingPassengerPublish)
+		allBookingPassengerPublish = allBookingPassengerByBooking.stream().allMatch(p -> p.isPublished() == true);
+		atLeastOneBookingPassenger = allBookingPassengerByBooking.size() > 0;
+		if (!allBookingPassengerPublish)
 			super.state(false, "*", "customer.booking.all-booking-passengers-are-published");
-
+		if (!atLeastOneBookingPassenger)
+			super.state(false, "*", "customer.booking.at-least-one-passenger");
 		Collection<Passenger> allPassengerByBooking = this.bookingRepository.findPassengersByBookingId(booking.getId());
-		allPassengerPublish = allPassengerByBooking.stream().allMatch(p -> p.isPublished());
-		if (allPassengerPublish)
+		allPassengerPublish = allPassengerByBooking.stream().allMatch(p -> p.isPublished() == true);
+		if (!allPassengerPublish)
 			super.state(false, "*", "customer.booking.all-passengers-are-published");
 
 		Customer customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();

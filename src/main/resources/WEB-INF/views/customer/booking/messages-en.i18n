@@ -12,7 +12,9 @@ authenticated.customer.list.label.travelClass = Travel Class
 authenticated.customer.list.label.price = Price
 authenticated.customer.list.label.lastCardNibble = Last Card Nibble
 authenticated.customer.list.label.flight = Flight
+authenticated.customer.list.label.published = Published
 manager.flight.invalid-currency = Invalid Currency
+customer.booking.at-least-one-passenger = Booking must have at least one passenger
 
 authenticated.customer.list.button.passengers = See Passengers
 authenticated.customer.form.button.flight.publish = Publish

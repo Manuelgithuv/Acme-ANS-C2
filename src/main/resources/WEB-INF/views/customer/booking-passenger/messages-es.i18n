@@ -17,3 +17,6 @@ authenticated.customer.form.button.flight.publish = Publicar
 authenticated.customer.form.button.flight.update = Actualizar
 authenticated.customer.form.button.flight.create = Crear
 authenticated.customer.list.button.booking.create = Crear
+authenticated.customer.list.button.bookingPassenger.create = Crear
+customer.bookingPassenger.create.null-booking = La reserva debe no ser nulo
+customer.bookingPassenger.create.null-passenger = El pasajero dene mo ser nulo
