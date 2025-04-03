@@ -1,0 +1,19 @@
+authenticated.customer.list.label.passenger = Pasajero
+authenticated.customer.list.label.booking = Reserva
+authenticated.customer.form.button.flight.delete = Borrar
+authenticated.customer.list.label.published = Publicado
+customer.booking-passenger.list.title = Listado de Reserva-Pasajeros
+customer.booking-passenger.form.title = Detalles de la Reserva-Pasajero
+
+authenticated.customer.list.label.locatorCode = Codigo Localizador
+authenticated.customer.list.label.purchaseMoment = Momento de Compra
+authenticated.customer.list.label.travelClass = Clase
+authenticated.customer.list.label.price = Precio
+authenticated.customer.list.label.lastCardNibble = Cuatro últimos dígitos de la tarjeta
+authenticated.customer.list.label.flight = Vuelo
+
+authenticated.customer.list.button.passengers = Ver Pasajeros
+authenticated.customer.form.button.flight.publish = Publicar
+authenticated.customer.form.button.flight.update = Actualizar
+authenticated.customer.form.button.flight.create = Crear
+authenticated.customer.list.button.booking.create = Crear

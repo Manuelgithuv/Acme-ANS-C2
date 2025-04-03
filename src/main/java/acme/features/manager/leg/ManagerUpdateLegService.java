@@ -131,8 +131,8 @@ public class ManagerUpdateLegService extends AbstractGuiService<Manager, Leg> {
 			super.state(false, "*", "manager.leg.create.airports");
 
 		if (leg.getFlight() != null) {
-			boolean res = this.validateTimeAndAirportsInConsecutiveLegs(leg);
-			super.state(res, "*", "manager.consecutive.legs.invalid.dates-or-airports");
+			boolean res = this.validateTimeInConsecutiveLegs(leg);
+			super.state(res, "*", "manager.consecutive.legs.invalid.dates");
 		}
 
 		if (leg.getAircraft() != null) {
@@ -150,7 +150,7 @@ public class ManagerUpdateLegService extends AbstractGuiService<Manager, Leg> {
 		super.state(status, "*", "manager.leg.create.dates");
 	}
 
-	private boolean validateTimeAndAirportsInConsecutiveLegs(final Leg leg) {
+	private boolean validateTimeInConsecutiveLegs(final Leg leg) {
 
 		boolean res = false;
 		List<Leg> legs = this.legRepository.findDistinctByFlight(leg.getFlight().getId());
@@ -169,11 +169,12 @@ public class ManagerUpdateLegService extends AbstractGuiService<Manager, Leg> {
 
 				long currentArrivalInMinutes = currentLeg.getScheduledArrival().getTime() / 60000;
 				long nextDepartureInMinutes = nextLeg.getScheduledDeparture().getTime() / 60000;
+				
+				long currentDepartureInMinutes = currentLeg.getScheduledDeparture().getTime() / 60000;
+				long nextArrivalInMinutes =  nextLeg.getScheduledArrival().getTime() / 60000;
 
-				Airport currentAirport = currentLeg.getArrivalAirport();
-				Airport nextAirport = nextLeg.getDepartureAirport();
 
-				if (currentArrivalInMinutes >= nextDepartureInMinutes || currentAirport.getId() != nextAirport.getId())
+				if (currentArrivalInMinutes >= nextDepartureInMinutes || currentDepartureInMinutes==nextDepartureInMinutes || currentArrivalInMinutes==nextArrivalInMinutes)
 					res = false;
 				else
 					res = true;
