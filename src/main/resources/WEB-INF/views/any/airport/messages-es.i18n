@@ -1,0 +1,19 @@
+any.airport.list.label.name = Nombre
+
+any.airport.list.label.iataCode = Codigo
+
+any.airport.list.label.scope = Alcance 
+
+any.airport.list.label.city = Ciudad
+
+any.airport.list.label.country = Pais
+
+any.airport.list.label.webSite = Pagina web
+
+any.airport.list.label.email = Correo
+
+any.airport.list.label.phoneNumber = Numero de telefono
+
+any.airport.list.title = Lista de aeropuertos
+
+any.airport.form.title = Detalles del aeropuerto
