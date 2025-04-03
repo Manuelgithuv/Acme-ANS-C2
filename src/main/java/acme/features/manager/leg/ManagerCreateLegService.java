@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,6 +15,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.datatypes.AircraftStatus;
 import acme.datatypes.LegStatus;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.aircraft.AircraftRepository;
@@ -111,6 +113,9 @@ public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg> {
 
 		if (!existingLeg.isEmpty())
 			super.state(false, "flightCode", "manager.leg.flightCode.alreadyExists");
+		if (leg.getAircraft() != null)
+			if (leg.getAircraft().getStatus().equals(AircraftStatus.UNDER_MAINTENANCE))
+				super.state(false, "aircraft", "leg.aircraft.is-in-maintenance");
 
 		boolean status;
 
@@ -139,13 +144,21 @@ public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg> {
 
 		if (areAirportsEquals)
 			super.state(false, "*", "manager.leg.create.airports");
+
 		if (leg.getFlight() != null) {
 			boolean res = this.validateTimeInConsecutiveLegs(leg);
 			super.state(res, "*", "manager.consecutive.legs.invalid.dates");
 		}
+
+		if (leg.getAircraft() != null) {
+			boolean validAircraft = this.validateAircraftNotInUse(leg);
+			super.state(validAircraft, "aircraft", "leg.aircraft.in-use.for.that.period.of.time");
+		}
+
 		if (leg.getScheduledDeparture() != null) {
 			long actualUpperLimit = MomentHelper.getCurrentMoment().getTime() / 60000;
 			long departureInMinutes = leg.getScheduledDeparture().getTime() / 60000;
+
 			if (departureInMinutes < actualUpperLimit)
 				super.state(false, "scheduledDeparture", "departure.minimum.currentDate");
 		}
@@ -180,6 +193,23 @@ public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg> {
 			}
 		}
 		return res;
+	}
+
+	private boolean validateAircraftNotInUse(final Leg leg) {
+		boolean res = true;
+
+		List<Leg> legsDistincFromActualFlight = this.legRepository.findByFlightIdNot(leg.getFlight().getId()).stream()
+			.filter(l -> (l.getScheduledDeparture().after(leg.getScheduledDeparture()) || l.getScheduledDeparture().equals(leg.getScheduledDeparture()))
+				&& (l.getScheduledArrival().before(leg.getScheduledArrival()) || l.getScheduledArrival().equals(leg.getScheduledArrival())))
+			.collect(Collectors.toList());
+
+		for (Leg l : legsDistincFromActualFlight)
+			if (l.getAircraft().getId() == leg.getAircraft().getId() && !l.isPublished()) {
+				res = false;
+				break;
+			}
+		return res;
+
 	}
 
 	@Override
