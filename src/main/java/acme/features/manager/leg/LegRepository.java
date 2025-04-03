@@ -1,6 +1,7 @@
 
 package acme.features.manager.leg;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -54,5 +55,8 @@ public interface LegRepository extends AbstractRepository {
 
 	@Query("SELECT l FROM Leg l WHERE l.flight.id <> :flightId ORDER BY l.scheduledDeparture ASC")
 	List<Leg> findByFlightIdNot(@Param("flightId") int flightId);
+
+	@Query("select l from Leg l")
+	Collection<Leg> findAllLegs();
 
 }
