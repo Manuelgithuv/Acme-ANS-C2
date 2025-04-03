@@ -1,12 +1,12 @@
 
-package acme.features.any.maintenanceRecord;
+package acme.features.administrator.maintenanceRecord;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
-import acme.client.components.principals.Any;
+import acme.client.components.principals.Administrator;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
@@ -16,7 +16,7 @@ import acme.entities.maintenanceRecord.MaintenanceRecord;
 import acme.features.technician.maintenanceRecord.TechnicianMaintenanceRecordRepository;
 
 @GuiService
-public class AnyMaintenanceRecordShowService extends AbstractGuiService<Any, MaintenanceRecord> {
+public class AdministratorMaintenanceRecordShowService extends AbstractGuiService<Administrator, MaintenanceRecord> {
 
 	//Internal state ---------------------------------------------
 
@@ -62,7 +62,7 @@ public class AnyMaintenanceRecordShowService extends AbstractGuiService<Any, Mai
 		choices = SelectChoices.from(MaintenanceRecordStatus.class, maintenanceRecord.getStatus());
 		aircraft = SelectChoices.from(aircrafts, "id", maintenanceRecord.getAircraft());
 
-		dataset = super.unbindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes", "aircraft", "draftMode");
+		dataset = super.unbindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes", "aircraft");
 		dataset.put("status", choices);
 		dataset.put("aircraft", aircraft);
 

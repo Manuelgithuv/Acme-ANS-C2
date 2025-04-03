@@ -1,19 +1,19 @@
 
-package acme.features.any.task;
+package acme.features.administrator.task;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
-import acme.client.components.principals.Any;
+import acme.client.components.principals.Administrator;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.task.Task;
 import acme.features.technician.task.TechnicianTaskRepository;
 
 @GuiService
-public class AnyTaskListService extends AbstractGuiService<Any, Task> {
+public class AdministratorTaskListService extends AbstractGuiService<Administrator, Task> {
 
 	//Internal state ---------------------------------------------
 
@@ -33,7 +33,7 @@ public class AnyTaskListService extends AbstractGuiService<Any, Task> {
 		Collection<Task> task;
 		int maintenanceRecordId;
 
-		maintenanceRecordId = super.getRequest().getData("id", int.class);
+		maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
 
 		task = this.repository.findTasksByMaintenanceRecordId(maintenanceRecordId);
 
@@ -44,11 +44,16 @@ public class AnyTaskListService extends AbstractGuiService<Any, Task> {
 	public void unbind(final Task task) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration", "draftMode");
-
-		super.addPayload(dataset, task, "type", "description", "priority", "estimatedDuration", "draftMode");
+		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration");
 
 		super.getResponse().addData(dataset);
+	}
+
+	@Override
+	public void unbind(final Collection<Task> task) {
+
+		int maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
+		super.getResponse().addGlobal("maintenanceRecordId", maintenanceRecordId);
 	}
 
 }

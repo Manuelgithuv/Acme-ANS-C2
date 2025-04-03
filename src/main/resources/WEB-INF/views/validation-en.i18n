@@ -25,6 +25,12 @@ invalid.maintenance.record = invalid maintenance record
 
 acme.validation.header.message = The text must be between 1 and 50 characters
 
+invalid.experience.years = The experience years must be between 0 and 120 years
+
+invalid.specialization = Specialization must be between 1 and 255 characters
+
+invalid.license.number = License number must follow the structure "^[A-Z]{2,3}\\d{6}$", 
+
 aircraft.or.airline.cannot.be.null = The airline and aircraft associate can not be null
 
 flight.manager.is.not.logged-manager = The manager chosen for the flight is not the logged manager
