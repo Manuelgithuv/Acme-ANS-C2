@@ -6,7 +6,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -98,56 +97,74 @@ public class ManagerUpdateLegService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void validate(final Leg leg) {
+	    validateFlightCode(leg);
+	    validateAircraftStatus(leg);
+	    validateAirports(leg);
+	    validateDates(leg);
+	    validateConsecutiveLegs(leg);
+	    validateAircraftUsage(leg);
+	    validateScheduledDeparture(leg);
+	}
 
-		Optional<Leg> existingLeg = this.legRepository.findByFlightCode(leg.getFlightCode());
+	private void validateFlightCode(final Leg leg) {
+	    Optional<Leg> existingLeg = this.legRepository.findByFlightCode(leg.getFlightCode());
+	    if (!existingLeg.isEmpty() && existingLeg.get().getId()!=leg.getId()) {
+	        super.state(false, "flightCode", "manager.leg.flightCode.alreadyExists");
+	    }
+	}
 
-		if (!existingLeg.isEmpty() && !leg.getFlightCode().equals(existingLeg.get().getFlightCode()))
-			super.state(false, "flightCode", "manager.leg.flightCode.alreadyExists");
-		if (leg.getAircraft() != null)
-			if (leg.getAircraft().getStatus().equals(AircraftStatus.UNDER_MAINTENANCE))
-				super.state(false, "aircraft", "leg.aircraft.is-in-maintenance");
+	private void validateAircraftStatus(final Leg leg) {
+	    if (leg.getAircraft() != null && leg.getAircraft().getStatus() != null 
+	        && leg.getAircraft().getStatus().equals(AircraftStatus.UNDER_MAINTENANCE)) {
+	        super.state(false, "aircraft", "leg.aircraft.is-in-maintenance");
+	    }
+	}
 
-		boolean status;
+	private void validateAirports(final Leg leg) {
+	    Airport departureAirport = leg.getDepartureAirport() != null ? 
+	        this.airportRepository.findById(leg.getDepartureAirport().getId()) : null;
+	    Airport arrivalAirport = leg.getArrivalAirport() != null ? 
+	        this.airportRepository.findById(leg.getArrivalAirport().getId()) : null;
 
-		// Validar si los aeropuertos de leg son nulos antes de acceder a sus IDs
-		Airport departureAirport = leg.getDepartureAirport() != null ? this.airportRepository.findById(leg.getDepartureAirport().getId()) : null;
+	    if (departureAirport != null && arrivalAirport != null && 
+	        departureAirport.getId() == arrivalAirport.getId()) {
+	        super.state(false, "*", "manager.leg.create.airports");
+	    }
+	}
 
-		Airport arrivalAirport = leg.getArrivalAirport() != null ? this.airportRepository.findById(leg.getArrivalAirport().getId()) : null;
+	private void validateDates(final Leg leg) {
+	    Date scheduledDeparture = leg.getScheduledDeparture();
+	    Date scheduledArrival = leg.getScheduledArrival();
 
-		// Validar si los aeropuertos encontrados son nulos antes de comparar IDs
-		boolean areAirportsEquals = departureAirport != null && arrivalAirport != null &&
+	    boolean isDepartureBeforeArrival = scheduledDeparture != null && scheduledArrival != null 
+	        && scheduledDeparture.before(scheduledArrival);
 
-			departureAirport.getId() == arrivalAirport.getId();
+	    super.state(isDepartureBeforeArrival, "*", "manager.leg.create.dates");
+	}
 
-		// Validar si scheduledDeparture y scheduledArrival son nulos antes de llamar a before()
-		Date scheduledDeparture = leg.getScheduledDeparture();
-		Date scheduledArrival = leg.getScheduledArrival();
+	private void validateConsecutiveLegs(final Leg leg) {
+	    if (leg.getFlight() != null) {
+	        boolean res = this.validateTimeInConsecutiveLegs(leg);
+	        super.state(res, "*", "manager.consecutive.legs.invalid.dates");
+	    }
+	}
 
-		boolean isDepartureBeforeArrival = scheduledDeparture != null && scheduledArrival != null && scheduledDeparture.before(scheduledArrival);
+	private void validateAircraftUsage(final Leg leg) {
+	    if (leg.getAircraft() != null && leg.getScheduledDeparture() != null && leg.getScheduledArrival() != null) {
+	        boolean validAircraft = this.validateAircraftNotInUse(leg);
+	        super.state(validAircraft, "aircraft", "leg.aircraft.in-use.for.that.period.of.time");
+	    }
+	}
 
-		status = isDepartureBeforeArrival;
-
-		if (areAirportsEquals)
-			super.state(false, "*", "manager.leg.create.airports");
-
-		if (leg.getFlight() != null) {
-			boolean res = this.validateTimeInConsecutiveLegs(leg);
-			super.state(res, "*", "manager.consecutive.legs.invalid.dates");
-		}
-
-		if (leg.getAircraft() != null) {
-			boolean validAircraft = this.validateAircraftNotInUse(leg);
-			super.state(validAircraft, "aircraft", "leg.aircraft.in-use.for.that.period.of.time");
-		}
-
-		if (leg.getScheduledDeparture() != null) {
-			long actualUpperLimit = MomentHelper.getCurrentMoment().getTime() / 60000;
-			long departureInMinutes = leg.getScheduledDeparture().getTime() / 60000;
-			if (departureInMinutes < actualUpperLimit)
-				super.state(false, "scheduledDeparture", "departure.minimum.currentDate");
-		}
-
-		super.state(status, "*", "manager.leg.create.dates");
+	private void validateScheduledDeparture(final Leg leg) {
+	    if (leg.getScheduledDeparture() != null) {
+	        long actualUpperLimit = MomentHelper.getCurrentMoment().getTime() / 60000;
+	        long departureInMinutes = leg.getScheduledDeparture().getTime() / 60000;
+	        
+	        if (departureInMinutes < actualUpperLimit) {
+	            super.state(false, "scheduledDeparture", "departure.minimum.currentDate");
+	        }
+	    }
 	}
 
 	private boolean validateTimeInConsecutiveLegs(final Leg leg) {
@@ -183,20 +200,25 @@ public class ManagerUpdateLegService extends AbstractGuiService<Manager, Leg> {
 		return res;
 	}
 	private boolean validateAircraftNotInUse(final Leg leg) {
-		boolean res = true;
+	    List<Leg> legs = this.legRepository.findLegsByFlightIdNotAndAircraftIdAndPublished(
+	        leg.getFlight().getId(), leg.getAircraft().getId()
+	    );
 
-		List<Leg> legsDistincFromActualFlight = this.legRepository.findByFlightIdNot(leg.getFlight().getId()).stream()
-			.filter(l -> (l.getScheduledDeparture().after(leg.getScheduledDeparture()) || l.getScheduledDeparture().equals(leg.getScheduledDeparture()))
-				&& (l.getScheduledArrival().before(leg.getScheduledArrival()) || l.getScheduledArrival().equals(leg.getScheduledArrival())))
-			.collect(Collectors.toList());
+	    long actualDepartureInMinutes = leg.getScheduledDeparture().getTime() / 60000;
+	    long actualArrivalInMinutes = leg.getScheduledArrival().getTime() / 60000;
+	    long marginInMinutes = 1; // Margen de tiempo en minutos
 
-		for (Leg l : legsDistincFromActualFlight)
-			if (l.getAircraft().getId() == leg.getAircraft().getId() && !l.isPublished()) {
-				res = false;
-				break;
-			}
-		return res;
+	    for (Leg l : legs) {
+	        long departureInMinutes = l.getScheduledDeparture().getTime() / 60000;
+	        long arrivalInMinutes = l.getScheduledArrival().getTime() / 60000;
 
+	        // Comprobar si hay solapamiento con margen de tiempo
+	        if (!(actualArrivalInMinutes + marginInMinutes <= departureInMinutes || 
+	              actualDepartureInMinutes - marginInMinutes >= arrivalInMinutes)) {
+	            return false;
+	        }
+	    }
+	    return true;
 	}
 
 	@Override
