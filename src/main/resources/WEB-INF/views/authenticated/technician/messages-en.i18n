@@ -16,9 +16,3 @@ authenticated.technician.form.label.certifications = Cerifications
 authenticated.technician.form.button.create = Create
 
 authenticated.technician.form.button.update = Update
-
-invalid.experience.years = The experience years must be between 0 and 120 years
-
-invalid.specialization = Specialization must be between 1 and 255 characters
-
-invalid.license.number = License number must follow the structure "^[A-Z]{2,3}\\d{6}$", 

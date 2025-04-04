@@ -99,9 +99,18 @@ public class CustomerCreateBookingService extends AbstractGuiService<Customer, B
 		Dataset dataset;
 		Collection<Flight> flights = this.flightRepository.findPublicFlights();
 		SelectChoices travelClassChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
+		SelectChoices flightChoices = new SelectChoices();
 		Flight flight = booking.getFlight() == null || booking.getFlight().getId() == 0 ? null : booking.getFlight();
 
-		SelectChoices flightChoices = SelectChoices.from(flights, "tag", flight);
+		flightChoices.add("0", "----", flight == null); // Opción vacía
+
+		for (Flight f : flights) {
+			String key = Integer.toString(f.getId());
+			String label = f.getScheduledDeparture() + " - " + f.getScheduledArrival();
+			boolean isSelected = f.equals(flight);
+
+			flightChoices.add(key, label, isSelected);
+		}
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "published");
 		dataset.put("travelClasses", travelClassChoices);

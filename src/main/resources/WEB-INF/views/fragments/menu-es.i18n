@@ -14,6 +14,8 @@ master.menu.any = Cualquiera
 
 master.menu.any.public.flights = Vuelos publicados
 
+master.menu.any.public.maintenanceRecord = Documentos de mantenimiento publicados
+
 
 # master.menu.anonymous #######################################################
 
@@ -34,6 +36,7 @@ master.menu.administrator.populate-db-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-system-down = Parar el sistema
 master.menu.administrator.list-airports = Ver aeropuertos
 master.menu.administrator.list-aircrafts = Ver aviones
+master.menu.administrator.list-my-bookings = Ver reservas
 
 # master.menu.provider ########################################################
 
