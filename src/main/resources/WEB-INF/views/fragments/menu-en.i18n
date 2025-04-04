@@ -33,6 +33,7 @@ master.menu.administrator.populate-db-sample = Populate DB (samples)
 master.menu.administrator.shut-system-down = Shut system down
 master.menu.administrator.list-airports = See airports
 master.menu.administrator.list-my-bookings = See bookings
+master.menu.administrator.list-aircrafts = See aircrafts
 
 # master.menu.provider ########################################################
 
@@ -47,6 +48,7 @@ master.menu.consumer.favourite-link = Favourite link
 master.menu.manager = Manager
 master.menu.manager.list-my-flights = See my flights
 master.menu.administrator.list-airlines = See airlines
+
 
 # master.menu.customer ##########################################################
 master.menu.customer = Customer
