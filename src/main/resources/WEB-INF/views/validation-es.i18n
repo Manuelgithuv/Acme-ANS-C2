@@ -25,6 +25,12 @@ acme.validation.text.message= El texto debe tener entre 1 y 255 caracteres
 
 invalid.maintenance.record = Documento de mantenimiento inválido
 
+invalid.experience.years = Los años de experiencia tienen que estar entre 0 y 120 años
+
+invalid.specialization = La especialización tiene que estar entre 1 y 255 caracteres 
+
+invalid.license.number = El número de la licencia debe de seguir la estructura "^[A-Z]{2,3}\\d{6}$", 
+
 aircraft.or.airline.cannot.be.null = El avión y la aerolínea correspondientes no deben ser nulas
 
 flight.manager.is.not.logged-manager = El manager elegido para el vuelo no es el manager autenticado
@@ -62,3 +68,5 @@ technician.maintenance-record.invalid-currency = coste estimado inválido
 technician.maintenance-record.publish.there-are-all-tasks-published = Debe tener al menos una tarea asignada y todas ellas han de estar publicadas
 
 leg.aircraft.is-in-maintenance = El avión seleccionado está en mantenimiento
+
+leg.aircraft.in-use.for.that.period.of.time = El avión seleccionado estará en uso en ese periodo de tiempo

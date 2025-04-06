@@ -13,6 +13,9 @@
 master.menu.any = Any
 
 master.menu.any.public.flights = Published flights
+master.menu.any.public.airport = Airports
+
+master.menu.any.public.maintenanceRecord = Published Maintenance Record
 
 # master.menu.anonymous #######################################################
 

@@ -1,0 +1,6 @@
+administrator.task.list.title = Lista de tareas
+
+administrator.task.list.label.type = Tipo
+administrator.task.list.label.priority = Prioridad
+administrator.task.list.label.estimatedDuration = Duración Estimada
+administrator.task.list.label.description = Descripción

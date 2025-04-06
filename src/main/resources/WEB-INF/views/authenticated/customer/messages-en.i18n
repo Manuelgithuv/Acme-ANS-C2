@@ -1,3 +1,4 @@
+Customer.authenticated.identifierRequired = Customer Identifier required
 
 authenticated.customer.form.title = Customer form
 

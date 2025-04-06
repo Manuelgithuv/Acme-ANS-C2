@@ -40,8 +40,8 @@ public class CustomerIdentifierValidator extends AbstractValidator<ValidCustomer
 		identifierNumber = identifierNumber.trim();
 
 		// Comparar iniciales con el identificador
-		if (identifierNumber.charAt(0) != nameInitial || identifierNumber.charAt(1) != surnameInitial)
-			super.state(context, false, "identifier", "The first two digits are not the initials");
+		if (identifierNumber == null || identifierNumber.isBlank() || identifierNumber.charAt(0) != nameInitial || identifierNumber.charAt(1) != surnameInitial)
+			super.state(context, false, "identifier", "the.first.two.digits.are.not.the.initials");
 
 		return !super.hasErrors(context);
 	}

@@ -25,6 +25,12 @@ invalid.maintenance.record = invalid maintenance record
 
 acme.validation.header.message = The text must be between 1 and 50 characters
 
+invalid.experience.years = The experience years must be between 0 and 120 years
+
+invalid.specialization = Specialization must be between 1 and 255 characters
+
+invalid.license.number = License number must follow the structure "^[A-Z]{2,3}\\d{6}$", 
+
 aircraft.or.airline.cannot.be.null = The airline and aircraft associate can not be null
 
 flight.manager.is.not.logged-manager = The manager chosen for the flight is not the logged manager
@@ -60,3 +66,5 @@ technician.maintenance-record.publish.is-not-in-draft-mode = It is published
 technician.maintenance-record.publish.there-are-all-tasks-published = You must have at least one task assigned and all linked tasks must be published
 
 leg.aircraft.is-in-maintenance = The aircraft selected is in maintenance
+
+leg.aircraft.in-use.for.that.period.of.time = The aircraft select is going to be used in that period of time
