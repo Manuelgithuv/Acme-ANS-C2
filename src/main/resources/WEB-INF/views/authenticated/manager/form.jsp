@@ -3,7 +3,7 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 <acme:form>
-	<acme:input-textbox code="authenticated.manager.form.label.identifierNumber" path="identifierNumber"/>
+	<acme:input-textbox code="authenticated.manager.form.label.identifierNumber" path="identifierNumber" placeholder="manager.identifier-number.placeholder"/>
 	<acme:input-integer code="authenticated.manager.form.label.yearsOfExperience" path="yearsOfExperience"/>
 	<acme:input-moment code="authenticated.manager.form.label.dateOfBirth" path="dateOfBirth"/>
 	<acme:input-url code="authenticated.manager.form.label.picture" path="picture"/>

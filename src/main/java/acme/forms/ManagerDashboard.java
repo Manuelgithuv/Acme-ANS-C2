@@ -23,22 +23,22 @@ public class ManagerDashboard extends AbstractForm {
 
 	private Airport				mostPopularAirport;
 
-	private Airport				lessPopularAirport;
+	private Airport				leastPopularAirport;
 
-	private Integer				numberOfLegsPending;
+	private int					numberOfLegsLanded;
 
-	private Integer				numberOfLegsCancelled;
+	private int					numberOfLegsCancelled;
 
-	private Integer				numberOfLegsDelayed;
+	private int					numberOfLegsDelayed;
 
-	private Integer				numberOfLegsOnTTime;
+	private int					numberOfLegsOnTime;
 
-	private Money				averageCostDesviationOfFlights;
+	private Money				avgDesviationOfCost;
 
-	private Money				minimumCostDesviationOfFlights;
+	private Money				minDesviationOfCost;
 
-	private Money				maximumCostDesviationOfFlights;
+	private Money				maxDesviationOfCost;
 
-	private Double				standardCostDesviationOfFlights;
+	private Money				standardDesviationOfCost;
 
 }

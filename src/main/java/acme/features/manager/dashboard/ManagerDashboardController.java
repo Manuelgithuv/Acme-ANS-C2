@@ -1,3 +1,4 @@
+
 package acme.features.manager.dashboard;
 
 import javax.annotation.PostConstruct;
@@ -11,12 +12,13 @@ import acme.realms.Manager;
 
 @GuiController
 public class ManagerDashboardController extends AbstractGuiController<Manager, ManagerDashboard> {
-	
+
 	@Autowired
-	private ManagerShowDashboardService showService;
-	
+	private ManagerDashboardShowService showService;
+
+
 	@PostConstruct
-	public void initialise() {
+	protected void initialise() {
 		super.addBasicCommand("show", this.showService);
 	}
 
