@@ -1,0 +1,25 @@
+manager.manager-dashboard.form.title = Dashboard
+
+manager.dashboard.form.title.general-indicators = General metrics
+
+manager.dashboard.form.label.rankingPosition = Ranking position
+	
+manager.dashboard.form.label.average-yearsToRetire	= Years to retire
+
+manager.dashboard.form.label.ratioOnTimeLegs	= Ratio on time legs
+
+manager.dashboard.form.label.ratioDelayedLegs	= Ratio Delayed legs
+
+manager.dashboard.form.label.avgDesviationOfCost	= Average desviation cost
+
+manager.dashboard.form.label.minDesviationOfCost	= Min desviation cost
+
+manager.dashboard.form.label.maxDesviationOfCost	= Max desviation cost
+
+manager.dashboard.form.label.standardDesviationOfCost	 = Standard desviation cost 
+
+manager.dashboard.form.label.mostPopularAirport	= Most popular airport 
+
+manager.dashboard.form.label.leastPopularAirport = Least popular airport 
+
+manager.dashboard.form.title.leg-statuses = Leg statuses
