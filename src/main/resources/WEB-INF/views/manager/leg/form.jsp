@@ -4,7 +4,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-textbox code="authenticated.manager.list.label.flightCode" path="flightCode" />
+	<acme:input-textbox code="authenticated.manager.list.label.flightCode" path="flightCode" placeholder="leg.flight-code.placeholder" />
 	<acme:input-moment code="authenticated.manager.list.label.scheduledDeparture" path="scheduledDeparture"/>
 	<acme:input-moment code="authenticated.manager.list.label.scheduledArrival" path="scheduledArrival" />
 	<acme:input-select code="authenticated.manager.list.label.status" path="status" choices="${statuses}"/>
