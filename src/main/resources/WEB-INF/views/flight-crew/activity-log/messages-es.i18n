@@ -1,0 +1,19 @@
+flight-crew.activity-log.list.title = Listado de Registros de Actividad
+flight-crew.activity-log.form.title = Formulario de Registro de Actividad
+
+authenticated.crew.label.registrationMoment = Momento del registro
+authenticated.crew.label.incidentType = Tipo de incidente
+authenticated.crew.label.description = Descripción
+authenticated.crew.label.severity = Severidad
+authenticated.crew.label.leg.flightCode = Tramo de vuelo
+authenticated.crew.label.published = Publicado
+
+crew.registrationMoment.placeholder = AAAA/MM/DD HH:MM
+crew.incidentType.placeholder = Clima
+crew.description.placeholder = Explica aquí qué ha pasado
+crew.severity.placeholder = De 0 a 10
+
+authenticated.crew.button.log.create = Crear
+authenticated.crew.button.log.publish = Publicar
+authenticated.crew.button.log.update = Actualizar
+authenticated.crew.button.log.delete = Borrar

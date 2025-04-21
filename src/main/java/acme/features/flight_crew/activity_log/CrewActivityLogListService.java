@@ -37,7 +37,7 @@ public class CrewActivityLogListService extends AbstractGuiService<FlightCrew, A
 	@Override
 	public void unbind(final ActivityLog log) {
 		Dataset dataset = super.unbindObject(log, new String[] {
-			"registrationMoment", "incidentType", "severity", "leg.flightCode"
+			"registrationMoment", "incidentType", "severity", "leg.flightCode", "published"
 		});
 		super.addPayload(dataset, log, new String[] {
 			"description", "flightAssignment.duty", "leg.departureAirport", "leg.arrivalAirport", "leg.flight", "leg.aircraft", "leg.manager"
