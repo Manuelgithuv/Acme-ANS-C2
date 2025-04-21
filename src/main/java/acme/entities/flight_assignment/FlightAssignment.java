@@ -81,8 +81,8 @@ public class FlightAssignment extends AbstractEntity {
 	// Methods ----------------------------------------------------------------
 
 
-	public Boolean existsConflict(final FlightAssignment newAssignment) {
-		Boolean conflicts;
+	public boolean existsConflict(final FlightAssignment newAssignment) {
+		boolean conflicts;
 
 		// fechas del assignment actual
 		Date departure = this.getLeg().getScheduledDeparture();
