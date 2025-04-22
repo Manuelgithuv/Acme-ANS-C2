@@ -1,8 +1,8 @@
 
 package acme.forms;
 
-
 import acme.client.components.basis.AbstractForm;
+import acme.client.components.datatypes.Money;
 import acme.entities.airport.Airport;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,34 +11,34 @@ import lombok.Setter;
 @Setter
 public class ManagerDashboard extends AbstractForm {
 
-	private static final long		serialVersionUID	= 1L;
+	private static final long	serialVersionUID	= 1L;
 
-	private Integer					rankingPosition;
+	private Integer				rankingPosition;
 
-	private Integer					yearsToRetire;
+	private Integer				yearsToRetire;
 
-	private Double					ratioOnTimeLegs;
+	private Double				ratioOnTimeLegs;
 
-	private Double					ratioDelayedLegs;
+	private Double				ratioDelayedLegs;
 
-	private Airport					mostPopularAirport;
+	private Airport				mostPopularAirport;
 
-	private Airport					lessPopularAirport;
+	private Airport				leastPopularAirport;
 
-	private Integer 				numberOfLegsPending;
-	
-	private Integer 				numberOfLegsCancelled;
-	
-	private Integer 				numberOfLegsDelayed;
-	
-	private Integer 				numberOfLegsOnTTime;
+	private int					numberOfLegsLanded;
 
-	private Double					averageCostDesviationOfFlights;
+	private int					numberOfLegsCancelled;
 
-	private Double					minimumCostDesviationOfFlights;
+	private int					numberOfLegsDelayed;
 
-	private Double					maximumCostDesviationOfFlights;
+	private int					numberOfLegsOnTime;
 
-	private Double					standardCostDesviationOfFlights;
+	private Money				avgDesviationOfCost;
+
+	private Money				minDesviationOfCost;
+
+	private Money				maxDesviationOfCost;
+
+	private Money				standardDesviationOfCost;
 
 }
