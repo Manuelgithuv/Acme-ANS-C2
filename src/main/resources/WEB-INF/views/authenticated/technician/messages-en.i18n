@@ -16,3 +16,5 @@ authenticated.technician.form.label.certifications = Cerifications
 authenticated.technician.form.button.create = Create
 
 authenticated.technician.form.button.update = Update
+
+manager.authenticated.invalidLicenseNumber = There is one technician with the same license number

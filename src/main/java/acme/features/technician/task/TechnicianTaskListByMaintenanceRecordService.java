@@ -10,6 +10,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.maintenanceRecord.MaintenanceRecord;
 import acme.entities.task.Task;
+import acme.features.technician.involves.TechnicianInvolvesRepository;
 import acme.features.technician.maintenanceRecord.TechnicianMaintenanceRecordRepository;
 import acme.realms.Technician;
 
@@ -24,12 +25,24 @@ public class TechnicianTaskListByMaintenanceRecordService extends AbstractGuiSer
 	@Autowired
 	private TechnicianMaintenanceRecordRepository	maintenanceRepository;
 
+	@Autowired
+	private TechnicianInvolvesRepository			involvesRepository;
+
 	//AbstractGuiService interface -------------------------------
 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		int maintenanceRecordId;
+		Technician technician;
+		MaintenanceRecord maintenanceRecord;
+
+		maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
+		maintenanceRecord = this.maintenanceRepository.findMaintenanceRecordById(maintenanceRecordId);
+		technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+
+		if (technician.equals(maintenanceRecord.getTechnician()) || !maintenanceRecord.isDraftMode())
+			super.getResponse().setAuthorised(true);
 	}
 
 	@Override
@@ -64,6 +77,7 @@ public class TechnicianTaskListByMaintenanceRecordService extends AbstractGuiSer
 		isMaintenanceRecordDraftMode = task != null && maintenanceRecord.isDraftMode();
 		super.getResponse().addGlobal("maintenanceRecordId", maintenanceRecordId);
 		super.getResponse().addGlobal("isMaintenanceRecordDraftMode", isMaintenanceRecordDraftMode);
+		super.getResponse().addGlobal("isMaintenanceRecordWithTasks", this.involvesRepository.findAllInvolvesByMaintenanceRecordId(maintenanceRecordId).size() > 0);
 	}
 
 }
