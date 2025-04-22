@@ -52,7 +52,7 @@ public interface LegRepository extends AbstractRepository {
 	@Query("SELECT l FROM Leg l where l.flightCode=:flightCode")
 	Optional<Leg> findByFlightCode(@Param("flightCode") String flightCode);
 
-	@Query("SELECT l FROM Leg l WHERE l.flight.id <> :flightId AND l.aircraft.id=:aircraftID AND l.published=true ORDER BY l.scheduledDeparture ASC")
+	@Query("SELECT l FROM Leg l WHERE l.flight.id <> :flightId AND l.aircraft.id=:aircraftId AND l.published=true ORDER BY l.scheduledDeparture ASC")
 	List<Leg> findLegsByFlightIdNotAndAircraftIdAndPublished(@Param("flightId") int flightId, @Param("aircraftId") int aircraftId);
 
 }
