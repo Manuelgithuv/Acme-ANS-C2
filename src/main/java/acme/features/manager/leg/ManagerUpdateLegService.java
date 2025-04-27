@@ -42,11 +42,26 @@ public class ManagerUpdateLegService extends AbstractGuiService<Manager, Leg> {
 
 		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		int id = super.getRequest().getData("id", int.class);
+		int id = super.getRequest().hasData("id")?super.getRequest().getData("id", int.class):0;
 
 		Leg leg = this.legRepository.findById(id);
+		
+		int aircraftId = super.getRequest().getData("aircraft",int.class);
+		
+		int departureId = super.getRequest().getData("departureAirport",int.class);
+		
+		int arrivalId = super.getRequest().getData("arrivalAirport",int.class);
+		
+		boolean entitiesExist = true;
+		
+		if(aircraftId !=0 && departureId!=0 && arrivalId!=0) {
+			
+			entitiesExist = !super.getRequest().getMethod().equals("GET") && 
+				this.aircraftRepository.findById(aircraftId)!=null && 
+				this.airportRepository.findById(arrivalId)!=null && this.airportRepository.findById(departureId)!=null;
+		}
 
-		status = leg != null && leg.getManager().getId() == managerId && !leg.getFlight().isPublished() && !leg.isPublished();
+		status = leg != null && leg.getManager().getId() == managerId && !leg.getFlight().isPublished() && !leg.isPublished() && entitiesExist;
 
 		super.getResponse().setAuthorised(status);
 	}
