@@ -52,8 +52,29 @@ public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg> {
 		Manager manager;
 
 		manager = (Manager) super.getRequest().getPrincipal().getActiveRealm();
+		
+		boolean entitiesExist = true;
+		
+		if(!super.getRequest().getMethod().equals("GET")) {
+			
+			int aircraftId = super.getRequest().getData("aircraft",int.class);
+			
+			int departureId = super.getRequest().getData("departureAirport",int.class);
+			
+			int arrivalId = super.getRequest().getData("arrivalAirport",int.class);
+			
+			if(aircraftId !=0 && departureId!=0 && arrivalId!=0) {
+			
+				entitiesExist = 
+					this.aircraftRepository.findById(aircraftId)!=null && 
+					this.airportRepository.findById(arrivalId)!=null && this.airportRepository.findById(departureId)!=null;
+			}
+			
+			
+		}
+		
 
-		status = !flight.isPublished() && manager.getId() == flight.getManager().getId();
+		status = !flight.isPublished() && manager.getId() == flight.getManager().getId() && entitiesExist ;
 
 		super.getResponse().setAuthorised(status);
 	}
