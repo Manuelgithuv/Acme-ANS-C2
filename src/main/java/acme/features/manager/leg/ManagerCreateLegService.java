@@ -259,7 +259,7 @@ public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg> {
 
 		SelectChoices departureAirportChoices = SelectChoices.from(airports, "iataCode", leg.getDepartureAirport());
 		SelectChoices arrivalAirportChoices = SelectChoices.from(airports, "iataCode", leg.getArrivalAirport());
-		Aircraft aircraft = leg.getAircraft() == null || leg.getAircraft().getId() == 0 ? null : leg.getAircraft();
+		Aircraft aircraft = leg.getAircraft() == null || leg.getAircraft().getId() == 0 || !aircrafts.contains(leg.getAircraft())? null : leg.getAircraft();
 		SelectChoices aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", aircraft);
 		SelectChoices statusChoices = SelectChoices.from(LegStatus.class, leg.getStatus());
 
