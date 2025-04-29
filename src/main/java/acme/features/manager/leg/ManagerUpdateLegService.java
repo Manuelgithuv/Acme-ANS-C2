@@ -46,11 +46,11 @@ public class ManagerUpdateLegService extends AbstractGuiService<Manager, Leg> {
 
 		Leg leg = this.legRepository.findById(id);
 		
-		int aircraftId = super.getRequest().getData("aircraft",int.class);
+		int aircraftId = super.getRequest().hasData("aircraft")? super.getRequest().getData("aircraft",int.class):0;
 		
-		int departureId = super.getRequest().getData("departureAirport",int.class);
+		int departureId = super.getRequest().hasData("departureAirport")? super.getRequest().getData("departureAirport",int.class):0;
 		
-		int arrivalId = super.getRequest().getData("arrivalAirport",int.class);
+		int arrivalId = super.getRequest().hasData("arrivalAirport")? super.getRequest().getData("arrivalAirport",int.class):0;
 		
 		boolean entitiesExist = true;
 		
@@ -245,7 +245,7 @@ public class ManagerUpdateLegService extends AbstractGuiService<Manager, Leg> {
 
 		SelectChoices departureAirportChoices = SelectChoices.from(airports, "iataCode", leg.getDepartureAirport());
 		SelectChoices arrivalAirportChoices = SelectChoices.from(airports, "iataCode", leg.getArrivalAirport());
-		Aircraft aircraft = leg.getAircraft() == null || leg.getAircraft().getId() == 0 ? null : leg.getAircraft();
+		Aircraft aircraft = leg.getAircraft() == null || leg.getAircraft().getId() == 0 || !aircrafts.contains(leg.getAircraft())? null : leg.getAircraft();
 		SelectChoices aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", aircraft);
 		SelectChoices statusChoices = SelectChoices.from(LegStatus.class, leg.getStatus());
 
