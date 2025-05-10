@@ -6,33 +6,39 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.controllers.AbstractGuiController;
+import acme.client.controllers.GuiController;
 import acme.entities.flight_assignment.FlightAssignment;
 import acme.realms.FlightCrew;
 
-public class CrewAssignmentController extends AbstractGuiController<FlightCrew, FlightAssignment> {
+@GuiController
+public class CrewFlightAssignmentController extends AbstractGuiController<FlightCrew, FlightAssignment> {
 
 	@Autowired
-	private CrewAssignmentListCompletedService	listCompleted;
+	private CrewFlightAssignmentListService				list;
 	@Autowired
-	private CrewAssignmentListPlannedService	listPlanned;
+	private CrewFlightAssignmentListCompletedService	listCompleted;
 	@Autowired
-	private CrewAssignmentShowService			show;
+	private CrewFlightAssignmentListPlannedService		listPlanned;
 	@Autowired
-	private CrewAssignmentCreateService			create;
+	private CrewFlightAssignmentShowService				show;
 	@Autowired
-	private CrewAssignmentUpdateService			update;
+	private CrewFlightAssignmentCreateService			create;
 	@Autowired
-	private CrewAssignmentDeleteService			delete;
+	private CrewFlightAssignmentUpdateService			update;
 	@Autowired
-	private CrewAssignmentPublishService		publish;
+	private CrewFlightAssignmentDeleteService			delete;
+	@Autowired
+	private CrewFlightAssignmentPublishService			publish;
 
 
 	@PostConstruct
 	protected void initialise() {
+		super.addBasicCommand("list", this.list);
 		super.addBasicCommand("show", this.show);
 		super.addBasicCommand("create", this.create);
 		super.addBasicCommand("update", this.update);
 		super.addBasicCommand("delete", this.delete);
+
 		super.addCustomCommand("list-completed", "list", this.listCompleted);
 		super.addCustomCommand("list-planned", "list", this.listPlanned);
 		super.addCustomCommand("publish", "update", this.publish);

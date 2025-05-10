@@ -1,8 +1,6 @@
 
 package acme.features.flight_crew.activity_log;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -10,8 +8,6 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activity_log.ActivityLog;
-import acme.entities.flight_assignment.FlightAssignment;
-import acme.entities.leg.Leg;
 import acme.features.flight_crew.flight_assignment.FlightAssignmentRepository;
 import acme.features.manager.leg.LegRepository;
 import acme.realms.FlightCrew;
@@ -35,8 +31,8 @@ public class CrewActivityLogPublishService extends AbstractGuiService<FlightCrew
 	public void authorise() {
 		int id = super.getRequest().getData("id", Integer.TYPE);
 		ActivityLog log = this.repository.findById(id);
-		FlightCrew loggedCrewMember = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
-		Boolean status = log.getFlightAssignment().getAssignee().getId() == loggedCrewMember.getId() && !log.getPublished();
+		FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
+		Boolean status = log.getFlightAssignment().getAssignee().getId() == user.getId() && !log.getPublished();
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -49,24 +45,13 @@ public class CrewActivityLogPublishService extends AbstractGuiService<FlightCrew
 
 	@Override
 	public void bind(final ActivityLog log) {
-		super.bindObject(log, new String[] {
-			"registrationMoment", "incidentType", "description", "severity"
-		});
-		String legFlightCode = super.getRequest().getData("leg.flightCode", String.class);
-		Optional<Leg> leg = this.legRepository.findByFlightCode(legFlightCode);
-		System.out.println("\n\n#### leg: " + legFlightCode + "\n\n");
-		if (leg.isPresent())
-			log.setLeg(leg.get());
-		else
-			super.state(false, "leg.flightCode", "flight-crew.activity-log.invalidFlightCode", new Object[0]);
-
-		int userAccountId = super.getRequest().getPrincipal().getAccountId();
-		FlightAssignment assignment = this.assignmentRepository.findByAssigneeAndLeg(userAccountId, leg.get().getId());
-		log.setFlightAssignment(assignment);
+		super.bindObject(log);
 	}
 
 	@Override
 	public void validate(final ActivityLog log) {
+		if (!log.getFlightAssignment().getPublished())
+			super.state(false, "*", "flight-crew.activity-log.constraint.assignment-not-published", new Object[0]);
 	}
 
 	@Override
@@ -78,13 +63,11 @@ public class CrewActivityLogPublishService extends AbstractGuiService<FlightCrew
 	@Override
 	public void unbind(final ActivityLog log) {
 		SelectChoices legChoices = SelectChoices.from(this.legRepository.findAllLegs(), "flightCode", log.getLeg());
-		Dataset dataset = super.unbindObject(log, new String[] {
-			"registrationMoment", "incidentType", "description", "severity"
-		});
+		Dataset dataset = super.unbindObject(log, "registrationMoment", "incidentType", "description", "severity");
 		dataset.put("confirmation", false);
 		dataset.put("readonly", false);
 		dataset.put("legs", legChoices);
-		dataset.put("leg.flightCode", legChoices.getSelected().getKey());
+		dataset.put("leg", legChoices.getSelected().getKey());
 		super.getResponse().addData(dataset);
 	}
 }

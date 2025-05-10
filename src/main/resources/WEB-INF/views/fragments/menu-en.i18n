@@ -60,8 +60,9 @@ master.menu.customer.list-my-passengers = See my passengers
 # master.menu.crew ###########################################################
 master.menu.crew = Flight Crew
 master.menu.crew.list-my-logs = See my Activity Logs
-master.menu.crew.list-my-assignments-completed = See my Completed Assignments
-master.menu.crew.list-my-assignments-planned = See my Planned Assignments
+master.menu.crew.list-my-assignments = See my Assignments
+master.menu.crew.list-completed-assignments = See my Completed Assignments
+master.menu.crew.list-planned-assignments = See my Planned Assignments
 
 # master.menu.user-account ####################################################
 

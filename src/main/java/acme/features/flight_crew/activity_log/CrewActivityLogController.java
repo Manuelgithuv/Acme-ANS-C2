@@ -34,6 +34,7 @@ public class CrewActivityLogController extends AbstractGuiController<FlightCrew,
 		super.addBasicCommand("create", this.create);
 		super.addBasicCommand("update", this.update);
 		super.addBasicCommand("delete", this.delete);
+
 		super.addCustomCommand("publish", "update", this.publish);
 	}
 }

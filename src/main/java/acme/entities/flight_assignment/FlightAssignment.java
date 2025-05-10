@@ -82,6 +82,9 @@ public class FlightAssignment extends AbstractEntity {
 
 
 	public boolean existsConflict(final FlightAssignment newAssignment) {
+		if (newAssignment.equals(this))
+			return false;
+
 		boolean conflicts;
 
 		// fechas del assignment actual

@@ -1,7 +1,7 @@
 
 package acme.features.flight_crew.activity_log;
 
-import java.util.Optional;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -39,29 +39,53 @@ public class CrewActivityLogCreateService extends AbstractGuiService<FlightCrew,
 	@Override
 	public void load() {
 		ActivityLog log = new ActivityLog();
+		log.setPublished(false);
 		super.getBuffer().addData(log);
 	}
 
 	@Override
 	public void bind(final ActivityLog log) {
-		super.bindObject(log, new String[] {
-			"registrationMoment", "incidentType", "description", "severity"
-		});
-		String legFlightCode = super.getRequest().getData("leg.flightCode", String.class);
-		Optional<Leg> leg = this.legRepository.findByFlightCode(legFlightCode);
-		if (leg.isPresent())
-			log.setLeg(leg.get());
-		else
-			super.state(false, "leg.flightCode", "flight-crew.activity-log.invalidFlightCode", new Object[0]);
+		FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
 
-		int userAccountId = super.getRequest().getPrincipal().getAccountId();
-		FlightAssignment assignment = this.assignmentRepository.findByAssigneeAndLeg(userAccountId, leg.get().getId());
-		log.setFlightAssignment(assignment);
+		if (log.getLeg() == null) {
+			super.state(false, "leg", "flight-crew.activity-log.constraint.null-leg-value", new Object[0]);
+			return;
+		}
+
+		FlightAssignment assignment = this.assignmentRepository.findByAssigneeAndLeg(user, log.getLeg().getId());
+		if (assignment == null)
+			throw new IllegalArgumentException("Invalid leg identifier, the user is not allowed to log a report of a leg they've not flown");
+
+		super.bindObject(log, "registrationMoment", "incidentType", "description", "severity");
 	}
 
 	@Override
 	public void validate(final ActivityLog log) {
-		// TODO: validate new log
+		Boolean status;
+
+		// comprobamos que ningún atributo sea nulo
+		status = log.getRegistrationMoment() == null || log.getIncidentType() == null || log.getDescription() == null || log.getSeverity() == null || log.getLeg() == null;
+		if (status) {
+			super.state(!status, "*", "flight-crew.activity-log.constraint.null-value", new Object[0]);
+			return;
+		}
+		status = log.getFlightAssignment() == null;
+		if (status) {
+			super.state(!status, "*", "flight-crew.activity-log.constraint.null-assignment", new Object[0]);
+			return;
+		}
+
+		status = log.getRegistrationMoment().before(log.getLeg().getScheduledArrival());
+		if (status) {
+			super.state(!status, "registrationMoment", "flight-crew.activity-log.constraint.log-registered-before-arrival", new Object[0]);
+			return;
+		}
+
+		status = log.getSeverity() < 0 || log.getSeverity() > 10;
+		if (status) {
+			super.state(!status, "severity", "flight-crew.activity-log.constraint.invalid-severity-value", new Object[0]);
+			return;
+		}
 	}
 
 	@Override
@@ -71,13 +95,19 @@ public class CrewActivityLogCreateService extends AbstractGuiService<FlightCrew,
 
 	@Override
 	public void unbind(final ActivityLog log) {
-		SelectChoices legChoices = SelectChoices.from(this.legRepository.findAllLegs(), "flightCode", log.getLeg());
-		Dataset dataset = super.unbindObject(log, new String[] {
-			"registrationMoment", "incidentType", "description", "severity"
-		});
+		Dataset dataset;
+
+		int userAccountId = super.getRequest().getPrincipal().getAccountId();
+		Collection<Leg> legs = this.assignmentRepository.findLegsByCrew(userAccountId);
+		SelectChoices legChoices = SelectChoices.from(legs, "flightCode", log.getLeg());
+
+		dataset = super.unbindObject(log, "registrationMoment", "incidentType", "description", "severity");
+		dataset.put("leg", legChoices.getSelected().getKey());
+		dataset.put("legs", legChoices);
+
 		dataset.put("confirmation", false);
 		dataset.put("readonly", false);
-		dataset.put("legs", legChoices);
+
 		super.getResponse().addData(dataset);
 	}
 }

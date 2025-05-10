@@ -1,4 +1,4 @@
 key,registration_moment,incident_type,description,severity,published,key:flight_assignment,key:leg
 log-01,2022/07/30 04:53,weather,there was a strong wind from the tail what accelerated us a little too much for my liking,3,false,assignment-01,leg-01
 log-02,2022/07/30 04:55,interruptions,"someone knocked on the door and we can't find out who was it, the pilot didn't even notice so it didn't matter all that much",4,false,assignment-02,leg-01
-log-03,2022/07/30 05:00,strong wind,the wind from behind us was really strong,2,false,assignment-02,leg-01
+log-03,2022/07/30 05:00,strong wind,the wind from behind us was really strong,2,false,assignment-03,leg-01

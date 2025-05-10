@@ -5,7 +5,7 @@ authenticated.crew.label.registrationMoment = Momento del registro
 authenticated.crew.label.incidentType = Tipo de incidente
 authenticated.crew.label.description = Descripción
 authenticated.crew.label.severity = Severidad
-authenticated.crew.label.leg.flightCode = Tramo de vuelo
+authenticated.crew.label.leg = Tramo de vuelo
 authenticated.crew.label.published = Publicado
 
 crew.registrationMoment.placeholder = AAAA/MM/DD HH:MM
@@ -17,3 +17,10 @@ authenticated.crew.button.log.create = Crear
 authenticated.crew.button.log.publish = Publicar
 authenticated.crew.button.log.update = Actualizar
 authenticated.crew.button.log.delete = Borrar
+
+flight-crew.activity-log.constraint.null-value = Comprueba que ningún valor dado sea nulo
+flight-crew.activity-log.constraint.assignment-not-published = No se puede publicar, la designación no ha sido publicada
+flight-crew.activity-log.constraint.invalid-flight-code = Tramo de vuelo inválido
+flight-crew.activity-log.constraint.null-leg-value = Selecciona un tramo de vuelo
+flight-crew.activity-log.constraint.log-registered-before-arrival = El registro no puede ser registrado antes de la llegada del avión
+flight-crew.activity-log.constraint.invalid-severity-value = La severidad debe estar entre 0 y 10
