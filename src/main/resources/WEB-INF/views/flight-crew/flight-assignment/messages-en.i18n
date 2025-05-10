@@ -1,0 +1,27 @@
+flight-crew.flight-assignment.list.title = My Assignments
+flight-crew.flight-assignment.list-completed.title = My Completed Assignments
+flight-crew.flight-assignment.list-planned.title = My Planned Assignments
+flight-crew.flight-assignment.form.title = Flight Assignment Form
+
+authenticated.crew.label.duty = Duty
+authenticated.crew.label.lastUpdate = Last update
+authenticated.crew.label.status = Status
+authenticated.crew.label.published = Published
+authenticated.crew.label.remarks = Remarks
+authenticated.crew.label.leg = Leg
+authenticated.crew.label.assignee = Assignee
+
+crew.lastUpdate.placeholder = YYYY/MM/DD HH:MM
+crew.remarks.placeholder = 
+
+authenticated.crew.button.create = Create
+authenticated.crew.button.publish = Publish
+authenticated.crew.button.update = Update
+authenticated.crew.button.delete = Delete
+
+flight-crew.flight-assignment.constraint.assignee-not-available = Assignee not available
+flight-crew.flight-assignment.constraint.conflicting-assignment = Assignee already assigned a flight assignment that conflicts with the new one
+flight-crew.flight-assignment.constraint.already-assigned-pilot = Already a pilot assigned to the leg
+flight-crew.flight-assignment.constraint.already-assigned-co-pilot = Already a co-pilot assigned to the leg
+flight-crew.flight-assignment.constraint.not-authorised = You are not authorised to create this assignment
+flight-crew.flight-assignment.constraint.null-value = Check that none of the values given are null
