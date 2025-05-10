@@ -10,6 +10,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.components.MoneyService;
+import acme.datatypes.AircraftStatus;
 import acme.datatypes.MaintenanceRecordStatus;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.maintenanceRecord.MaintenanceRecord;
@@ -98,9 +99,13 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		SelectChoices choices;
 		Collection<Aircraft> aircrafts;
 		SelectChoices aircraft;
+		MaintenanceRecord maintenanceRecord1;
+		int id = super.getRequest().getData("id", int.class);
+
+		maintenanceRecord1 = this.repository.findMaintenanceRecordById(id);
 
 		Dataset dataset;
-		aircrafts = this.repository.findAllAircrafts();
+		aircrafts = this.repository.findAllAircrafts().stream().filter(a -> a.getStatus().equals(AircraftStatus.UNDER_MAINTENANCE) || maintenanceRecord1.getAircraft().getId() == a.getId()).toList();
 		choices = SelectChoices.from(MaintenanceRecordStatus.class, maintenanceRecord.getStatus());
 		aircraft = SelectChoices.from(aircrafts, "id", maintenanceRecord.getAircraft());
 

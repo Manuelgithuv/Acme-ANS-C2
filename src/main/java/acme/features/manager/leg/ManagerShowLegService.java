@@ -40,7 +40,7 @@ public class ManagerShowLegService extends AbstractGuiService<Manager, Leg> {
 
 		Leg leg = this.legRepository.findById(id);
 
-		status = leg.getManager().getId() == managerId;
+		status = leg!=null&& leg.getManager().getId() == managerId;
 
 		super.getResponse().setAuthorised(status);
 
