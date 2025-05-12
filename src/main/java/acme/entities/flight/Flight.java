@@ -5,7 +5,9 @@ import java.util.Date;
 
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.Valid;
 
@@ -26,6 +28,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Table(
+  name = "flight",
+  indexes = {
+    @Index(name = "idx_flight_published", columnList = "published")
+  }
+)
 public class Flight extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
@@ -83,20 +91,36 @@ public class Flight extends AbstractEntity {
 
 	@Transient
 	public String getOriginCity() {
-		LegRepository repository;
+	    LegRepository repository;
 
-		repository = SpringHelper.getBean(LegRepository.class);
+	    repository = SpringHelper.getBean(LegRepository.class);
 
-		return repository.findOriginCity(this.getId()).orElse(null);
+	    // Paso 1: Obtener el valor mínimo de scheduledDeparture
+	    Date minScheduledDeparture = repository.findFirstScheduledDeparture(this.getId()).orElse(null);
+
+	    if (minScheduledDeparture == null) {
+	        return null;
+	    }
+
+	    // Paso 2: Obtener la ciudad correspondiente al valor mínimo
+	    return repository.findCityByFlightIdAndScheduledDeparture(this.getId(), minScheduledDeparture).orElse(null);
 	}
 
 	@Transient
 	public String getDestinationCity() {
-		LegRepository repository;
+	    LegRepository repository;
 
-		repository = SpringHelper.getBean(LegRepository.class);
+	    repository = SpringHelper.getBean(LegRepository.class);
 
-		return repository.findDestinationCity(this.getId()).orElse(null);
+	    // Paso 1: Obtener el valor máximo de scheduledArrival
+	    Date maxScheduledArrival = repository.findLastScheduledArrival(this.getId()).orElse(null);
+
+	    if (maxScheduledArrival == null) {
+	        return null;
+	    }
+
+	    // Paso 2: Obtener la ciudad correspondiente al valor máximo
+	    return repository.findCityByFlightIdAndScheduledArrival(this.getId(), maxScheduledArrival).orElse(null);
 	}
 
 	@Transient

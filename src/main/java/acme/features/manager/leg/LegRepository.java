@@ -29,20 +29,18 @@ public interface LegRepository extends AbstractRepository {
 	Optional<Date> findLastScheduledArrival(@Param("flightId") int flightId);
 
 	@Query("""
-		    SELECT l.departureAirport.city
-		    FROM Leg l
-		    WHERE l.flight.id = :flightId
-		    AND l.scheduledDeparture = (SELECT MIN(l2.scheduledDeparture) FROM Leg l2 WHERE l2.flight.id = :flightId)
-		""")
-	Optional<String> findOriginCity(@Param("flightId") int flightId);
+	    SELECT l.departureAirport.city
+	    FROM Leg l
+	    WHERE l.flight.id = :flightId AND l.scheduledDeparture = :scheduledDeparture
+	""")
+	Optional<String> findCityByFlightIdAndScheduledDeparture(@Param("flightId") int flightId, @Param("scheduledDeparture") Date scheduledDeparture);
 
 	@Query("""
-		    SELECT l.arrivalAirport.city
-		    FROM Leg l
-		    WHERE l.flight.id = :flightId
-		    AND l.scheduledArrival = (SELECT MAX(l2.scheduledArrival) FROM Leg l2 WHERE l2.flight.id = :flightId)
-		""")
-	Optional<String> findDestinationCity(@Param("flightId") int flightId);
+	    SELECT l.arrivalAirport.city
+	    FROM Leg l
+	    WHERE l.flight.id = :flightId AND l.scheduledArrival = :scheduledArrival
+	""")
+	Optional<String> findCityByFlightIdAndScheduledArrival(@Param("flightId") int flightId, @Param("scheduledArrival") Date scheduledArrival);
 
 	@Query("SELECT l from Leg l WHERE l.flight.manager.id =:managerId")
 	List<Leg> findByManagerId(@Param("managerId") int managerId);

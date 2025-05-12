@@ -2,7 +2,8 @@
 package acme.entities.leg;
 
 import java.util.Date;
-
+import javax.persistence.Index;
+import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -29,6 +30,15 @@ import lombok.Setter;
 @ValidHours
 @ValidFlightCode
 @Entity
+@Table(
+	  name = "leg",
+	  indexes = {
+	    @Index(name = "idx_leg_flight_dep", columnList = "flight_id, scheduledDeparture"),
+	    @Index(name = "idx_leg_flight_arr", columnList = "flight_id, scheduledArrival"),
+	    @Index(name = "idx_leg_aircraft_pub_dep", columnList = "aircraft_id, published, scheduledDeparture"),
+	    @Index(name = "idx_leg_flight_code", columnList = "flightCode")
+	  }
+	)
 public class Leg extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
