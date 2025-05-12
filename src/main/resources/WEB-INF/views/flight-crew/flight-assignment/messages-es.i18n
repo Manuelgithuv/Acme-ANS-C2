@@ -1,0 +1,27 @@
+flight-crew.flight-assignment.list.title = Mis Designaciones
+flight-crew.flight-assignment.list-completed.title = Mis Designaciones Completadas
+flight-crew.flight-assignment.list-planned.title = Mis Designaciones Planeadas
+flight-crew.flight-assignment.form.title = Formulario de Designación de Vuelo
+
+authenticated.crew.label.duty = Rol
+authenticated.crew.label.lastUpdate = Última actualización 
+authenticated.crew.label.status = Estatus
+authenticated.crew.label.published = Publicado
+authenticated.crew.label.remarks = Apuntes
+authenticated.crew.label.leg = Tramo de vuelo
+authenticated.crew.label.assignee = Asignado
+
+crew.lastUpdate.placeholder = YYYY/MM/DD HH:MM
+crew.remarks.placeholder = 
+
+authenticated.crew.button.create = Crear
+authenticated.crew.button.publish = Publicar
+authenticated.crew.button.update = Actualizar
+authenticated.crew.button.delete = Borrar
+
+flight-crew.flight-assignment.constraint.assignee-not-available = Miembro de la tripulación no disponible
+flight-crew.flight-assignment.constraint.conflicting-assignment = Miembro de la tripulación con una designación previa conflictiva con la nueva
+flight-crew.flight-assignment.constraint.already-assigned-pilot = Tramo de vuelo con un piloto ya asignado
+flight-crew.flight-assignment.constraint.already-assigned-co-pilot = Tramo de vuelo con un co-piloto ya asignado
+flight-crew.flight-assignment.constraint.not-authorised = No estás autorizado para crear esta designación
+flight-crew.flight-assignment.constraint.null-value = Comprueba que ningún valor dado sea nulo

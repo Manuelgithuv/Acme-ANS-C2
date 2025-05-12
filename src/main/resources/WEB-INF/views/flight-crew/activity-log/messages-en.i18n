@@ -1,0 +1,26 @@
+flight-crew.activity-log.list.title = Activity Log List
+flight-crew.activity-log.form.title = Activity Log Form
+
+authenticated.crew.label.registrationMoment = Registration moment
+authenticated.crew.label.incidentType = Incident type
+authenticated.crew.label.description = Description
+authenticated.crew.label.severity = Severity
+authenticated.crew.label.leg = Leg
+authenticated.crew.label.published = Published
+
+crew.registrationMoment.placeholder = YYYY/MM/DD HH:MM
+crew.incidentType.placeholder = Weather
+crew.description.placeholder = Explain here what happened
+crew.severity.placeholder = From 0 to 10
+
+authenticated.crew.button.create = Create
+authenticated.crew.button.publish = Publish
+authenticated.crew.button.update = Update
+authenticated.crew.button.delete = Delete
+
+flight-crew.activity-log.constraint.null-value = Check that none of the values given are null
+flight-crew.activity-log.constraint.assignment-not-published = Cannot be published, the flight assignment is not published
+flight-crew.activity-log.constraint.invalid-flight-code = Invalid leg
+flight-crew.activity-log.constraint.null-leg-value = Select a leg
+flight-crew.activity-log.constraint.log-registered-before-arrival = The log must be registered after the plane's arrival
+flight-crew.activity-log.constraint.invalid-severity-value = The severity must be between 0 and 10

@@ -60,6 +60,13 @@ master.menu.customer.list-my-bookings = Ver mis reservas
 master.menu.customer.list-my-bookingPassenger = Ver mis Reservas-Pasajero
 master.menu.customer.list-my-passengers = Ver mis pasajeros
 
+# master.menu.crew ###########################################################
+master.menu.crew = Tripulación
+master.menu.crew.list-my-logs = Ver mis Registros de Actividad
+master.menu.crew.list-my-assignments = Ver mis Designaciones
+master.menu.crew.list-completed-assignments= Ver mis Designaciones Completadas
+master.menu.crew.list-planned-assignments = Ver mis Designaciones Futuras
+
 master.menu.user-account = Cuenta
 master.menu.user-account.general-profile = Perfil general
 master.menu.user-account.become-provider = Hacerse proveedor
