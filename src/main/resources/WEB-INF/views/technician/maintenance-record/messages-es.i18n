@@ -23,9 +23,10 @@ technician.maintenance-record.form.label.notes = Notas
 technician.maintenance-record.form.label.aircraft = Avión
 
 technician.maintenance-record.form.error.noStatus = No se ha seleccionado ningún estado.
-technician.maintenance-record.form.error.inspectionDueDate = La fecha y hora de la próxima inspección debe ser posterior al momento actual.
+technician.maintenance-record.form.error.inspectionDueDate = La fecha y hora de la próxima inspección debe ser posterior a la fecha actual.
 technician.maintenance-record.form.error.estimatedCost = El coste estimado debe ser mayor o igual a 0.00, y menor o igual a 1000000.00 .
 technician.maintenance-record.form.error.notes = La longitud máxima de las anotaciones es de 255 caractéres.
 technician.maintenance-record.form.error.aircraft = El avión seleccionado no existe.
 
 acme.validation.length. = El máximo número de caracteres es de 255
+technician.maintenance-record.publish.is-not-aircraft-under-maintenance = El avión ha de estar en mantenimiento para poder ser publicado

@@ -10,6 +10,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.components.MoneyService;
+import acme.datatypes.AircraftStatus;
 import acme.datatypes.MaintenanceRecordStatus;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.involves.Involves;
@@ -97,6 +98,8 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 
 		super.state(maintenanceRecord.isDraftMode(), "*", "technician.maintenance-record.publish.is-not-in-draft-mode");
 
+		super.state(maintenanceRecord.getAircraft().getStatus().equals(AircraftStatus.UNDER_MAINTENANCE), "*", "technician.maintenance-record.publish.is-not-aircraft-under-maintenance");
+
 		super.state(!involvesAsociadas.isEmpty() && todasSonPublicas, "*", "technician.maintenance-record.publish.there-are-all-tasks-published");
 
 		boolean currencyState = maintenanceRecord.getEstimatedCost() != null && this.moneyService.checkContains(maintenanceRecord.getEstimatedCost().getCurrency());
@@ -116,9 +119,13 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		SelectChoices choices;
 		Collection<Aircraft> aircrafts;
 		SelectChoices aircraft;
+		MaintenanceRecord maintenanceRecord1;
+		int id = super.getRequest().getData("id", int.class);
+
+		maintenanceRecord1 = this.repository.findMaintenanceRecordById(id);
 
 		Dataset dataset;
-		aircrafts = this.repository.findAllAircrafts();
+		aircrafts = this.repository.findAllAircrafts().stream().filter(a -> a.getStatus().equals(AircraftStatus.UNDER_MAINTENANCE) || maintenanceRecord1.getAircraft().getId() == a.getId()).toList();
 		choices = SelectChoices.from(MaintenanceRecordStatus.class, maintenanceRecord.getStatus());
 		aircraft = SelectChoices.from(aircrafts, "id", maintenanceRecord.getAircraft());
 

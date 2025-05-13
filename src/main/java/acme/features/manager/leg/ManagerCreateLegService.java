@@ -53,7 +53,22 @@ public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg> {
 
 		manager = (Manager) super.getRequest().getPrincipal().getActiveRealm();
 
-		status = !flight.isPublished() && manager.getId() == flight.getManager().getId();
+		boolean entitiesExist = true;
+
+		if (!super.getRequest().getMethod().equals("GET")) {
+
+			int aircraftId = super.getRequest().getData("aircraft", int.class);
+
+			int departureId = super.getRequest().getData("departureAirport", int.class);
+
+			int arrivalId = super.getRequest().getData("arrivalAirport", int.class);
+
+			if (aircraftId != 0 && departureId != 0 && arrivalId != 0)
+				entitiesExist = this.aircraftRepository.findById(aircraftId) != null && this.airportRepository.findById(arrivalId) != null && this.airportRepository.findById(departureId) != null;
+
+		}
+
+		status = flight != null && flight.getManager().getId() == super.getRequest().getPrincipal().getActiveRealm().getId() && !flight.isPublished() && manager.getId() == flight.getManager().getId() && entitiesExist;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -238,7 +253,7 @@ public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg> {
 
 		SelectChoices departureAirportChoices = SelectChoices.from(airports, "iataCode", leg.getDepartureAirport());
 		SelectChoices arrivalAirportChoices = SelectChoices.from(airports, "iataCode", leg.getArrivalAirport());
-		Aircraft aircraft = leg.getAircraft() == null || leg.getAircraft().getId() == 0 ? null : leg.getAircraft();
+		Aircraft aircraft = leg.getAircraft() == null || leg.getAircraft().getId() == 0 || !aircrafts.contains(leg.getAircraft()) ? null : leg.getAircraft();
 		SelectChoices aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", aircraft);
 		SelectChoices statusChoices = SelectChoices.from(LegStatus.class, leg.getStatus());
 

@@ -42,11 +42,26 @@ public class ManagerPublishLegService extends AbstractGuiService<Manager, Leg> {
 
 		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		int id = super.getRequest().getData("id", int.class);
+		int id = super.getRequest().hasData("id")?super.getRequest().getData("id", int.class):0;
 
 		Leg leg = this.legRepository.findById(id);
+		
+		int aircraftId = super.getRequest().hasData("aircraft")? super.getRequest().getData("aircraft",int.class):0;
+		
+		int departureId = super.getRequest().hasData("departureAirport")? super.getRequest().getData("departureAirport",int.class):0;
+		
+		int arrivalId = super.getRequest().hasData("arrivalAirport")? super.getRequest().getData("arrivalAirport",int.class):0;
+		
+		boolean entitiesExist = true;
+		
+		if(aircraftId !=0 && departureId!=0 && arrivalId!=0) {
+			
+			entitiesExist = !super.getRequest().getMethod().equals("GET") && 
+				this.aircraftRepository.findById(aircraftId)!=null && 
+				this.airportRepository.findById(arrivalId)!=null && this.airportRepository.findById(departureId)!=null;
+		}
 
-		status = leg != null && leg.getManager().getId() == managerId && !leg.getFlight().isPublished() && !leg.isPublished();
+		status = leg != null && leg.getManager().getId() == managerId && !leg.getFlight().isPublished() && !leg.isPublished() && entitiesExist;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -231,7 +246,7 @@ public class ManagerPublishLegService extends AbstractGuiService<Manager, Leg> {
 
 		SelectChoices departureAirportChoices = SelectChoices.from(airports, "iataCode", leg.getDepartureAirport());
 		SelectChoices arrivalAirportChoices = SelectChoices.from(airports, "iataCode", leg.getArrivalAirport());
-		Aircraft aircraft = leg.getAircraft() == null || leg.getAircraft().getId() == 0 ? null : leg.getAircraft();
+		Aircraft aircraft = leg.getAircraft() == null || leg.getAircraft().getId() == 0|| !aircrafts.contains(leg.getAircraft()) ? null : leg.getAircraft();
 		SelectChoices aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", aircraft);
 		SelectChoices statusChoices = SelectChoices.from(LegStatus.class, leg.getStatus());
 
