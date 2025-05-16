@@ -23,7 +23,6 @@
 	<version> D05</version>
 	<artifactId>Acme-ANS</artifactId>
 	<packaging>war</packaging>
-	
 	<parent>
 		<groupId>Acme</groupId>
 		<artifactId>pom</artifactId>
