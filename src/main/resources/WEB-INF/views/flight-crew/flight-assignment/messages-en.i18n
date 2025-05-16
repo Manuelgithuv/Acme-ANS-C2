@@ -10,6 +10,8 @@ authenticated.crew.label.published = Published
 authenticated.crew.label.remarks = Remarks
 authenticated.crew.label.leg = Leg
 authenticated.crew.label.assignee = Assignee
+authenticated.crew.label.departure = Departure
+authenticated.crew.label.arrival = Arrival
 
 crew.lastUpdate.placeholder = YYYY/MM/DD HH:MM
 crew.remarks.placeholder = 

@@ -39,17 +39,15 @@ public class CrewFlightAssignmentUpdateService extends AbstractGuiService<Flight
 		boolean isAuthorised;
 
 		int id = super.getRequest().getData("id", Integer.TYPE);
-		FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
 		FlightAssignment assignment = this.repository.findById(id);
-
-		Collection<FlightAssignment> allAssignments = this.repository.findAllFlightAssignment();
-		List<Leg> legsAsLeadAttendant = allAssignments.stream() //
-			.filter(a -> a.getAssignee().equals(user)) //
+		FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
+		FlightCrew leadAttendant = this.repository.findByLegId(assignment.getLeg().getId()).stream() //
 			.filter(a -> a.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) //
-			.map(a -> a.getLeg()) //
-			.toList();
+			.map(a -> a.getAssignee()) //
+			.toList().get(0);
 
-		isAuthorised = legsAsLeadAttendant.contains(assignment.getLeg());
+		isAuthorised = leadAttendant.equals(user) //
+			&& !assignment.getPublished();
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}

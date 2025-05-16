@@ -15,31 +15,28 @@ import acme.realms.FlightCrew;
 @Repository
 public interface FlightAssignmentRepository extends AbstractRepository {
 
-	@Query("select f from FlightAssignment f where f.assignee.id = :flightCrewMemberId")
+	@Query("select fa from FlightAssignment fa where fa.assignee.id = :flightCrewMemberId")
 	Collection<FlightAssignment> findFlightAssignmentByAssigneeId(@Param("flightCrewMemberId") int flightCrewMemberId);
 
-	@Query("select f from FlightAssignment f")
+	@Query("select fa from FlightAssignment fa")
 	Collection<FlightAssignment> findAllFlightAssignment();
 
-	@Query("select f from FlightAssignment f where leg.id = :legId")
+	@Query("select fa from FlightAssignment fa where leg.id = :legId")
 	Collection<FlightAssignment> findByLegId(@Param("legId") int legId);
 
-	@Query("select f from FlightAssignment f where f.assignee = :flightCrewMember and f.leg.id = :legId")
+	@Query("select fa from FlightAssignment fa where fa.assignee = :flightCrewMember and fa.leg.id = :legId")
 	FlightAssignment findByAssigneeAndLeg(@Param("flightCrewMember") FlightCrew flightCrewMember, @Param("legId") int legId);
 
-	@Query("select f from FlightAssignment f where f.id = :flightAssignmentId")
+	@Query("select fa from FlightAssignment fa where fa.id = :flightAssignmentId")
 	FlightAssignment findById(@Param("flightAssignmentId") int flightAssignmentId);
 
-	@Query("select f from FlightAssignment f where f.published = true")
+	@Query("select fa from FlightAssignment fa where fa.published = true")
 	Collection<FlightAssignment> findPublicFlightAssignments();
 
-	@Query("select f.leg from FlightAssignment f where f.assignee.userAccount.id = :flightCrewMemberId")
+	@Query("select fa.leg from FlightAssignment fa where fa.assignee.userAccount.id = :flightCrewMemberId")
 	Collection<Leg> findLegsByCrew(@Param("flightCrewMemberId") int flightCrewMemberId);
 
-	//@Query("select f.leg from FlightAssignment f where f.assignee.userAccount.id = :flightCrewMemberId and f.duty = 'LEAD_ATTENDANT'")
-	//Collection<Leg> findLegsAsLeadAttendant(@Param("flightCrewMemberId") int flightCrewMemberId);
-
-	//@Query("select f from FlightAssignment f where f.leg in legsAsLeadAttendant and f.duty != 'LEAD_ATTENDANT'")
-	//Collection<FlightAssignment> findAssignmentsAsLeadAttendant(@Param("legsAsLeadAttendant") Collection<Leg> legsAsLeadAttendant);
+	@Query("select fa.assignee from FlightAssignment fa where fa.leg.id = :legId and fa.duty = 'LEAD_ATTENDANT'")
+	FlightCrew findLeadAttendantByLeg(@Param("legId") int legId);
 
 }
