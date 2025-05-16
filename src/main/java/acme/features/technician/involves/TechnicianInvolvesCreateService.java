@@ -58,16 +58,29 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 	public void bind(final Involves involves) {
 		int maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
 		MaintenanceRecord maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
+		int taskId = super.getRequest().getData("task", int.class);
+		Task task = this.taskRepository.findTaskById(taskId);
 
 		involves.setMaintenanceRecord(maintenanceRecord);
-		super.bindObject(involves, "task");
+		involves.setTask(task);
 	}
 
 	@Override
 	public void validate(final Involves involves) {
 		int taskId = super.getRequest().getData("task", int.class);
 		Task task = this.taskRepository.findTaskById(taskId);
-		super.state(task != null && !task.isDraftMode() || task.getTechnician().getId() == super.getRequest().getPrincipal().getActiveRealm().getId(), "*", "technician.involves.form.error.invalid-task");
+		if (task != null)
+			super.state(!task.isDraftMode() || task.getTechnician().getId() == super.getRequest().getPrincipal().getActiveRealm().getId(), "*", "technician.involves.form.error.invalid-task");
+
+		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+		int maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
+		MaintenanceRecord maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
+
+		Collection<Task> tasks = this.repository.findValidTasksToAdd(maintenanceRecord, technician);
+
+		if (task != null)
+			super.state(tasks.stream().anyMatch(e -> e.equals(task)), "task", "technician.involves.form.error.not.valid.task");
+
 	}
 
 	@Override
@@ -89,7 +102,7 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 
 		tasks = this.repository.findValidTasksToAdd(maintenanceRecord, technician);
-		choices = SelectChoices.from(tasks, "id", involves.getTask());
+		choices = SelectChoices.from(tasks, "id", involves.getTask() == null || involves.getTask().getId() == 0 || !tasks.contains(involves.getTask()) ? null : involves.getTask());
 
 		dataset = super.unbindObject(involves, "maintenanceRecord");
 		dataset.put("maintenanceRecordId", involves.getMaintenanceRecord().getId());
