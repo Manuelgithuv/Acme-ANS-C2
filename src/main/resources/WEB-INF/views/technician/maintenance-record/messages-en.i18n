@@ -32,3 +32,5 @@ technician.maintenance-record.invalid-currency = invalid cost
 {acme.validation.text.message} = The maximum length of notes is 255 characters
 acme.validation.length. = The maximum length of notes is 255 characters
 technician.maintenance-record.publish.is-not-aircraft-under-maintenance = The aircraft must be under maintenance in order for the maintenance document to be published
+
+technician.maintenance-record.form.error.not.aircraft.permitted = This aircraft is not under maintenance

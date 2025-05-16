@@ -30,3 +30,4 @@ technician.maintenance-record.form.error.aircraft = El avión seleccionado no ex
 
 acme.validation.length. = El máximo número de caracteres es de 255
 technician.maintenance-record.publish.is-not-aircraft-under-maintenance = El avión ha de estar en mantenimiento para poder ser publicado
+technician.maintenance-record.form.error.not.aircraft.permitted = Este avión no esta en mantenimiento

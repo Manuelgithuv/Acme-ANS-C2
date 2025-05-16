@@ -12,6 +12,7 @@ import acme.client.services.GuiService;
 import acme.entities.involves.Involves;
 import acme.entities.maintenanceRecord.MaintenanceRecord;
 import acme.entities.task.Task;
+import acme.features.technician.task.TechnicianTaskRepository;
 import acme.realms.Technician;
 
 @GuiService
@@ -20,7 +21,10 @@ public class TechnicianInvolvesDeleteService extends AbstractGuiService<Technici
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private TechnicianInvolvesRepository repository;
+	private TechnicianInvolvesRepository	repository;
+
+	@Autowired
+	private TechnicianTaskRepository		taskRepository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -60,13 +64,24 @@ public class TechnicianInvolvesDeleteService extends AbstractGuiService<Technici
 	@Override
 	public void validate(final Involves involves) {
 
-		Task task = super.getRequest().getData("task", Task.class);
+		int taskId = super.getRequest().getData("task", int.class);
+
+		Task task = this.taskRepository.findTaskById(taskId);
+
 		super.state(task != null, "task", "technician.involves.form.error.no-task-to-unlink");
+
+		int maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
+		MaintenanceRecord maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
+
+		Collection<Task> tasks = this.repository.findValidTasksToRemove(maintenanceRecord);
+
+		super.state(tasks.stream().anyMatch(e -> e.equals(task)), "task", "technician.involves.form.error.not.valid.task");
 	}
 
 	@Override
 	public void perform(final Involves involves) {
-		Task task = super.getRequest().getData("task", Task.class);
+		int taskId = super.getRequest().getData("task", int.class);
+		Task task = this.taskRepository.findTaskById(taskId);
 		int maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
 		MaintenanceRecord maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 
@@ -86,7 +101,7 @@ public class TechnicianInvolvesDeleteService extends AbstractGuiService<Technici
 		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 
 		tasks = this.repository.findValidTasksToRemove(maintenanceRecord);
-		choices = SelectChoices.from(tasks, "id", involves.getTask());
+		choices = SelectChoices.from(tasks, "id", involves.getTask() == null || involves.getTask().getId() == 0 || !tasks.contains(involves.getTask()) ? null : involves.getTask());
 
 		dataset = super.unbindObject(involves, "maintenanceRecord");
 		dataset.put("maintenanceRecordId", involves.getMaintenanceRecord().getId());
