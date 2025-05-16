@@ -1,9 +1,6 @@
 
 package acme.features.flight_crew.flight_assignment;
 
-import java.util.Collection;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -11,7 +8,6 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.datatypes.CrewDuty;
 import acme.entities.flight_assignment.FlightAssignment;
-import acme.entities.leg.Leg;
 import acme.realms.FlightCrew;
 
 @GuiService
@@ -31,14 +27,14 @@ public class CrewFlightAssignmentPublishService extends AbstractGuiService<Fligh
 
 		int id = super.getRequest().getData("id", Integer.TYPE);
 		FlightAssignment assignment = this.repository.findById(id);
-
-		Collection<FlightAssignment> allAssignments = this.repository.findAllFlightAssignment();
-		List<Leg> legsAsLeadAttendant = allAssignments.stream() //
+		FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
+		FlightCrew leadAttendant = this.repository.findByLegId(assignment.getLeg().getId()).stream() //
 			.filter(a -> a.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) //
-			.map(a -> a.getLeg()) //
-			.toList();
+			.map(a -> a.getAssignee()) //
+			.toList().get(0);
 
-		isAuthorised = legsAsLeadAttendant.contains(assignment.getLeg());
+		isAuthorised = leadAttendant.equals(user) //
+			&& !assignment.getLeg().isPublished();
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}

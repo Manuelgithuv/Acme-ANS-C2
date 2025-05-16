@@ -64,6 +64,8 @@ public class CrewFlightAssignmentListCompletedService extends AbstractGuiService
 		dataset = super.unbindObject(assignment, "duty", "lastUpdate", "status", "published");
 		dataset.put("leg", assignment.getLeg().getFlightCode());
 		dataset.put("assignee", assignment.getAssignee().getIdentifier());
+		dataset.put("departure", assignment.getLeg().getScheduledDeparture());
+		dataset.put("arrival", assignment.getLeg().getScheduledArrival());
 
 		super.addPayload(dataset, assignment, "remarks");
 		super.getResponse().addData(dataset);

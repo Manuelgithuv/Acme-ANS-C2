@@ -2,7 +2,6 @@
 package acme.features.flight_crew.flight_assignment;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +11,6 @@ import acme.client.services.GuiService;
 import acme.datatypes.CrewDuty;
 import acme.entities.activity_log.ActivityLog;
 import acme.entities.flight_assignment.FlightAssignment;
-import acme.entities.leg.Leg;
 import acme.features.flight_crew.activity_log.ActivityLogRepository;
 import acme.realms.FlightCrew;
 
@@ -35,14 +33,14 @@ public class CrewFlightAssignmentDeleteService extends AbstractGuiService<Flight
 
 		int id = super.getRequest().getData("id", Integer.TYPE);
 		FlightAssignment assignment = this.repository.findById(id);
-
-		Collection<FlightAssignment> allAssignments = this.repository.findAllFlightAssignment();
-		List<Leg> legsAsLeadAttendant = allAssignments.stream() //
+		FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
+		FlightCrew leadAttendant = this.repository.findByLegId(assignment.getLeg().getId()).stream() //
 			.filter(a -> a.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) //
-			.map(a -> a.getLeg()) //
-			.toList();
+			.map(a -> a.getAssignee()) //
+			.toList().get(0);
 
-		isAuthorised = legsAsLeadAttendant.contains(assignment.getLeg());
+		isAuthorised = leadAttendant.equals(user) //
+			&& !assignment.getPublished();
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}
