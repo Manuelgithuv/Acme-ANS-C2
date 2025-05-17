@@ -17,6 +17,9 @@ public interface AircraftRepository extends AbstractRepository {
 	@Query("SELECT a FROM Aircraft a WHERE a.status='ACTIVE_SERVICE'")
 	Collection<Aircraft> findAllActiveAircrafts();
 
+	@Query("SELECT a FROM Aircraft a ")
+	Collection<Aircraft> findAllAircrafts();
+
 	@Query("SELECT a FROM Aircraft a WHERE a.id=:aircraftId")
 	Aircraft findById(@Param("aircraftId") int aircraftId);
 
