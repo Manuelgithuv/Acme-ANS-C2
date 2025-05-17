@@ -1,11 +1,11 @@
 key,name,pictureLink,averageDwellTime,promotionCode,discount,key:airport
 service-01,L,http://lorem.com/ipsum,1.2,ABCD-25,EUR 500000.00,airport-01
-service-02,Lo,ftp://a.b,2.2,ACCD-25,USD 0.00,airport-02
+service-02,Lo,http://lorem.com/ipsum,2.2,ACCD-25,USD 0.00,airport-02
 service-03,"Lorem ipsum dolor sit amet, consectetur adipiscin",http://www.lorem-ipsum.org/dolor/sit.html,0.1,AAAA-25,GBP 0.01,airport-01
 service-04,"Lorem ipsum dolor sit amet, consectetur adipiscing",http://example.org?a&b,1.01,AAAB-25,EUR 999999.99,airport-01
 service-05,โลเร็ม อิปซัม,http://example.org/a/b,20.00,null,null,airport-01
 service-06,لوريم إيبسوم,http://example.org?a=1&b=2,999.0,ZZZY-25,GBP1000000.00,airport-01
 service-07,洛伦·伊普森,http://example.org/,1000.0,ZZZZ-25,EUR 1000.00,airport-01
-service-08,<marquee>Hacked</marquee>,ftp://a,1.00,AEXY-25,GBP 999999.99,airport-03
-service-09,<script>alert(‘Hacked!’);</script>,ftp://www.lorem-ipsum.org,12.00,BGDA-25,null,airport-04
-service-10,' or 'A' = 'A,ftp://a.b,48.00,AEIO-25,"",airport-02
+service-08,<marquee>Hacked</marquee>,http://example.org?a&b,1.00,AEXY-25,GBP 999999.99,airport-03
+service-09,<script>alert(‘Hacked!’);</script>,http://example.org?a=1&b=2,12.00,BGDA-25,null,airport-04
+service-10,' or 'A' = 'A,http://www.lorem-ipsum.org/dolor/sit.html,48.00,AEIO-25,"",airport-02

@@ -1,6 +1,7 @@
 
 package acme.features.manager.leg;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -28,20 +29,18 @@ public interface LegRepository extends AbstractRepository {
 	Optional<Date> findLastScheduledArrival(@Param("flightId") int flightId);
 
 	@Query("""
-		    SELECT l.departureAirport.city
-		    FROM Leg l
-		    WHERE l.flight.id = :flightId
-		    AND l.scheduledDeparture = (SELECT MIN(l2.scheduledDeparture) FROM Leg l2 WHERE l2.flight.id = :flightId)
-		""")
-	Optional<String> findOriginCity(@Param("flightId") int flightId);
+	    SELECT l.departureAirport.city
+	    FROM Leg l
+	    WHERE l.flight.id = :flightId AND l.scheduledDeparture = :scheduledDeparture
+	""")
+	Optional<String> findCityByFlightIdAndScheduledDeparture(@Param("flightId") int flightId, @Param("scheduledDeparture") Date scheduledDeparture);
 
 	@Query("""
-		    SELECT l.arrivalAirport.city
-		    FROM Leg l
-		    WHERE l.flight.id = :flightId
-		    AND l.scheduledArrival = (SELECT MAX(l2.scheduledArrival) FROM Leg l2 WHERE l2.flight.id = :flightId)
-		""")
-	Optional<String> findDestinationCity(@Param("flightId") int flightId);
+	    SELECT l.arrivalAirport.city
+	    FROM Leg l
+	    WHERE l.flight.id = :flightId AND l.scheduledArrival = :scheduledArrival
+	""")
+	Optional<String> findCityByFlightIdAndScheduledArrival(@Param("flightId") int flightId, @Param("scheduledArrival") Date scheduledArrival);
 
 	@Query("SELECT l from Leg l WHERE l.flight.manager.id =:managerId")
 	List<Leg> findByManagerId(@Param("managerId") int managerId);
@@ -52,7 +51,13 @@ public interface LegRepository extends AbstractRepository {
 	@Query("SELECT l FROM Leg l where l.flightCode=:flightCode")
 	Optional<Leg> findByFlightCode(@Param("flightCode") String flightCode);
 
-	@Query("SELECT l FROM Leg l WHERE l.flight.id <> :flightId ORDER BY l.scheduledDeparture ASC")
-	List<Leg> findByFlightIdNot(@Param("flightId") int flightId);
+	@Query("SELECT l FROM Leg l WHERE l.flight.id <> :flightId AND l.aircraft.id=:aircraftId AND l.published=true ORDER BY l.scheduledDeparture ASC")
+	List<Leg> findLegsByFlightIdNotAndAircraftIdAndPublished(@Param("flightId") int flightId, @Param("aircraftId") int aircraftId);
+
+	@Query("select l from Leg l")
+	Collection<Leg> findAllLegs();
+
+	//@Query("select l from Leg  l where l.iataCode ~ :airlineCode")
+	//Collection<Leg> findAllLegsByAirline(@Param("airlineCode") String airlineCode);
 
 }

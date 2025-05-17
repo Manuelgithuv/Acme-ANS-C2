@@ -1,0 +1,25 @@
+manager.manager-dashboard.form.title = Dashboard
+
+manager.dashboard.form.title.general-indicators = Métricas generales
+
+manager.dashboard.form.label.rankingPosition = Posición en el ranking
+	
+manager.dashboard.form.label.average-yearsToRetire	= Años para retirarse 
+
+manager.dashboard.form.label.ratioOnTimeLegs	= Ratio de tramos "ON_TIME"
+
+manager.dashboard.form.label.ratioDelayedLegs	= Ratio de tramos "DELAYED"
+
+manager.dashboard.form.label.avgDesviationOfCost	= Media de desviación del coste
+
+manager.dashboard.form.label.minDesviationOfCost	= Mínima desviación del coste
+
+manager.dashboard.form.label.maxDesviationOfCost	= Máxima desviación del coste
+
+manager.dashboard.form.label.standardDesviationOfCost	 = Desviación estandar del coste
+
+manager.dashboard.form.label.mostPopularAirport	= Aeropuerto más popular 
+
+manager.dashboard.form.label.leastPopularAirport = Aeropuerto menos popular 
+
+manager.dashboard.form.title.leg-statuses = Estados de los tramos

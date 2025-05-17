@@ -1,0 +1,6 @@
+key,registration_moment,incident_type,description,severity,published,key:flight_assignment,key:leg
+log-01,2022/01/01 18:00,weather,"аз дум шамоли сахте буд, ки моро ба писанди ман андаке тезонд",10,false,assignment-01,leg-10
+log-02,2025/01/01 00:00,<marquee>interruptions</marquee>,"someone knocked on the door and we can't find out who was it, the pilot didn't even notice so it didn't matter all that much. I then had to go to the bathroom so i asked the lead attendant and she didn't know what it may have been either so no harm done.",5,false,assignment-02,leg-10
+log-03,2022/01/01 17:00,<script>alert('strong wind');</script>,رياح قوية,9,false,assignment-03,leg-10
+log-04,2022/01/01 17:01,我丟了一個按鈕,' or 'A' = 'A',1,false,assignment-01,leg-10
+log-05,2022/01/01 18:00,' or 'A' = 'A',A,0,false,assignment-01,leg-10

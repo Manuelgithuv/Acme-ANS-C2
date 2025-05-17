@@ -16,4 +16,6 @@ technician.involves.list.label.task = Tarea
 
 technician.involves.list.button.create = Crear
 
-technician.involves.form.error.no-task-to-unlink = No puede ser nulo. 
+technician.involves.form.error.no-task-to-unlink = No puede ser nulo
+technician.involves.form.error.not.valid.task = Esta tarea no es válida
+technician.involves.form.error.invalid-task = Tarea inválida

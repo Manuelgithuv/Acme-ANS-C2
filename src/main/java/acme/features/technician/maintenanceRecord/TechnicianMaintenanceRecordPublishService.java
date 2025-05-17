@@ -2,6 +2,7 @@
 package acme.features.technician.maintenanceRecord;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,6 +11,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.components.MoneyService;
+import acme.datatypes.AircraftStatus;
 import acme.datatypes.MaintenanceRecordStatus;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.involves.Involves;
@@ -97,12 +99,29 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 
 		super.state(maintenanceRecord.isDraftMode(), "*", "technician.maintenance-record.publish.is-not-in-draft-mode");
 
+		super.state(maintenanceRecord.getAircraft().getStatus().equals(AircraftStatus.UNDER_MAINTENANCE), "*", "technician.maintenance-record.publish.is-not-aircraft-under-maintenance");
+
 		super.state(!involvesAsociadas.isEmpty() && todasSonPublicas, "*", "technician.maintenance-record.publish.there-are-all-tasks-published");
 
 		boolean currencyState = maintenanceRecord.getEstimatedCost() != null && this.moneyService.checkContains(maintenanceRecord.getEstimatedCost().getCurrency());
 
 		if (!currencyState)
 			super.state(currencyState, "estimatedCost", "manager.flight.invalid-currency");
+
+		int id = super.getRequest().getData("id", int.class);
+
+		MaintenanceRecord maintenanceRecord1 = this.repository.findMaintenanceRecordById(id);
+
+		List<Aircraft> aircrafts = this.repository.findAircraftsUnderMaintenanceOrSpecific(AircraftStatus.UNDER_MAINTENANCE, maintenanceRecord1.getAircraft().getId());
+		boolean aircraftValido = false;
+
+		if (maintenanceRecord.getAircraft() != null)
+			for (int i = 0; i < aircrafts.size() && !aircraftValido; i++)
+				if (aircrafts.get(i).getId() == maintenanceRecord.getAircraft().getId())
+					aircraftValido = true;
+
+		if (!this.getBuffer().getErrors().hasErrors("aircraft"))
+			super.state(aircraftValido, "aircraft", "technician.maintenance-record.form.error.not.aircraft.permitted", maintenanceRecord);
 	}
 
 	@Override
@@ -116,11 +135,15 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		SelectChoices choices;
 		Collection<Aircraft> aircrafts;
 		SelectChoices aircraft;
+		MaintenanceRecord maintenanceRecord1;
+		int id = super.getRequest().getData("id", int.class);
+
+		maintenanceRecord1 = this.repository.findMaintenanceRecordById(id);
 
 		Dataset dataset;
-		aircrafts = this.repository.findAllAircrafts();
+		aircrafts = this.repository.findAircraftsUnderMaintenanceOrSpecific(AircraftStatus.UNDER_MAINTENANCE, maintenanceRecord1.getAircraft().getId());
 		choices = SelectChoices.from(MaintenanceRecordStatus.class, maintenanceRecord.getStatus());
-		aircraft = SelectChoices.from(aircrafts, "id", maintenanceRecord.getAircraft());
+		aircraft = SelectChoices.from(aircrafts, "id", maintenanceRecord.getAircraft() == null || maintenanceRecord.getAircraft().getId() == 0 || !aircrafts.contains(maintenanceRecord.getAircraft()) ? null : maintenanceRecord.getAircraft());
 
 		dataset = super.unbindObject(maintenanceRecord, "status", "inspectionDueDate", "estimatedCost", "notes", "aircraft", "draftMode");
 

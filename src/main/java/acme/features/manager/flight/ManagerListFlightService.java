@@ -20,15 +20,8 @@ public class ManagerListFlightService extends AbstractGuiService<Manager, Flight
 
 	@Override
 	public void authorise() {
-		boolean status;
 
-		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-
-		List<Flight> flights = this.flightRepository.findFlightsByManagerId(managerId);
-
-		status = flights.stream().allMatch(l -> l.getManager().getId() == managerId);
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override

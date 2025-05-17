@@ -61,11 +61,20 @@
 		</acme:menu-option>
 		<acme:menu-option code="master.menu.manager" access="hasRealm('Manager')">
 			<acme:menu-suboption code="master.menu.manager.list-my-flights" action="/manager/flight/list"/>
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.manager.show-dashboard" action="/manager/manager-dashboard/show"/>
+			
 		</acme:menu-option>
 		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')">
 			<acme:menu-suboption code="master.menu.customer.list-my-bookings" action="/customer/booking/list"/>
 			<acme:menu-suboption code="master.menu.customer.list-my-bookingPassenger" action="/customer/booking-passenger/list"/>
 			<acme:menu-suboption code="master.menu.customer.list-my-passengers" action="/customer/passenger/list"/>
+		</acme:menu-option>
+		<acme:menu-option code="master.menu.crew" access="hasRealm('FlightCrew')">
+			<acme:menu-suboption code="master.menu.crew.list-my-logs" action="/flight-crew/activity-log/list"/>
+			<acme:menu-suboption code="master.menu.crew.list-my-assignments" action="/flight-crew/flight-assignment/list"/>
+			<acme:menu-suboption code="master.menu.crew.list-completed-assignments" action="/flight-crew/flight-assignment/list-completed"/>
+			<acme:menu-suboption code="master.menu.crew.list-planned-assignments" action="/flight-crew/flight-assignment/list-planned"/>
 		</acme:menu-option>
 		
 	</acme:menu-left>

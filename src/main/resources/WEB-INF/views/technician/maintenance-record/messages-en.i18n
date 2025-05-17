@@ -23,7 +23,7 @@ technician.maintenance-record.form.label.notes = Notes
 technician.maintenance-record.form.label.aircraft = Aircraft
 
 technician.maintenance-record.form.error.noStatus = Any status has been selected.
-technician.maintenance-record.form.error.inspectionDueDate =  The date and time of the next inspection must be after the current moment.
+technician.maintenance-record.form.error.inspectionDueDate =  The date and time of the next inspection must be after the current date.
 technician.maintenance-record.form.error.estimatedCost = The estimated cost must be greater than or equal to 0.00, and less than or equal to 1000000.00
 technician.maintenance-record.form.error.notes = The maximum length of notes is 255 characters
 technician.maintenance-record.form.error.aircraft = The selected aircraft does not exist
@@ -31,3 +31,6 @@ technician.maintenance-record.form.error.aircraft = The selected aircraft does n
 technician.maintenance-record.invalid-currency = invalid cost
 {acme.validation.text.message} = The maximum length of notes is 255 characters
 acme.validation.length. = The maximum length of notes is 255 characters
+technician.maintenance-record.publish.is-not-aircraft-under-maintenance = The aircraft must be under maintenance in order for the maintenance document to be published
+
+technician.maintenance-record.form.error.not.aircraft.permitted = This aircraft is not under maintenance

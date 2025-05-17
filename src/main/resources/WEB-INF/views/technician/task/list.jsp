@@ -19,5 +19,7 @@
 <jstl:if test="${_command != 'list' && isMaintenanceRecordDraftMode == true}">
 	<acme:button code="technician.task.list.button.createTask" action="/technician/task/createByMaintenanceRecord?maintenanceRecordId=${maintenanceRecordId}"/>
 	<acme:button code="technician.task.list.button.addTask" action="/technician/involves/create?maintenanceRecordId=${maintenanceRecordId}"/>
+	<jstl:if test="${isMaintenanceRecordWithTasks == true}">
 	<acme:button code="technician.task.list.button.removeTask" action="/technician/involves/delete?maintenanceRecordId=${maintenanceRecordId}"/>
+	</jstl:if>
 </jstl:if>
