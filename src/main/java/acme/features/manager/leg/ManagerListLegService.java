@@ -34,9 +34,7 @@ public class ManagerListLegService extends AbstractGuiService<Manager, Leg> {
 
 		Flight flight = this.flightRepository.findById(flightId);
 
-		List<Leg> legs = this.legRepository.findDistinctByFlight(flightId);
-
-		status = flight != null && flight.getManager().getId() == managerId && legs.stream().allMatch(l -> l.getManager().getId() == managerId && l.getFlight().getId() == flightId);
+		status = flight != null && flight.getManager().getId() == managerId;
 
 		super.getResponse().setAuthorised(status);
 
@@ -69,7 +67,7 @@ public class ManagerListLegService extends AbstractGuiService<Manager, Leg> {
 		int flightId = super.getRequest().getData("flightId", int.class);
 		Flight flight = this.flightRepository.findById(flightId);
 		boolean isFlightPublished;
-		isFlightPublished = flight != null && flight.isPublished();
+		isFlightPublished = flight.isPublished();
 		super.getResponse().addGlobal("flightId", flightId);
 		super.getResponse().addGlobal("isFlightPublished", isFlightPublished);
 	}

@@ -3,4 +3,4 @@ assignment-01,LEAD_ATTENDANT,2022/01/01 11:00,CONFIRMED,<marquee>Don't be late!<
 assignment-02,CO_PILOT,2022/01/01 11:00,CANCELLED,<script>alert(‘Hacked!’);</script>,false,flight-crew-02,leg-10
 assignment-03,PILOT,2022/01/01 11:00,CONFIRMED,' or 'A' = 'A,false,flight-crew-03,leg-10
 assignment-04,CABIN_ATTENDANT,2025/01/01 00:00,CONFIRMED,"",false,flight-crew-04,leg-03
-assignment-05,LEAD_ATTENDANT,2025/01/01 00:00,CANCELLED,"",false,flight-crew-05,leg-04
+assignment-05,LEAD_ATTENDANT,2025/01/01 00:00,CANCELLED,"",false,flight-crew-05,leg-05

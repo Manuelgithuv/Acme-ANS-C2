@@ -54,12 +54,22 @@ public class ManagerPublishLegService extends AbstractGuiService<Manager, Leg> {
 		
 		boolean entitiesExist = true;
 		
-		if(aircraftId !=0 && departureId!=0 && arrivalId!=0) {
-			
-			entitiesExist = !super.getRequest().getMethod().equals("GET") && 
-				this.aircraftRepository.findById(aircraftId)!=null && 
-				this.airportRepository.findById(arrivalId)!=null && this.airportRepository.findById(departureId)!=null;
-		}
+		if (aircraftId != 0 && this.aircraftRepository.findById(aircraftId) == null) {
+	        entitiesExist = false;
+	        
+	    }
+	
+
+		if (departureId != 0 && this.airportRepository.findById(departureId) == null) {
+	        entitiesExist = false;
+	        
+	    }
+	
+
+		if (arrivalId != 0 && this.airportRepository.findById(arrivalId) == null) {
+	        entitiesExist = false;
+	        
+	    }
 
 		status = leg != null && leg.getManager().getId() == managerId && !leg.getFlight().isPublished() && !leg.isPublished() && entitiesExist;
 
@@ -169,6 +179,13 @@ public class ManagerPublishLegService extends AbstractGuiService<Manager, Leg> {
 
 			if (departureInMinutes < actualUpperLimit)
 				super.state(false, "scheduledDeparture", "departure.minimum.currentDate");
+		}
+		if (leg.getScheduledArrival() != null) {
+			long actualUpperLimit = MomentHelper.getCurrentMoment().getTime() / 60000;
+			long arrivalInMinutes = leg.getScheduledArrival().getTime() / 60000;
+
+			if (arrivalInMinutes < actualUpperLimit)
+				super.state(false, "scheduledArrival", "arrival.minimum.currentDate");
 		}
 	}
 
