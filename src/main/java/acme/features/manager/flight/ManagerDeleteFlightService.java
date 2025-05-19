@@ -73,7 +73,7 @@ public class ManagerDeleteFlightService extends AbstractGuiService<Manager, Flig
 		int id = flight.getId();
 
 		List<Leg> legs = this.legRepository.findDistinctByFlight(id);
-		boolean isSomeLegPublished = !legs.isEmpty() && legs.stream().anyMatch(l -> l != null && l.isPublished());
+		boolean isSomeLegPublished = !legs.isEmpty() && legs.stream().anyMatch(Leg::isPublished);
 
 		status = !isSomeLegPublished;
 

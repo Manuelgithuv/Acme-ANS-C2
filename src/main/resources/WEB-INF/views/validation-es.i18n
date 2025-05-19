@@ -70,3 +70,5 @@ technician.maintenance-record.publish.there-are-all-tasks-published = Debe tener
 leg.aircraft.is-in-maintenance = El avión seleccionado está en mantenimiento
 
 leg.aircraft.in-use.for.that.period.of.time = El avión seleccionado estará en uso en ese periodo de tiempo
+
+arrival.minimum.currentDate = La fecha mínima es el presente
