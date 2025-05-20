@@ -71,6 +71,10 @@ public class CustomerCreateBookingService extends AbstractGuiService<Customer, B
 			super.state(false, "flight", "customer.booking.create.null-flight");
 			return;
 		}
+		if (!booking.getFlight().isPublished()) {
+			super.state(false, "flight", "customer.booking.create.flight-is-not-published");
+			return;
+		}
 		Customer customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
 		boolean currencyState = booking.getPrice() != null && this.moneyService.checkContains(booking.getPrice().getCurrency());

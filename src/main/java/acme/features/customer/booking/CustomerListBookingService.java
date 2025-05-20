@@ -28,7 +28,15 @@ public class CustomerListBookingService extends AbstractGuiService<Customer, Boo
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+
+		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+		List<Booking> bookings = this.bookingRepository.findBookingsByCustomerId(customerId);
+
+		status = bookings.stream().allMatch(b -> b.getCustomer().getId() == customerId);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -49,7 +57,17 @@ public class CustomerListBookingService extends AbstractGuiService<Customer, Boo
 		SelectChoices travelClassChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		Flight flight = booking.getFlight() == null || booking.getFlight().getId() == 0 ? null : booking.getFlight();
 
-		SelectChoices flightChoices = SelectChoices.from(flights, "tag", flight);
+		SelectChoices flightChoices = new SelectChoices();
+
+		flightChoices.add("0", "----", flight == null); // Opción vacía
+
+		for (Flight f : flights) {
+			String key = Integer.toString(f.getId());
+			String label = f.getScheduledDeparture() + " - " + f.getScheduledArrival();
+			boolean isSelected = f.equals(flight);
+
+			flightChoices.add(key, label, isSelected);
+		}
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCardNibble", "published");
 

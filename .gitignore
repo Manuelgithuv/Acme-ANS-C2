@@ -32,3 +32,4 @@ mvnw
 mvnw\.cmd
 .project
 /bin/
+.classpath

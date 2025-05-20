@@ -17,7 +17,7 @@ import org.hibernate.validator.constraints.Length;
 @Constraint(validatedBy = {})
 @ReportAsSingleViolation
 
-@Length(min = 1, max = 255)
+@Length(min = 0, max = 255)
 
 public @interface ValidLongText {
 

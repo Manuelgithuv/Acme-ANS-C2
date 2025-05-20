@@ -2,6 +2,7 @@
 package acme.features.technician.maintenanceRecord;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -85,6 +86,21 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 
 		if (!currencyState)
 			super.state(currencyState, "estimatedCost", "technician.maintenance-record.invalid-currency");
+
+		int id = super.getRequest().getData("id", int.class);
+
+		MaintenanceRecord maintenanceRecord1 = this.repository.findMaintenanceRecordById(id);
+
+		List<Aircraft> aircrafts = this.repository.findAircraftsUnderMaintenanceOrSpecific(AircraftStatus.UNDER_MAINTENANCE, maintenanceRecord1.getAircraft().getId());
+		boolean aircraftValido = false;
+
+		if (maintenanceRecord.getAircraft() != null)
+			for (int i = 0; i < aircrafts.size() && !aircraftValido; i++)
+				if (aircrafts.get(i).getId() == maintenanceRecord.getAircraft().getId())
+					aircraftValido = true;
+
+		if (!this.getBuffer().getErrors().hasErrors("aircraft"))
+			super.state(aircraftValido, "aircraft", "technician.maintenance-record.form.error.not.aircraft.permitted", maintenanceRecord);
 	}
 
 	@Override
@@ -105,9 +121,9 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		maintenanceRecord1 = this.repository.findMaintenanceRecordById(id);
 
 		Dataset dataset;
-		aircrafts = this.repository.findAllAircrafts().stream().filter(a -> a.getStatus().equals(AircraftStatus.UNDER_MAINTENANCE) || maintenanceRecord1.getAircraft().getId() == a.getId()).toList();
+		aircrafts = this.repository.findAircraftsUnderMaintenanceOrSpecific(AircraftStatus.UNDER_MAINTENANCE, maintenanceRecord1.getAircraft().getId());
 		choices = SelectChoices.from(MaintenanceRecordStatus.class, maintenanceRecord.getStatus());
-		aircraft = SelectChoices.from(aircrafts, "id", maintenanceRecord.getAircraft());
+		aircraft = SelectChoices.from(aircrafts, "id", maintenanceRecord.getAircraft() == null || maintenanceRecord.getAircraft().getId() == 0 || !aircrafts.contains(maintenanceRecord.getAircraft()) ? null : maintenanceRecord.getAircraft());
 
 		dataset = super.unbindObject(maintenanceRecord, "status", "inspectionDueDate", "estimatedCost", "notes", "aircraft", "draftMode");
 

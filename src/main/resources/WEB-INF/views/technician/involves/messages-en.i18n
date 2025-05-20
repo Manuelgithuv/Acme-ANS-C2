@@ -16,4 +16,6 @@ technician.involves.list.label.task = Task
 
 technician.involves.list.button.create = Create
 
-technician.involves.form.error.no-task-to-unlink = May not be null.
+technician.involves.form.error.no-task-to-unlink = May not be null
+technician.involves.form.error.not.valid.task = This task is not valid
+technician.involves.form.error.invalid-task = Invalid task
