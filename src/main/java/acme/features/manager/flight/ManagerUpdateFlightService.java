@@ -14,10 +14,10 @@ import acme.realms.Manager;
 public class ManagerUpdateFlightService extends AbstractGuiService<Manager, Flight> {
 
 	@Autowired
-	private FlightRepository flightRepository;
-	
+	private FlightRepository	flightRepository;
+
 	@Autowired
-	private MoneyService moneyService;
+	private MoneyService		moneyService;
 
 
 	@Override
@@ -27,7 +27,7 @@ public class ManagerUpdateFlightService extends AbstractGuiService<Manager, Flig
 
 		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		int id = super.getRequest().hasData("id")?super.getRequest().getData("id", int.class):0;
+		int id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 
 		Flight flight = this.flightRepository.findById(id);
 
@@ -65,12 +65,11 @@ public class ManagerUpdateFlightService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void validate(final Flight flight) {
-		
+
 		boolean currencyState = flight.getCost() != null && this.moneyService.checkContains(flight.getCost().getCurrency());
-		
-		if(!currencyState) {
+
+		if (!currencyState)
 			super.state(currencyState, "cost", "manager.flight.invalid-currency");
-		}
 	}
 
 	@Override
