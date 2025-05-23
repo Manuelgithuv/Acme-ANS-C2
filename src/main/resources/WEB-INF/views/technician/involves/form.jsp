@@ -13,11 +13,11 @@
 	<jstl:choose>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="technician.involves.form.button.link"
-				action="/technician/involves/create" />
+				action="/technician/involves/create?maintenanceRecordId=${maintenanceRecordId}" />
 		</jstl:when>
 		<jstl:when test="${_command == 'delete'}">
 			<acme:submit code="technician.involves.form.button.unlink"
-				action="/technician/involves/delete" />
+				action="/technician/involves/delete?maintenanceRecordId=${maintenanceRecordId}" />
 		</jstl:when>
 	</jstl:choose>
 </acme:form>
