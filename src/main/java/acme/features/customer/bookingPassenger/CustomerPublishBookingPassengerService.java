@@ -113,6 +113,10 @@ public class CustomerPublishBookingPassengerService extends AbstractGuiService<C
 			super.state(false, "passenger", "customer.booking.create.null-passenger");
 			return;
 		}
+		if (!bookingPassenger.getPassenger().isPublished()) {
+			super.state(false, "passenger", "customer.booking.publish.passenger-not-published");
+			return;
+		}
 		Optional<BookingPassenger> existingBookingPassenger = this.bookingPassengerRepository.findBookingPassengerByPassengerAndBooking(bookingPassenger.getPassenger().getId(), bookingPassenger.getBooking().getId());
 		if (!existingBookingPassenger.isEmpty() && existingBookingPassenger.get().getId() != bookingPassenger.getId())
 			super.state(false, "*", "customer.bookingPassenger.alreadyExists");

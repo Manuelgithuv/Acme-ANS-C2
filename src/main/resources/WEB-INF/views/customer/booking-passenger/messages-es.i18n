@@ -20,3 +20,4 @@ authenticated.customer.list.button.booking.create = Crear
 authenticated.customer.list.button.bookingPassenger.create = Crear
 customer.bookingPassenger.create.null-booking = La reserva debe no ser nulo
 customer.bookingPassenger.create.null-passenger = El pasajero dene mo ser nulo
+customer.booking.publish.passenger-not-published = El pasajero debe de estar publicado
