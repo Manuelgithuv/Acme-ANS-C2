@@ -21,13 +21,13 @@ import acme.realms.Customer;
 public class CustomerUpdateBookingPassengerService extends AbstractGuiService<Customer, BookingPassenger> {
 
 	@Autowired
-	private BpRepository	bookingPassengerRepository;
+	private BpRepository		bookingPassengerRepository;
 
 	@Autowired
-	private BookingRepository			bookingRepository;
+	private BookingRepository	bookingRepository;
 
 	@Autowired
-	private PassengerRepository			passengerRepository;
+	private PassengerRepository	passengerRepository;
 
 
 	@Override
@@ -37,9 +37,7 @@ public class CustomerUpdateBookingPassengerService extends AbstractGuiService<Cu
 
 		BookingPassenger bookingPassenger;
 
-		int id;
-
-		id = super.getRequest().getData("id", int.class);
+		int id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 
 		bookingPassenger = this.bookingPassengerRepository.findById(id);
 
@@ -47,7 +45,21 @@ public class CustomerUpdateBookingPassengerService extends AbstractGuiService<Cu
 
 		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
-		status = !bookingPassenger.isPublished() && customer.getId() == bookingPassenger.getCustomer().getId();
+		boolean entitiesExist = true;
+
+		if (!super.getRequest().getMethod().equals("GET")) {
+
+			int bookingId = super.getRequest().getData("booking", int.class);
+			int passengerId = super.getRequest().getData("passenger", int.class);
+
+			if (bookingId != 0 && this.bookingRepository.findById(bookingId) == null)
+				entitiesExist = false;
+
+			if (passengerId != 0 && this.passengerRepository.findById(passengerId) == null)
+				entitiesExist = false;
+		}
+
+		status = bookingPassenger != null && !bookingPassenger.isPublished() && customer.getId() == bookingPassenger.getCustomer().getId() && entitiesExist;
 
 		super.getResponse().setAuthorised(status);
 

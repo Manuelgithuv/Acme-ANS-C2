@@ -35,9 +35,7 @@ public class CustomerShowBookingPassengerService extends AbstractGuiService<Cust
 
 		BookingPassenger bookingPassenger;
 
-		int id;
-
-		id = super.getRequest().getData("id", int.class);
+		int id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 
 		bookingPassenger = this.bookingPassengerRepository.findById(id);
 
@@ -45,7 +43,7 @@ public class CustomerShowBookingPassengerService extends AbstractGuiService<Cust
 
 		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
-		status = !bookingPassenger.isPublished() && customer.getId() == bookingPassenger.getCustomer().getId() || bookingPassenger.isPublished();
+		status = bookingPassenger != null && (bookingPassenger.isPublished() || !bookingPassenger.isPublished() && customer.getId() == bookingPassenger.getCustomer().getId());
 
 		super.getResponse().setAuthorised(status);
 
@@ -89,28 +87,26 @@ public class CustomerShowBookingPassengerService extends AbstractGuiService<Cust
 
 	@Override
 	public void unbind(final BookingPassenger bookingPassenger) {
-
 		Dataset dataset;
-		Customer customer;
-		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
+		Customer customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
+
 		Collection<Booking> bookings = this.bookingRepository.findBookingsNotPublishedByCustomerId(customer.getId());
-		Booking booking = bookingPassenger.getBooking() == null || bookingPassenger.getBooking().getId() == 0 ? null : bookingPassenger.getBooking();
+		if (!bookings.contains(bookingPassenger.getBooking()))
+			bookings.add(bookingPassenger.getBooking());
 
 		Collection<Passenger> passengers = this.passengerRepository.findAvailablePassengers(customer.getId());
-		Passenger passenger = bookingPassenger.getPassenger() == null || bookingPassenger.getPassenger().getId() == 0 ? null : bookingPassenger.getPassenger();
+		if (!passengers.contains(bookingPassenger.getPassenger()))
+			passengers.add(bookingPassenger.getPassenger());
 
 		dataset = super.unbindObject(bookingPassenger, "published");
 
 		SelectChoices bookingChoices = SelectChoices.from(bookings, "locatorCode", bookingPassenger.getBooking());
-
 		SelectChoices passengerChoices = SelectChoices.from(passengers, "fullName", bookingPassenger.getPassenger());
 
 		dataset.put("bookings", bookingChoices);
-
 		dataset.put("passengers", passengerChoices);
 
 		super.getResponse().addData(dataset);
-
 	}
 
 }

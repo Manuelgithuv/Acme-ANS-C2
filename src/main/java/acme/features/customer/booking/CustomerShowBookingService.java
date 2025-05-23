@@ -28,7 +28,17 @@ public class CustomerShowBookingService extends AbstractGuiService<Customer, Boo
 	@Override
 	public void authorise() {
 
-		super.getResponse().setAuthorised(true);
+		boolean status;
+
+		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+		int id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
+
+		Booking booking = this.bookingRepository.findById(id);
+
+		status = booking != null && booking.getCustomer().getId() == customerId || booking.isPublished() == true;
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
