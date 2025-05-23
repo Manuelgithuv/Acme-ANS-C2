@@ -1,3 +1,4 @@
+
 package acme.features.any.leg;
 
 import java.util.Collection;
@@ -9,19 +10,30 @@ import acme.client.components.models.Dataset;
 import acme.client.components.principals.Any;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.flight.Flight;
 import acme.entities.leg.Leg;
+import acme.features.manager.flight.FlightRepository;
 import acme.features.manager.leg.LegRepository;
 
 @GuiService
 public class AnyListLegService extends AbstractGuiService<Any, Leg> {
-	
+
 	@Autowired
-	private LegRepository legRepository;
+	private LegRepository		legRepository;
+
+	@Autowired
+	private FlightRepository	flightRepository;
 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int flightId = super.getRequest().hasData("flightId", int.class) ? super.getRequest().getData("flightId", int.class) : 0;
+
+		Flight flight = this.flightRepository.findById(flightId);
+
+		status = flight != null;
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -44,12 +56,12 @@ public class AnyListLegService extends AbstractGuiService<Any, Leg> {
 		super.getResponse().addData(dataset);
 
 	}
-	
+
 	@Override
 	public void unbind(final Collection<Leg> legs) {
-		
-		int flightId = super.getRequest().getData("flightId",int.class);
+
+		int flightId = super.getRequest().getData("flightId", int.class);
 		super.getResponse().addGlobal("flightId", flightId);
-	} 
+	}
 
 }
