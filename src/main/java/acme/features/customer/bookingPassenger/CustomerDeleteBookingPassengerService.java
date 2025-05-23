@@ -21,13 +21,13 @@ import acme.realms.Customer;
 public class CustomerDeleteBookingPassengerService extends AbstractGuiService<Customer, BookingPassenger> {
 
 	@Autowired
-	private BpRepository	bookingPassengerRepository;
+	private BpRepository		bookingPassengerRepository;
 
 	@Autowired
-	private BookingRepository			bookingRepository;
+	private BookingRepository	bookingRepository;
 
 	@Autowired
-	private PassengerRepository			passengerRepository;
+	private PassengerRepository	passengerRepository;
 
 
 	@Override
@@ -37,9 +37,7 @@ public class CustomerDeleteBookingPassengerService extends AbstractGuiService<Cu
 
 		BookingPassenger bookingPassenger;
 
-		int id;
-
-		id = super.getRequest().getData("id", int.class);
+		int id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 
 		bookingPassenger = this.bookingPassengerRepository.findById(id);
 
@@ -47,7 +45,7 @@ public class CustomerDeleteBookingPassengerService extends AbstractGuiService<Cu
 
 		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
-		status = !bookingPassenger.isPublished() && customer.getId() == bookingPassenger.getCustomer().getId();
+		status = bookingPassenger != null && !bookingPassenger.isPublished() && customer.getId() == bookingPassenger.getCustomer().getId();
 
 		super.getResponse().setAuthorised(status);
 

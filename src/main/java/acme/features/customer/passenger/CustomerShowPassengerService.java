@@ -34,7 +34,7 @@ public class CustomerShowPassengerService extends AbstractGuiService<Customer, P
 
 		Passenger passenger = this.passengerRepository.findById(id);
 
-		status = passenger.getCustomer().getId() == customerId;
+		status = passenger.getCustomer().getId() == customerId || passenger.isPublished();
 
 		super.getResponse().setAuthorised(status);
 

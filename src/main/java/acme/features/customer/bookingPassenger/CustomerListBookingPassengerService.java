@@ -20,13 +20,13 @@ import acme.realms.Customer;
 public class CustomerListBookingPassengerService extends AbstractGuiService<Customer, BookingPassenger> {
 
 	@Autowired
-	private BpRepository	bookingPassengerRepository;
+	private BpRepository		bookingPassengerRepository;
 
 	@Autowired
-	private BookingRepository			bookingRepository;
+	private BookingRepository	bookingRepository;
 
 	@Autowired
-	private PassengerRepository			passengerRepository;
+	private PassengerRepository	passengerRepository;
 
 
 	@Override
@@ -37,7 +37,7 @@ public class CustomerListBookingPassengerService extends AbstractGuiService<Cust
 
 		List<BookingPassenger> bookingPassengers = this.bookingPassengerRepository.findBookingPassengersByCustomerId(customerId);
 
-		status = bookingPassengers.stream().allMatch(bp -> bp.getCustomer().getId() == customerId);
+		status = bookingPassengers.stream().allMatch(bp -> bp.getCustomer().getId() == customerId || bp.isPublished());
 
 		super.getResponse().setAuthorised(status);
 	}

@@ -37,9 +37,7 @@ public class CustomerUpdateBookingPassengerService extends AbstractGuiService<Cu
 
 		BookingPassenger bookingPassenger;
 
-		int id;
-
-		id = super.getRequest().getData("id", int.class);
+		int id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 
 		bookingPassenger = this.bookingPassengerRepository.findById(id);
 
@@ -61,7 +59,7 @@ public class CustomerUpdateBookingPassengerService extends AbstractGuiService<Cu
 				entitiesExist = false;
 		}
 
-		status = !bookingPassenger.isPublished() && customer.getId() == bookingPassenger.getCustomer().getId() && entitiesExist;
+		status = bookingPassenger != null && !bookingPassenger.isPublished() && customer.getId() == bookingPassenger.getCustomer().getId() && entitiesExist;
 
 		super.getResponse().setAuthorised(status);
 
