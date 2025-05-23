@@ -36,11 +36,11 @@ public class ManagerShowLegService extends AbstractGuiService<Manager, Leg> {
 
 		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		int id = super.getRequest().getData("id", int.class);
+		int id = super.getRequest().hasData("id", int.class) ? super.getRequest().getData("id", int.class) : 0;
 
 		Leg leg = this.legRepository.findById(id);
 
-		status = leg!=null&& leg.getManager().getId() == managerId;
+		status = leg != null && leg.getManager().getId() == managerId && id != 0;
 
 		super.getResponse().setAuthorised(status);
 
