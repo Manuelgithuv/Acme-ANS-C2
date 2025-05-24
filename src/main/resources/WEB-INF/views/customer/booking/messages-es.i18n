@@ -1,4 +1,4 @@
-customer.bookinglist.title = Listado de Reservas
+customer.booking.list.title = Listado de Reservas
 customer.booking.form.title = Detalles de la reserva
 customer.booking.create.null-lastCardNibble = Los cuatro últimos dígitos de la tarjeta son  nulos
 customer.booking.locatorCode.alreadyExists = Codigo de localizado ya existe

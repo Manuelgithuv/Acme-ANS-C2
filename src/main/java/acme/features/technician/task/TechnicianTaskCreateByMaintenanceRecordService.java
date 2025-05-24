@@ -34,7 +34,7 @@ public class TechnicianTaskCreateByMaintenanceRecordService extends AbstractGuiS
 	@Override
 	public void authorise() {
 
-		int maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
+		int maintenanceRecordId = super.getRequest().hasData("maintenanceRecordId") ? super.getRequest().getData("maintenanceRecordId", int.class) : 0;
 		MaintenanceRecord maintenanceRecord = this.maintenanceRepository.findMaintenanceRecordById(maintenanceRecordId);
 
 		super.getResponse().setAuthorised(maintenanceRecord != null && super.getRequest().getPrincipal().getActiveRealm().getId() == maintenanceRecord.getTechnician().getId() && maintenanceRecord.isDraftMode());

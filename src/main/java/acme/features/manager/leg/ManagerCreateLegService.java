@@ -46,7 +46,7 @@ public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg> {
 
 		boolean status;
 
-		int flightId = super.getRequest().getData("flightId", int.class);
+		int flightId = super.getRequest().hasData("flightId", int.class) ? super.getRequest().getData("flightId", int.class) : 0;
 		Flight flight = this.flightRepository.findById(flightId);
 
 		Manager manager;
@@ -63,12 +63,18 @@ public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg> {
 
 			int arrivalId = super.getRequest().getData("arrivalAirport", int.class);
 
-			if (aircraftId != 0 && departureId != 0 && arrivalId != 0)
-				entitiesExist = this.aircraftRepository.findById(aircraftId) != null && this.airportRepository.findById(arrivalId) != null && this.airportRepository.findById(departureId) != null;
+			if (aircraftId != 0 && this.aircraftRepository.findById(aircraftId) == null)
+				entitiesExist = false;
+
+			if (departureId != 0 && this.airportRepository.findById(departureId) == null)
+				entitiesExist = false;
+
+			if (arrivalId != 0 && this.airportRepository.findById(arrivalId) == null)
+				entitiesExist = false;
 
 		}
 
-		status = flight != null && flight.getManager().getId() == super.getRequest().getPrincipal().getActiveRealm().getId() && !flight.isPublished() && manager.getId() == flight.getManager().getId() && entitiesExist;
+		status = flight != null && flight.getManager().getId() == super.getRequest().getPrincipal().getActiveRealm().getId() && !flight.isPublished() && manager.getId() == flight.getManager().getId() && entitiesExist && flightId != 0;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -180,6 +186,13 @@ public class ManagerCreateLegService extends AbstractGuiService<Manager, Leg> {
 
 			if (departureInMinutes < actualUpperLimit)
 				super.state(false, "scheduledDeparture", "departure.minimum.currentDate");
+		}
+		if (leg.getScheduledArrival() != null) {
+			long actualUpperLimit = MomentHelper.getCurrentMoment().getTime() / 60000;
+			long arrivalInMinutes = leg.getScheduledArrival().getTime() / 60000;
+
+			if (arrivalInMinutes < actualUpperLimit)
+				super.state(false, "scheduledArrival", "arrival.minimum.currentDate");
 		}
 	}
 

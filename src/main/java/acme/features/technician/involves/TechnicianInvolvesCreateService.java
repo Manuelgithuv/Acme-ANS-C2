@@ -33,10 +33,23 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 	// AbstractGuiService interface -------------------------------------------
 	@Override
 	public void authorise() {
-		int maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
+		int maintenanceRecordId = super.getRequest().hasData("maintenanceRecordId") ? super.getRequest().getData("maintenanceRecordId", int.class) : 0;
 		MaintenanceRecord maintenanceRecord = this.maintenanceRepository.findMaintenanceRecordById(maintenanceRecordId);
+		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+		Collection<Task> tasks = this.repository.findValidTasksToAdd(maintenanceRecord, technician);
+		boolean taskExist = true;
 
-		if (maintenanceRecord != null && maintenanceRecord.getTechnician().getId() == super.getRequest().getPrincipal().getActiveRealm().getId())
+		if (!super.getRequest().getMethod().equals("GET")) {
+
+			int taskId = super.getRequest().getData("task", int.class);
+			Task task = this.taskRepository.findTaskById(taskId);
+			if (taskId != 0 && task == null)
+				taskExist = false;
+			if (task != null && !tasks.contains(task))
+				taskExist = false;
+		}
+
+		if (maintenanceRecord != null && maintenanceRecord.getTechnician().getId() == super.getRequest().getPrincipal().getActiveRealm().getId() && taskExist)
 			super.getResponse().setAuthorised(maintenanceRecord.isDraftMode());
 	}
 
@@ -72,15 +85,6 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 		if (task != null)
 			super.state(!task.isDraftMode() || task.getTechnician().getId() == super.getRequest().getPrincipal().getActiveRealm().getId(), "*", "technician.involves.form.error.invalid-task");
 
-		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-		int maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
-		MaintenanceRecord maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
-
-		Collection<Task> tasks = this.repository.findValidTasksToAdd(maintenanceRecord, technician);
-
-		if (task != null)
-			super.state(tasks.stream().anyMatch(e -> e.equals(task)), "task", "technician.involves.form.error.not.valid.task");
-
 	}
 
 	@Override
@@ -102,7 +106,7 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 
 		tasks = this.repository.findValidTasksToAdd(maintenanceRecord, technician);
-		choices = SelectChoices.from(tasks, "id", involves.getTask() == null || involves.getTask().getId() == 0 || !tasks.contains(involves.getTask()) ? null : involves.getTask());
+		choices = SelectChoices.from(tasks, "id", involves.getTask());
 
 		dataset = super.unbindObject(involves, "maintenanceRecord");
 		dataset.put("maintenanceRecordId", involves.getMaintenanceRecord().getId());

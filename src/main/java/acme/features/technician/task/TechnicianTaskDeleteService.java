@@ -33,9 +33,8 @@ public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, 
 		boolean exist;
 		Task task;
 		Technician technician;
-		int id;
 
-		id = super.getRequest().getData("id", int.class);
+		int id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 		task = this.repository.findTaskById(id);
 
 		exist = task != null;
@@ -64,9 +63,7 @@ public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, 
 
 	@Override
 	public void validate(final Task task) {
-
-		if (!task.isDraftMode())
-			super.state(!task.isDraftMode(), "*", "technician.maintenance-record.publish.is-not-in-draft-mode");
+		;
 	}
 
 	@Override
@@ -87,6 +84,7 @@ public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, 
 
 		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration", "draftMode");
 		dataset.put("type", choices.getSelected().getKey());
+		dataset.put("type", choices);
 
 		super.getResponse().addData(dataset);
 	}

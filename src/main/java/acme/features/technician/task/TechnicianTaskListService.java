@@ -39,13 +39,6 @@ public class TechnicianTaskListService extends AbstractGuiService<Technician, Ta
 		super.getBuffer().addData(task);
 	}
 
-	private boolean predicado(final Task t, final int technicianId) {
-		boolean result = !t.isDraftMode();
-		if (t.isDraftMode() && t.getTechnician().getId() == technicianId)
-			result = true;
-		return result;
-	}
-
 	@Override
 	public void unbind(final Task task) {
 		Dataset dataset;

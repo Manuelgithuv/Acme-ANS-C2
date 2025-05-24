@@ -32,7 +32,20 @@ public class CustomerCreateBookingPassengerService extends AbstractGuiService<Cu
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+
+		boolean entitiesExist = true;
+		if (!super.getRequest().getMethod().equals("GET")) {
+
+			int bookingId = super.getRequest().getData("booking", int.class);
+			int passengerId = super.getRequest().getData("passenger", int.class);
+
+			if (bookingId != 0 && this.bookingRepository.findById(bookingId) == null)
+				entitiesExist = false;
+
+			if (passengerId != 0 && this.passengerRepository.findById(passengerId) == null)
+				entitiesExist = false;
+		}
+		super.getResponse().setAuthorised(entitiesExist);
 	}
 
 	@Override

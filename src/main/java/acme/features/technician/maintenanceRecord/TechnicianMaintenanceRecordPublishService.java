@@ -42,7 +42,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		Technician technician;
 		int id;
 
-		id = super.getRequest().getData("id", int.class);
+		id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 
 		maintenanceRecord = this.repository.findMaintenanceRecordById(id);
 
@@ -99,7 +99,8 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 
 		super.state(maintenanceRecord.isDraftMode(), "*", "technician.maintenance-record.publish.is-not-in-draft-mode");
 
-		super.state(maintenanceRecord.getAircraft().getStatus().equals(AircraftStatus.UNDER_MAINTENANCE), "*", "technician.maintenance-record.publish.is-not-aircraft-under-maintenance");
+		if (!this.getBuffer().getErrors().hasErrors("aircraft") && maintenanceRecord.getAircraft() != null)
+			super.state(maintenanceRecord.getAircraft().getStatus().equals(AircraftStatus.UNDER_MAINTENANCE), "*", "technician.maintenance-record.publish.is-not-aircraft-under-maintenance");
 
 		super.state(!involvesAsociadas.isEmpty() && todasSonPublicas, "*", "technician.maintenance-record.publish.there-are-all-tasks-published");
 

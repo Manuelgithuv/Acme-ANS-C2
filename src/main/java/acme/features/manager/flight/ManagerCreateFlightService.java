@@ -49,13 +49,6 @@ public class ManagerCreateFlightService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void validate(final Flight flight) {
-		boolean status;
-
-		Manager manager = (Manager) super.getRequest().getPrincipal().getActiveRealm();
-
-		status = flight.getManager().getId() == manager.getId();
-
-		super.state(status, "manager", "flight.manager.is.not.logged-manager");
 
 		boolean currencyState = flight.getCost() != null && this.moneyService.checkContains(flight.getCost().getCurrency());
 

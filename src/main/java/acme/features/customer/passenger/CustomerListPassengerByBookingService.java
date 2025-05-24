@@ -30,11 +30,11 @@ public class CustomerListPassengerByBookingService extends AbstractGuiService<Cu
 
 		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		int bookingId = super.getRequest().getData("bookingId", int.class);
+		int bookingId = super.getRequest().hasData("bookingId") ? super.getRequest().getData("bookingId", int.class) : 0;
 
 		Booking booking = this.bookingRepository.findById(bookingId);
 
-		status = booking != null && booking.getCustomer().getId() == customerId;
+		status = booking != null && (booking.getCustomer().getId() == customerId || booking.isPublished());
 
 		super.getResponse().setAuthorised(status);
 

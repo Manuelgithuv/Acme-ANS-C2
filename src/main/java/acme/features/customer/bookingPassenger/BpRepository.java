@@ -14,7 +14,7 @@ import acme.entities.booking.BookingPassenger;
 @Repository
 public interface BpRepository extends AbstractRepository {
 
-	@Query("SELECT bp from BookingPassenger bp WHERE bp.customer.id=:customerId")
+	@Query("SELECT bp from BookingPassenger bp WHERE bp.customer.id=:customerId OR bp.published=true")
 	List<BookingPassenger> findBookingPassengersByCustomerId(@Param("customerId") int customerId);
 
 	@Query("SELECT bp from BookingPassenger bp WHERE bp.booking.id=:bookingId")
