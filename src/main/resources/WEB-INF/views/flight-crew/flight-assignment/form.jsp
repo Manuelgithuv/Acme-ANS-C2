@@ -12,12 +12,14 @@
 	<acme:input-select code="authenticated.crew.label.assignee" path="assignee" choices="${assignees}"/>
 	
 	<jstl:choose>
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && canPublish }">
+			<acme:submit code="authenticated.crew.button.delete" action="/flight-crew/flight-assignment/delete"/>
+			<acme:submit code="authenticated.crew.button.update" action="/flight-crew/flight-assignment/update"/>
+			<acme:submit code="authenticated.crew.button.publish" action="/flight-crew/flight-assignment/publish"/>
+		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && authorised }">
 			<acme:submit code="authenticated.crew.button.delete" action="/flight-crew/flight-assignment/delete"/>
 			<acme:submit code="authenticated.crew.button.update" action="/flight-crew/flight-assignment/update"/>
-		</jstl:when>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && canPublish }">
-			<acme:submit code="authenticated.crew.button.publish" action="/flight-crew/flight-assignment/publish"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="authenticated.crew.button.create" action="/flight-crew/flight-assignment/create"/>

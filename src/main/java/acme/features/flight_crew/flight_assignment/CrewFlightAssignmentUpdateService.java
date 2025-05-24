@@ -137,6 +137,7 @@ public class CrewFlightAssignmentUpdateService extends AbstractGuiService<Flight
 		String airlineCode = crew.getAirline().getIataCode();
 		List<Leg> legs = this.legRepository.findAllLegs().stream() // traemos todos los tramos de vuelo disponible
 			.filter(x -> x.getFlightCode().contains(airlineCode)) // filtramos por aerolinea
+			.filter(x -> x.isPublished()) // filtramos por publicados
 			.toList();
 		SelectChoices legChoices = SelectChoices.from(legs, "flightCode", assignment.getLeg());
 		dataset.put("leg", legChoices.getSelected().getKey());

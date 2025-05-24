@@ -30,8 +30,15 @@ public class CrewFlightAssignmentDeleteService extends AbstractGuiService<Flight
 	@Override
 	public void authorise() {
 		boolean isAuthorised;
+		int id;
 
-		int id = super.getRequest().getData("id", Integer.TYPE);
+		try {
+			id = super.getRequest().getData("id", Integer.TYPE);
+		} catch (Exception e) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
+
 		FlightAssignment assignment = this.repository.findById(id);
 		FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
 		FlightCrew leadAttendant = this.repository.findByLegId(assignment.getLeg().getId()).stream() //
@@ -59,6 +66,14 @@ public class CrewFlightAssignmentDeleteService extends AbstractGuiService<Flight
 
 	@Override
 	public void validate(final FlightAssignment assignment) {
+		Collection<FlightAssignment> assignments = this.repository.findAllFlightAssignment().stream() //
+			.filter(x -> x.getLeg().equals(assignment.getLeg())) //
+			.filter(x -> !x.getDuty().equals(CrewDuty.LEAD_ATTENDANT)).toList();
+
+		if (assignments.size() > 0 && assignment.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) {
+			super.state(false, "*", "flight-crew.flight-assignment.constraint.cannot-delete-assignment", new Object[0]);
+			return;
+		}
 	}
 
 	@Override

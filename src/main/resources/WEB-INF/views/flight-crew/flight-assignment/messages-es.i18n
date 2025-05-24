@@ -27,3 +27,4 @@ flight-crew.flight-assignment.constraint.already-assigned-pilot = Tramo de vuelo
 flight-crew.flight-assignment.constraint.already-assigned-co-pilot = Tramo de vuelo con un co-piloto ya asignado
 flight-crew.flight-assignment.constraint.not-authorised = No estás autorizado para crear esta designación
 flight-crew.flight-assignment.constraint.null-value = Comprueba que ningún valor dado sea nulo
+flight-crew.flight-assignment.constraint.cannot-delete-assignment = Esta designación no se puede eliminar en este momento, prueba de nuevo cuando no haya más designaciones para este tramo

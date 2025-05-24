@@ -96,10 +96,11 @@ public class CrewFlightAssignmentShowService extends AbstractGuiService<FlightCr
 		dataset.put("confirmation", false);
 		dataset.put("readonly", false);
 
-		Boolean isAuthorised = legsAsLeadAttendant.contains(assignment.getLeg()) && !assignment.getPublished();
-		dataset.put("authorised", isAuthorised);
-		Boolean canPublish = isAuthorised && assignment.getLeg().isPublished();
-		dataset.put("canPublished", canPublish);
+		Boolean authorised = legsAsLeadAttendant.contains(assignment.getLeg()) && !assignment.getPublished();
+		dataset.put("authorised", authorised);
+		Boolean canPublish = authorised && assignment.getLeg().isPublished();
+		dataset.put("canPublish", canPublish);
+
 		super.getResponse().addData(dataset);
 	}
 }

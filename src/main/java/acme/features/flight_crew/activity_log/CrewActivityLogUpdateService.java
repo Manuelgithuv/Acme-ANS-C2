@@ -1,6 +1,8 @@
 
 package acme.features.flight_crew.activity_log;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -9,6 +11,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activity_log.ActivityLog;
 import acme.entities.flight_assignment.FlightAssignment;
+import acme.entities.leg.Leg;
 import acme.features.flight_crew.flight_assignment.FlightAssignmentRepository;
 import acme.features.manager.leg.LegRepository;
 import acme.realms.FlightCrew;
@@ -96,7 +99,11 @@ public class CrewActivityLogUpdateService extends AbstractGuiService<FlightCrew,
 
 	@Override
 	public void unbind(final ActivityLog log) {
-		SelectChoices legChoices = SelectChoices.from(this.legRepository.findAllLegs(), "flightCode", log.getLeg());
+		int userAccountId = super.getRequest().getPrincipal().getAccountId();
+		Collection<Leg> legs = this.assignmentRepository.findLegsByCrew(userAccountId).stream() //
+			.filter(x -> x.isPublished()) // filtramos por publicados;
+			.toList();
+		SelectChoices legChoices = SelectChoices.from(legs, "flightCode", log.getLeg());
 		Dataset dataset = super.unbindObject(log, "registrationMoment", "incidentType", "description", "severity");
 		dataset.put("confirmation", false);
 		dataset.put("readonly", false);

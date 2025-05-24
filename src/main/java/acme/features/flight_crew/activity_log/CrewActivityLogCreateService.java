@@ -98,7 +98,9 @@ public class CrewActivityLogCreateService extends AbstractGuiService<FlightCrew,
 		Dataset dataset;
 
 		int userAccountId = super.getRequest().getPrincipal().getAccountId();
-		Collection<Leg> legs = this.assignmentRepository.findLegsByCrew(userAccountId);
+		Collection<Leg> legs = this.assignmentRepository.findLegsByCrew(userAccountId).stream() //
+			.filter(x -> x.isPublished()) // filtramos por publicados;
+			.toList();
 		SelectChoices legChoices = SelectChoices.from(legs, "flightCode", log.getLeg());
 
 		dataset = super.unbindObject(log, "registrationMoment", "incidentType", "description", "severity");

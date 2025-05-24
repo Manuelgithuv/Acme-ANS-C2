@@ -27,3 +27,4 @@ flight-crew.flight-assignment.constraint.already-assigned-pilot = Already a pilo
 flight-crew.flight-assignment.constraint.already-assigned-co-pilot = Already a co-pilot assigned to the leg
 flight-crew.flight-assignment.constraint.not-authorised = You are not authorised to create this assignment
 flight-crew.flight-assignment.constraint.null-value = Check that none of the values given are null
+flight-crew.flight-assignment.constraint.cannot-delete-assignment = This assignment cannot be remove at this moment, try again when there are no other assignments for this leg

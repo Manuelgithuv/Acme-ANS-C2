@@ -64,6 +64,11 @@ public class CrewFlightAssignmentCreateService extends AbstractGuiService<Flight
 			return;
 		}
 
+		// comprobamos que no se haya cambiado el valor de los desplegables
+		//status;
+		System.out.println(assignment);
+		System.out.println(assignment.getDuty());
+
 		// comprobamos que el usuario sea lead attendant
 		status = !assignment.getDuty().equals(CrewDuty.LEAD_ATTENDANT);
 		if (status) {
@@ -142,12 +147,15 @@ public class CrewFlightAssignmentCreateService extends AbstractGuiService<Flight
 		String airlineCode = crew.getAirline().getIataCode();
 		List<Leg> legs = this.legRepository.findAllLegs().stream() // traemos todos los tramos de vuelo disponible
 			.filter(x -> x.getFlightCode().contains(airlineCode)) // filtramos por aerolinea
+			.filter(x -> x.isPublished()) // filtramos por publicados
 			.toList();
 		SelectChoices legChoices = SelectChoices.from(legs, "flightCode", assignment.getLeg());
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 
-		Collection<FlightCrew> assignees = this.crewRepository.findAllByAirline(crew.getAirline().getId());
+		Collection<FlightCrew> assignees = this.crewRepository.findAllByAirline(crew.getAirline().getId()).stream() //
+			.filter(x -> x.getAvailability().equals(Availability.AVAILABLE)) //
+			.toList();
 		SelectChoices assigneeChoices = SelectChoices.from(assignees, "identifier", assignment.getAssignee());
 		dataset.put("assignee", assigneeChoices.getSelected().getKey());
 		dataset.put("assignees", assigneeChoices);

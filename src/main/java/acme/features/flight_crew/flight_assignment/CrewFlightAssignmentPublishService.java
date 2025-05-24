@@ -34,7 +34,7 @@ public class CrewFlightAssignmentPublishService extends AbstractGuiService<Fligh
 			.toList().get(0);
 
 		isAuthorised = leadAttendant.equals(user) //
-			&& !assignment.getLeg().isPublished();
+			&& assignment.getLeg().isPublished();
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}
