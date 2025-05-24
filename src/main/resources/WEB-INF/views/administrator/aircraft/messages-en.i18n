@@ -14,6 +14,8 @@ administrator.aircraft.form.button.update = Update
 administrator.aircraft.form.button.delete = Delete
 administrator.aircraft.form.button.publish = Publish
 administrator.aircraft.form.label.confirmation = Confirm that the aircraft data is correct.
+administrator.aircraft.form.button.disable= Disable
+administrator.aircraft.form.label.disabled= disabled
 
 administrator.aircraft.list.label.model = Model:
 administrator.aircraft.list.label.registrationNumber = Registration Number:

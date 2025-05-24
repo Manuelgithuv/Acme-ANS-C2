@@ -31,12 +31,13 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 		MaintenanceRecord maintenanceRecord;
 		int id;
 
-		id = super.getRequest().getData("id", int.class);
+		id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 		maintenanceRecord = this.repository.findMaintenanceRecordById(id);
 		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
 
-		if (!maintenanceRecord.isDraftMode() || technician.equals(maintenanceRecord.getTechnician()))
-			super.getResponse().setAuthorised(true);
+		if (id != 0)
+			if (technician.equals(maintenanceRecord.getTechnician()))
+				super.getResponse().setAuthorised(true);
 
 	}
 

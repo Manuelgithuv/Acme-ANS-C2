@@ -30,11 +30,11 @@ public class CustomerPublishPassengerService extends AbstractGuiService<Customer
 
 		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		int id = super.getRequest().getData("id", int.class);
+		int id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 
 		Passenger passenger = this.passengerRepository.findById(id);
 
-		status = passenger.getCustomer().getId() == customerId;
+		status = passenger != null && passenger.getCustomer().getId() == customerId && !passenger.isPublished();
 
 		super.getResponse().setAuthorised(status);
 

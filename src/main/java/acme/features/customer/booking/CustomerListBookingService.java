@@ -34,7 +34,7 @@ public class CustomerListBookingService extends AbstractGuiService<Customer, Boo
 
 		List<Booking> bookings = this.bookingRepository.findBookingsByCustomerId(customerId);
 
-		status = bookings.stream().allMatch(b -> b.getCustomer().getId() == customerId);
+		status = bookings.stream().allMatch(b -> b.getCustomer().getId() == customerId || b.isPublished());
 
 		super.getResponse().setAuthorised(status);
 	}

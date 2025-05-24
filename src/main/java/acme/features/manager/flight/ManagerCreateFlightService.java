@@ -50,7 +50,6 @@ public class ManagerCreateFlightService extends AbstractGuiService<Manager, Flig
 	@Override
 	public void validate(final Flight flight) {
 
-
 		boolean currencyState = flight.getCost() != null && this.moneyService.checkContains(flight.getCost().getCurrency());
 
 		if (!currencyState)

@@ -43,15 +43,27 @@ public class CustomerPublishBookingService extends AbstractGuiService<Customer, 
 
 		Booking booking;
 
-		int id;
+		Customer customer;
 
-		id = super.getRequest().getData("id", int.class);
+		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
+
+		int id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 
 		booking = this.bookingRepository.findById(id);
 
 		boolean isBookingPublished = booking != null && booking.isPublished();
 
-		status = !isBookingPublished;
+		boolean entitiesExist = true;
+
+		if (!super.getRequest().getMethod().equals("GET")) {
+
+			int flightId = super.getRequest().getData("flight", int.class);
+
+			if (flightId != 0 && this.flightRepository.findById(flightId) == null)
+				entitiesExist = false;
+		}
+
+		status = !isBookingPublished && booking.getCustomer().getId() == customer.getId() && entitiesExist;
 
 		super.getResponse().setAuthorised(status);
 
@@ -74,9 +86,14 @@ public class CustomerPublishBookingService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void bind(final Booking booking) {
+		int flightId;
+		Flight flight;
+
+		flightId = super.getRequest().getData("flight", int.class);
+		flight = this.flightRepository.findById(flightId);
 
 		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCardNibble");
-
+		booking.setFlight(flight);
 	}
 
 	@Override

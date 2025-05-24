@@ -21,3 +21,5 @@ authenticated.customer.list.button.booking.create = Create
 authenticated.customer.list.button.bookingPassenger.create = Create
 customer.bookingPassenger.create.null-booking = Booking must not be null
 customer.bookingPassenger.create.null-passenger = Passenger must not be null
+customer.booking.create.null-passenger = Passenger must not be null
+customer.booking.publish.passenger-not-published = Passenger must be pusblished

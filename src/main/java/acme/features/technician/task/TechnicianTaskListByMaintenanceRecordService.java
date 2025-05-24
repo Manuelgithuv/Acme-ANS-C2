@@ -37,7 +37,7 @@ public class TechnicianTaskListByMaintenanceRecordService extends AbstractGuiSer
 		Technician technician;
 		MaintenanceRecord maintenanceRecord;
 
-		maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
+		maintenanceRecordId = super.getRequest().hasData("maintenanceRecordId") ? super.getRequest().getData("maintenanceRecordId", int.class) : 0;
 		maintenanceRecord = this.maintenanceRepository.findMaintenanceRecordById(maintenanceRecordId);
 		technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
 
