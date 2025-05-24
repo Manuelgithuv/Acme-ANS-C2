@@ -33,3 +33,4 @@ mvnw\.cmd
 .project
 /bin/
 .classpath
+.settings/org.eclipse.wst.common.component

@@ -12,12 +12,9 @@
 	<acme:list-column code="administrator.aircraft.list.label.details" path="details" width="33%"/>
 	<acme:list-column code="administrator.aircraft.form.label.airlineName" path="airline.name" width="33%"/>
 
-	
-
-	
-	<%--<acme:list-payload path="payload"/>--%>
+	<acme:list-payload path="payload"/>
 </acme:list>
 
-<%--<jstl:if test="${_command == 'list'}">
+<jstl:if test="${_command == 'list'}">
 	<acme:button code="administrator.aircraft.list.button.create" action="/administrator/aircraft/create"/>
-</jstl:if>--%>
+</jstl:if>
