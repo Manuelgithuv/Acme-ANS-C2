@@ -92,7 +92,6 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 
 	@Override
 	public void perform(final MaintenanceRecord maintenanceRecord) {
-		assert maintenanceRecord != null;
 
 		this.repository.save(maintenanceRecord);
 	}

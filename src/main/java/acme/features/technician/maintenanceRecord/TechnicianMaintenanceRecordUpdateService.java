@@ -37,7 +37,7 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		Technician technician;
 		int id;
 
-		id = super.getRequest().getData("id", int.class);
+		id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 		maintenanceRecord = this.repository.findMaintenanceRecordById(id);
 
 		exist = maintenanceRecord != null;

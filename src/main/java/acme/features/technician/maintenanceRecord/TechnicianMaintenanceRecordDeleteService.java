@@ -36,7 +36,7 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 		Technician technician;
 		int id;
 
-		id = super.getRequest().getData("id", int.class);
+		id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 
 		maintenanceRecord = this.repository.findMaintenanceRecordById(id);
 
@@ -69,9 +69,7 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
-
-		if (!maintenanceRecord.isDraftMode())
-			super.state(!maintenanceRecord.isDraftMode(), "*", "technician.maintenance-record.publish.is-not-in-draft-mode");
+		;
 	}
 
 	@Override
@@ -94,10 +92,12 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 		choices = SelectChoices.from(MaintenanceRecordStatus.class, maintenanceRecord.getStatus());
 		aircraft = SelectChoices.from(aircrafts, "id", maintenanceRecord.getAircraft());
 
-		dataset = super.unbindObject(maintenanceRecord, "status", "inspectionDueDate", "estimatedCost", "notes", "aircraft");
+		dataset = super.unbindObject(maintenanceRecord, "status", "inspectionDueDate", "estimatedCost", "notes", "aircraft", "draftMode");
 
 		dataset.put("status", choices.getSelected().getKey());
+		dataset.put("status", choices);
 		dataset.put("aircraft", aircraft.getSelected().getKey());
+		dataset.put("aircraft", aircraft);
 
 		super.getResponse().addData(dataset);
 	}

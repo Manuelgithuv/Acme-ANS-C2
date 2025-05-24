@@ -33,7 +33,7 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 	// AbstractGuiService interface -------------------------------------------
 	@Override
 	public void authorise() {
-		int maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
+		int maintenanceRecordId = super.getRequest().hasData("maintenanceRecordId") ? super.getRequest().getData("maintenanceRecordId", int.class) : 0;
 		MaintenanceRecord maintenanceRecord = this.maintenanceRepository.findMaintenanceRecordById(maintenanceRecordId);
 		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
 		Collection<Task> tasks = this.repository.findValidTasksToAdd(maintenanceRecord, technician);
