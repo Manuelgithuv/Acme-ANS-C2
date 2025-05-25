@@ -2,7 +2,9 @@
 package acme.entities.booking;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -16,6 +18,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Table(name = "booking_passenger", indexes = {
+	@Index(name = "idx_bp_customer_id", columnList = "customer_id"), @Index(name = "idx_bp_booking_id", columnList = "booking_id"), @Index(name = "idx_bp_passenger_booking", columnList = "passenger_id, booking_id"),
+	@Index(name = "idx_bp_published", columnList = "published")
+})
 public class BookingPassenger extends AbstractEntity {
 	// Serialisation version --------------------------------------------------
 
