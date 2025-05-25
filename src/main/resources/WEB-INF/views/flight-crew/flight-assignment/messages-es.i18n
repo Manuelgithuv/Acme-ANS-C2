@@ -23,8 +23,10 @@ authenticated.crew.button.delete = Borrar
 
 flight-crew.flight-assignment.constraint.assignee-not-available = Miembro de la tripulación no disponible
 flight-crew.flight-assignment.constraint.conflicting-assignment = Miembro de la tripulación con una designación previa conflictiva con la nueva
+flight-crew.flight-assignment.constraint.already-assigned-lead-attendant = Tramo de vuelo con un jefe de vuelo ya asignado
 flight-crew.flight-assignment.constraint.already-assigned-pilot = Tramo de vuelo con un piloto ya asignado
 flight-crew.flight-assignment.constraint.already-assigned-co-pilot = Tramo de vuelo con un co-piloto ya asignado
 flight-crew.flight-assignment.constraint.not-authorised = No estás autorizado para crear esta designación
 flight-crew.flight-assignment.constraint.null-value = Comprueba que ningún valor dado sea nulo
 flight-crew.flight-assignment.constraint.cannot-delete-assignment = Esta designación no se puede eliminar en este momento, prueba de nuevo cuando no haya más designaciones para este tramo
+flight-crew.flight-assignment.constraint.already-assignment-for-pair = Ya hay una designación para este usuario y este tramo

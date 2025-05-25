@@ -36,17 +36,29 @@ public class CrewFlightAssignmentShowService extends AbstractGuiService<FlightCr
 	@Override
 	public void authorise() {
 		boolean isAuthorised;
+		int id;
 
-		int id = super.getRequest().getData("id", Integer.TYPE);
-		FlightAssignment assignment = this.repository.findById(id);
-		FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
-		FlightCrew leadAttendant = this.repository.findByLegId(assignment.getLeg().getId()).stream() //
-			.filter(a -> a.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) //
-			.map(a -> a.getAssignee()) //
-			.toList().get(0);
+		try {
+			id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 
-		isAuthorised = leadAttendant.equals(user) //
-			|| assignment.getAssignee().equals(user);
+			FlightAssignment assignment = this.repository.findById(id);
+			isAuthorised = assignment != null;
+			if (!isAuthorised) {
+				super.getResponse().setAuthorised(isAuthorised);
+				return;
+			}
+
+			FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
+			FlightCrew leadAttendant = this.repository.findByLegId(assignment.getLeg().getId()).stream() //
+				.filter(a -> a.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) //
+				.map(a -> a.getAssignee()) //
+				.toList().get(0);
+
+			isAuthorised = leadAttendant.equals(user) //
+				|| assignment.getAssignee().equals(user);
+		} catch (Exception e) {
+			isAuthorised = false;
+		}
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}
@@ -81,14 +93,16 @@ public class CrewFlightAssignmentShowService extends AbstractGuiService<FlightCr
 		dataset.put("statuses", statusChoices);
 
 		String airlineCode = user.getAirline().getIataCode();
-		List<Leg> legs = this.legRepository.findAllLegs().stream() // traemos todos los tramos de vuelo disponible
-			.filter(x -> x.getFlightCode().contains(airlineCode)) // filtramos por aerolinea
+		Collection<Leg> legs = this.legRepository.findAllLegs().stream() // traemos todos los tramos de vuelo disponible
+			.filter(x -> x.getFlightCode().contains(airlineCode) && x.isPublished()) // filtramos por aerolinea y publico
 			.toList();
 		SelectChoices legChoices = SelectChoices.from(legs, "flightCode", assignment.getLeg());
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 
-		Collection<FlightCrew> assignees = this.crewRepository.findAllByAirline(user.getAirline().getId());
+		Collection<FlightCrew> assignees = this.crewRepository.findAllByAirline(user.getAirline().getId()).stream() //
+			//.filter(x -> x.getAvailability().equals(Availability.AVAILABLE)) //
+			.toList();
 		SelectChoices assigneeChoices = SelectChoices.from(assignees, "identifier", assignment.getAssignee());
 		dataset.put("assignee", assigneeChoices.getSelected().getKey());
 		dataset.put("assignees", assigneeChoices);

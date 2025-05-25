@@ -11,12 +11,14 @@
 	<acme:input-select code="authenticated.crew.label.leg" path="leg" choices="${legs}"/>
 	
 	<jstl:choose>
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && canPublish}">
+			<acme:submit code="authenticated.crew.button.delete" action="/flight-crew/activity-log/delete"/>
+			<acme:submit code="authenticated.crew.button.update" action="/flight-crew/activity-log/update"/>
+			<acme:submit code="authenticated.crew.button.publish" action="/flight-crew/activity-log/publish"/>
+		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && !published}">
 			<acme:submit code="authenticated.crew.button.delete" action="/flight-crew/activity-log/delete"/>
 			<acme:submit code="authenticated.crew.button.update" action="/flight-crew/activity-log/update"/>
-		</jstl:when>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && canPublish}">
-			<acme:submit code="authenticated.crew.button.publish" action="/flight-crew/activity-log/publish"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="authenticated.crew.button.create" action="/flight-crew/activity-log/create"/>

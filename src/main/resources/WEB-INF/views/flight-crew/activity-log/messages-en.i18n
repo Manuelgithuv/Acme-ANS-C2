@@ -24,3 +24,5 @@ flight-crew.activity-log.constraint.invalid-flight-code = Invalid leg
 flight-crew.activity-log.constraint.null-leg-value = Select a leg
 flight-crew.activity-log.constraint.log-registered-before-arrival = The log must be registered after the plane's arrival
 flight-crew.activity-log.constraint.invalid-severity-value = The severity must be between 0 and 10
+flight-crew.activity-log.constraint.too-long-incident-type = Incident type should be shorter than 50 characters long
+flight-crew.activity-log.constraint.null-assignment = No assignment could be found for this leg

@@ -24,17 +24,30 @@ public class CrewFlightAssignmentPublishService extends AbstractGuiService<Fligh
 	@Override
 	public void authorise() {
 		boolean isAuthorised;
+		int id;
 
-		int id = super.getRequest().getData("id", Integer.TYPE);
-		FlightAssignment assignment = this.repository.findById(id);
-		FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
-		FlightCrew leadAttendant = this.repository.findByLegId(assignment.getLeg().getId()).stream() //
-			.filter(a -> a.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) //
-			.map(a -> a.getAssignee()) //
-			.toList().get(0);
+		try {
+			id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 
-		isAuthorised = leadAttendant.equals(user) //
-			&& assignment.getLeg().isPublished();
+			FlightAssignment assignment = this.repository.findById(id);
+			isAuthorised = assignment != null;
+			if (!isAuthorised) {
+				super.getResponse().setAuthorised(isAuthorised);
+				return;
+			}
+
+			FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
+			FlightCrew leadAttendant = this.repository.findByLegId(assignment.getLeg().getId()).stream() //
+				.filter(a -> a.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) //
+				.map(a -> a.getAssignee()) //
+				.toList().get(0);
+
+			isAuthorised = leadAttendant.equals(user) //
+				&& assignment.getLeg().isPublished() //
+				&& !assignment.getPublished();
+		} catch (Exception e) {
+			isAuthorised = false;
+		}
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}

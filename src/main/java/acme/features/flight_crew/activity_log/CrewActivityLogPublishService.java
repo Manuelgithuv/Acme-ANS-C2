@@ -29,10 +29,27 @@ public class CrewActivityLogPublishService extends AbstractGuiService<FlightCrew
 
 	@Override
 	public void authorise() {
-		int id = super.getRequest().getData("id", Integer.TYPE);
-		ActivityLog log = this.repository.findById(id);
-		FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
-		Boolean status = log.getFlightAssignment().getAssignee().getId() == user.getId() && !log.getPublished();
+		Boolean status;
+		int id;
+
+		try {
+			id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
+
+			ActivityLog log = this.repository.findById(id);
+			status = log != null;
+			if (!status) {
+				super.getResponse().setAuthorised(status);
+				return;
+			}
+
+			FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
+			status = log.getFlightAssignment().getAssignee().getId() == user.getId() //
+				&& !log.getPublished() //
+				&& log.getFlightAssignment().getPublished();
+		} catch (Exception e) {
+			status = false;
+		}
+
 		super.getResponse().setAuthorised(status);
 	}
 

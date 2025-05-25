@@ -33,21 +33,26 @@ public class CrewFlightAssignmentDeleteService extends AbstractGuiService<Flight
 		int id;
 
 		try {
-			id = super.getRequest().getData("id", Integer.TYPE);
+			id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
+
+			FlightAssignment assignment = this.repository.findById(id);
+			isAuthorised = assignment != null;
+			if (!isAuthorised) {
+				super.getResponse().setAuthorised(isAuthorised);
+				return;
+			}
+
+			FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
+			FlightCrew leadAttendant = this.repository.findByLegId(assignment.getLeg().getId()).stream() //
+				.filter(a -> a.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) //
+				.map(a -> a.getAssignee()) //
+				.toList().get(0);
+
+			isAuthorised = leadAttendant.equals(user) //
+				&& !assignment.getPublished();
 		} catch (Exception e) {
-			super.getResponse().setAuthorised(false);
-			return;
+			isAuthorised = false;
 		}
-
-		FlightAssignment assignment = this.repository.findById(id);
-		FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
-		FlightCrew leadAttendant = this.repository.findByLegId(assignment.getLeg().getId()).stream() //
-			.filter(a -> a.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) //
-			.map(a -> a.getAssignee()) //
-			.toList().get(0);
-
-		isAuthorised = leadAttendant.equals(user) //
-			&& !assignment.getPublished();
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}
