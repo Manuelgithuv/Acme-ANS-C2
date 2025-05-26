@@ -55,7 +55,6 @@ public class AuthenticatedCustomerCreateService extends AbstractGuiService<Authe
 	@Override
 	public void validate(final Customer customer) {
 		assert customer != null;
-		System.out.println(customer.getIdentifier());
 
 		if (customer.getIdentifier() != null && !customer.getIdentifier().isEmpty()) {
 			Optional<Customer> existingCustomer = this.authenticatedCustomerRepository.findByIdentifier(customer.getIdentifier());

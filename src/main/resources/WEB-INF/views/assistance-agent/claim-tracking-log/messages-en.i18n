@@ -1,0 +1,44 @@
+assistance-agent.claim-tracking-log.list.title = Listing Claim Logs
+assistance-agent.claim-tracking-log.form.title = Claim Log details
+customer.booking.create.null-lastCardNibble = The last card nibble is null
+customer.booking.locatorCode.alreadyExists = Locator Code already exist
+customer.booking.all-passengers-are-published = All the passengers from the booking must be published
+customer.booking.all-booking-passengers-are-published = All the  bookingPassengers from the booking must be published
+customer.booking.create.null-flight= The flight must not be null
+
+authenticated.customer.list.label.locatorCode = Locator Code
+authenticated.customer.list.label.purchaseMoment = Purchase Moment
+authenticated.customer.list.label.travelClass = Travel Class
+authenticated.customer.list.label.price = Price
+authenticated.customer.list.label.lastCardNibble = Last Card Nibble
+authenticated.customer.list.label.flight = Flight
+authenticated.customer.list.label.published = Published
+manager.flight.invalid-currency = Invalid Currency
+customer.booking.at-least-one-passenger = Booking must have at least one passenger
+
+authenticated.customer.list.button.passengers = See Passengers
+authenticated.customer.form.button.flight.publish = Publish
+authenticated.customer.form.button.flight.update = Update
+authenticated.customer.form.button.flight.create = Create
+authenticated.customer.list.button.booking.create = Create
+
+
+assistance-agent.claim-tracking-log.list.title = Listing Claim Logs
+assistance-agent.claim-tracking-log.form.title = Claim Log details
+authenticated.assistanceAgent.list.label.claim = Claim Id
+authenticated.assistanceAgent.list.label.lastUpdateMoment = Last Update Moment
+authenticated.assistanceAgent.list.label.stepUndergoing = Step Undergoing
+authenticated.assistanceAgent.list.label.resolutionPercentage = Resolution Percentage
+authenticated.assistanceAgent.list.label.published= Published
+authenticated.assistance-agent.list.label.resolutionDescription= Resolution Description
+authenticated.assistance-agent.list.label.compensation= Compensation
+authenticated.assistance-agent.list.label.claimAcepted= Associated claim Acepted
+authenticated.assistance-agent.list.label.claim= Claim
+
+authenticated.assistance-agent.form.button.claim.publish=  Publish
+authenticated.assistance-agent.form.button.claim.update  = Update
+authenticated.assistance-agent.form.button.claim.delete  = Delete
+authenticated.assistance-agent.form.button.claim.create= Create
+
+assistance-agent.claim-tracking-log.create.claim= Claim cant be null
+assistance-agent.claim-tracking-log.publish.claimNotPublished= can publish tracking log if associated claim is not published
