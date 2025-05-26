@@ -39,6 +39,11 @@ public class CrewFlightAssignmentUpdateService extends AbstractGuiService<Flight
 		boolean isAuthorised;
 		int id;
 
+		if (super.getRequest().getMethod().equals("GET")) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
+
 		try {
 			id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 
