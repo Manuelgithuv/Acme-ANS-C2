@@ -1,0 +1,6 @@
+
+authenticated.manager.list.label.registrationNumber = Aircraft registration number
+
+authenticated.manager.list.label.iataCode = Airline Iata Code
+
+manager.aircraft.list.title = Airlines codes of aircrafts

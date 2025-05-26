@@ -1,6 +1,8 @@
 
 package acme.features.administrator.airline;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -20,7 +22,10 @@ public class AdministratorAirlineUpdateService extends AbstractGuiService<Admini
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		int id = super.getRequest().hasData("id", int.class) ? super.getRequest().getData("id", int.class) : 0;
+		Airline airline = this.repository.findAirlineById(id);
+		boolean status = airline !=null && id!=0;
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -43,6 +48,11 @@ public class AdministratorAirlineUpdateService extends AbstractGuiService<Admini
 	@Override
 	public void validate(final Airline airline) {
 
+		Collection<Airline> airlines = this.repository.findAllAirlines();
+		if(airline.getIataCode()!=null) {
+			boolean iataRepeated = airlines.stream().anyMatch(a->a.getIataCode().equals(airline.getIataCode()));
+			super.state(!iataRepeated,"iataCode","acme.validation.repeatedAirlineIataCode");
+		}
 		boolean confirmation = super.getRequest().getData("confirmation", boolean.class);
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
 	}

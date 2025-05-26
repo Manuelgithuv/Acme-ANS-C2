@@ -72,3 +72,9 @@ leg.aircraft.is-in-maintenance = El avión seleccionado está en mantenimiento
 leg.aircraft.in-use.for.that.period.of.time = El avión seleccionado estará en uso en ese periodo de tiempo
 
 arrival.minimum.currentDate = La fecha mínima es el presente
+
+acme.validation.repeatedAirportIataCode = El código Iata ya existe
+
+acme.validation.repeatedRegNumber = El número de registro ya existe
+
+acme.validation.repeatedAirlineIataCode = El código Iata ya existe

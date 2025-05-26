@@ -70,3 +70,9 @@ leg.aircraft.is-in-maintenance = The aircraft selected is in maintenance
 leg.aircraft.in-use.for.that.period.of.time = The aircraft select is going to be used in that period of time
 
 arrival.minimum.currentDate = Minimum date is actual date
+
+acme.validation.repeatedAirportIataCode = Iata code already exists
+
+acme.validation.repeatedRegNumber = Reg number already exists
+
+acme.validation.repeatedAirlineIataCode = Iata code already exists
