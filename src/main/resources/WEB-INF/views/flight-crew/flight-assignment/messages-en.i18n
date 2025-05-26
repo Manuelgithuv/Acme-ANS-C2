@@ -10,6 +10,8 @@ authenticated.crew.label.published = Published
 authenticated.crew.label.remarks = Remarks
 authenticated.crew.label.leg = Leg
 authenticated.crew.label.assignee = Assignee
+authenticated.crew.label.departure = Departure
+authenticated.crew.label.arrival = Arrival
 
 crew.lastUpdate.placeholder = YYYY/MM/DD HH:MM
 crew.remarks.placeholder = 
@@ -21,7 +23,10 @@ authenticated.crew.button.delete = Delete
 
 flight-crew.flight-assignment.constraint.assignee-not-available = Assignee not available
 flight-crew.flight-assignment.constraint.conflicting-assignment = Assignee already assigned a flight assignment that conflicts with the new one
+flight-crew.flight-assignment.constraint.already-assigned-lead-attendant = Already a lead attendant assigned to the leg
 flight-crew.flight-assignment.constraint.already-assigned-pilot = Already a pilot assigned to the leg
 flight-crew.flight-assignment.constraint.already-assigned-co-pilot = Already a co-pilot assigned to the leg
 flight-crew.flight-assignment.constraint.not-authorised = You are not authorised to create this assignment
 flight-crew.flight-assignment.constraint.null-value = Check that none of the values given are null
+flight-crew.flight-assignment.constraint.cannot-delete-assignment = This assignment cannot be remove at this moment, try again when there are no other assignments for this leg
+flight-crew.flight-assignment.constraint.already-assignment-for-pair = There's already an assignment for this user and this leg

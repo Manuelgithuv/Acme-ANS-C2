@@ -24,13 +24,24 @@ public class CrewActivityLogDeleteService extends AbstractGuiService<FlightCrew,
 	public void authorise() {
 		boolean status;
 		int crewId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		int id = super.getRequest().getData("id", int.class);
+		int id;
 
-		ActivityLog log = this.repository.findById(id);
+		try {
+			id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 
-		boolean isLogPublished = log != null && log.getPublished();
-		boolean isLogFromAuthenticatedManager = log != null && log.getFlightAssignment().getAssignee().getId() == crewId;
-		status = !isLogPublished && isLogFromAuthenticatedManager;
+			ActivityLog log = this.repository.findById(id);
+			status = log != null;
+			if (!status) {
+				super.getResponse().setAuthorised(status);
+				return;
+			}
+
+			boolean isLogPublished = log != null && log.getPublished();
+			boolean isLogFromAuthenticatedCrew = log != null && log.getFlightAssignment().getAssignee().getId() == crewId;
+			status = !isLogPublished && isLogFromAuthenticatedCrew;
+		} catch (Exception e) {
+			status = false;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}

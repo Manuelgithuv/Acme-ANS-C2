@@ -30,7 +30,15 @@ public class AdministratorAircraftCreateService extends AbstractGuiService<Admin
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		
+		boolean entitiesExist = true;
+		if (!super.getRequest().getMethod().equals("GET")) {
+
+			int airlineId = super.getRequest().getData("airline", int.class);
+			if (airlineId != 0 && this.airlineRepository.findById(airlineId) == null)
+				entitiesExist = false;
+		}
+		super.getResponse().setAuthorised(entitiesExist);
 	}
 
 	@Override
@@ -55,6 +63,11 @@ public class AdministratorAircraftCreateService extends AbstractGuiService<Admin
 
 	@Override
 	public void validate(final Aircraft aircraft) {
+		Collection<Aircraft> aircrafts = this.repository.findAllAircrafts();
+		if(aircraft.getRegistrationNumber()!=null) {
+			boolean regRepeated = aircrafts.stream().anyMatch(a->a.getRegistrationNumber().equals(aircraft.getRegistrationNumber()));
+			super.state(!regRepeated,"registrationNumber","acme.validation.repeatedRegNumber");
+		}
 		boolean confirmation = super.getRequest().getData("confirmation", boolean.class);
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
 	}

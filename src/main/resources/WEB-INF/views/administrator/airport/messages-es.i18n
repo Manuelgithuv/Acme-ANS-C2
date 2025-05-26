@@ -23,3 +23,7 @@ administrator.airline.list.label.iataCode = Código Iata
 administrator.airline.list.label.type = Tipo
 
 administrator.airline.list.button.create = Crear
+
+administrator.airport.form.button.create = Crear
+
+administrator.airport.list.label.scope = Alcance

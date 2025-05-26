@@ -4,7 +4,9 @@ package acme.entities.passenger;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -24,6 +26,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Table(name = "passenger", indexes = {
+	@Index(name = "idx_passenger_customer_id", columnList = "customer_id"), @Index(name = "idx_passenger_published", columnList = "published")
+})
 public class Passenger extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;

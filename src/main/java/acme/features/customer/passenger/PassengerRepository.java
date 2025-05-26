@@ -21,7 +21,7 @@ public interface PassengerRepository extends AbstractRepository {
 	List<Passenger> findPassengersByBookingId(@Param("bookingId") int bookingId);
 
 	@Query("SELECT p FROM Passenger p")
-	List<Passenger> findAllPassengers(@Param("customerId") int customerId);
+	List<Passenger> findAllPassengers();
 
 	@Query("SELECT p FROM Passenger p WHERE p.published = true OR p.customer.id = :customerId")
 	Collection<Passenger> findAvailablePassengers(@Param("customerId") int customerId);

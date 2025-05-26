@@ -33,7 +33,26 @@ public class CrewActivityLogCreateService extends AbstractGuiService<FlightCrew,
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		Boolean isAuthorised;
+
+		if (!super.getRequest().getMethod().equals("GET"))
+			try {
+				int userAccountId = super.getRequest().getPrincipal().getAccountId();
+
+				Leg selectedLeg = super.getRequest().getData("leg", Leg.class);
+				Boolean validLeg = selectedLeg == null ? true
+					: this.assignmentRepository.findLegsByCrew(userAccountId).stream() //
+						.filter(x -> x.isPublished()) //
+						.anyMatch(x -> x.getId() == selectedLeg.getId());
+
+				isAuthorised = validLeg;
+			} catch (Exception e) {
+				isAuthorised = false;
+			}
+		else
+			isAuthorised = true;
+
+		super.getResponse().setAuthorised(isAuthorised);
 	}
 
 	@Override
@@ -45,18 +64,7 @@ public class CrewActivityLogCreateService extends AbstractGuiService<FlightCrew,
 
 	@Override
 	public void bind(final ActivityLog log) {
-		FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
-
-		if (log.getLeg() == null) {
-			super.state(false, "leg", "flight-crew.activity-log.constraint.null-leg-value", new Object[0]);
-			return;
-		}
-
-		FlightAssignment assignment = this.assignmentRepository.findByAssigneeAndLeg(user, log.getLeg().getId());
-		if (assignment == null)
-			throw new IllegalArgumentException("Invalid leg identifier, the user is not allowed to log a report of a leg they've not flown");
-
-		super.bindObject(log, "registrationMoment", "incidentType", "description", "severity");
+		super.bindObject(log, "registrationMoment", "incidentType", "description", "severity", "leg");
 	}
 
 	@Override
@@ -67,11 +75,6 @@ public class CrewActivityLogCreateService extends AbstractGuiService<FlightCrew,
 		status = log.getRegistrationMoment() == null || log.getIncidentType() == null || log.getDescription() == null || log.getSeverity() == null || log.getLeg() == null;
 		if (status) {
 			super.state(!status, "*", "flight-crew.activity-log.constraint.null-value", new Object[0]);
-			return;
-		}
-		status = log.getFlightAssignment() == null;
-		if (status) {
-			super.state(!status, "*", "flight-crew.activity-log.constraint.null-assignment", new Object[0]);
 			return;
 		}
 
@@ -86,6 +89,23 @@ public class CrewActivityLogCreateService extends AbstractGuiService<FlightCrew,
 			super.state(!status, "severity", "flight-crew.activity-log.constraint.invalid-severity-value", new Object[0]);
 			return;
 		}
+
+		status = log.getIncidentType().length() <= 50;
+		if (!status) {
+			super.state(!status, "incidentType", "flight-crew.flight-assignment.constraint.too-long-incident-type", new Object[0]);
+			return;
+		}
+
+		// assign assignment
+		FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
+		FlightAssignment assignment = this.assignmentRepository.findByAssigneeAndLeg(user, log.getLeg().getId());
+		log.setFlightAssignment(assignment);
+
+		status = log.getFlightAssignment() == null;
+		if (status) {
+			super.state(!status, "*", "flight-crew.activity-log.constraint.null-assignment", new Object[0]);
+			return;
+		}
 	}
 
 	@Override
@@ -96,12 +116,14 @@ public class CrewActivityLogCreateService extends AbstractGuiService<FlightCrew,
 	@Override
 	public void unbind(final ActivityLog log) {
 		Dataset dataset;
-
 		int userAccountId = super.getRequest().getPrincipal().getAccountId();
-		Collection<Leg> legs = this.assignmentRepository.findLegsByCrew(userAccountId);
-		SelectChoices legChoices = SelectChoices.from(legs, "flightCode", log.getLeg());
 
 		dataset = super.unbindObject(log, "registrationMoment", "incidentType", "description", "severity");
+
+		Collection<Leg> legs = this.assignmentRepository.findLegsByCrew(userAccountId).stream() //
+			.filter(x -> x.isPublished()) // filtramos por publicados;
+			.toList();
+		SelectChoices legChoices = SelectChoices.from(legs, "flightCode", log.getLeg());
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 

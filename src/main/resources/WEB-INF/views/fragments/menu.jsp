@@ -62,6 +62,8 @@
 		<acme:menu-option code="master.menu.manager" access="hasRealm('Manager')">
 			<acme:menu-suboption code="master.menu.manager.list-my-flights" action="/manager/flight/list"/>
 			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.manager.list-airline-codes" action="/manager/aircraft/list"/>
+			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.manager.show-dashboard" action="/manager/manager-dashboard/show"/>
 			
 		</acme:menu-option>

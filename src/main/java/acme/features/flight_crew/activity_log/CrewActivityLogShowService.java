@@ -29,11 +29,24 @@ public class CrewActivityLogShowService extends AbstractGuiService<FlightCrew, A
 
 	@Override
 	public void authorise() {
+		Boolean isAuthorised;
 		int userAccountId = super.getRequest().getPrincipal().getAccountId();
-		int id = super.getRequest().getData("id", Integer.TYPE);
-		ActivityLog log = this.repository.findById(id);
+		int id;
 
-		boolean isAuthorised = log.getFlightAssignment().getAssignee().getUserAccount().getId() == userAccountId;
+		try {
+			id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
+
+			ActivityLog log = this.repository.findById(id);
+			isAuthorised = log != null;
+			if (!isAuthorised) {
+				super.getResponse().setAuthorised(isAuthorised);
+				return;
+			}
+
+			isAuthorised = log.getFlightAssignment().getAssignee().getUserAccount().getId() == userAccountId;
+		} catch (Exception e) {
+			isAuthorised = false;
+		}
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}

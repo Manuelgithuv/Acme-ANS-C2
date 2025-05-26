@@ -4,7 +4,9 @@ package acme.entities.flight_assignment;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -25,6 +27,13 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(name = "flight_assignment", indexes = {
+	@Index(columnList = "assignee_id"), //
+	@Index(columnList = "leg_id"), //
+	@Index(columnList = "assignee_id, leg_id"), //
+	@Index(columnList = "published"), //
+	@Index(columnList = "leg_id, duty")
+})
 public class FlightAssignment extends AbstractEntity {
 
 	/*

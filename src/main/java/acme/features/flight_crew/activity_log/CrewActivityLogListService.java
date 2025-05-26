@@ -50,7 +50,7 @@ public class CrewActivityLogListService extends AbstractGuiService<FlightCrew, A
 		dataset = super.unbindObject(log, "registrationMoment", "incidentType", "severity", "published");
 		super.addPayload(dataset, log, "description", "flightAssignment.duty", "leg.departureAirport", "leg.arrivalAirport", "leg.flight", "leg.aircraft", "leg.manager");
 
-		dataset.put("leg", legChoices.getSelected().getKey());
+		dataset.put("leg", log.getLeg().getFlightCode());
 		dataset.put("legs", legChoices);
 
 		dataset.put("confirmation", false);
