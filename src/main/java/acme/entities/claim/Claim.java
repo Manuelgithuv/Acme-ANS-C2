@@ -1,10 +1,13 @@
 
 package acme.entities.claim;
 
+import java.beans.Transient;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -14,8 +17,13 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
+import acme.client.helpers.SpringHelper;
 import acme.constraints.ValidLongText;
+import acme.datatypes.ClaimStatus;
 import acme.datatypes.ClaimType;
+import acme.entities.claimLog.ClaimTrackingLog;
+import acme.entities.leg.Leg;
+import acme.features.assistanceAgents.trackingLog.AssistanceAgentTrackingLogRepository;
 import acme.realms.AssistanceAgent;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,41 +31,68 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Table(name = "claim", indexes = {
+	@Index(name = "idx_claim_agent", columnList = "assistance_agent_id"), @Index(name = "idx_claim_leg", columnList = "leg_id"), @Index(name = "idx_claim_status", columnList = "status"), @Index(name = "idx_claim_email", columnList = "passengerEmail")
+})
 public class Claim extends AbstractEntity {
 
 	/**
 	 * 
 	 */
-	private static final long			serialVersionUID	= 1L;
+	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date						registrationMoment;
+	private Date				registrationMoment;
 
 	@Mandatory
 	@ValidEmail
 	@Automapped
-	private String						passengerEmail;
+	private String				passengerEmail;
 
 	@Mandatory
 	@ValidLongText
 	@Automapped
-	private String						description;
+	private String				description;
 
 	@Mandatory
 	@Valid
 	@Automapped
-	private ClaimType					type;
+	private ClaimType			type;
+
+	@Mandatory
+	@Valid
+	@Automapped
+	private ClaimStatus			status;
 
 	@Mandatory
 	// HINT: @Valid by default.
 	@Automapped
-	private boolean						isAccepted;
+	private boolean				published;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private AssistanceAgent	AssistanceAgent;
+	private AssistanceAgent		assistanceAgent;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Leg					Leg;
+
+
+	@Transient
+	public ClaimTrackingLog getLastTrackingLog() {
+		AssistanceAgentTrackingLogRepository repository;
+		repository = SpringHelper.getBean(AssistanceAgentTrackingLogRepository.class);
+		return repository.findLastClaimTrackingLogOfClaim(this.getId());
+	}
+
+	@Transient
+	public Boolean getIsAccepted() {
+
+		return this.getStatus().equals(ClaimStatus.ACCEPTED);
+	}
 
 }
