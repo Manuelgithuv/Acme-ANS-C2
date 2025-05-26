@@ -1,0 +1,61 @@
+
+
+
+customer.booking.create.null-lastCardNibble = The last card nibble is null
+customer.booking.locatorCode.alreadyExists = Locator Code already exist
+customer.booking.all-passengers-are-published = All the passengers from the booking must be published
+customer.booking.all-booking-passengers-are-published = All the  bookingPassengers from the booking must be published
+customer.booking.create.null-flight= The flight must not be null
+
+authenticated.customer.list.label.locatorCode = Locator Code
+authenticated.customer.list.label.purchaseMoment = Purchase Moment
+authenticated.customer.list.label.travelClass = Travel Class
+authenticated.customer.list.label.price = Price
+authenticated.customer.list.label.lastCardNibble = Last Card Nibble
+authenticated.customer.list.label.flight = Flight
+authenticated.customer.list.label.published = Published
+manager.flight.invalid-currency = Invalid Currency
+customer.booking.at-least-one-passenger = Booking must have at least one passenger
+
+authenticated.customer.list.button.passengers = See Passengers
+authenticated.customer.form.button.flight.publish = Publish
+authenticated.customer.form.button.flight.update = Update
+authenticated.customer.form.button.flight.create = Create
+authenticated.customer.list.button.booking.create = Create
+
+authenticated.assistanceAgent.list.label.registrationMoment= Registration Moment
+authenticated.assistanceAgent.list.label.passengerEmail= Passenger Email
+authenticated.assistanceAgent.list.label.status= Status
+authenticated.assistanceAgent.list.label.published= Published
+authenticated.assistanceAgent.list.label.leg= Leg
+
+authenticated.assistanceAgent.list.button.booking.create= Create
+
+assistance-agent.claim.list.title = Listing Claims
+assistance-agent.claim.form.title = Claim details
+
+authenticated.assistance-agent.list.label.registrationMoment  = Registration Moment
+authenticated.assistance-agent.list.label.passengerEmail  = Passenger Email
+authenticated.assistance-agent.list.label.description  = Description
+authenticated.assistance-agent.list.label.status  = Status
+authenticated.assistance-agent.list.label.type  = Type
+authenticated.assistance-agent.list.label.published  = Published
+authenticated.assistance-agent.list.label.leg  = Leg
+authenticated.assistance-agent.form.button.claim.publish=  Publish
+authenticated.assistance-agent.form.button.claim.update  = Update
+authenticated.assistance-agent.form.button.claim.delete  = Delete
+authenticated.assistance-agent.form.button.claim.create= Create
+
+authenticated.assistance-agent.list.label.lastUpdateMoment= Last Update Moment
+authenticated.assistance-agent.list.label.stepUndergoing= Step Undergoing
+authenticated.assistance-agent.list.label.resolutionPercentage = Resolution Percentage
+authenticated.assistance-agent.list.label.resolutionDescription = Resolution Description
+authenticated.assistance-agent.list.label.compensation = Compensation
+authenticated.assistance-agent.list.label.claimAcepted = Asociated Claim Acepted 
+authenticated.assistance-agent.list.label.published= Published
+authenticated.assistance-agent.list.label.claim= Asociated Claim
+
+assistance-agent.claim.create.legId= leg cant be null
+assistance-agent.claim.delete.pendingLogs= can not delete claim one or more tracking logs are associated
+
+

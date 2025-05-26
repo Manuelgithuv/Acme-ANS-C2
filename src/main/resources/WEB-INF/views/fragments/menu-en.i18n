@@ -85,3 +85,8 @@ master.menu.user-account.become-customer = Become a customer
 master.menu.technician = Technician
 master.menu.technician.tasks.tasks-list = Tasks List
 master.menu.technician.maintenanceRecords.maintenanceRecords-list = Maintenance Records List
+
+
+master.menu.assistance-agent= Assistance Agent
+master.menu.assistance-agent.list-claims= Claims
+master.menu.assistance-agent.list-claim-logs= Claim Logs

@@ -1,0 +1,47 @@
+customer.booking.list.title = Listado de Reservas
+customer.booking.form.title = Detalles de la reserva
+customer.booking.create.null-lastCardNibble = Los cuatro últimos dígitos de la tarjeta son  nulos
+customer.booking.locatorCode.alreadyExists = Codigo de localizado ya existe
+customer.booking.all-passengers-are-published = Todos los pasajeros pertenecientes a la reserva deben estar publicados
+customer.booking.all-booking-passengers-are-published = Todas las reservas-pasajero pertenecientes a esta reserva deben estar publicadas
+customer.booking.create.null-flight= El vuelo no debe ser nulo
+
+authenticated.customer.list.label.locatorCode = Codigo Localizador
+authenticated.customer.list.label.purchaseMoment = Momento de Compra
+authenticated.customer.list.label.travelClass = Clase
+authenticated.customer.list.label.price = Precio
+authenticated.customer.list.label.lastCardNibble = Cuatro últimos dígitos de la tarjeta
+authenticated.customer.list.label.flight = Vuelo
+manager.flight.invalid-currency = Moneda Invalida
+authenticated.customer.list.label.published = Publicado
+customer.booking.at-least-one-passenger = La reserva debe tener al menos un pasajero
+
+authenticated.customer.list.button.passengers = Ver Pasajeros
+authenticated.customer.form.button.flight.publish = Publicar
+authenticated.customer.form.button.flight.update = Actualizar
+authenticated.customer.form.button.flight.create = Crear
+authenticated.customer.list.button.booking.create = Crear
+
+assistance-agent.claim.list.title = Listado de Reclamaciones
+assistance-agent.claim.form.title = Detalles de la Reclamación
+
+authenticated.assistance-agent.list.label.registrationMoment  = Momento de Registro
+authenticated.assistance-agent.list.label.passengerEmail  = Correo Electrónico del Pasajero
+authenticated.assistance-agent.list.label.description  = Descripción
+authenticated.assistance-agent.list.label.status  = Estado
+authenticated.assistance-agent.list.label.type  = Tipo
+authenticated.assistance-agent.list.label.published  = Publicado
+authenticated.assistance-agent.list.label.leg  = Tramo
+authenticated.assistance-agent.form.button.claim.publish=  Publicar
+authenticated.assistance-agent.form.button.claim.update  = Actualizar
+authenticated.assistance-agent.form.button.claim.delete  = Eliminar
+authenticated.assistance-agent.form.button.claim.create= Crear
+
+authenticated.assistance-agent.list.label.lastUpdateMoment= Momento de Última Actualización
+authenticated.assistance-agent.list.label.stepUndergoing= Paso en Curso
+authenticated.assistance-agent.list.label.resolutionPercentage = Porcentaje de Resolución
+authenticated.assistance-agent.list.label.resolutionDescription = Descripción de la Resolución
+authenticated.assistance-agent.list.label.compensation = Compensación
+authenticated.assistance-agent.list.label.claimAcepted = Reclamación Asociada Aceptada
+authenticated.assistance-agent.list.label.published= Publicado
+authenticated.assistance-agent.list.label.claim= Reclamación Asociada

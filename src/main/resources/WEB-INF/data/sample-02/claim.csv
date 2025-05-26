@@ -1,0 +1,4 @@
+key,registrationMoment,passengerEmail,description,type,status,published,key:assistanceAgent,key:leg
+claim-01,2024/01/01 00:04,example@gmail.com,horrible,FLIGHT_ISSUES,PENDING,false,assistance-agent-01,leg-10
+claim-02,2024/01/01 00:04,example@gmail.com,horrible,FLIGHT_ISSUES,ACCEPTED,false,assistance-agent-01,leg-10
+claim-03,2024/01/01 00:04,example@gmail.com,horrible,FLIGHT_ISSUES,REJECTED,false,assistance-agent-01,leg-10
