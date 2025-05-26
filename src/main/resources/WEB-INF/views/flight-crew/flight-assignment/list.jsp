@@ -6,6 +6,8 @@
 <acme:list>
 	<acme:list-column code="authenticated.crew.label.assignee" path="assignee"/>
 	<acme:list-column code="authenticated.crew.label.leg" path="leg"/>
+	<acme:list-column code="authenticated.crew.label.departure" path="departure"/>
+	<acme:list-column code="authenticated.crew.label.arrival" path="arrival"/>
 	<acme:list-column code="authenticated.crew.label.duty" path="duty"/>
 	<acme:list-column code="authenticated.crew.label.lastUpdate" path="lastUpdate"/>
 	<acme:list-column code="authenticated.crew.label.status" path="status"/>

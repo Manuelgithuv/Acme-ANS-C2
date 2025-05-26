@@ -36,19 +36,29 @@ public class CrewFlightAssignmentShowService extends AbstractGuiService<FlightCr
 	@Override
 	public void authorise() {
 		boolean isAuthorised;
+		int id;
 
-		FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
-		int id = super.getRequest().getData("id", Integer.TYPE);
-		FlightAssignment assignment = this.repository.findById(id);
+		try {
+			id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 
-		Collection<FlightAssignment> allAssignments = this.repository.findAllFlightAssignment();
-		List<Leg> legsAsLeadAttendant = allAssignments.stream() //
-			.filter(a -> a.getAssignee().equals(user)) //
-			.filter(a -> a.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) //
-			.map(a -> a.getLeg()) //
-			.toList();
+			FlightAssignment assignment = this.repository.findById(id);
+			isAuthorised = assignment != null;
+			if (!isAuthorised) {
+				super.getResponse().setAuthorised(isAuthorised);
+				return;
+			}
 
-		isAuthorised = assignment.getAssignee().equals(user) || legsAsLeadAttendant.contains(assignment.getLeg());
+			FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
+			FlightCrew leadAttendant = this.repository.findByLegId(assignment.getLeg().getId()).stream() //
+				.filter(a -> a.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) //
+				.map(a -> a.getAssignee()) //
+				.toList().get(0);
+
+			isAuthorised = leadAttendant.equals(user) //
+				|| assignment.getAssignee().equals(user);
+		} catch (Exception e) {
+			isAuthorised = false;
+		}
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}
@@ -62,15 +72,14 @@ public class CrewFlightAssignmentShowService extends AbstractGuiService<FlightCr
 
 	@Override
 	public void unbind(final FlightAssignment assignment) {
-		FlightCrew crew = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
+		FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
 
 		Collection<FlightAssignment> allAssignments = this.repository.findAllFlightAssignment();
 		List<Leg> legsAsLeadAttendant = allAssignments.stream() //
+			.filter(a -> a.getAssignee().equals(user)) //
 			.filter(a -> a.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) //
 			.map(a -> a.getLeg()) //
 			.toList();
-
-		Boolean isAuthorised = (assignment.getAssignee().equals(crew) || legsAsLeadAttendant.contains(assignment.getLeg())) && !assignment.getPublished();
 
 		Dataset dataset;
 		dataset = super.unbindObject(assignment, "lastUpdate", "remarks", "published");
@@ -83,15 +92,17 @@ public class CrewFlightAssignmentShowService extends AbstractGuiService<FlightCr
 		dataset.put("status", statusChoices.getSelected().getKey());
 		dataset.put("statuses", statusChoices);
 
-		String airlineCode = crew.getAirline().getIataCode();
-		List<Leg> legs = this.legRepository.findAllLegs().stream() // traemos todos los tramos de vuelo disponible
-			.filter(x -> x.getFlightCode().contains(airlineCode)) // filtramos por aerolinea
+		String airlineCode = user.getAirline().getIataCode();
+		Collection<Leg> legs = this.legRepository.findAllLegs().stream() // traemos todos los tramos de vuelo disponible
+			.filter(x -> x.getFlightCode().contains(airlineCode) && x.isPublished()) // filtramos por aerolinea y publico
 			.toList();
 		SelectChoices legChoices = SelectChoices.from(legs, "flightCode", assignment.getLeg());
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 
-		Collection<FlightCrew> assignees = this.crewRepository.findAllByAirline(crew.getAirline().getId());
+		Collection<FlightCrew> assignees = this.crewRepository.findAllByAirline(user.getAirline().getId()).stream() //
+			//.filter(x -> x.getAvailability().equals(Availability.AVAILABLE)) //
+			.toList();
 		SelectChoices assigneeChoices = SelectChoices.from(assignees, "identifier", assignment.getAssignee());
 		dataset.put("assignee", assigneeChoices.getSelected().getKey());
 		dataset.put("assignees", assigneeChoices);
@@ -99,7 +110,10 @@ public class CrewFlightAssignmentShowService extends AbstractGuiService<FlightCr
 		dataset.put("confirmation", false);
 		dataset.put("readonly", false);
 
-		dataset.put("authorised", isAuthorised);
+		Boolean authorised = legsAsLeadAttendant.contains(assignment.getLeg()) && !assignment.getPublished();
+		dataset.put("authorised", authorised);
+		Boolean canPublish = authorised && assignment.getLeg().isPublished();
+		dataset.put("canPublish", canPublish);
 
 		super.getResponse().addData(dataset);
 	}

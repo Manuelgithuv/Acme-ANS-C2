@@ -2,7 +2,6 @@
 package acme.features.flight_crew.flight_assignment;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +11,6 @@ import acme.client.services.GuiService;
 import acme.datatypes.CrewDuty;
 import acme.entities.activity_log.ActivityLog;
 import acme.entities.flight_assignment.FlightAssignment;
-import acme.entities.leg.Leg;
 import acme.features.flight_crew.activity_log.ActivityLogRepository;
 import acme.realms.FlightCrew;
 
@@ -32,17 +30,29 @@ public class CrewFlightAssignmentDeleteService extends AbstractGuiService<Flight
 	@Override
 	public void authorise() {
 		boolean isAuthorised;
+		int id;
 
-		int id = super.getRequest().getData("id", Integer.TYPE);
-		FlightAssignment assignment = this.repository.findById(id);
+		try {
+			id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
 
-		Collection<FlightAssignment> allAssignments = this.repository.findAllFlightAssignment();
-		List<Leg> legsAsLeadAttendant = allAssignments.stream() //
-			.filter(a -> a.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) //
-			.map(a -> a.getLeg()) //
-			.toList();
+			FlightAssignment assignment = this.repository.findById(id);
+			isAuthorised = assignment != null;
+			if (!isAuthorised) {
+				super.getResponse().setAuthorised(isAuthorised);
+				return;
+			}
 
-		isAuthorised = legsAsLeadAttendant.contains(assignment.getLeg());
+			FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
+			FlightCrew leadAttendant = this.repository.findByLegId(assignment.getLeg().getId()).stream() //
+				.filter(a -> a.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) //
+				.map(a -> a.getAssignee()) //
+				.toList().get(0);
+
+			isAuthorised = leadAttendant.equals(user) //
+				&& !assignment.getPublished();
+		} catch (Exception e) {
+			isAuthorised = false;
+		}
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}
@@ -61,6 +71,14 @@ public class CrewFlightAssignmentDeleteService extends AbstractGuiService<Flight
 
 	@Override
 	public void validate(final FlightAssignment assignment) {
+		Collection<FlightAssignment> assignments = this.repository.findAllFlightAssignment().stream() //
+			.filter(x -> x.getLeg().equals(assignment.getLeg())) //
+			.filter(x -> !x.getDuty().equals(CrewDuty.LEAD_ATTENDANT)).toList();
+
+		if (assignments.size() > 0 && assignment.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) {
+			super.state(false, "*", "flight-crew.flight-assignment.constraint.cannot-delete-assignment", new Object[0]);
+			return;
+		}
 	}
 
 	@Override
