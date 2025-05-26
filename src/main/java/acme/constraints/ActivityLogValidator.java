@@ -18,7 +18,8 @@ public class ActivityLogValidator extends AbstractValidator<ValidActivityLog, Ac
 		boolean result;
 
 		result = log.getFlightAssignment().getLeg().equals(log.getLeg()) // comprobamos que el log está registrado al tramo de vuelo adecuado
-			&& log.getRegistrationMoment().after(log.getLeg().getScheduledArrival()); // y que se haya registrado después del aterrizaje
+			&& log.getRegistrationMoment().after(log.getLeg().getScheduledArrival()) // y que se haya registrado después del aterrizaje
+			&& log.getLeg().isPublished();
 
 		return result;
 	}
