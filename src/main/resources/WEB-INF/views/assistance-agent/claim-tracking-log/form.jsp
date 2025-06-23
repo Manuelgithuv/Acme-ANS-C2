@@ -4,8 +4,10 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-    <acme:input-moment code="authenticated.assistance-agent.list.label.lastUpdateMoment" path="lastUpdateMoment"/>
+    <acme:input-moment code="authenticated.assistance-agent.list.label.lastUpdateMoment" path="lastUpdateMoment" readonly="true"/>
+	<acme:input-moment code="authenticated.assistance-agent.list.label.creationMoment" path="creationMoment" readonly="true"/>
     <acme:input-textbox code="authenticated.assistance-agent.list.label.stepUndergoing" path="stepUndergoing" />
+	<acme:input-select code="authenticated.assistance-agent.list.label.status" path="status" choices="${statuses}"/>
     <acme:input-double code="authenticated.assistance-agent.list.label.resolutionPercentage" path="resolutionPercentage"/>
     <acme:input-textbox code="authenticated.assistance-agent.list.label.resolutionDescription" path="resolutionDescription" />
     <acme:input-money code="authenticated.assistance-agent.list.label.compensation" path="compensation" />

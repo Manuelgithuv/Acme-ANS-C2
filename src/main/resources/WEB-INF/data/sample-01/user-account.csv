@@ -23,4 +23,4 @@ user-account-member-04,true,"UserIdentity{name: 'Marco', surname: 'Lopez', email
 user-account-member-05,true,"UserIdentity{name: 'Marta', surname: 'Fernandez', email: 'martafernandez@acme.com'}",member5,member5
 user-account-assistance-agent-01,true,"UserIdentity{name: 'agent1', surname: 'agent1', email: 'agent1@acme.com'}",agent1,agent1
 user-account-assistance-agent-02,true,"UserIdentity{name: 'agent2', surname: 'agent2', email: 'agent2@acme.com'}",agent2,agent2
-user-account-assistance-agent-03,true,"UserIdentity{name: 'manager3', surname: 'manager3', email: 'manageragent3@acme.com'}",agentmanager3,agentmanager3
+user-account-assistance-agent-03,true,"UserIdentity{name: 'manager3', surname: 'manager3', email: 'manageragent3@acme.com'}",agent3,agent3

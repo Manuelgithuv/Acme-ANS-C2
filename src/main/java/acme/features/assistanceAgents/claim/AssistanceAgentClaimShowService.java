@@ -9,7 +9,6 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.datatypes.ClaimStatus;
 import acme.datatypes.ClaimType;
 import acme.entities.claim.Claim;
 import acme.entities.leg.Leg;
@@ -52,15 +51,14 @@ public class AssistanceAgentClaimShowService extends AbstractGuiService<Assistan
 
 	@Override
 	public void unbind(final Claim claim) {
-		Dataset dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "status", "published");
+		Dataset dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "published");
+		dataset.put("status", claim.getStatus());
 		Collection<Leg> legs = this.legRepository.findAllLegs();
 		SelectChoices legChoices = SelectChoices.from(legs, "id", claim.getLeg());
 		dataset.put("legId", legChoices.getSelected().getKey());
 		dataset.put("legIds", legChoices);
 		SelectChoices typeChoices = SelectChoices.from(ClaimType.class, claim.getType());
-		SelectChoices stateChoices = SelectChoices.from(ClaimStatus.class, claim.getStatus());
 		dataset.put("types", typeChoices);
-		dataset.put("statuses", stateChoices);
 		if (claim.isPublished())
 			dataset.put("readonly", true);
 

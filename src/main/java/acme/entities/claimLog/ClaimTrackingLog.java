@@ -33,7 +33,8 @@ import lombok.Setter;
 @ValidClaimTrackingLog
 @Entity
 @Table(name = "claim_tracking_log", indexes = {
-	@Index(name = "idx_log_claim", columnList = "claim_id"), @Index(name = "idx_log_lastupdate", columnList = "lastUpdateMoment"), @Index(name = "idx_log_claim_agent", columnList = "claim_id, published")
+	@Index(name = "idx_log_claim", columnList = "claim_id"), @Index(name = "idx_log_status", columnList = "status"), @Index(name = "idx_log_lastupdate", columnList = "lastUpdateMoment"),
+	@Index(name = "idx_log_creationMoment", columnList = "creationMoment"), @Index(name = "idx_log_claim_agent", columnList = "claim_id, published")
 })
 public class ClaimTrackingLog extends AbstractEntity {
 
@@ -51,6 +52,11 @@ public class ClaimTrackingLog extends AbstractEntity {
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				lastUpdateMoment;
+
+	@Mandatory
+	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				creationMoment;
 
 	@Mandatory
 	@ValidShortText
@@ -73,6 +79,11 @@ public class ClaimTrackingLog extends AbstractEntity {
 	private Money				compensation;
 
 	@Mandatory
+	@Valid
+	@Automapped
+	private ClaimStatus			status;
+
+	@Mandatory
 	// HINT: @Valid by default.
 	@Automapped
 	private boolean				published;
@@ -92,7 +103,7 @@ public class ClaimTrackingLog extends AbstractEntity {
 	@Transient
 	public ClaimStatus getStatus() {
 
-		return this.getClaim().getStatus();
+		return this.status;
 	}
 
 }
