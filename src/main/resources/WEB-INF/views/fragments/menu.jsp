@@ -38,6 +38,7 @@
 			<acme:menu-suboption code="master.menu.administrator.list-my-bookings" action="/administrator/booking/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-aircrafts" action="/administrator/aircraft/list"/>
 			<acme:menu-suboption code="master.menu.any.public.maintenanceRecord" action="/administrator/maintenance-record/list"/>
+			<acme:menu-suboption code="master.menu.administrator.listPublishedClaims" action="/administrator/claim/list"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-initial" action="/administrator/system/populate-initial"/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-sample" action="/administrator/system/populate-sample"/>			
@@ -81,6 +82,8 @@
 		<acme:menu-option code="master.menu.assistance-agent" access="hasRealm('AssistanceAgent')">
 			<acme:menu-suboption code="master.menu.assistance-agent.list-claims" action="/assistance-agent/claim/list"/>
 			<acme:menu-suboption code="master.menu.assistance-agent.list-claim-logs" action="/assistance-agent/claim-tracking-log/list"/>
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.assistance-agent.show-dashboard" action="/assistance-agent/assistance-agent-dashboard/show"/>
 		</acme:menu-option>
 		
 	</acme:menu-left>
@@ -98,6 +101,8 @@
 			<acme:menu-suboption code="master.menu.user-account.become-technician" action="/authenticated/technician/create" access="!hasRealm('Technician')"/>
 			<acme:menu-suboption code="master.menu.user-account.manager-profile" action="/authenticated/manager/update" access="hasRealm('Manager')"/>
 			<acme:menu-suboption code="master.menu.user-account.technician-profile" action="/authenticated/technician/update" access="hasRealm('Technician')"/>
+			<acme:menu-suboption code="master.menu.user-account.become-assistance-agent" action="/authenticated/assistance-agent/create" access="!hasRealm('AssistanceAgent')"/>
+			<acme:menu-suboption code="master.menu.user-account.assistance-agent-profile" action="/authenticated/assistance-agent/update" access="hasRealm('AssistanceAgent')"/>
 		</acme:menu-option>
 	</acme:menu-right>
 </acme:menu-bar>

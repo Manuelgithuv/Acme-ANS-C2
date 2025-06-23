@@ -26,6 +26,7 @@ authenticated.customer.list.button.booking.create = Create
 assistance-agent.claim-tracking-log.list.title = Listing Claim Logs
 assistance-agent.claim-tracking-log.form.title = Claim Log details
 authenticated.assistanceAgent.list.label.claim = Claim Id
+authenticated.assistance-agent.list.label.creationMoment= Creation Moment
 authenticated.assistanceAgent.list.label.lastUpdateMoment = Last Update Moment
 authenticated.assistanceAgent.list.label.stepUndergoing = Step Undergoing
 authenticated.assistanceAgent.list.label.resolutionPercentage = Resolution Percentage
@@ -34,6 +35,7 @@ authenticated.assistance-agent.list.label.resolutionDescription= Resolution Desc
 authenticated.assistance-agent.list.label.compensation= Compensation
 authenticated.assistance-agent.list.label.claimAcepted= Associated claim Acepted
 authenticated.assistance-agent.list.label.claim= Claim
+authenticated.assistance-agent.list.label.status= Claim Log status
 
 authenticated.assistance-agent.form.button.claim.publish=  Publish
 authenticated.assistance-agent.form.button.claim.update  = Update

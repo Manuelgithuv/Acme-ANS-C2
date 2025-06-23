@@ -1,0 +1,23 @@
+key,lastUpdateMoment,creationMoment,stepUndergoing,resolutionPercentage,resolutionDescription,compensation,status,published,key:claim
+claim-tracking-log-01,2000/01/01 00:00,2000/01/01 00:00,L,0,null,null,PENDING,false,claim-01
+claim-tracking-log-02,2000/01/01 00:01,2000/01/01 00:01,Lo,1,null,null,PENDING,false,claim-02
+claim-tracking-log-03,2024/03/04 00:04,2024/03/04 00:04,wating response from airport personel,50,null,null,PENDING,false,claim-03
+claim-tracking-log-04,2024/12/31 23:59,2024/12/31 23:59,Lorem ipsum dolor sit amete consectetur adipiscin,99,null,null,PENDING,false,claim-04
+claim-tracking-log-05,2025/01/01 00:00,2025/01/01 00:00,Lorem ipsum dolor sit amete consectetur adipiscing,100,L,null,REJECTED,false,claim-05
+claim-tracking-log-06,2025/01/01 00:00,2025/01/01 00:00,step 6,100,L,EUR 0.00,ACCEPTED,false,claim-05
+claim-tracking-log-07,2025/01/01 00:00,2025/01/01 00:00,step 7,100,Lo,EUR 0.01,ACCEPTED,false,claim-05
+claim-tracking-log-08,2025/01/01 00:00,2025/01/01 00:00,step 8,100,Fligth delay was confirmed and compensation was filed,EUR 145.33,ACCEPTED,false,claim-05
+claim-tracking-log-09,2025/01/01 00:00,2025/01/01 00:00,step 9,100,Lorem ipsum dolor sit amete consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor,EUR 999999.99,ACCEPTED,false,claim-05
+claim-tracking-log-10,2025/01/01 00:00,2025/01/01 00:00,step 10,100,Lorem ipsum dolor sit amete consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolora,EUR 1000000.00,ACCEPTED,false,claim-05
+claim-tracking-log-11,2025/01/01 00:00,2025/01/01 00:00,โลเร็ม อิปซัม,100,โลเร็ม อิปซัม,null,REJECTED,True,claim-12
+claim-tracking-log-12,2025/01/01 00:00,2025/01/01 00:00, لوريم إيبسوم ,100,لوريم إيبسوم,null,REJECTED,True,claim-13
+claim-tracking-log-13,2025/01/01 00:00,2025/01/01 00:00,洛伦·伊普森,100,洛伦·伊普森,null,REJECTED,False,claim-14
+claim-tracking-log-14,2025/01/01 00:00,2025/01/01 00:00,<marquee>Hacked</marquee>,100,<marquee>Hacked</marquee>,null,REJECTED,True,claim-15
+claim-tracking-log-15,2025/01/01 00:00,2025/01/01 00:00,<script>alert(‘Hacked!’);</script>,100,<script>alert(‘Hacked!’);</script>,null,REJECTED,False,claim-14
+claim-tracking-log-16,2025/01/01 00:00,2025/01/01 00:00,'' or 'A' = 'A ,100,'' or 'A' = 'A ,null,REJECTED,False,claim-14
+claim-tracking-log-17,2025/01/01 00:00,2025/01/01 00:00,backUpData 1,100,backUpData 1,null,REJECTED,False,claim-14
+claim-tracking-log-18,2025/01/01 00:00,2025/01/01 00:00,backUpData 2,100,backUpData 2,null,REJECTED,False,claim-14
+claim-tracking-log-19,2025/01/01 00:00,2025/01/01 00:00,backUpData 3,100,backUpData 3,null,REJECTED,False,claim-14
+claim-tracking-log-20,2025/01/01 00:00,2025/01/01 00:00,backUpData 4,100,backUpData 4,null,REJECTED,False,claim-14
+claim-tracking-log-21,2025/01/01 00:00,2025/01/01 00:00,backUpData 5,100,backUpData 5,null,REJECTED,False,claim-14
+claim-tracking-log-22,2025/01/01 00:00,2025/01/01 00:00,backUpData 6,100,backUpData 6,null,REJECTED,False,claim-14

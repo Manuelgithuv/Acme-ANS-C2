@@ -37,6 +37,7 @@ master.menu.administrator.shut-system-down = Parar el sistema
 master.menu.administrator.list-airports = Ver aeropuertos
 master.menu.administrator.list-aircrafts = Ver aviones
 master.menu.administrator.list-my-bookings = Ver reservas
+master.menu.administrator.listPublishedClaims= Ver Reclamaciones Publicadas
 
 # master.menu.provider ########################################################
 
@@ -80,6 +81,8 @@ master.menu.user-account.manager-profile = Perfil de manager
 master.menu.user-account.technician-profile = Perfil de Técnico
 master.menu.user-account.customer-profile = Perfil del Cliente
 master.menu.user-account.become-customer = Hazte cliente
+master.menu.user-account.become-assistance-agent= Hazte Agente de Asistencia
+master.menu.user-account.assistance-agent-profile= Perfil de Agente de Asistencia
 
 
 # master.menu.technician ########################################################

@@ -3,6 +3,7 @@ package acme.entities.claim;
 
 import java.beans.Transient;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Index;
@@ -32,7 +33,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "claim", indexes = {
-	@Index(name = "idx_claim_agent", columnList = "assistance_agent_id"), @Index(name = "idx_claim_leg", columnList = "leg_id"), @Index(name = "idx_claim_status", columnList = "status"), @Index(name = "idx_claim_email", columnList = "passengerEmail")
+	@Index(name = "idx_claim_agent", columnList = "assistance_agent_id"), @Index(name = "idx_claim_leg", columnList = "leg_id"), @Index(name = "idx_claim_email", columnList = "passengerEmail")
 })
 public class Claim extends AbstractEntity {
 
@@ -62,11 +63,6 @@ public class Claim extends AbstractEntity {
 	private ClaimType			type;
 
 	@Mandatory
-	@Valid
-	@Automapped
-	private ClaimStatus			status;
-
-	@Mandatory
 	// HINT: @Valid by default.
 	@Automapped
 	private boolean				published;
@@ -84,9 +80,25 @@ public class Claim extends AbstractEntity {
 
 	@Transient
 	public ClaimTrackingLog getLastTrackingLog() {
+		ClaimTrackingLog result = null;
 		AssistanceAgentTrackingLogRepository repository;
 		repository = SpringHelper.getBean(AssistanceAgentTrackingLogRepository.class);
-		return repository.findLastClaimTrackingLogOfClaim(this.getId());
+		List<ClaimTrackingLog> ls = repository.findAllByClaimIdOrderByCreationMomentDescIdDesc(this.getId());
+		if (!ls.isEmpty())
+			result = ls.getFirst();
+		return result;
+	}
+
+	@Transient
+	public ClaimStatus getStatus() {
+		ClaimStatus result;
+		ClaimTrackingLog lastLog = this.getLastTrackingLog();
+		if (lastLog == null)
+			result = ClaimStatus.PENDING;
+		else
+			result = lastLog.getStatus();
+
+		return result;
 	}
 
 	@Transient

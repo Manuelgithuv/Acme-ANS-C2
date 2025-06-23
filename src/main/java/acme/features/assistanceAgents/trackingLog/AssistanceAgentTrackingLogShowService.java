@@ -9,6 +9,7 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.datatypes.ClaimStatus;
 import acme.entities.claim.Claim;
 import acme.entities.claimLog.ClaimTrackingLog;
 import acme.features.assistanceAgents.claim.AssistanceAgentClaimRepository;
@@ -51,12 +52,14 @@ public class AssistanceAgentTrackingLogShowService extends AbstractGuiService<As
 	@Override
 	public void unbind(final ClaimTrackingLog claimLog) {
 		int agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		Dataset dataset = super.unbindObject(claimLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "resolutionDescription", "published", "compensation");
+		Dataset dataset = super.unbindObject(claimLog, "creationMoment", "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "resolutionDescription", "published", "compensation", "status");
 		dataset.put("claimAcepted", claimLog.getIsAcepted());
 		Collection<Claim> claims = this.claimRepository.findAllByAssistanceAgentId(agentId);
 		SelectChoices claimChoices = SelectChoices.from(claims, "id", claimLog.getClaim());
 		dataset.put("claim", claimChoices.getSelected().getKey());
 		dataset.put("claims", claimChoices);
+		SelectChoices stateChoices = SelectChoices.from(ClaimStatus.class, claimLog.getStatus());
+		dataset.put("statuses", stateChoices);
 
 		if (claimLog.isPublished())
 			dataset.put("readonly", true);

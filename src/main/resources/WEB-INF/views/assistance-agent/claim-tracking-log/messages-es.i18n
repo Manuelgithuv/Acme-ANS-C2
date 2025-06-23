@@ -46,3 +46,4 @@ authenticated.assistance-agent.list.label.compensation = Compensación
 authenticated.assistance-agent.list.label.claimAcepted = Reclamación Asociada Aceptada
 authenticated.assistance-agent.list.label.published= Publicado
 authenticated.assistance-agent.list.label.claim= Reclamación Asociada
+authenticated.assistance-agent.list.label.status= Estado del resgistro de la reclamacion

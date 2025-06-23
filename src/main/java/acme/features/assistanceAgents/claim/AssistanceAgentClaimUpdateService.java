@@ -9,7 +9,6 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.datatypes.ClaimStatus;
 import acme.datatypes.ClaimType;
 import acme.entities.claim.Claim;
 import acme.entities.leg.Leg;
@@ -54,7 +53,7 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 	public void bind(final Claim claim) {
 		int legId = super.getRequest().getData("legId", int.class);
 		Leg leg = this.legRepository.findById(legId);
-		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "status");
+		super.bindObject(claim, "passengerEmail", "description", "type");
 		claim.setLeg(leg);
 	}
 
@@ -62,6 +61,8 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 	public void validate(final Claim claim) {
 		if (claim.getLeg() == null)
 			super.state(false, "legId", "assistance-agent.claim.create.legId");
+		if (claim.getRegistrationMoment() != null && claim.getLeg() != null && claim.getRegistrationMoment().before(claim.getLeg().getScheduledArrival()))
+			super.state(false, "legId", "assistance-agent.claim.create.legId.beforeLeg");
 	}
 
 	@Override
@@ -71,15 +72,14 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 
 	@Override
 	public void unbind(final Claim claim) {
-		Dataset dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "status", "published");
+		Dataset dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "published");
+		dataset.put("status", claim.getStatus());
 		Collection<Leg> legs = this.legRepository.findAllLegs();
 		SelectChoices legChoices = SelectChoices.from(legs, "id", claim.getLeg());
 		dataset.put("legId", legChoices.getSelected().getKey());
 		dataset.put("legIds", legChoices);
 		SelectChoices typeChoices = SelectChoices.from(ClaimType.class, claim.getType());
-		SelectChoices stateChoices = SelectChoices.from(ClaimStatus.class, claim.getStatus());
 		dataset.put("types", typeChoices);
-		dataset.put("statuses", stateChoices);
 		if (claim.isPublished())
 			dataset.put("readonly", true);
 

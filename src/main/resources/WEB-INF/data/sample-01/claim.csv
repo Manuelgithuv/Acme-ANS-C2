@@ -1,0 +1,19 @@
+key,registrationMoment,passengerEmail,description,type,published,key:assistanceAgent,key:leg
+claim-01,2000/01/01 00:00,acme@lorem-ipsum.org,L,FLIGHT_ISSUES,false,assistance-agent-01,leg-07
+claim-02,2000/01/01 00:01,a@b.e,Lo,SECURITY_INCIDENT,false,assistance-agent-01,leg-07
+claim-03,2024/03/01 00:00,pablohernesto@gmail.com,Lost its lugage,LUGGAGE_ISSUES,false,assistance-agent-01,leg-07
+claim-04,2024/12/31 23:59,a@b.es,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor,OTHER_ISSUES,false,assistance-agent-01,leg-07
+claim-05,2025/01/01 00:00,a@b.esx,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolora,OTHER_ISSUES,false,assistance-agent-01,leg-07
+claim-06,2025/01/01 00:00,a@b.esx,โลเร็ม อิปซัม,OTHER_ISSUES,False,assistance-agent-02,leg-07
+claim-07,2025/01/01 00:00,a@b.esx,لوريم إيبسوم,OTHER_ISSUES,False,assistance-agent-02,leg-07
+claim-08,2025/01/01 00:00,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu,洛伦·伊普森,OTHER_ISSUES,False,assistance-agent-02,leg-07
+claim-09,2025/01/01 00:00,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.dolor.es.org,<marquee>Hacked</marquee>,OTHER_ISSUES,False,assistance-agent-02,leg-07
+claim-10,2025/01/01 00:00,a@b.esx,<script>alert(‘Hacked!’);</script>,OTHER_ISSUES,False,assistance-agent-02,leg-07
+claim-11,2025/01/01 00:00,a@b.esx,Caso Real 2,OTHER_ISSUES,False,assistance-agent-02,leg-07
+claim-12,2025/01/01 00:00,paco@b.esx,Caso Real 1,OTHER_ISSUES,True,assistance-agent-02,leg-07
+claim-13,2025/01/01 00:00,paco@b.esx,Caso Real 2,OTHER_ISSUES,True,assistance-agent-02,leg-07
+claim-14,2025/01/01 00:00,paco@b.esx,Caso Real 3,OTHER_ISSUES,False,assistance-agent-02,leg-07
+claim-15,2025/01/01 00:00,paco@b.esx,Caso Real 4,OTHER_ISSUES,True,assistance-agent-01,leg-07
+claim-16,2025/01/01 00:00,paco@b.esx,Caso Real 5,OTHER_ISSUES,False,assistance-agent-01,leg-07
+claim-17,2025/01/01 00:00,paco@b.esx,Caso Real 6,OTHER_ISSUES,False,assistance-agent-01,leg-07
+
