@@ -33,4 +33,8 @@ authenticated.assistance-agent.list.label.claim= Asociated Claim
 assistance-agent.claim.create.legId= leg cant be null
 assistance-agent.claim.delete.pendingLogs= can not delete claim one or more tracking logs are associated
 
+administrator.logs.form.button.list= List Logs
+administrator.claim.list.title= Claims Published
+administrator.claim.form.title= Details of the claim
+
 
