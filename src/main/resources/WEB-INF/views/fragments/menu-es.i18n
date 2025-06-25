@@ -93,3 +93,4 @@ master.menu.technician.maintenanceRecords.maintenanceRecords-list = Listado de l
 master.menu.assistance-agent= Agente de asistencia
 master.menu.assistance-agent.list-claims= Reclamaciones
 master.menu.assistance-agent.list-claim-logs= Registros de Reclamaciones
+master.menu.assistance-agent.show-dashboard= Ver mi dashboard

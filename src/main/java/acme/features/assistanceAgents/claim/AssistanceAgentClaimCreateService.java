@@ -35,7 +35,19 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 
 		int agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		status = agent.getClass().equals(AssistanceAgent.class);
+		boolean legCheck = true;
+
+		if (!super.getRequest().getMethod().equals("GET")) {
+
+			int legId = super.getRequest().getData("legId", int.class);
+			Leg leg = this.legRepository.findById(legId);
+			if (leg != null)
+				legCheck = true;
+			else
+				legCheck = false;
+		}
+
+		status = agent.getClass().equals(AssistanceAgent.class) && legCheck;
 
 		super.getResponse().setAuthorised(status);
 

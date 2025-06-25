@@ -44,8 +44,6 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 			Claim claim = this.claimRepository.findClaimById(claimId);
 			if (claim != null && claim.getAssistanceAgent().getId() == agentId)
 				claimCheck = true;
-			else if (claimId == 0)
-				claimCheck = true;
 			else
 				claimCheck = false;
 		}

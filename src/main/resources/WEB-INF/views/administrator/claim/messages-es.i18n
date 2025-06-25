@@ -21,3 +21,7 @@ authenticated.assistance-agent.list.label.compensation = Compensación
 authenticated.assistance-agent.list.label.claimAcepted = Reclamación Asociada Aceptada
 authenticated.assistance-agent.list.label.published= Publicado
 authenticated.assistance-agent.list.label.claim= Reclamación Asociada
+
+administrator.logs.form.button.list= Listar Logs
+administrator.claim.list.title= Reclamaciones Publicadas
+administrator.claim.form.title= Detalles de la reclamacion
