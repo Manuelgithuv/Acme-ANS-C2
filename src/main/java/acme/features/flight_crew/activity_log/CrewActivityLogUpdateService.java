@@ -113,7 +113,7 @@ public class CrewActivityLogUpdateService extends AbstractGuiService<FlightCrew,
 
 		status = log.getIncidentType().length() <= 50;
 		if (!status) {
-			super.state(!status, "incidentType", "flight-crew.flight-assignment.constraint.too-long-incident-type", new Object[0]);
+			super.state(!status, "incidentType", "flight-crew.activity-log.constraint.too-long-incident-type", new Object[0]);
 			return;
 		}
 
