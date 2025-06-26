@@ -53,7 +53,7 @@ public class CrewFlightAssignmentCreateService extends AbstractGuiService<Flight
 				FlightCrew selectedAssignee = super.getRequest().getData("assignee", FlightCrew.class);
 				Boolean validAssignee = selectedAssignee == null ? true
 					: this.crewRepository.findAllByAirline(user.getAirline().getId()).stream() //
-						.filter(x -> x.getAvailability().equals(Availability.AVAILABLE)) //
+						// .filter(x -> x.getAvailability().equals(Availability.AVAILABLE)) //
 						.anyMatch(x -> x.getId() == selectedAssignee.getId());
 
 				isAuthorised = validLeg && validAssignee;
@@ -87,22 +87,6 @@ public class CrewFlightAssignmentCreateService extends AbstractGuiService<Flight
 		status = assignment.getDuty() == null || assignment.getLastUpdate() == null || assignment.getStatus() == null || assignment.getAssignee() == null || assignment.getLeg() == null;
 		if (status) {
 			super.state(!status, "*", "flight-crew.flight-assignment.constraint.null-value", new Object[0]);
-			return;
-		}
-
-		// comprobamos que el usuario sea lead attendant
-		status = !assignment.getDuty().equals(CrewDuty.LEAD_ATTENDANT);
-		if (status) {
-			super.state(!status, "*", "flight-crew.flight-assignment.constraint.not-authorised", new Object[0]);
-			return;
-		}
-
-		// o que sea el primer assignment para esa leg y que sea lead attendant
-		Collection<FlightAssignment> assignmentsForLeg = this.repository.findByLegId(assignment.getLeg().getId());
-		status = assignmentsForLeg.isEmpty() //
-			&& !assignment.getAssignee().equals(user);
-		if (status) {
-			super.state(!status, "*", "flight-crew.flight-assignment.constraint.not-authorised", new Object[0]);
 			return;
 		}
 
@@ -161,6 +145,22 @@ public class CrewFlightAssignmentCreateService extends AbstractGuiService<Flight
 			super.state(!status, "*", "flight-crew.flight-assignment.constraint.already-assignment-for-pair", new Object[0]);
 			return;
 		}
+
+		// comprobamos que el usuario sea lead attendant
+		status = !assignment.getDuty().equals(CrewDuty.LEAD_ATTENDANT);
+		if (status) {
+			super.state(!status, "*", "flight-crew.flight-assignment.constraint.not-authorised", new Object[0]);
+			return;
+		}
+
+		// o que sea el primer assignment para esa leg y que sea lead attendant
+		Collection<FlightAssignment> assignmentsForLeg = this.repository.findByLegId(assignment.getLeg().getId());
+		status = assignmentsForLeg.isEmpty() //
+			&& !assignment.getAssignee().equals(user);
+		if (status) {
+			super.state(!status, "*", "flight-crew.flight-assignment.constraint.not-authorised", new Object[0]);
+			return;
+		}
 	}
 
 	@Override
@@ -213,9 +213,6 @@ public class CrewFlightAssignmentCreateService extends AbstractGuiService<Flight
 		dataset.put("authorised", authorised);
 		Boolean canPublish = authorised && assignment.getLeg().isPublished();
 		dataset.put("canPublish", canPublish);
-
-		Boolean duty_readOnly = assignment.getDuty().equals(CrewDuty.LEAD_ATTENDANT);
-		dataset.put("duty_readOnly", duty_readOnly);
 
 		super.getResponse().addData(dataset);
 	}

@@ -108,16 +108,6 @@ public class CrewFlightAssignmentUpdateService extends AbstractGuiService<Flight
 			return;
 		}
 
-		// comprobamos que sólo haya un lead-attendant
-		if (assignment.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) {
-			status = this.repository.findByLegId(assignment.getLeg().getId()).stream() //
-				.filter(a -> !a.equals(assignment)) //
-				.anyMatch(a -> a.getDuty().equals(CrewDuty.LEAD_ATTENDANT));
-			if (status) {
-				super.state(!status, "duty", "flight-crew.flight-assignment.constraint.already-assigned-lead-attendant", new Object[0]);
-				return;
-			}
-		}
 		// comprobamos que sólo haya un piloto
 		if (assignment.getDuty().equals(CrewDuty.PILOT)) {
 			status = this.repository.findByLegId(assignment.getLeg().getId()).stream() //
@@ -135,6 +125,17 @@ public class CrewFlightAssignmentUpdateService extends AbstractGuiService<Flight
 				.anyMatch(a -> a.getDuty().equals(CrewDuty.CO_PILOT));
 			if (status) {
 				super.state(!status, "duty", "flight-crew.flight-assignment.constraint.already-assigned-co-pilot", new Object[0]);
+				return;
+			}
+		}
+
+		// comprobamos que sólo haya un lead-attendant
+		if (assignment.getDuty().equals(CrewDuty.LEAD_ATTENDANT)) {
+			status = this.repository.findByLegId(assignment.getLeg().getId()).stream() //
+				.filter(a -> !a.equals(assignment)) //
+				.anyMatch(a -> a.getDuty().equals(CrewDuty.LEAD_ATTENDANT));
+			if (status) {
+				super.state(!status, "duty", "flight-crew.flight-assignment.constraint.already-assigned-lead-attendant", new Object[0]);
 				return;
 			}
 		}
@@ -164,6 +165,12 @@ public class CrewFlightAssignmentUpdateService extends AbstractGuiService<Flight
 			return;
 		}
 
+		// comprobamos que el usuario sea lead attendant
+		status = !assignment.getDuty().equals(CrewDuty.LEAD_ATTENDANT);
+		if (status) {
+			super.state(!status, "*", "flight-crew.flight-assignment.constraint.not-authorised", new Object[0]);
+			return;
+		}
 	}
 
 	@Override
@@ -212,9 +219,9 @@ public class CrewFlightAssignmentUpdateService extends AbstractGuiService<Flight
 		dataset.put("confirmation", false);
 		dataset.put("readonly", false);
 
-		Boolean authorised = legsAsLeadAttendant.contains(assignment.getLeg()) && !assignment.getPublished();
+		Boolean authorised = assignment.getLeg() == null ? !assignment.getPublished() : legsAsLeadAttendant.contains(assignment.getLeg()) && !assignment.getPublished();
 		dataset.put("authorised", authorised);
-		Boolean canPublish = authorised && assignment.getLeg().isPublished();
+		Boolean canPublish = assignment.getLeg() == null ? authorised : authorised && assignment.getLeg().isPublished();
 		dataset.put("canPublish", canPublish);
 
 		Boolean duty_readOnly = assignment.getDuty().equals(CrewDuty.LEAD_ATTENDANT);

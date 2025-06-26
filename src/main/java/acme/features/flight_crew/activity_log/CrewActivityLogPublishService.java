@@ -3,8 +3,6 @@ package acme.features.flight_crew.activity_log;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.models.Dataset;
-import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activity_log.ActivityLog;
@@ -79,12 +77,6 @@ public class CrewActivityLogPublishService extends AbstractGuiService<FlightCrew
 
 	@Override
 	public void unbind(final ActivityLog log) {
-		SelectChoices legChoices = SelectChoices.from(this.legRepository.findAllLegs(), "flightCode", log.getLeg());
-		Dataset dataset = super.unbindObject(log, "registrationMoment", "incidentType", "description", "severity");
-		dataset.put("confirmation", false);
-		dataset.put("readonly", false);
-		dataset.put("legs", legChoices);
-		dataset.put("leg", legChoices.getSelected().getKey());
-		super.getResponse().addData(dataset);
+
 	}
 }
