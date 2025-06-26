@@ -22,7 +22,7 @@ public @interface ValidIncidentType {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "{invalid.incident.type}";
+	String message() default "Incident type should be shorter than 50 characters long";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

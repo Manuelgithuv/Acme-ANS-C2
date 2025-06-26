@@ -4,7 +4,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-select code="authenticated.crew.label.duty" path="duty" choices="${duties}"/>
+	<acme:input-select code="authenticated.crew.label.duty" path="duty" choices="${duties}" readonly="${duty_readOnly}"/>
 	<acme:input-textbox code="authenticated.crew.label.lastUpdate" path="lastUpdate" placeholder="crew.lastUpdate.placeholder" />
 	<acme:input-select code="authenticated.crew.label.status" path="status" choices="${statuses}"/>
 	<acme:input-textarea code="authenticated.crew.label.remarks" path="remarks" placeholder="crew.remarks.placeholder" />

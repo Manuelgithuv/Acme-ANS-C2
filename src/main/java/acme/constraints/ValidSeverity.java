@@ -24,7 +24,7 @@ public @interface ValidSeverity {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "{invalid.severity}";
+	String message() default "The severity must be between 0 and 10";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
