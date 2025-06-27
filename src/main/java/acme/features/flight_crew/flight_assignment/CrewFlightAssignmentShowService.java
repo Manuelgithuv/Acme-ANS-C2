@@ -115,6 +115,9 @@ public class CrewFlightAssignmentShowService extends AbstractGuiService<FlightCr
 		Boolean canPublish = authorised && assignment.getLeg().isPublished();
 		dataset.put("canPublish", canPublish);
 
+		Boolean duty_readOnly = assignment.getDuty().equals(CrewDuty.LEAD_ATTENDANT);
+		dataset.put("duty_readOnly", duty_readOnly);
+
 		super.getResponse().addData(dataset);
 	}
 }

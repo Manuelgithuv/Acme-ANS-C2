@@ -3,11 +3,12 @@ package acme.features.flight_crew.flight_assignment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.components.FlightCrewRepository;
 import acme.datatypes.CrewDuty;
 import acme.entities.flight_assignment.FlightAssignment;
+import acme.features.manager.leg.LegRepository;
 import acme.realms.FlightCrew;
 
 @GuiService
@@ -16,7 +17,11 @@ public class CrewFlightAssignmentPublishService extends AbstractGuiService<Fligh
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private FlightAssignmentRepository repository;
+	private FlightAssignmentRepository	repository;
+	@Autowired
+	private LegRepository				legRepository;
+	@Autowired
+	private FlightCrewRepository		crewRepository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -76,7 +81,6 @@ public class CrewFlightAssignmentPublishService extends AbstractGuiService<Fligh
 
 	@Override
 	public void unbind(final FlightAssignment assignment) {
-		Dataset dataset = super.unbindObject(assignment);
-		super.getResponse().addData(dataset);
+
 	}
 }

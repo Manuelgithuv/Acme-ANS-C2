@@ -78,24 +78,6 @@ public class CrewActivityLogCreateService extends AbstractGuiService<FlightCrew,
 			return;
 		}
 
-		status = log.getRegistrationMoment().before(log.getLeg().getScheduledArrival());
-		if (status) {
-			super.state(!status, "registrationMoment", "flight-crew.activity-log.constraint.log-registered-before-arrival", new Object[0]);
-			return;
-		}
-
-		status = log.getSeverity() < 0 || log.getSeverity() > 10;
-		if (status) {
-			super.state(!status, "severity", "flight-crew.activity-log.constraint.invalid-severity-value", new Object[0]);
-			return;
-		}
-
-		status = log.getIncidentType().length() <= 50;
-		if (!status) {
-			super.state(!status, "incidentType", "flight-crew.flight-assignment.constraint.too-long-incident-type", new Object[0]);
-			return;
-		}
-
 		// assign assignment
 		FlightCrew user = (FlightCrew) super.getRequest().getPrincipal().getActiveRealm();
 		FlightAssignment assignment = this.assignmentRepository.findByAssigneeAndLeg(user, log.getLeg().getId());
@@ -104,6 +86,13 @@ public class CrewActivityLogCreateService extends AbstractGuiService<FlightCrew,
 		status = log.getFlightAssignment() == null;
 		if (status) {
 			super.state(!status, "*", "flight-crew.activity-log.constraint.null-assignment", new Object[0]);
+			return;
+		}
+
+		// registration moment
+		status = log.getRegistrationMoment().before(log.getLeg().getScheduledArrival());
+		if (status) {
+			super.state(!status, "registrationMoment", "flight-crew.activity-log.constraint.log-registered-before-arrival", new Object[0]);
 			return;
 		}
 	}
