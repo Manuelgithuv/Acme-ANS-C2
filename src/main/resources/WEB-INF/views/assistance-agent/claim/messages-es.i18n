@@ -21,3 +21,5 @@ authenticated.assistance-agent.list.label.compensation = Compensación
 authenticated.assistance-agent.list.label.claimAcepted = Reclamación Asociada Aceptada
 authenticated.assistance-agent.list.label.published= Publicado
 authenticated.assistance-agent.list.label.claim= Reclamación Asociada
+
+assistance-agent.claim.create.legId.beforeLeg= El tramo debe ser en el mismo momento o antes que el momento de creacion de la reclamacion

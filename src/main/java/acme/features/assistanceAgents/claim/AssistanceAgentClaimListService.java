@@ -25,9 +25,15 @@ public class AssistanceAgentClaimListService extends AbstractGuiService<Assistan
 
 		AssistanceAgent agent = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 
+		boolean ongoingCheck = true;
+
+		if (super.getRequest().hasData("ongoing")) {
+			String value = super.getRequest().getData("ongoing", String.class);
+			ongoingCheck = value.equals("true") || value.equals("false");
+		}
 		int agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		status = agent.getClass().equals(AssistanceAgent.class);
+		status = agent.getClass().equals(AssistanceAgent.class) && ongoingCheck;
 
 		super.getResponse().setAuthorised(status);
 

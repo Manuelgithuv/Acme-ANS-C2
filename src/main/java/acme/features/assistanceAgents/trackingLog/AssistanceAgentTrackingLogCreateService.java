@@ -38,8 +38,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		boolean claimCheck = true;
 
 		if (!super.getRequest().getMethod().equals("GET")) {
-
-			int claimId = super.getRequest().getData("claim", int.class);
+			int claimId = super.getRequest().hasData("claim") ? super.getRequest().getData("claim", int.class) : 0;
 			Claim claim = this.claimRepository.findClaimById(claimId);
 			if (claim != null && claim.getAssistanceAgent().getId() == agentId)
 				claimCheck = true;

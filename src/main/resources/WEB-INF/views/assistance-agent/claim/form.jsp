@@ -19,7 +19,11 @@
 			<acme:submit code="authenticated.assistance-agent.form.button.claim.delete" action="/assistance-agent/claim/delete"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
-			<acme:submit code="authenticated.assistance-agent.form.button.claim.create" action="/assistance-agent/claim/create?flightId=${flightId}"/>
-		</jstl:when>	
+			<acme:submit code="authenticated.assistance-agent.form.button.claim.create" action="/assistance-agent/claim/create"/>
+		</jstl:when>
+			
 	</jstl:choose>
+	<jstl:if test="${_command != 'create'}">
+		<acme:button code="authenticated.assistance-agent.form.button.claim.logs" action="/assistance-agent/claim-tracking-log/list?claimId=${id}"/>
+		</jstl:if>
 </acme:form>

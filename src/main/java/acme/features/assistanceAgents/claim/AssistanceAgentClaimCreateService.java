@@ -31,23 +31,23 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 
 		boolean status;
 
-		AssistanceAgent agent = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+		Boolean realmCheck = super.getRequest().getPrincipal().hasRealmOfType(AssistanceAgent.class);
 
 		int agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
 		boolean legCheck = true;
 
-		if (!super.getRequest().getMethod().equals("GET")) {
-
-			int legId = super.getRequest().getData("legId", int.class);
+		if (realmCheck && !super.getRequest().getMethod().equals("GET")) {
+			//int id = super.getRequest().hasData("id") ? super.getRequest().getData("id", int.class) : 0;
+			int legId = super.getRequest().hasData("legId") ? super.getRequest().getData("legId", int.class) : 0;
 			Leg leg = this.legRepository.findById(legId);
-			if (leg != null)
+			if (leg != null || this.legChoices().stream().anyMatch(z -> z.getId() == legId))
 				legCheck = true;
 			else
 				legCheck = false;
 		}
 
-		status = agent.getClass().equals(AssistanceAgent.class) && legCheck;
+		status = realmCheck && legCheck;
 
 		super.getResponse().setAuthorised(status);
 
@@ -93,11 +93,15 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 		this.repository.save(claim);
 	}
 
+	public Collection<Leg> legChoices() {
+		return this.legRepository.findAllLegs().stream().filter(z -> z.isPublished()).toList();
+	}
+
 	@Override
 	public void unbind(final Claim claim) {
 		Dataset dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "published");
 		dataset.put("status", claim.getStatus());
-		Collection<Leg> legs = this.legRepository.findAllLegs();
+		Collection<Leg> legs = this.legChoices();
 		SelectChoices legChoices = SelectChoices.from(legs, "id", claim.getLeg());
 		dataset.put("legId", legChoices.getSelected().getKey());
 		dataset.put("legIds", legChoices);

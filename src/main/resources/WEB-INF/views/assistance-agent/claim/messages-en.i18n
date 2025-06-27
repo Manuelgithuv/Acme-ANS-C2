@@ -32,5 +32,5 @@ authenticated.assistance-agent.list.label.claim= Asociated Claim
 
 assistance-agent.claim.create.legId= leg cant be null
 assistance-agent.claim.delete.pendingLogs= can not delete claim one or more tracking logs are associated
-
+assistance-agent.claim.create.legId.beforeLeg= Leg must be before or same moment as claim date
 

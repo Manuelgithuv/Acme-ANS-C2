@@ -36,7 +36,7 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 
 		ClaimTrackingLog claimLog = this.repository.findClaimTrackingLogById(id);
 
-		status = claimLog.getClaim().getAssistanceAgent().getId() == agentId && !claimLog.isPublished();
+		status = claimLog != null && claimLog.getClaim().getAssistanceAgent().getId() == agentId && !claimLog.isPublished();
 
 		super.getResponse().setAuthorised(status);
 
