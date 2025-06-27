@@ -42,7 +42,7 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 
 			int legId = super.getRequest().getData("legId", int.class);
 			Leg leg = this.legRepository.findById(legId);
-			if (leg != null || this.legChoices().stream().anyMatch(z -> z.getId() == legId))
+			if (leg == null || this.legChoices().stream().anyMatch(z -> z.getId() == legId))
 				legCheck = true;
 			else
 				legCheck = false;

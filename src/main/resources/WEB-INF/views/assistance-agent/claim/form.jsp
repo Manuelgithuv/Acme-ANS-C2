@@ -24,6 +24,6 @@
 			
 	</jstl:choose>
 	<jstl:if test="${_command != 'create'}">
-		<acme:button code="authenticated.assistance-agent.form.button.claim.logs" action="/assistance-agent/claim-tracking-log/list?claimId=${id}"/>
+		<acme:button code="authenticated.assistance-agent.form.button.claim.logs.list" action="/assistance-agent/claim-tracking-log/list?claimId=${id}"/>
 		</jstl:if>
 </acme:form>

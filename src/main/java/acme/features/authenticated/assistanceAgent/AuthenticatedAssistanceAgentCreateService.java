@@ -34,8 +34,7 @@ public class AuthenticatedAssistanceAgentCreateService extends AbstractGuiServic
 		boolean airlineCheck = true;
 
 		if (!super.getRequest().getMethod().equals("GET")) {
-
-			int airlineCode = super.getRequest().getData("airlineCode", int.class);
+			int airlineCode = super.getRequest().hasData("airlineCode") ? super.getRequest().getData("airlineCode", int.class) : 0;
 			List<Airline> airlines = this.airlineRepository.findAllAirlines();
 			if (airlines.stream().anyMatch(x -> x.getId() == airlineCode))
 				airlineCheck = true;

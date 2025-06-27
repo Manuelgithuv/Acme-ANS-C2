@@ -1,49 +1,44 @@
-customer.booking.list.title = Listado de Reservas
-customer.booking.form.title = Detalles de la reserva
-customer.booking.create.null-lastCardNibble = Los cuatro últimos dígitos de la tarjeta son  nulos
-customer.booking.locatorCode.alreadyExists = Codigo de localizado ya existe
-customer.booking.all-passengers-are-published = Todos los pasajeros pertenecientes a la reserva deben estar publicados
-customer.booking.all-booking-passengers-are-published = Todas las reservas-pasajero pertenecientes a esta reserva deben estar publicadas
-customer.booking.create.null-flight= El vuelo no debe ser nulo
+assistance-agent.claim-tracking-log.list.title = Listado de Registros de Reclamación
+assistance-agent.claim-tracking-log.form.title = Detalles del Registro de Reclamación
 
-authenticated.customer.list.label.locatorCode = Codigo Localizador
-authenticated.customer.list.label.purchaseMoment = Momento de Compra
-authenticated.customer.list.label.travelClass = Clase
-authenticated.customer.list.label.price = Precio
-authenticated.customer.list.label.lastCardNibble = Cuatro últimos dígitos de la tarjeta
-authenticated.customer.list.label.flight = Vuelo
-manager.flight.invalid-currency = Moneda Invalida
-authenticated.customer.list.label.published = Publicado
-customer.booking.at-least-one-passenger = La reserva debe tener al menos un pasajero
+assistance-agent.claim-tracking-log.list.title = Listado de Registros de Reclamación
+assistance-agent.claim-tracking-log.form.title = Detalles del Registro de Reclamación
+authenticated.assistanceAgent.list.label.claim = ID de Reclamación
+authenticated.assistance-agent.list.label.creationMoment= Momento de Creación
+authenticated.assistanceAgent.list.label.lastUpdateMoment = Último Momento de Actualización
+authenticated.assistanceAgent.list.label.stepUndergoing = Paso en Curso
+authenticated.assistanceAgent.list.label.resolutionPercentage = Porcentaje de Resolución
+authenticated.assistanceAgent.list.label.published= Publicado
+authenticated.assistance-agent.list.label.resolutionDescription= Descripción de la Resolución
+authenticated.assistance-agent.list.label.compensation= Compensación
+authenticated.assistance-agent.list.label.claimAcepted= Reclamación Asociada Aceptada
+authenticated.assistance-agent.list.label.claim= Reclamación
+authenticated.assistance-agent.list.label.status= Estado del Registro de Reclamación
 
-authenticated.customer.list.button.passengers = Ver Pasajeros
-authenticated.customer.form.button.flight.publish = Publicar
-authenticated.customer.form.button.flight.update = Actualizar
-authenticated.customer.form.button.flight.create = Crear
-authenticated.customer.list.button.booking.create = Crear
-
-
-assistance-agent.claim.list.title = Listado de Reclamaciones
-assistance-agent.claim.form.title = Detalles de la Reclamación
-
-authenticated.assistance-agent.list.label.registrationMoment  = Momento de Registro
-authenticated.assistance-agent.list.label.passengerEmail  = Correo Electrónico del Pasajero
-authenticated.assistance-agent.list.label.description  = Descripción
-authenticated.assistance-agent.list.label.status  = Estado
-authenticated.assistance-agent.list.label.type  = Tipo
-authenticated.assistance-agent.list.label.published  = Publicado
-authenticated.assistance-agent.list.label.leg  = Tramo
-authenticated.assistance-agent.form.button.claim.publish=  Publicar
+authenticated.assistance-agent.form.button.claim.publish= Publicar
 authenticated.assistance-agent.form.button.claim.update  = Actualizar
 authenticated.assistance-agent.form.button.claim.delete  = Eliminar
 authenticated.assistance-agent.form.button.claim.create= Crear
 
-authenticated.assistance-agent.list.label.lastUpdateMoment= Momento de Última Actualización
-authenticated.assistance-agent.list.label.stepUndergoing= Paso en Curso
-authenticated.assistance-agent.list.label.resolutionPercentage = Porcentaje de Resolución
-authenticated.assistance-agent.list.label.resolutionDescription = Descripción de la Resolución
-authenticated.assistance-agent.list.label.compensation = Compensación
-authenticated.assistance-agent.list.label.claimAcepted = Reclamación Asociada Aceptada
-authenticated.assistance-agent.list.label.published= Publicado
-authenticated.assistance-agent.list.label.claim= Reclamación Asociada
-authenticated.assistance-agent.list.label.status= Estado del resgistro de la reclamacion
+assistance-agent.claim-tracking-log.create.claim= La reclamación no puede ser nula
+assistance-agent.claim-tracking-log.publish.claimNotPublished= No se puede publicar el registro de seguimiento si la reclamación asociada no está publicada
+
+assistance-agent.claim-log.validation.message.resolutionPercentage.must-be-pending= El estado del registro debe ser "pendiente" si el porcentaje de resolución no es 100.0
+
+assistance-agent.claim-log.validation.message.resolutionDescription.must-be-empty= La descripción debe estar vacía si el porcentaje de resolución no es 100.0
+
+assistance-agent.claim-log.validation.message.compensation.must-be-null= La compensación debe ser nula o vacía si el porcentaje de resolución no es 100.0
+
+assistance-agent.claim-log.validation.message.resolutionPercentage.accepted-or-rejected= El estado del registro debe ser "aceptado" o "rechazado" si el porcentaje de resolución es 100.0
+
+assistance-agent.claim-log.validation.message.resolutionDescription.must-not-be-empty= La descripción no debe estar vacía si el porcentaje de resolución es 100.0
+
+assistance-agent.claim-log.validation.message.lastUpdateMoment.must-be-after= El último momento de actualización debe ser posterior al momento de registro de la reclamación asociada
+
+assistance-agent.claim-log.validation.message.creationMoment.after-registration= El momento de creación debe ser posterior al momento de registro de la reclamación asociada
+
+assistance-agent.claim-log.validation.message.lastUpdateMoment.cant-be-before= El último momento de actualización no puede ser anterior al momento de registro
+
+assistance-agent.claim-log.validation.message.creationMoment.cant-be-before = El momento de creación no puede ser anterior al momento de creación del último registro de seguimiento de la reclamación asociada
+
+assistance-agent.claim-log.validation.message.resolutionPercentage.equal-or-greater = El porcentaje de resolución debe ser igual o mayor que el del último registro de seguimiento de la reclamación asociada

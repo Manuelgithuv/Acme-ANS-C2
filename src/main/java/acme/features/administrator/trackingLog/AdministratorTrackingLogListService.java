@@ -33,13 +33,13 @@ public class AdministratorTrackingLogListService extends AbstractGuiService<Admi
 		Claim claim;
 		int id;
 
-		id = super.getRequest().getData("claimId", int.class);
+		id = super.getRequest().hasData("claimId") ? super.getRequest().getData("claimId", int.class) : 0;
 		claim = this.claimRepository.findClaimById(id);
-
-		if (!claim.isPublished())
-			super.getResponse().setAuthorised(false);
+		boolean claimCheck = false;
+		if (claim != null && claim.isPublished())
+			claimCheck = true;
 		Boolean status = super.getRequest().getPrincipal().hasRealmOfType(Administrator.class);
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(status && claimCheck);
 	}
 
 	@Override

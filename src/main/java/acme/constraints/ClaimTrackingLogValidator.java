@@ -21,32 +21,32 @@ public class ClaimTrackingLogValidator extends AbstractValidator<ValidClaimTrack
 		if (value.getClaim() != null) {
 			if (value.getResolutionPercentage() != null && !value.getResolutionPercentage().equals(100.0)) {
 				if (value.getStatus() != null && !value.getStatus().equals(ClaimStatus.PENDING))
-					super.state(context, false, "resolutionPercentage", "state log must be pending if resolution percentage is not 100.0");
+					super.state(context, false, "resolutionPercentage", "assistance-agent.claim-log.validation.message.resolutionPercentage.must-be-pending");
 				if (value.getResolutionDescription() != null && value.getResolutionDescription() != "")
-					super.state(context, false, "resolutionDescription", "description must be empty if resolution percentage is not 100.0");
+					super.state(context, false, "resolutionDescription", "assistance-agent.claim-log.validation.message.resolutionDescription.must-be-empty");
 				if (value.getCompensation() != null)
-					super.state(context, false, "compensation", "Compensation must be null or empty if resolution percentage is not 100.0");
+					super.state(context, false, "compensation", "assistance-agent.claim-log.validation.message.compensation.must-be-null");
 			} else {
 				if (value.getStatus() != null && value.getStatus().equals(ClaimStatus.PENDING))
-					super.state(context, false, "resolutionPercentage", "state of log must be accepted or rejected if resolution percentage is 100.0");
+					super.state(context, false, "resolutionPercentage", "assistance-agent.claim-log.validation.message.resolutionPercentage.accepted-or-rejected");
 				if (value.getResolutionDescription() == null || value.getResolutionDescription().equals(""))
-					super.state(context, false, "resolutionDescription", "description must not be empty if resolution percentage is 100.0");
+					super.state(context, false, "resolutionDescription", "assistance-agent.claim-log.validation.message.resolutionDescription.must-not-be-empty");
 			}
 
 			if (value.getLastUpdateMoment() != null && value.getClaim().getRegistrationMoment().after(value.getLastUpdateMoment()))
-				super.state(context, false, "lastUpdateMoment", "LastUpdateMoment must be after the associated claim registration moment");
+				super.state(context, false, "lastUpdateMoment", "assistance-agent.claim-log.validation.message.lastUpdateMoment.must-be-after");
 
 			if (value.getCreationMoment() != null && value.getClaim().getRegistrationMoment().after(value.getCreationMoment()))
-				super.state(context, false, "creationMoment", "CreationMoment must be after the associated claim registration moment");
+				super.state(context, false, "creationMoment", "assistance-agent.claim-log.validation.message.creationMoment.after-registration");
 
 			if (value.getCreationMoment() != null && value.getLastUpdateMoment() != null && value.getLastUpdateMoment().before(value.getCreationMoment()))
-				super.state(context, false, "lastUpdateMoment", "lastUpdateMoment cant be before registrationMoment");
+				super.state(context, false, "lastUpdateMoment", "assistance-agent.claim-log.validation.message.lastUpdateMoment.cant-be-before");
 
 			if (value.getClaim().getLastTrackingLog() != null) {
 				if (value.getCreationMoment() != null && value.getClaim().getLastTrackingLog().getCreationMoment().after(value.getCreationMoment()))
-					super.state(context, false, "creationMoment", "CreationMoment must be after the last tracking log of the associated claim");
+					super.state(context, false, "creationMoment", "assistance-agent.claim-log.validation.message.creationMoment.cant-be-before");
 				if (value.getResolutionPercentage() != null && value.getResolutionPercentage() < value.getClaim().getLastTrackingLog().getResolutionPercentage())
-					super.state(context, false, "resolutionPercentage", "ResolutionPercentage must be equal or greater than the ResolutionPercentage of the last tracking log of the associated claim");
+					super.state(context, false, "resolutionPercentage", "assistance-agent.claim-log.validation.message.resolutionPercentage.equal-or-greater");
 			}
 		}
 		return !super.hasErrors(context);

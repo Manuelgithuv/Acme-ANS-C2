@@ -37,7 +37,7 @@ public class AssistanceAgentTrackingLogListService extends AbstractGuiService<As
 			claimCheck = claim != null && claim.getAssistanceAgent().getId() == agentId;
 		}
 
-		status = agent.getClass().equals(AssistanceAgent.class);
+		status = agent.getClass().equals(AssistanceAgent.class) && claimCheck;
 
 		super.getResponse().setAuthorised(status);
 
