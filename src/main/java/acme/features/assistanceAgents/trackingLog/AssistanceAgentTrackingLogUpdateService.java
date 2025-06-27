@@ -40,14 +40,14 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 
 		if (!super.getRequest().getMethod().equals("GET")) {
 
-			int claimId = super.getRequest().getData("claim", int.class);
+			int claimId = super.getRequest().hasData("claim") ? super.getRequest().getData("claim", int.class) : 0;
 			Claim claim = this.claimRepository.findClaimById(claimId);
 			if (claim != null && claim.getAssistanceAgent().getId() == agentId)
 				claimCheck = true;
 			else
 				claimCheck = false;
 		}
-		status = claimLog.getClaim().getAssistanceAgent().getId() == agentId && !claimLog.isPublished() && claimCheck;
+		status = claimLog != null && claimLog.getClaim().getAssistanceAgent().getId() == agentId && !claimLog.isPublished() && claimCheck;
 
 		super.getResponse().setAuthorised(status);
 
