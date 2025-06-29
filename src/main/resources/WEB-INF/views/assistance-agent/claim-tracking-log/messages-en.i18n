@@ -1,27 +1,5 @@
 assistance-agent.claim-tracking-log.list.title = Listing Claim Logs
 assistance-agent.claim-tracking-log.form.title = Claim Log details
-customer.booking.create.null-lastCardNibble = The last card nibble is null
-customer.booking.locatorCode.alreadyExists = Locator Code already exist
-customer.booking.all-passengers-are-published = All the passengers from the booking must be published
-customer.booking.all-booking-passengers-are-published = All the  bookingPassengers from the booking must be published
-customer.booking.create.null-flight= The flight must not be null
-
-authenticated.customer.list.label.locatorCode = Locator Code
-authenticated.customer.list.label.purchaseMoment = Purchase Moment
-authenticated.customer.list.label.travelClass = Travel Class
-authenticated.customer.list.label.price = Price
-authenticated.customer.list.label.lastCardNibble = Last Card Nibble
-authenticated.customer.list.label.flight = Flight
-authenticated.customer.list.label.published = Published
-manager.flight.invalid-currency = Invalid Currency
-customer.booking.at-least-one-passenger = Booking must have at least one passenger
-
-authenticated.customer.list.button.passengers = See Passengers
-authenticated.customer.form.button.flight.publish = Publish
-authenticated.customer.form.button.flight.update = Update
-authenticated.customer.form.button.flight.create = Create
-authenticated.customer.list.button.booking.create = Create
-
 
 assistance-agent.claim-tracking-log.list.title = Listing Claim Logs
 assistance-agent.claim-tracking-log.form.title = Claim Log details
@@ -43,4 +21,26 @@ authenticated.assistance-agent.form.button.claim.delete  = Delete
 authenticated.assistance-agent.form.button.claim.create= Create
 
 assistance-agent.claim-tracking-log.create.claim= Claim cant be null
-assistance-agent.claim-tracking-log.publish.claimNotPublished= can publish tracking log if associated claim is not published
+assistance-agent.claim-tracking-log.publish.claimNotPublished= Can not publish tracking log if associated claim is not published
+
+
+
+assistance-agent.claim-log.validation.message.resolutionPercentage.must-be-pending= State of log must be pending if resolution percentage is not 100.0
+
+assistance-agent.claim-log.validation.message.resolutionDescription.must-be-empty= Description must be empty if resolution percentage is not 100.0
+
+assistance-agent.claim-log.validation.message.compensation.must-be-null= Compensation must be null or empty if resolution percentage is not 100.0
+
+assistance-agent.claim-log.validation.message.resolutionPercentage.accepted-or-rejected= State of log must be accepted or rejected if resolution percentage is 100.0
+
+assistance-agent.claim-log.validation.message.resolutionDescription.must-not-be-empty= Description must not be empty if resolution percentage is 100.0 
+
+assistance-agent.claim-log.validation.message.lastUpdateMoment.must-be-after= Last update moment must be after the associated claim registration momento
+
+assistance-agent.claim-log.validation.message.creationMoment.after-registration= Creation moment must be after the associated claim registration momento
+
+assistance-agent.claim-log.validation.message.lastUpdateMoment.cant-be-before= Last update moment cant be before registration momento
+
+assistance-agent.claim-log.validation.message.creationMoment.cant-be-before = CreationMoment cant be before the creation moment of the last tracking log of the associated claim
+
+assistance-agent.claim-log.validation.message.resolutionPercentage.equal-or-greater = Resolution percentage must be equal or greater than the resolution percentage of the last tracking log of the associated claim

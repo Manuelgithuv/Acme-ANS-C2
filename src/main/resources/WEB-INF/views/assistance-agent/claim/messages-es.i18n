@@ -1,8 +1,16 @@
+authenticated.assistanceAgent.list.label.registrationMoment= Momento de Registro
+authenticated.assistanceAgent.list.label.passengerEmail= Correo del Pasajero
+authenticated.assistanceAgent.list.label.status= Estado
+authenticated.assistanceAgent.list.label.published= Publicado
+authenticated.assistanceAgent.list.label.leg= Tramo
+
+authenticated.assistanceAgent.list.button.booking.create= Crear
+
 assistance-agent.claim.list.title = Listado de Reclamaciones
 assistance-agent.claim.form.title = Detalles de la Reclamación
 
 authenticated.assistance-agent.list.label.registrationMoment  = Momento de Registro
-authenticated.assistance-agent.list.label.passengerEmail  = Correo Electrónico del Pasajero
+authenticated.assistance-agent.list.label.passengerEmail  = Correo del Pasajero
 authenticated.assistance-agent.list.label.description  = Descripción
 authenticated.assistance-agent.list.label.status  = Estado
 authenticated.assistance-agent.list.label.type  = Tipo
@@ -13,7 +21,7 @@ authenticated.assistance-agent.form.button.claim.update  = Actualizar
 authenticated.assistance-agent.form.button.claim.delete  = Eliminar
 authenticated.assistance-agent.form.button.claim.create= Crear
 
-authenticated.assistance-agent.list.label.lastUpdateMoment= Momento de Última Actualización
+authenticated.assistance-agent.list.label.lastUpdateMoment= Último Momento de Actualización
 authenticated.assistance-agent.list.label.stepUndergoing= Paso en Curso
 authenticated.assistance-agent.list.label.resolutionPercentage = Porcentaje de Resolución
 authenticated.assistance-agent.list.label.resolutionDescription = Descripción de la Resolución
@@ -22,4 +30,8 @@ authenticated.assistance-agent.list.label.claimAcepted = Reclamación Asociada A
 authenticated.assistance-agent.list.label.published= Publicado
 authenticated.assistance-agent.list.label.claim= Reclamación Asociada
 
-assistance-agent.claim.create.legId.beforeLeg= El tramo debe ser en el mismo momento o antes que el momento de creacion de la reclamacion
+assistance-agent.claim.create.legId= El tramo no puede ser nulo
+assistance-agent.claim.delete.pendingLogs= No se puede eliminar la reclamación, uno o más registros de seguimiento están asociados
+assistance-agent.claim.create.legId.beforeLeg= El tramo debe ser anterior o coincidir con la fecha de la reclamación
+
+authenticated.assistance-agent.form.button.claim.logs.create= Listar registros de la reclamación
