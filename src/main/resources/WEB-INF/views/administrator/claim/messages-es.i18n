@@ -25,3 +25,7 @@ authenticated.assistance-agent.list.label.claim= Reclamación Asociada
 administrator.logs.form.button.list= Listar Logs
 administrator.claim.list.title= Reclamaciones Publicadas
 administrator.claim.form.title= Detalles de la reclamacion
+
+
+
+authenticated.assistanceAgent.list.label.claimNameId= Id del reclamacion

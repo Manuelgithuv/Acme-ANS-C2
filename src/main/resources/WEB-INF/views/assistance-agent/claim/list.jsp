@@ -11,8 +11,8 @@
 </form>
 
 <acme:list>
+	<acme:list-column code="authenticated.assistanceAgent.list.label.claimNameId" path="claimNameId"/>
 	<acme:list-column code="authenticated.assistanceAgent.list.label.registrationMoment" path="registrationMoment"/>
-	<acme:list-column code="authenticated.assistanceAgent.list.label.passengerEmail" path="passengerEmail"/>
 	<acme:list-column code="authenticated.assistanceAgent.list.label.status" path="status"/>
 	<acme:list-column code="authenticated.assistanceAgent.list.label.published" path="published"/>
 	<acme:list-column code="authenticated.assistanceAgent.list.label.leg" path="legId"/>

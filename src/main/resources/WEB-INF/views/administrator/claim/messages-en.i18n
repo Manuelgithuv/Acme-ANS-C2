@@ -37,4 +37,6 @@ administrator.logs.form.button.list= List Logs
 administrator.claim.list.title= Claims Published
 administrator.claim.form.title= Details of the claim
 
+authenticated.assistanceAgent.list.label.claimNameId= Claim Id
+
 

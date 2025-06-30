@@ -56,7 +56,7 @@ public class AdministratorTrackingLogListService extends AbstractGuiService<Admi
 	public void unbind(final ClaimTrackingLog claimLog) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(claimLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "published");
+		dataset = super.unbindObject(claimLog, "lastUpdateMoment", "resolutionPercentage", "published");
 		dataset.put("claim", claimLog.getClaim().getId());
 
 		super.addPayload(dataset, claimLog);
