@@ -34,13 +34,13 @@ public class AssistanceAgentDashboard extends AbstractForm {
 
 	// Statistics for the number of logs their claims have
 	private Double				averageLogsPerClaim;
-	private Double				minimumLogsPerClaim;
-	private Double				maximumLogsPerClaim;
+	private Integer				minimumLogsPerClaim;
+	private Integer				maximumLogsPerClaim;
 	private Double				standardDeviationLogsPerClaim;
 
 	// Statistics for the number of claims they assisted during the last month
 	private Double				averageClaimsLastMonth;
-	private Double				minimumClaimsLastMonth;
-	private Double				maximumClaimsLastMonth;
+	private Integer				minimumClaimsLastMonth;
+	private Integer				maximumClaimsLastMonth;
 	private Double				standardDeviationClaimsLastMonth;
 }

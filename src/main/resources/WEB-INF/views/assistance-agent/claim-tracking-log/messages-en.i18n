@@ -44,3 +44,5 @@ assistance-agent.claim-log.validation.message.lastUpdateMoment.cant-be-before= L
 assistance-agent.claim-log.validation.message.creationMoment.cant-be-before = CreationMoment cant be before the creation moment of the last tracking log of the associated claim
 
 assistance-agent.claim-log.validation.message.resolutionPercentage.equal-or-greater = Resolution percentage must be equal or greater than the resolution percentage of the last tracking log of the associated claim
+
+assistance-agent.claim-tracking-log.create.claim.lastLogError=You can only create one aditional log if there is already a published 100% resolution log for this claim 

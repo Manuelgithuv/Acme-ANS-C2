@@ -1,0 +1,13 @@
+assistance-agent.assistance-agent-dashboard.form.title= Mi panel
+assistance-agent.dashboard.form.title.general-indicators= Indicadores generales
+manager.dashboard.form.label.resolvedClaimsRatio= Proporción de reclamaciones resueltas
+manager.dashboard.form.label.rejectedClaimsRatio= Proporción de reclamaciones rechazadas
+manager.dashboard.form.label.topThreeMonthsWithMostClaim= 3 meses con más reclamaciones
+manager.dashboard.form.label.averageLogsPerClaim= Promedio de registros por reclamación
+manager.dashboard.form.label.minimumLogsPerClaim= Mínimo de registros por reclamación
+manager.dashboard.form.label.maximumLogsPerClaim= Máximo de registros por reclamación
+manager.dashboard.form.label.standardDeviationLogsPerClaim= Desviación estándar de registros en reclamaciones
+manager.dashboard.form.label.averageClaimsLastMonth= Promedio de reclamaciones el mes pasado
+manager.dashboard.form.label.minimumClaimsLastMonth= Mínimo de reclamaciones el mes pasado
+manager.dashboard.form.label.maximumClaimsLastMonth= Máximo de reclamaciones el mes pasado
+manager.dashboard.form.label.standardDeviationClaimsLastMonth= Desviación estándar de reclamaciones el mes pasado

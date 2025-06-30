@@ -2,6 +2,7 @@
 package acme.features.assistanceAgents.trackingLog;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -83,6 +84,15 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 		if (claimLog.getClaim() == null)
 			super.state(false, "claim", "assistance-agent.claim-tracking-log.create.claim");
+		if (claimLog.getClaim() != null && claimLog.getResolutionPercentage() != null && claimLog.getResolutionPercentage().equals(100.0)) {
+			List<ClaimTrackingLog> ls = this.repository.findAllByClaimIdOrderByCreationMomentDescIdDesc(claimLog.getClaim().getId());
+			List<ClaimTrackingLog> filtered = ls.stream().filter(z -> z.getResolutionPercentage().equals(100.0)).toList();
+			if (filtered.size() > 1) {
+				ClaimTrackingLog secondLastCompletedLog = filtered.get(1);
+				if (secondLastCompletedLog.getId() != claimLog.getId() && secondLastCompletedLog.isPublished())
+					super.state(false, "claim", "assistance-agent.claim-tracking-log.create.claim.lastLogError");
+			}
+		}
 
 	}
 
