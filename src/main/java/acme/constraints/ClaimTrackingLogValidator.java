@@ -18,17 +18,17 @@ public class ClaimTrackingLogValidator extends AbstractValidator<ValidClaimTrack
 
 	@Override
 	public boolean isValid(final ClaimTrackingLog value, final ConstraintValidatorContext context) {
-		if (value.getClaim() != null) {
-			if (value.getResolutionPercentage() != null && !value.getResolutionPercentage().equals(100.0)) {
-				if (value.getStatus() != null && !value.getStatus().equals(ClaimStatus.PENDING))
-					super.state(context, false, "resolutionPercentage", "assistance-agent.claim-log.validation.message.resolutionPercentage.must-be-pending");
+		if (value.getClaim() != null && value.getResolutionPercentage() != null && value.getStatus() != null) {
+			if (!value.getResolutionPercentage().equals(100.0)) {
+				if (!value.getStatus().equals(ClaimStatus.PENDING))
+					super.state(context, false, "status", "assistance-agent.claim-log.validation.message.resolutionPercentage.must-be-pending");
 				if (value.getResolutionDescription() != null && value.getResolutionDescription() != "")
 					super.state(context, false, "resolutionDescription", "assistance-agent.claim-log.validation.message.resolutionDescription.must-be-empty");
 				if (value.getCompensation() != null)
 					super.state(context, false, "compensation", "assistance-agent.claim-log.validation.message.compensation.must-be-null");
 			} else {
 				if (value.getStatus() != null && value.getStatus().equals(ClaimStatus.PENDING))
-					super.state(context, false, "resolutionPercentage", "assistance-agent.claim-log.validation.message.resolutionPercentage.accepted-or-rejected");
+					super.state(context, false, "status", "assistance-agent.claim-log.validation.message.resolutionPercentage.accepted-or-rejected");
 				if (value.getResolutionDescription() == null || value.getResolutionDescription().equals(""))
 					super.state(context, false, "resolutionDescription", "assistance-agent.claim-log.validation.message.resolutionDescription.must-not-be-empty");
 			}

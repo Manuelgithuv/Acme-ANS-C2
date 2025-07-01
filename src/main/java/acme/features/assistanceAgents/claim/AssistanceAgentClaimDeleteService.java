@@ -36,7 +36,18 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 
 		Claim claim = this.repository.findClaimById(id);
 
-		status = claim != null && claim.getAssistanceAgent().getId() == agentId && !claim.isPublished();
+		boolean legCheck = true;
+
+		if (!super.getRequest().getMethod().equals("GET")) {
+
+			int legId = super.getRequest().hasData("legId") ? super.getRequest().getData("legId", int.class) : 0;
+			if (legId == 0 || this.legChoices().stream().anyMatch(z -> z.getId() == legId))
+				legCheck = true;
+			else
+				legCheck = false;
+		}
+
+		status = claim != null && claim.getAssistanceAgent().getId() == agentId && !claim.isPublished() && legCheck;
 
 		super.getResponse().setAuthorised(status);
 
@@ -54,7 +65,6 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 		int legId = super.getRequest().getData("legId", int.class);
 		Leg leg = this.legRepository.findById(legId);
 		super.bindObject(claim, "passengerEmail", "description", "type");
-		claim.setLeg(leg);
 	}
 
 	@Override
@@ -72,11 +82,15 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 		this.repository.delete(claim);
 	}
 
+	public Collection<Leg> legChoices() {
+		return this.legRepository.findAllLegs().stream().filter(z -> z.isPublished()).toList();
+	}
+
 	@Override
 	public void unbind(final Claim claim) {
 		Dataset dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "published");
 		dataset.put("status", claim.getStatus());
-		Collection<Leg> legs = this.legRepository.findAllLegs();
+		Collection<Leg> legs = this.legChoices();
 		SelectChoices legChoices = SelectChoices.from(legs, "id", claim.getLeg());
 		dataset.put("legId", legChoices.getSelected().getKey());
 		dataset.put("legIds", legChoices);
