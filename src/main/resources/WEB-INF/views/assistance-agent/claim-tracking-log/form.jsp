@@ -13,7 +13,7 @@
     <acme:input-money code="authenticated.assistance-agent.list.label.compensation" path="compensation" />
     <acme:input-checkbox code="authenticated.assistance-agent.list.label.claimAcepted" path="claimAcepted" readonly="true"/>
     <acme:input-checkbox code="authenticated.assistance-agent.list.label.published" path="published" readonly="true"/>
-    <acme:input-select code="authenticated.assistance-agent.list.label.claim" path="claim" choices="${claims}"/>
+    <acme:input-select code="authenticated.assistance-agent.list.label.claim" path="claim" choices="${claims}"  readonly="${claim_readOnly}"/>
     	
 	<jstl:choose>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && published == false}">

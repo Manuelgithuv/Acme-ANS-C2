@@ -64,7 +64,7 @@ public class ClaimTrackingLog extends AbstractEntity {
 	private String				stepUndergoing;
 
 	@Mandatory
-	@ValidScore
+	@ValidScore(message = "{assistance-agent.percentage.custom.mesage}")
 	@Automapped
 	private Double				resolutionPercentage;
 

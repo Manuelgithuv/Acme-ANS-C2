@@ -2,6 +2,7 @@
 package acme.features.assistanceAgents.trackingLog;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -37,18 +38,19 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 		ClaimTrackingLog claimLog = this.repository.findClaimTrackingLogById(id);
 		boolean claimCheck = true;
-
-		if (!super.getRequest().getMethod().equals("GET")) {
-
-			int claimId = super.getRequest().hasData("claim") ? super.getRequest().getData("claim", int.class) : 0;
-			Claim claim = this.claimRepository.findClaimById(claimId);
-			if (claimId == 0)
-				claimCheck = true;
-			else if (claim != null && claim.getAssistanceAgent().getId() == agentId)
-				claimCheck = true;
-			else
-				claimCheck = false;
-		}
+		/*
+		 * if (!super.getRequest().getMethod().equals("GET")) {
+		 * 
+		 * int claimId = super.getRequest().hasData("claim") ? super.getRequest().getData("claim", int.class) : 0;
+		 * Claim claim = this.claimRepository.findClaimById(claimId);
+		 * if (claimId == 0)
+		 * claimCheck = true;
+		 * else if (claim != null && claim.getAssistanceAgent().getId() == agentId)
+		 * claimCheck = true;
+		 * else
+		 * claimCheck = false;
+		 * }
+		 */
 		status = claimLog != null && claimLog.getClaim().getAssistanceAgent().getId() == agentId && !claimLog.isPublished() && claimCheck;
 
 		super.getResponse().setAuthorised(status);
@@ -64,8 +66,6 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 	@Override
 	public void bind(final ClaimTrackingLog claimLog) {
-		int claimId = super.getRequest().getData("claim", int.class);
-		Claim claim = this.claimRepository.findClaimById(claimId);
 
 		String money = super.getRequest().getData("compensation", String.class);
 		if (money == "") {
@@ -73,7 +73,7 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 			super.bindObject(claimLog, "stepUndergoing", "resolutionPercentage", "resolutionDescription", "status");
 		} else
 			super.bindObject(claimLog, "stepUndergoing", "resolutionPercentage", "resolutionDescription", "compensation", "status");
-		claimLog.setClaim(claim);
+
 	}
 
 	@Override
@@ -83,6 +83,24 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 			super.state(false, "claim", "assistance-agent.claim-tracking-log.create.claim");
 		if (claimLog.getClaim() != null && !claimLog.getClaim().isPublished())
 			super.state(false, "claim", "assistance-agent.claim-tracking-log.publish.claimNotPublished");
+		if (claimLog != null && claimLog.getClaim() != null && claimLog.getResolutionPercentage() != null) {
+			List<ClaimTrackingLog> logsOrdenados = List.copyOf(this.repository.findAllByClaimIdOrderByCreationMomentDescIdDesc(claimLog.getClaim().getId()));
+			if (!logsOrdenados.isEmpty()) {
+				int index = logsOrdenados.indexOf(claimLog);
+				if (index != -1) {
+					if (index < logsOrdenados.size() - 1) {
+						ClaimTrackingLog next = logsOrdenados.get(index + 1);
+						if (claimLog.getResolutionPercentage() < next.getResolutionPercentage())
+							super.state(false, "resolutionPercentage", "assistance-agent.claim-tracking-log.update.ResolutionPercentage.greater-or-equal");
+					}
+					if (index > 0) {
+						ClaimTrackingLog previous = logsOrdenados.get(index - 1);
+						if (claimLog.getResolutionPercentage() > previous.getResolutionPercentage())
+							super.state(false, "resolutionPercentage", "assistance-agent.claim-tracking-log.update.ResolutionPercentage.smaller-or-equal");
+					}
+				}
+			}
+		}
 
 	}
 
@@ -101,14 +119,14 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 			dataset.put("claimAcepted", claimLog.getIsAcepted());
 		else
 			dataset.put("claimAcepted", false);
-		Collection<Claim> claims = this.claimRepository.findAllByAssistanceAgentId(agentId);
+		Collection<Claim> claims = List.of(claimLog.getClaim());
 		SelectChoices claimChoices = SelectChoices.from(claims, "id", claimLog.getClaim());
 		dataset.put("claim", claimChoices.getSelected().getKey());
 		dataset.put("claims", claimChoices);
 
 		SelectChoices stateChoices = SelectChoices.from(ClaimStatus.class, claimLog.getStatus());
 		dataset.put("statuses", stateChoices);
-
+		dataset.put("claim_readOnly", true);
 		if (claimLog.isPublished())
 			dataset.put("readonly", true);
 		super.getResponse().addData(dataset);

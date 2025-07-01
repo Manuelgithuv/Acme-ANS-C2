@@ -2,6 +2,7 @@
 package acme.features.assistanceAgents.trackingLog;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -51,16 +52,13 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 
 	@Override
 	public void bind(final ClaimTrackingLog claimLog) {
-		int claimId = super.getRequest().getData("claim", int.class);
-		Claim claim = this.claimRepository.findClaimById(claimId);
-
 		String money = super.getRequest().getData("compensation", String.class);
 		if (money == "") {
 			claimLog.setCompensation(null);
 			super.bindObject(claimLog, "stepUndergoing", "resolutionPercentage", "resolutionDescription", "status");
 		} else
 			super.bindObject(claimLog, "stepUndergoing", "resolutionPercentage", "resolutionDescription", "compensation", "status");
-		claimLog.setClaim(claim);
+
 	}
 
 	@Override
@@ -84,13 +82,13 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 			dataset.put("claimAcepted", claimLog.getIsAcepted());
 		else
 			dataset.put("claimAcepted", false);
-		Collection<Claim> claims = this.claimRepository.findAllByAssistanceAgentId(agentId);
+		Collection<Claim> claims = List.of(claimLog.getClaim());
 		SelectChoices claimChoices = SelectChoices.from(claims, "id", claimLog.getClaim());
 		dataset.put("claim", claimChoices.getSelected().getKey());
 		dataset.put("claims", claimChoices);
 		SelectChoices stateChoices = SelectChoices.from(ClaimStatus.class, claimLog.getStatus());
 		dataset.put("statuses", stateChoices);
-
+		dataset.put("claim_readOnly", true);
 		if (claimLog.isPublished())
 			dataset.put("readonly", true);
 		super.getResponse().addData(dataset);

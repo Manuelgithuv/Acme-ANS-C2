@@ -42,12 +42,6 @@ public class ClaimTrackingLogValidator extends AbstractValidator<ValidClaimTrack
 			if (value.getCreationMoment() != null && value.getLastUpdateMoment() != null && value.getLastUpdateMoment().before(value.getCreationMoment()))
 				super.state(context, false, "lastUpdateMoment", "assistance-agent.claim-log.validation.message.lastUpdateMoment.cant-be-before");
 
-			if (value.getClaim().getLastTrackingLog() != null) {
-				if (value.getCreationMoment() != null && value.getClaim().getLastTrackingLog().getCreationMoment().after(value.getCreationMoment()))
-					super.state(context, false, "creationMoment", "assistance-agent.claim-log.validation.message.creationMoment.cant-be-before");
-				if (value.getResolutionPercentage() != null && value.getResolutionPercentage() < value.getClaim().getLastTrackingLog().getResolutionPercentage())
-					super.state(context, false, "resolutionPercentage", "assistance-agent.claim-log.validation.message.resolutionPercentage.equal-or-greater");
-			}
 		}
 		return !super.hasErrors(context);
 	}
