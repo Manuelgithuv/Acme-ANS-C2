@@ -1,8 +1,8 @@
 key,lastUpdateMoment,creationMoment,stepUndergoing,resolutionPercentage,resolutionDescription,compensation,status,published,key:claim
-claim-tracking-log-01,2000/01/01 00:00,2000/01/01 00:00,L,0,null,null,PENDING,false,claim-01
-claim-tracking-log-02,2000/01/01 00:01,2000/01/01 00:01,Lo,1,null,null,PENDING,false,claim-02
+claim-tracking-log-01,2000/01/01 00:01,2000/01/01 00:01,L,0,null,null,PENDING,false,claim-01
+claim-tracking-log-02,2000/01/01 00:02,2000/01/01 00:02,Lo,0.01,null,null,PENDING,false,claim-02
 claim-tracking-log-03,2024/03/04 00:04,2024/03/04 00:04,wating response from airport personel,50,null,null,PENDING,false,claim-03
-claim-tracking-log-04,2024/12/31 23:59,2024/12/31 23:59,Lorem ipsum dolor sit amete consectetur adipiscin,99,null,null,PENDING,false,claim-04
+claim-tracking-log-04,2024/12/31 23:59,2024/12/31 23:59,Lorem ipsum dolor sit amete consectetur adipiscin,99.99,null,null,PENDING,false,claim-04
 claim-tracking-log-05,2025/01/01 00:00,2025/01/01 00:00,Lorem ipsum dolor sit amete consectetur adipiscing,100,L,null,REJECTED,false,claim-05
 claim-tracking-log-06,2025/01/01 00:00,2025/01/01 00:00,step 6,100,L,EUR 0.00,ACCEPTED,false,claim-05
 claim-tracking-log-07,2025/01/01 00:00,2025/01/01 00:00,step 7,100,Lo,EUR 0.01,ACCEPTED,false,claim-05
