@@ -1,3 +1,2 @@
 Repositorio en Github: https://github.com/Manuelgithuv/Acme-ANS-C2
-Tablero Kanban: https://github.com/users/Manuelgithuv/projects/24
-Se ha usado el mismo projecto pero se han añadido la etiqueta 'C2' a las tareas.
+Tablero Kanban: https://github.com/users/Manuelgithuv/projects/28
