@@ -83,8 +83,6 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 		SelectChoices stateChoices = SelectChoices.from(ClaimStatus.class, claimLog.getStatus());
 		dataset.put("statuses", stateChoices);
 		dataset.put("claim_readOnly", true);
-		if (claimLog.isPublished())
-			dataset.put("readonly", true);
 		super.getResponse().addData(dataset);
 	}
 }

@@ -51,3 +51,5 @@ assistance-agent.percentage.custom.mesage= Resolution percentage cant be empty a
 
 assistance-agent.claim-tracking-log.update.ResolutionPercentage.greater-or-equal= Resolution percentage must be greater or equal than the percentage of the last log ordered by their creation time
 assistance-agent.claim-tracking-log.update.ResolutionPercentage.smaller-or-equal= Resolution percentage must be smaller or equal than the percentage of the next log ordered by their creation time
+
+assistance-agent.claim-tracking-log.create.status.review-must-match=If asociated claim is already published and last log has 100% resolutions and is also published, state of log must macth the state of that log
