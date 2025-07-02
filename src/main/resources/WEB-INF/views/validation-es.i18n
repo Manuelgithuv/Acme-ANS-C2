@@ -78,3 +78,5 @@ acme.validation.repeatedAirportIataCode = El código Iata ya existe
 acme.validation.repeatedRegNumber = El número de registro ya existe
 
 acme.validation.repeatedAirlineIataCode = El código Iata ya existe
+
+assistance-agent.percentage.custom.mesage= Porcentaje de resolución no puede estar vacio y debe ser un valor entre 0,00 y 100,00

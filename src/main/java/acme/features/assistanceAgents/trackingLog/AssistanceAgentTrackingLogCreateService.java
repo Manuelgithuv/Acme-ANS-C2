@@ -2,6 +2,7 @@
 package acme.features.assistanceAgents.trackingLog;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -83,6 +84,22 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 		if (claimLog.getClaim() == null)
 			super.state(false, "claim", "assistance-agent.claim-tracking-log.create.claim");
+		ClaimTrackingLog value = claimLog;
+		if (value.getClaim() != null && value.getClaim().getLastTrackingLog() != null)
+			if (value.getResolutionPercentage() != null && value.getResolutionPercentage() < value.getClaim().getLastTrackingLog().getResolutionPercentage())
+				super.state(false, "resolutionPercentage", "assistance-agent.claim-log.validation.message.resolutionPercentage.equal-or-greater");
+		if (value.getClaim() != null && value.getClaim().getLastTrackingLog() != null)
+			if (value.getCreationMoment() != null && value.getClaim().getLastTrackingLog().getCreationMoment().after(value.getCreationMoment()))
+				super.state(false, "creationMoment", "assistance-agent.claim-log.validation.message.creationMoment.cant-be-before");
+		if (claimLog.getClaim() != null && claimLog.getResolutionPercentage() != null && claimLog.getResolutionPercentage().equals(100.0)) {
+			List<ClaimTrackingLog> ls = this.repository.findAllByClaimIdOrderByCreationMomentDescIdDesc(claimLog.getClaim().getId());
+			List<ClaimTrackingLog> filtered = ls.stream().filter(z -> z.getResolutionPercentage().equals(100.0)).toList();
+			if (filtered.size() > 1) {
+				ClaimTrackingLog secondLastCompletedLog = filtered.get(1);
+				if (secondLastCompletedLog.getId() != claimLog.getId() && secondLastCompletedLog.isPublished())
+					super.state(false, "claim", "assistance-agent.claim-tracking-log.create.claim.lastLogError");
+			}
+		}
 
 	}
 
@@ -105,9 +122,14 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		dataset.put("claims", claimChoices);
 		SelectChoices stateChoices = SelectChoices.from(ClaimStatus.class, claimLog.getStatus());
 		dataset.put("statuses", stateChoices);
+		dataset.put("claim_readOnly", false);
 
-		if (claimLog.isPublished())
+		if (claimLog.isPublished()) {
 			dataset.put("readonly", true);
+			dataset.put("claim_readOnly", true);
+		} else
+			dataset.put("claim_readOnly", false);
+
 		super.getResponse().addData(dataset);
 	}
 

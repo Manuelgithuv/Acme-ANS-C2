@@ -35,12 +35,19 @@ assistance-agent.claim-log.validation.message.resolutionPercentage.accepted-or-r
 
 assistance-agent.claim-log.validation.message.resolutionDescription.must-not-be-empty= Description must not be empty if resolution percentage is 100.0 
 
-assistance-agent.claim-log.validation.message.lastUpdateMoment.must-be-after= Last update moment must be after the associated claim registration momento
+assistance-agent.claim-log.validation.message.lastUpdateMoment.must-be-after= Last update moment must be after the associated claim registration moment
 
-assistance-agent.claim-log.validation.message.creationMoment.after-registration= Creation moment must be after the associated claim registration momento
+assistance-agent.claim-log.validation.message.creationMoment.after-registration= Creation moment must be after the associated claim registration moment
 
-assistance-agent.claim-log.validation.message.lastUpdateMoment.cant-be-before= Last update moment cant be before registration momento
+assistance-agent.claim-log.validation.message.lastUpdateMoment.cant-be-before= Last update moment cant be before registration moment
 
 assistance-agent.claim-log.validation.message.creationMoment.cant-be-before = CreationMoment cant be before the creation moment of the last tracking log of the associated claim
 
 assistance-agent.claim-log.validation.message.resolutionPercentage.equal-or-greater = Resolution percentage must be equal or greater than the resolution percentage of the last tracking log of the associated claim
+
+assistance-agent.claim-tracking-log.create.claim.lastLogError=You can only create one aditional log if there is already a published 100% resolution log for this claim 
+
+assistance-agent.percentage.custom.mesage= Resolution percentage cant be empty and must range between 0.00 and 100.00
+
+assistance-agent.claim-tracking-log.update.ResolutionPercentage.greater-or-equal= Resolution percentage must be greater or equal than the percentage of the last log ordered by their creation time
+assistance-agent.claim-tracking-log.update.ResolutionPercentage.smaller-or-equal= Resolution percentage must be smaller or equal than the percentage of the next log ordered by their creation time

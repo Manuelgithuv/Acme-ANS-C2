@@ -36,9 +36,10 @@ public class AdministratorClaimListService extends AbstractGuiService<Administra
 	public void unbind(final Claim claim) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "published");
+		dataset = super.unbindObject(claim, "registrationMoment", "published");
 		dataset.put("status", claim.getStatus());
 		dataset.put("legId", claim.getLeg().getId());
+		dataset.put("claimNameId", claim.getId());
 
 		super.addPayload(dataset, claim);
 

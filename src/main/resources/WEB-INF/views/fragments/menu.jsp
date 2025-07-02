@@ -82,6 +82,8 @@
 		<acme:menu-option code="master.menu.assistance-agent" access="hasRealm('AssistanceAgent')">
 			<acme:menu-suboption code="master.menu.assistance-agent.list-claims" action="/assistance-agent/claim/list"/>
 			<acme:menu-suboption code="master.menu.assistance-agent.list-claim-logs" action="/assistance-agent/claim-tracking-log/list"/>
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.assistance-agent.show-dashboard" action="/assistance-agent/assistance-agent-dashboard/show"/>
 		</acme:menu-option>
 		
 	</acme:menu-left>

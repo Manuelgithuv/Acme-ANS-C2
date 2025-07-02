@@ -76,3 +76,5 @@ acme.validation.repeatedAirportIataCode = Iata code already exists
 acme.validation.repeatedRegNumber = Reg number already exists
 
 acme.validation.repeatedAirlineIataCode = Iata code already exists
+
+assistance-agent.percentage.custom.mesage= Resolution percentage cant be empty and must range between 0.00 and 100.00

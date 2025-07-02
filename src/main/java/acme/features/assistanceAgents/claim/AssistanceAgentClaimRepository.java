@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.claim.Claim;
+import acme.realms.AssistanceAgent;
 
 @Repository
 public interface AssistanceAgentClaimRepository extends AbstractRepository {
@@ -21,5 +22,8 @@ public interface AssistanceAgentClaimRepository extends AbstractRepository {
 
 	@Query("SELECT c FROM Claim c WHERE c.published = true")
 	Collection<Claim> findAllPublishedClaims();
+
+	@Query("SELECT a FROM AssistanceAgent a")
+	Collection<AssistanceAgent> findAllAssistanceAgents();
 
 }

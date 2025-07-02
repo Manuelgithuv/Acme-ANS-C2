@@ -94,4 +94,4 @@ master.menu.technician.maintenanceRecords.maintenanceRecords-list = Maintenance 
 master.menu.assistance-agent= Assistance Agent
 master.menu.assistance-agent.list-claims= Claims
 master.menu.assistance-agent.list-claim-logs= Claim Logs
-master.menu.assistance-agent.show-dashboard= See my dashboard
+master.menu.assistance-agent.show-dashboard= See dashboard

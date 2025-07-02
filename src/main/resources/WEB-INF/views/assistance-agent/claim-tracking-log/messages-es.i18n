@@ -42,3 +42,10 @@ assistance-agent.claim-log.validation.message.lastUpdateMoment.cant-be-before= E
 assistance-agent.claim-log.validation.message.creationMoment.cant-be-before = El momento de creación no puede ser anterior al momento de creación del último registro de seguimiento de la reclamación asociada
 
 assistance-agent.claim-log.validation.message.resolutionPercentage.equal-or-greater = El porcentaje de resolución debe ser igual o mayor que el del último registro de seguimiento de la reclamación asociada
+
+assistance-agent.claim-tracking-log.create.claim.lastLogError=Solo puedes crear un unico registro mas si esta reclamacion ya tiene un registro publicado con una resolución del 100%
+
+assistance-agent.percentage.custom.mesage= Porcentaje de resolución no puede estar vacio y debe ser un valor entre 0,00 y 100,00
+
+assistance-agent.claim-tracking-log.update.ResolutionPercentage.greater-or-equal= El porcentaje de resolucion debe ser mayor o igual al porcentaje del registro anterior ordenado por el momento de creacion
+assistance-agent.claim-tracking-log.update.ResolutionPercentage.smaller-or-equal= El porcentaje de resolucion debe ser menor o igual al porcentaje del siguiente registro ordenado por el momento de creacion
