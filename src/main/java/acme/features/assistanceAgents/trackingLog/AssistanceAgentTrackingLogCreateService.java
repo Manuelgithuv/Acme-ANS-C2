@@ -100,6 +100,10 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 					super.state(false, "claim", "assistance-agent.claim-tracking-log.create.claim.lastLogError");
 			}
 		}
+		if (claimLog.getClaim() != null && claimLog.getClaim().getLastTrackingLog() != null && claimLog.getClaim().isPublished() && claimLog.getClaim().getLastTrackingLog().isPublished()
+			&& claimLog.getClaim().getLastTrackingLog().getResolutionPercentage().equals(100.0))
+			if (!claimLog.getClaim().getLastTrackingLog().getStatus().equals(claimLog.getStatus()))
+				super.state(false, "status", "assistance-agent.claim-tracking-log.create.status.review-must-match");
 
 	}
 

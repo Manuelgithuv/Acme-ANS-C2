@@ -49,3 +49,5 @@ assistance-agent.percentage.custom.mesage= Porcentaje de resolución no puede es
 
 assistance-agent.claim-tracking-log.update.ResolutionPercentage.greater-or-equal= El porcentaje de resolucion debe ser mayor o igual al porcentaje del registro anterior ordenado por el momento de creacion
 assistance-agent.claim-tracking-log.update.ResolutionPercentage.smaller-or-equal= El porcentaje de resolucion debe ser menor o igual al porcentaje del siguiente registro ordenado por el momento de creacion
+
+assistance-agent.claim-tracking-log.create.status.review-must-match=Si la reclamacion asocidada ya esta publicada y su ultimo registro esta publicado con un porcentaje de resolucion 100%, el estado debe ser el mismo que el de ese log
