@@ -16,6 +16,7 @@
 	<acme:list-column code="authenticated.assistanceAgent.list.label.status" path="status"/>
 	<acme:list-column code="authenticated.assistanceAgent.list.label.published" path="published"/>
 	<acme:list-column code="authenticated.assistanceAgent.list.label.leg" path="legId"/>
+	<acme:list-payload path="payload"/>
 </acme:list>
 <jstl:if test="${_command == 'list'}">
 	<acme:button code="authenticated.assistanceAgent.list.button.booking.create" action="/assistance-agent/claim/create"/>

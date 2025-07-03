@@ -8,6 +8,7 @@
 	<acme:list-column code="authenticated.assistanceAgent.list.label.lastUpdateMoment" path="lastUpdateMoment"/>
 	<acme:list-column code="authenticated.assistanceAgent.list.label.resolutionPercentage" path="resolutionPercentage"/>
 	<acme:list-column code="authenticated.assistanceAgent.list.label.published" path="published"/>
+	<acme:list-payload path="payload"/>
 </acme:list>
 <jstl:if test="${_command == 'list'}">
 	<acme:button code="authenticated.assistanceAgent.list.button.booking.create" action="/assistance-agent/claim-tracking-log/create"/>
