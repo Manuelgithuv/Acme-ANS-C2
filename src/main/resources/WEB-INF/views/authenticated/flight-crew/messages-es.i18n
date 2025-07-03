@@ -1,0 +1,12 @@
+authenticated.flight_crew.form.title = Formulario de miembro de la tripulación
+
+authenticated.flight_crew.form.label.identifier = Número de identificación
+authenticated.flight_crew.form.label.phone = Número de teléfono
+authenticated.flight_crew.form.label.languageSkills = Idiomas
+authenticated.flight_crew.form.label.availability = Disponibilidad
+authenticated.flight_crew.form.label.experience = Años de experiencia
+authenticated.flight_crew.form.label.salary = Salario
+authenticated.flight_crew.form.label.airline = Aerolínea
+
+authenticated.flight_crew.form.button.create = Crear
+authenticated.flight_crew.form.button.update = Actualizar

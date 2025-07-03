@@ -103,6 +103,8 @@
 			<acme:menu-suboption code="master.menu.user-account.technician-profile" action="/authenticated/technician/update" access="hasRealm('Technician')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-assistance-agent" action="/authenticated/assistance-agent/create" access="!hasRealm('AssistanceAgent')"/>
 			<acme:menu-suboption code="master.menu.user-account.assistance-agent-profile" action="/authenticated/assistance-agent/update" access="hasRealm('AssistanceAgent')"/>
+			<acme:menu-suboption code="master.menu.user-account.become-flight-crew" action="/authenticated/flight-crew/create" access="!hasRealm('FlightCrew')"/>
+			<acme:menu-suboption code="master.menu.user-account.flight-crew-profile" action="/authenticated/flight-crew/update" access="hasRealm('FlightCrew')"/>
 		</acme:menu-option>
 	</acme:menu-right>
 </acme:menu-bar>

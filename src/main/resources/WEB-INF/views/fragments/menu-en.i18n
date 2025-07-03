@@ -84,6 +84,8 @@ master.menu.user-account.customer-profile = Customer profile
 master.menu.user-account.become-customer = Become a customer
 master.menu.user-account.become-assistance-agent= Become Assistance Agent
 master.menu.user-account.assistance-agent-profile= Assistance Agent Profile
+master.menu.user-account.become-flight-crew = Become Flight Crew Member
+master.menu.user-account.flight-crew-profile= Flight Crew Member Profile
 
 # master.menu.technician ########################################################
 master.menu.technician = Technician
