@@ -10,3 +10,6 @@ authenticated.assistance-agent.form.label.picture  = Picture Url
 authenticated.assistance-agent.list.label.airline  = Airline 
 authenticated.assistance-agent.form.button.create = Create  
 authenticated.assistance-agent.form.button.update  = Update
+
+
+airline.cant.be.null= Airline cant be null

@@ -36,7 +36,7 @@ public class AuthenticatedAssistanceAgentCreateService extends AbstractGuiServic
 		if (!super.getRequest().getMethod().equals("GET")) {
 			int airlineCode = super.getRequest().hasData("airlineCode") ? super.getRequest().getData("airlineCode", int.class) : 0;
 			List<Airline> airlines = this.airlineRepository.findAllAirlines();
-			if (airlines.stream().anyMatch(x -> x.getId() == airlineCode))
+			if (airlineCode == 0 || airlines.stream().anyMatch(x -> x.getId() == airlineCode))
 				airlineCheck = true;
 			else
 				airlineCheck = false;
@@ -60,7 +60,7 @@ public class AuthenticatedAssistanceAgentCreateService extends AbstractGuiServic
 		agent = new AssistanceAgent();
 		agent.setUserAccount(userAccount);
 		if (!super.getRequest().getMethod().equals("GET")) {
-			int airlineCode = super.getRequest().getData("airlineCode", int.class);
+			int airlineCode = super.getRequest().hasData("airlineCode") ? super.getRequest().getData("airlineCode", int.class) : 0;
 			Airline airline = this.airlineRepository.findById(airlineCode);
 			agent.setAirline(airline);
 		}
@@ -78,7 +78,7 @@ public class AuthenticatedAssistanceAgentCreateService extends AbstractGuiServic
 	@Override
 	public void validate(final AssistanceAgent agent) {
 		if (agent.getAirline() == null)
-			super.state(false, "airlineCode", "airline cant be null");
+			super.state(false, "airlineCode", "airline.cant.be.null");
 	}
 
 	@Override

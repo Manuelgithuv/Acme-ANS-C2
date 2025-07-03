@@ -78,3 +78,11 @@ acme.validation.repeatedRegNumber = Reg number already exists
 acme.validation.repeatedAirlineIataCode = Iata code already exists
 
 assistance-agent.percentage.custom.mesage= Resolution percentage cant be empty and must range between 0.00 and 100.00
+
+assistance-agent.employeCode.validation= Employe Code be unique and must have 2 or 3 letters, followed by a 6 digit number
+
+assistance-agent.employeCode.validation.letras= The firts two letters must be the name and surname initials
+
+assistance-agent.employeCode.notEmpty= Cant be null or empty
+
+airline.cant.be.null= Airline cant be null

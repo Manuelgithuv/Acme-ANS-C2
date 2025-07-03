@@ -80,3 +80,11 @@ acme.validation.repeatedRegNumber = El número de registro ya existe
 acme.validation.repeatedAirlineIataCode = El código Iata ya existe
 
 assistance-agent.percentage.custom.mesage= Porcentaje de resolución no puede estar vacio y debe ser un valor entre 0,00 y 100,00
+
+assistance-agent.employeCode.validation= El código de empleado debe ser unico y tener 2 o 3 letras seguidas de un número de 6 dígitos.
+
+assistance-agent.employeCode.validation.letras=Las dos primeras deben ser las iniciales del nombre y apellido
+
+assistance-agent.employeCode.notEmpty= No puede ser nulo o vacio
+
+airline.cant.be.null= Aerolinea no puede ser nula

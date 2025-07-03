@@ -9,3 +9,5 @@ authenticated.assistance-agent.form.label.picture = URL de la Imagen
 authenticated.assistance-agent.list.label.airline = Aerolínea 
 authenticated.assistance-agent.form.button.create = Crear  
 authenticated.assistance-agent.form.button.update = Actualizar
+
+airline.cant.be.null= Aerolinea no puede ser nula

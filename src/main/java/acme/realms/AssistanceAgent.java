@@ -34,7 +34,7 @@ public class AssistanceAgent extends AbstractRole {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$", message = "Employe Code must have 2 or 3 letters the firts two being the name and surname initials, followed by a - and a 6 digit number")
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$", message = "{assistance-agent.employeCode.validation}")
 	@Column(unique = true)
 	private String				employeCode;
 
